@@ -1,10 +1,7 @@
 package com.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,11 +14,9 @@ public class User {
 	private String phoneNumber;
 	private String userName;
 	private String password;
-//	private int roleNumber;
+	private int roleNumber;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id", nullable = false)
-    private PermRole role;
+	
 	
 	
 	
@@ -38,7 +33,7 @@ public class User {
 		this.phoneNumber = phoneNumber;
 		this.userName = userName;
 		this.password = password;
-//		this.roleNumber = roleNumber;
+		this.roleNumber = roleNumber;
 	}
 	
 	
@@ -78,13 +73,18 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+	public int getRoleNumber() {
+		return roleNumber;
+	}
+	public void setRoleNumber(int roleNumber) {
+		this.roleNumber = roleNumber;
+	}
 
 
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber="
-				+ phoneNumber + ", userName=" + userName + ", password=" + password 
+				+ phoneNumber + ", userName=" + userName + ", password=" + password + ", roleNumber=" + roleNumber
 				+ "]";
 	}
 	

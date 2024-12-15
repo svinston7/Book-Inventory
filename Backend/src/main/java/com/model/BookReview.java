@@ -1,6 +1,11 @@
 package com.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class BookReview {
+	@Id
 	private String isbn;
 	private int reviewerId;
 	private int rating;
@@ -38,6 +43,12 @@ public class BookReview {
 	}
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+
+	@Override
+	public String toString() {
+		return "BookReview [isbn=" + isbn + ", reviewerId=" + reviewerId + ", rating=" + rating + ", comments="
+				+ comments + "]";
 	}
 	
 	

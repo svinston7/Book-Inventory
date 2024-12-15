@@ -1,8 +1,14 @@
 package com.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class PurchaseLog {
-	private int userId;
+	@Id
 	private int inventoryId;
+	
+	private int userId;
 	
 	
 	public PurchaseLog(int userId, int inventoryId) {

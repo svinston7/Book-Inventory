@@ -1,8 +1,14 @@
 package com.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class BookAuthor {
-	private String isbn;
+	@Id
 	private int authorId;
+	
+	private String isbn;
 	private String primaryAuthor;
 	
 	
