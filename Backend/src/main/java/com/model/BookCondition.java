@@ -1,12 +1,17 @@
 package com.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class BookCondition {
+	@Id
 	private int ranks;
 	private String description;
 	private String fullDescription;
 	private int price;
 	
-	
+	public BookCondition() {}
 	
 	public BookCondition(int ranks, String description, String fullDescription, int price) {
 		super();
@@ -40,6 +45,12 @@ public class BookCondition {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "BookCondition [ranks=" + ranks + ", description=" + description + ", fullDescription=" + fullDescription
+				+ ", price=" + price + "]";
 	}
 	
 	

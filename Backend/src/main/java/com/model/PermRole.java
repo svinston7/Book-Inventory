@@ -1,9 +1,17 @@
 package com.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="roles")
 public class PermRole {
+	@Id
 	private int roleNumber;
 	private String permRole;
 	
+	public PermRole() {}
 	
 	public PermRole(int roleNumber, String permRole) {
 		super();
@@ -21,6 +29,11 @@ public class PermRole {
 	}
 	public void setPermRole(String permRole) {
 		this.permRole = permRole;
+	}
+
+	@Override
+	public String toString() {
+		return "PermRole [roleNumber=" + roleNumber + ", permRole=" + permRole + "]";
 	}
 	
 	

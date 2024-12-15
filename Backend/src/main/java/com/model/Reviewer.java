@@ -1,11 +1,22 @@
 package com.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Reviewer {
+	@Id
 	private int reviewerId;
 	private String name;
 	private String employedBy;
 	
 	
+	
+	public Reviewer() {
+		super();
+	}
+
+
 	public Reviewer(int reviewerId, String name, String employedBy) {
 		super();
 		this.reviewerId = reviewerId;
@@ -31,6 +42,12 @@ public class Reviewer {
 	}
 	public void setEmployedBy(String employedBy) {
 		this.employedBy = employedBy;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Reviewer [reviewerId=" + reviewerId + ", name=" + name + ", employedBy=" + employedBy + "]";
 	}
 	
 
