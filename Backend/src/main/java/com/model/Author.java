@@ -18,7 +18,7 @@ public class Author {
 	private String photo;
 	
 
-	@OneToMany(mappedBy="author",cascade = CascadeType.ALL,orphanRemoval = true)
+	@OneToMany(mappedBy="author",cascade = CascadeType.ALL)
 	List<Book> books = new ArrayList<>();
 	
 	
