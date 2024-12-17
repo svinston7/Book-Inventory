@@ -21,7 +21,7 @@ public String getISBN() {
 public void setISBN(String iSBN) {
 	ISBN = iSBN;
 }
-public shoppingcart()
+public ShoppingCart()
 {
 	super();
 }
