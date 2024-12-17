@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(scanBasePackages = "com.controller,com.service")
+@SpringBootApplication(scanBasePackages = "com.controller,com.service,com.config")
 @EntityScan("com.model")
 @EnableJpaRepositories("com.dao")
 public class BookInventoryApplication {
