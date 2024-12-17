@@ -23,14 +23,12 @@ public class CustomUserDetails implements UserDetails{
 
 		@Override
 		public Collection<? extends GrantedAuthority> getAuthorities() {
-			// TODO Auto-generated method stub
 			return Collections.singleton(new SimpleGrantedAuthority("USER"));
 		}
 
 
 		@Override
 		public String getPassword() {
-			// TODO Auto-generated method stub
 			return user.getPassword();
 		}
 

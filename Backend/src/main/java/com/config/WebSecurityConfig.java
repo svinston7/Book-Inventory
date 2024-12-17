@@ -39,23 +39,11 @@ public class WebSecurityConfig {
     			request -> request
     			.requestMatchers("/register","/login").permitAll()
     			.anyRequest().authenticated())
-    	
     	.httpBasic(Customizer.withDefaults());
          return httpSecurity.addFilterBefore(jwtFilter,UsernamePasswordAuthenticationFilter.class)
         		 .build();
     }
-    //@Bean
-    public UserDetailsService userdetailservice() {
-    	UserDetails sharmi=User.withUsername("sharmi")
-    			.password("{noop}1234")
-    			.roles("USER")
-    			.build();
-    	UserDetails harmi=User.withUsername("harmi")
-    			.password("{noop}123")
-    			.roles("USER")
-    			.build();
-    	return new InMemoryUserDetailsManager(sharmi,harmi);
-    }
+
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
     	return new BCryptPasswordEncoder(14);
@@ -64,7 +52,6 @@ public class WebSecurityConfig {
     public  AuthenticationProvider authenticationProvider() {
     	DaoAuthenticationProvider provider=new DaoAuthenticationProvider();
     	provider.setUserDetailsService(userDetailsService);
-    	//provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
     	provider.setPasswordEncoder(bCryptPasswordEncoder());
     	return provider;
     }

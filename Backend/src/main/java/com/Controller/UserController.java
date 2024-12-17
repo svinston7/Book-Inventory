@@ -17,19 +17,14 @@ import com.dao.UserDAO;
 import com.model.User;
 
 @RestController
-
 public class UserController {
-    
-    private final UserDAO userdao;
+    @Autowired
+    private  UserDAO userdao;
 
-	private final UserService userService;
+    @Autowired
+	private  UserService userService;
 	
-	
-	public UserController(UserDAO userdao, UserService userService) {
-		super();
-		this.userdao = userdao;
-		this.userService = userService;
-	}
+
 
 	/*@GetMapping("/{userId}")
 	public User getUserById(@PathVariable("userId") int id) {
@@ -41,12 +36,14 @@ public class UserController {
 		userService.addUser(user);
 		return new ResponseEntity<>(user+"Added",HttpStatus.OK);
 	}*/
+    
 	@PostMapping("/register")
-	public User register(@RequestBody User user) {
+	public ResponseEntity<?> register(@RequestBody User user) {
 		if (user.getUserName() == null || user.getPassword() == null) {
             throw new IllegalArgumentException("Username and password are required");
         }
-		return userService.register(user);
+		userService.register(user);
+		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
 	 @PostMapping("/login")
 	    public String login(@RequestBody User user) {
