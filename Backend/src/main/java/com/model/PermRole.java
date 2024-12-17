@@ -2,6 +2,7 @@ package com.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -10,6 +11,9 @@ public class PermRole {
 	@Id
 	private int roleNumber;
 	private String permRole;
+	
+	@ManyToOne
+	User user;
 	
 	public PermRole() {}
 	
