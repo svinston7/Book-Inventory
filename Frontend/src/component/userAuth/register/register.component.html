@@ -1,0 +1,27 @@
+
+    <div class="outer">
+        <div class="img-outer">
+
+        </div>
+
+        <div class="login-outer">
+            <div class="login-header">
+                <h1>Create an Account</h1>
+                <p>Already have an account? <a href="/login" routeLink="/login">Log in</a></p>
+            </div>
+            <form class="login-inputs" (submit)="registerUser($event)" >
+                <input class="name" type="text" [(ngModel)]="user.firstName" name="firstName" id="" placeholder="First Name">
+                <input class="name" type="text" [(ngModel)]="user.lastName"  name="lastName" id="" placeholder="Last Name">
+                <input class="otherinps" type="text" [(ngModel)]="user.phoneNumber"  name="phoneNumber" id="" placeholder="Phone Number">
+                <input class="otherinps" type="text" [(ngModel)]="user.userName"  name="userName" id="" placeholder="User Name">
+                <input class="otherinps" type="password" [(ngModel)]="user.password"  name="password" id="" placeholder="Password"><br>
+                <input style="margin-left: 22px;margin-top: 1rem;"  type="checkbox" name="terms" id="" required>
+                <label for="terms"> Agree to terms and conditions</label><br>
+                <button type="submit" class="accCreate">Create account</button>
+            </form>
+            
+        </div>
+    </div>
+
+
+

@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #676179;
+    box-sizing: border-box;
+}
+img{
+    width: 580px;
+    height: 543px;
+}
+.outer{
+    background-color: #2b2738;
+    margin-top: 6%;
+    margin-left: 13%;
+    height: 75vh;
+    width: 72vw;
+    border-radius: 1rem;
+    border: 2px solid #676179;
+    box-shadow: 2px 6px 11px #2b2738;
+    border-style: outset;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    min-width: 300px;
+
+}
+input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #676179;
+    border-radius: 5px;
+    background-color: #676179;
+    color: wheat; 
+  }
+  input:focus {
+    outline: none;
+    border-color: #8b8896;
+  }
+  input::placeholder {
+    color: #aca8a8; 
+    font-style: italic; 
+    font-size: 0.9rem; 
+    margin-left: 4rem;
+  }
+.img-outer{
+    margin: 2%;
+    border-radius: 2%;
+    background-image: url("https://img.freepik.com/free-photo/still-life-books-versus-technology_23-2150062868.jpg?t=st=1734091943~exp=1734095543~hmac=fbbded6115d44bc0c3b1d34e6556b2bf76f7b1320360647c0f6347311b13201d&w=996");
+    background-size: cover;
+    background-position: right;
+}
+.login-outer{
+    margin: 10%;
+    /* background-color: aqua; */
+    color: aliceblue;
+}
+.login-header{
+    margin-left: 3rem;
+}
+.login-header>h1{
+    margin-bottom: 1rem;
+}
+.name{
+    margin-top:2rem ;
+    display: inline-block;
+    width: 40%;
+    padding: 5px;
+    margin-left: 18px;
+}
+.otherinps{
+    margin-left: 18px;
+    margin-top:2rem;
+    padding: 5px;
+    width: 84%;
+}
+.accCreate{
+    width: 83%;
+    margin-left: 20px;
+    margin-top: 1rem;
+    padding:8px 0px ;
+    background-color: #6E54B5;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: antiquewhite;
+    font-size: large;
+}
+a{
+    color: #836cc0;
+}
