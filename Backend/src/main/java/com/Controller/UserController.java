@@ -13,16 +13,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.UserService;
+import com.dao.UserDAO;
 import com.model.User;
 
 @RestController
-@RequestMapping("/api/user")
-public class UserController {
 
-	@Autowired
-	UserService userService;
+public class UserController {
+    
+    private final UserDAO userdao;
+
+	private final UserService userService;
 	
-	@GetMapping("/{userId}")
+	
+	public UserController(UserDAO userdao, UserService userService) {
+		super();
+		this.userdao = userdao;
+		this.userService = userService;
+	}
+
+	/*@GetMapping("/{userId}")
 	public User getUserById(@PathVariable("userId") int id) {
 	    return userService.findById(id); 
 	}
@@ -31,7 +40,33 @@ public class UserController {
 	public ResponseEntity<?> addUser(@RequestBody User user) {
 		userService.addUser(user);
 		return new ResponseEntity<>(user+"Added",HttpStatus.OK);
+	}*/
+	@PostMapping("/register")
+	public User register(@RequestBody User user) {
+		if (user.getUserName() == null || user.getPassword() == null) {
+            throw new IllegalArgumentException("Username and password are required");
+        }
+		return userService.register(user);
 	}
+	 @PostMapping("/login")
+	    public String login(@RequestBody User user) {
+	        
+	        
+	            return userService.verify( user);
+	        
+	        
+	    }
+	 @GetMapping("/getmessage")
+		public String getMessage(@RequestBody User user) 
+		{ 
+			
+			
+			
+				 return "Hello World";
+			
+		
+			
+		}
 	
 //	@PutMapping("/update/firstname/{userId}")
 //	public User updateFirstName(@PathVariable("userId") int id) {
