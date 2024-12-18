@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -21,10 +23,11 @@ public class User {
 	private String phoneNumber;
 	private String userName;
 	private String password;
-	private int roleNumber;
 	
-	@OneToMany(mappedBy="user",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	List<PermRole> roles;
+	
+	@ManyToOne
+    @JoinColumn(name = "RoleNumber", referencedColumnName = "RoleNumber")
+    private PermRole permRole;
 	
 	
 	
@@ -33,7 +36,7 @@ public class User {
 
 
 	public User(int userId, String firstName, String lastName, String phoneNumber, String userName, String password,
-			int roleNumber) {
+			PermRole permRole) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -41,7 +44,7 @@ public class User {
 		this.phoneNumber = phoneNumber;
 		this.userName = userName;
 		this.password = password;
-		this.roleNumber = roleNumber;
+		this.permRole = permRole;
 	}
 	
 	
@@ -81,18 +84,18 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getRoleNumber() {
-		return roleNumber;
+	public PermRole getRoleNumber() {
+		return permRole;
 	}
-	public void setRoleNumber(int roleNumber) {
-		this.roleNumber = roleNumber;
+	public void setRoleNumber(PermRole  roleNumber) {
+		this.permRole = roleNumber;
 	}
 
 
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber="
-				+ phoneNumber + ", userName=" + userName + ", password=" + password + ", roleNumber=" + roleNumber
+				+ phoneNumber + ", userName=" + userName + ", password=" + password + ", roleNumber=" + permRole
 				+ "]";
 	}
 	

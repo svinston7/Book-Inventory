@@ -1,29 +1,45 @@
-*{
-    margin: 0;
-    padding: 0;
+
+.outer {
+    color: #ffffff;
+    margin: 5% auto;
+    max-width: 900px;
+    background-color: #2b2738;
+    border-radius: 1rem;
+    box-shadow: 2px 6px 11px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
 }
-body{
-    background-color: #676179;
-    box-sizing: border-box;
+.img-outer {
+    background-image: url("/book-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 100%;
 }
 img{
-    width: 580px;
-    height: 543px;
-}
-.outer{
-    background-color: #2b2738;
     margin-top: 6%;
-    margin-left: 13%;
-    height: 75vh;
-    width: 72vw;
-    border-radius: 1rem;
-    border: 2px solid #676179;
-    box-shadow: 2px 6px 11px #2b2738;
-    border-style: outset;
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    min-width: 300px;
-
+    height: 90%;
+}
+.login-outer {
+    padding: 2rem;
+}
+.login-header h1 {
+    margin-bottom: 1rem;
+}
+.form-control:focus {
+    border-color: #836cc0;
+    box-shadow: none;
+}
+.btn-primary {
+    background-color: #6E54B5;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #543a93;
+}
+a {
+    color: #836cc0;
+}
+a:hover {
+    text-decoration: underline;
 }
 input {
     padding: 10px;
@@ -36,6 +52,7 @@ input {
   input:focus {
     outline: none;
     border-color: #8b8896;
+    background-color: #88868f;
   }
   input::placeholder {
     color: #aca8a8; 
@@ -43,49 +60,3 @@ input {
     font-size: 0.9rem; 
     margin-left: 4rem;
   }
-.img-outer{
-    margin: 2%;
-    border-radius: 2%;
-    background-image: url("https://img.freepik.com/free-photo/still-life-books-versus-technology_23-2150062868.jpg?t=st=1734091943~exp=1734095543~hmac=fbbded6115d44bc0c3b1d34e6556b2bf76f7b1320360647c0f6347311b13201d&w=996");
-    background-size: cover;
-    background-position: right;
-}
-.login-outer{
-    margin: 10%;
-    /* background-color: aqua; */
-    color: aliceblue;
-}
-.login-header{
-    margin-left: 3rem;
-}
-.login-header>h1{
-    margin-bottom: 1rem;
-}
-.name{
-    margin-top:2rem ;
-    display: inline-block;
-    width: 40%;
-    padding: 5px;
-    margin-left: 18px;
-}
-.otherinps{
-    margin-left: 18px;
-    margin-top:2rem;
-    padding: 5px;
-    width: 84%;
-}
-.accCreate{
-    width: 83%;
-    margin-left: 20px;
-    margin-top: 1rem;
-    padding:8px 0px ;
-    background-color: #6E54B5;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: antiquewhite;
-    font-size: large;
-}
-a{
-    color: #836cc0;
-}

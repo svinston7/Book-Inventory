@@ -1,27 +1,39 @@
-
-    <div class="outer">
-        <div class="img-outer">
-
-        </div>
-
-        <div class="login-outer">
-            <div class="login-header">
-                <h1>Create an Account</h1>
-                <p>Already have an account? <a href="/login" routeLink="/login">Log in</a></p>
-            </div>
-            <form class="login-inputs" (submit)="registerUser($event)" >
-                <input class="name" type="text" [(ngModel)]="user.firstName" name="firstName" id="" placeholder="First Name">
-                <input class="name" type="text" [(ngModel)]="user.lastName"  name="lastName" id="" placeholder="Last Name">
-                <input class="otherinps" type="text" [(ngModel)]="user.phoneNumber"  name="phoneNumber" id="" placeholder="Phone Number">
-                <input class="otherinps" type="text" [(ngModel)]="user.userName"  name="userName" id="" placeholder="User Name">
-                <input class="otherinps" type="password" [(ngModel)]="user.password"  name="password" id="" placeholder="Password"><br>
-                <input style="margin-left: 22px;margin-top: 1rem;"  type="checkbox" name="terms" id="" required>
-                <label for="terms"> Agree to terms and conditions</label><br>
-                <button type="submit" class="accCreate">Create account</button>
-            </form>
-            
-        </div>
+<div class="container outer d-flex flex-column flex-md-row">
+    <!-- Image Section -->
+    <div class="col-md-6 d-none d-md-block">
+        <img src="https://img.freepik.com/free-photo/still-life-books-versus-technology_23-2150062868.jpg?t=st=1734091943~exp=1734095543~hmac=fbbded6115d44bc0c3b1d34e6556b2bf76f7b1320360647c0f6347311b13201d&w=996" class="img-fluid " alt="Left-side image">
     </div>
-
-
-
+    <!-- Login Section -->
+    <div class="login-outer col-md-6">
+        <div class="login-header text-center">
+            <h1>Create an Account</h1>
+            <p>Already have an account? <a href="/login">Log in</a></p>
+        </div>
+        <form (submit)="registerUser($event)">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" [(ngModel)]="user.firstName" name="firstName" placeholder="First Name" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" [(ngModel)]="user.lastName" name="lastName" placeholder="Last Name" required>
+                </div>
+            </div>
+            <div class="mt-3">
+                <input type="text" class="form-control" [(ngModel)]="user.phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
+            </div>
+            <div class="mt-3">
+                <input type="text" class="form-control" [(ngModel)]="user.userName" name="userName" placeholder="User Name" required>
+            </div>
+            <div class="mt-3">
+                <input type="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" name="terms" required>
+                <label class="form-check-label">
+                    Agree to terms and conditions
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mt-4">Create Account</button>
+        </form>
+    </div>
+</div>
