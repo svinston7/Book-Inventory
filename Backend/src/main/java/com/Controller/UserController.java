@@ -45,6 +45,7 @@ public class UserController {
 		if (user.getUserName() == null || user.getPassword() == null) {
             throw new IllegalArgumentException("Username and password are required");
         }
+
 		userService.register(user);
 		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}

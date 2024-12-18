@@ -16,7 +16,11 @@ public class Book {
 	private String isbn;
 	private String title;
 	private String description;
-	private int category;
+	
+	@ManyToOne
+    @JoinColumn(name = "Category", referencedColumnName = "CatID")
+    private Category category;
+	
 	private String edition;
 	private int publisherId;
 	
@@ -35,7 +39,7 @@ public class Book {
 	
 	public Book() {}
 	
-	public Book(String isbn, String title, String description, int category, String edition, int publisherId) {
+	public Book(String isbn, String title, String description, Category category, String edition, int publisherId) {
 		super();
 		this.isbn = isbn;
 		this.title = title;
@@ -63,10 +67,10 @@ public class Book {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getCategory() {
+	public Category getCategory() {
 		return category;
 	}
-	public void setCategory(int category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 	public String getEdition() {

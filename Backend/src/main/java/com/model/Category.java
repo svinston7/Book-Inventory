@@ -1,13 +1,20 @@
 package com.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Category {
 	@Id
 	private int catId;
 	private String catDescription;
+	
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Book> books;
 	
 	
 	public Category(int catId, String catDescription) {
