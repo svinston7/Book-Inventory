@@ -14,7 +14,7 @@ public class Inventory {
 	
 	@ManyToOne
     @JoinColumn(name = "ISBN")
-    private Book isbn;
+    private Book book;
 	
 	private int ranks;
 	private boolean purchased;
@@ -23,7 +23,7 @@ public class Inventory {
 	public Inventory(int inventoryId, Book isbn, int ranks, boolean purchased) {
 		super();
 		this.inventoryId = inventoryId;
-		this.isbn = isbn;
+		this.book = isbn;
 		this.ranks = ranks;
 		this.purchased = purchased;
 	}
@@ -35,10 +35,10 @@ public class Inventory {
 		this.inventoryId = inventoryId;
 	}
 	public Book getIsbn() {
-		return isbn;
+		return book;
 	}
 	public void setIsbn(Book isbn) {
-		this.isbn = isbn;
+		this.book = isbn;
 	}
 	public int getRanks() {
 		return ranks;

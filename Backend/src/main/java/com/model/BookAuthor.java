@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 public class BookAuthor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int authorId;
+	private int Id;
 	
 	@ManyToOne
     @JoinColumn(name = "ISBN")
@@ -25,12 +25,12 @@ public class BookAuthor {
     @Column(name = "PrimaryAuthor")
     private String primaryAuthor;
 
-	public int getAuthorId() {
-		return authorId;
+	public int getId() {
+		return Id;
 	}
 
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
+	public void setId(int id) {
+		Id = id;
 	}
 
 	public Book getBook() {

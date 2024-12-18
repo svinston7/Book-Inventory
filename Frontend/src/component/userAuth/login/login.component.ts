@@ -28,6 +28,7 @@ export class LoginComponent {
 
 loginUser(event:Event) {
   event.preventDefault()
+  console.log(this.user)
   this.authService.login(this.user).subscribe((e)=>{
     this.token = e;
     localStorage.setItem('token',this.token);
@@ -44,6 +45,7 @@ loginUser(event:Event) {
 
 isAuthenticated():boolean{
   if( localStorage.getItem('token')){
+    console.log("true");
     return true;
   }
   return false;
