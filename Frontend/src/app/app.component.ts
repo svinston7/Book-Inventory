@@ -9,4 +9,13 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'Frontend';
+
+
+  // getDataService():Observable<any>{
+  //   const token = localStorage.getItem('token')
+  //   const headers = new HttpHeaders({
+  //     Authorization :`Bearer ${token}`,
+  //   });
+  //   return this.httpClient.post(this.AUTHURL+'getmessage',null,{headers})
+  // }
 }

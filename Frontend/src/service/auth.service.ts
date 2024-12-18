@@ -17,4 +17,9 @@ export class AuthService {
     });
   }
 
+  login(user:any):Observable<any>{
+    return this.httpClient.post(this.RESTURL+"login",user,{
+      responseType:'text'
+    })
+  }
 }

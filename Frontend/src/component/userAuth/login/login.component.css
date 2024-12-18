@@ -1,0 +1,68 @@
+
+.outer {
+    color: #ffffff;
+    margin: 5% auto;
+    max-width: 900px;
+    background-color: #2b2738;
+    border-radius: 1rem;
+    box-shadow: 2px 6px 11px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+.img-outer {
+    background-image: url("/book-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 100%;
+}
+img{
+    margin-top: 6%;
+    height: 90%;
+}
+.login-outer {
+    padding: 2rem;
+}
+.login-header h1 {
+    margin-bottom: 1rem;
+}
+.form-control:focus {
+    border-color: #836cc0;
+    box-shadow: none;
+}
+.btn-primary {
+    background-color: #6E54B5;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #543a93;
+}
+a {
+    color: #836cc0;
+}
+a:hover {
+    text-decoration: underline;
+}
+.span-user{
+    background-color: #807b8f;
+    border:none;
+    border-radius: 5px 0px 0px 5px;
+    color: aliceblue;
+}
+input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #676179;
+    border-radius: 5px;
+    background-color: #676179;
+    color: wheat; 
+  }
+  input:focus {
+    outline: none;
+    border-color: #8b8896;
+    background-color: #88868f;
+  }
+  input::placeholder {
+    color: #aca8a8; 
+    font-style: italic; 
+    font-size: 0.9rem; 
+    margin-left: 4rem;
+  }
