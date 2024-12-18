@@ -29,16 +29,21 @@ export class LoginComponent {
 loginUser(event:Event) {
   event.preventDefault()
   console.log(this.user)
+  
   this.authService.login(this.user).subscribe((e)=>{
+    
     this.token = e;
     localStorage.setItem('token',this.token);
       if(this.isAuthenticated()){
         this.router.navigate(['/home'])
       }
-      else{
-        this.trylogin=true;
-      }
+      
+  },(error)=>{
+    this.trylogin=true;
+
   })
+
+
 }
 
 
@@ -62,3 +67,4 @@ isPasswordVisible: boolean = false;
 
 
 }
+

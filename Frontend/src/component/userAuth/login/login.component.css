@@ -47,6 +47,13 @@ a:hover {
     border-radius: 5px 0px 0px 5px;
     color: aliceblue;
 }
+.tg{
+    color: aliceblue;
+    border-color: whitesmoke;
+}
+.tg:hover{
+    opacity: .4;
+}
 input {
     padding: 10px;
     font-size: 1rem;
