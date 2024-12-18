@@ -3,18 +3,24 @@ package com.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Inventory {
 	@Id
 	@GeneratedValue
 	private int inventoryId;
-	private String isbn;
+	
+	@ManyToOne
+    @JoinColumn(name = "ISBN")
+    private Book isbn;
+	
 	private int ranks;
-	private int purchased;
+	private boolean purchased;
 	
 	
-	public Inventory(int inventoryId, String isbn, int ranks, int purchased) {
+	public Inventory(int inventoryId, Book isbn, int ranks, boolean purchased) {
 		super();
 		this.inventoryId = inventoryId;
 		this.isbn = isbn;
@@ -28,10 +34,10 @@ public class Inventory {
 	public void setInventoryId(int inventoryId) {
 		this.inventoryId = inventoryId;
 	}
-	public String getIsbn() {
+	public Book getIsbn() {
 		return isbn;
 	}
-	public void setIsbn(String isbn) {
+	public void setIsbn(Book isbn) {
 		this.isbn = isbn;
 	}
 	public int getRanks() {
@@ -40,10 +46,10 @@ public class Inventory {
 	public void setRanks(int ranks) {
 		this.ranks = ranks;
 	}
-	public int getPurchased() {
+	public boolean getPurchased() {
 		return purchased;
 	}
-	public void setPurchased(int purchased) {
+	public void setPurchased(boolean purchased) {
 		this.purchased = purchased;
 	}
 	

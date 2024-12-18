@@ -19,15 +19,15 @@ public class Author {
 	
 
 	@OneToMany(mappedBy="author",cascade = CascadeType.ALL)
-	List<Book> books = new ArrayList<>();
+	List<BookAuthor> bookAuthors;
 	
 	
-	public List<Book> getBooks() {
-		return books;
+	public List<BookAuthor> getBooks() {
+		return bookAuthors;
 	}
 	
-	public void setBooks(List<Book> books) {
-		this.books = books;
+	public void setBooks(List<BookAuthor> books) {
+		this.bookAuthors = books;
 	}
 	
 	public Author() {}

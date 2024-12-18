@@ -29,7 +29,11 @@ public class User {
     @JoinColumn(name = "RoleNumber", referencedColumnName = "RoleNumber")
     private PermRole permRole;
 	
-	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<PurchaseLog> purchaseLogs;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<ShoppingCart> shoppingCarts;
 	
 	public User() {
 	}
@@ -89,6 +93,36 @@ public class User {
 	}
 	public void setRoleNumber(PermRole  roleNumber) {
 		this.permRole = roleNumber;
+	}
+
+
+	public PermRole getPermRole() {
+		return permRole;
+	}
+
+
+	public void setPermRole(PermRole permRole) {
+		this.permRole = permRole;
+	}
+
+
+	public List<PurchaseLog> getPurchaseLogs() {
+		return purchaseLogs;
+	}
+
+
+	public void setPurchaseLogs(List<PurchaseLog> purchaseLogs) {
+		this.purchaseLogs = purchaseLogs;
+	}
+
+
+	public List<ShoppingCart> getShoppingCarts() {
+		return shoppingCarts;
+	}
+
+
+	public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
+		this.shoppingCarts = shoppingCarts;
 	}
 
 

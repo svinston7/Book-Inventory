@@ -1,9 +1,13 @@
 package com.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Book {
@@ -17,9 +21,17 @@ public class Book {
 	private int publisherId;
 	
 	
-	@ManyToOne
-	@JoinColumn(name="author_id")
-	private Author author;
+	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<BookAuthor> bookAuthors;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<BookReview> bookReviews;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Inventory> inventories;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<ShoppingCart> shoppingCarts;
 	
 	public Book() {}
 	
@@ -70,10 +82,42 @@ public class Book {
 		this.publisherId = publisherId;
 	}
 
+	public List<BookAuthor> getBookAuthors() {
+		return bookAuthors;
+	}
+
+	public void setBookAuthors(List<BookAuthor> bookAuthors) {
+		this.bookAuthors = bookAuthors;
+	}
+
+	public List<BookReview> getBookReviews() {
+		return bookReviews;
+	}
+
+	public void setBookReviews(List<BookReview> bookReviews) {
+		this.bookReviews = bookReviews;
+	}
+
+	public List<Inventory> getInventories() {
+		return inventories;
+	}
+
+	public void setInventories(List<Inventory> inventories) {
+		this.inventories = inventories;
+	}
+
+	public List<ShoppingCart> getShoppingCarts() {
+		return shoppingCarts;
+	}
+
+	public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
+		this.shoppingCarts = shoppingCarts;
+	}
+
 	@Override
 	public String toString() {
 		return "Book [isbn=" + isbn + ", title=" + title + ", description=" + description + ", category=" + category
-				+ ", edition=" + edition + ", publisherId=" + publisherId + ", author=" + author + "]";
+				+ ", edition=" + edition + ", publisherId=" + publisherId + "]";
 	}
 	
 	

@@ -9,11 +9,11 @@ public class BookCondition {
 	private int ranks;
 	private String description;
 	private String fullDescription;
-	private int price;
+	private double price;
 	
 	public BookCondition() {}
 	
-	public BookCondition(int ranks, String description, String fullDescription, int price) {
+	public BookCondition(int ranks, String description, String fullDescription, double price) {
 		super();
 		this.ranks = ranks;
 		this.description = description;
@@ -40,10 +40,10 @@ public class BookCondition {
 	public void setFullDescription(String fullDescription) {
 		this.fullDescription = fullDescription;
 	}
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

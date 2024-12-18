@@ -1,16 +1,24 @@
 package com.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Reviewer {
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int reviewerId;
 	private String name;
 	private String employedBy;
 	
-	
+	 @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
+	    private List<BookReview> bookReviews;
 	
 	public Reviewer() {
 		super();
@@ -25,6 +33,16 @@ public class Reviewer {
 	}
 	
 	
+	public List<BookReview> getBookReviews() {
+		return bookReviews;
+	}
+
+
+	public void setBookReviews(List<BookReview> bookReviews) {
+		this.bookReviews = bookReviews;
+	}
+
+
 	public int getReviewerId() {
 		return reviewerId;
 	}

@@ -1,55 +1,84 @@
 package com.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class BookReview {
 	@Id
-	private String isbn;
-	private int reviewerId;
-	private int rating;
-	private String comments;
-	
-	
-	public BookReview(String isbn, int reviewerId, int rating, String comments) {
-		super();
-		this.isbn = isbn;
-		this.reviewerId = reviewerId;
-		this.rating = rating;
-		this.comments = comments;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id; // Composite key can be managed separately
+
+    @ManyToOne
+    @JoinColumn(name = "ISBN")
+    private Book book;
+
+    @ManyToOne
+    @JoinColumn(name = "ReviewerID")
+    private Reviewer reviewer;
+
+    @Column(name = "Rating")
+    private int rating;
+
+    @Column(name = "Comments")
+    private String comments;
+
+	public int getId() {
+		return id;
 	}
-	
-	public String getIsbn() {
-		return isbn;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+
+	public Book getBook() {
+		return book;
 	}
-	public int getReviewerId() {
-		return reviewerId;
+
+	public void setBook(Book book) {
+		this.book = book;
 	}
-	public void setReviewerId(int reviewerId) {
-		this.reviewerId = reviewerId;
+
+	public Reviewer getReviewer() {
+		return reviewer;
 	}
+
+	public void setReviewer(Reviewer reviewer) {
+		this.reviewer = reviewer;
+	}
+
 	public int getRating() {
 		return rating;
 	}
+
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+
 	public String getComments() {
 		return comments;
 	}
+
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
 
+	public BookReview() {
+		super();
+	}
+
 	@Override
 	public String toString() {
-		return "BookReview [isbn=" + isbn + ", reviewerId=" + reviewerId + ", rating=" + rating + ", comments="
-				+ comments + "]";
+		return "BookReview [id=" + id + ", book=" + book + ", reviewer=" + reviewer + ", rating=" + rating
+				+ ", comments=" + comments + "]";
 	}
+    
+    
 	
 	
 }
