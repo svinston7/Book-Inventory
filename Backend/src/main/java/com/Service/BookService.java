@@ -22,11 +22,30 @@ BookDAO bookDao;
 	    return bookDao.findById(isbn)
 	                  .orElseThrow(() -> new RuntimeException("Book not found with isbn: " + isbn));
 	}
+	
+	public void updateBook(String isbn,Book updatedBook) {
+		Book book = findByIsbn(isbn);
+		book.setCategoryId(updatedBook.getCategoryId());
+		book.setEdition(updatedBook.getEdition());
+		book.setTitle(updatedBook.getTitle());
+		book.setPublisherId(updatedBook.getPublisherId());
+		bookDao.save(book);
+	}
 
 	public void removeBook(String isbn) {
 		bookDao.deleteById(isbn);
 	}
 	public void addBook(Book book) {
 		bookDao.save(book);
+	}
+
+	public Book findByTitle(String title) {
+		return bookDao.findByTitle(title);
+		
+	}
+
+	public Book findByPublisherId(String publisherId) {
+		
+		return bookDao.findByPublisherId(publisherId);
 	}
 }
