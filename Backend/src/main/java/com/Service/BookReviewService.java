@@ -18,14 +18,14 @@ public class BookReviewService {
 		return bookreviewDao.findAll();
 	}
 	
-	public BookReview findByisbn(String isbn) {
-	    return bookreviewDao.findById(isbn)
-	                  .orElseThrow(() -> new RuntimeException("Bookreview not found with isbn: " + isbn));
-	}
-
-	public void removeBookReview(String isbn) {
-		bookreviewDao.deleteById(isbn);
-	}
+//	public BookReview findByisbn(String isbn) {
+//	    return bookreviewDao.findById(isbn)
+//	                  .orElseThrow(() -> new RuntimeException("Bookreview not found with isbn: " + isbn));
+//	}
+//
+//	public void removeBookReview(String isbn) {
+//		bookreviewDao.deleteById(isbn);
+//	}
 	public void addBookReview(BookReview bookreview) {
 		bookreviewDao.save(bookreview);
 	}
