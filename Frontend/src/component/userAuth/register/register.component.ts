@@ -29,5 +29,10 @@ registerUser(event:Event) {
   
 
 }
+  isPasswordVisible: boolean = false;
 
+  togglePasswordVisibility(passwordInput:HTMLInputElement) :void{
+    passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
 }
