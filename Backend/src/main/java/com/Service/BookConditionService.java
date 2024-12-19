@@ -20,14 +20,14 @@ BookConditionDAO bookconditionDao;
 		return bookconditionDao.findAll();
 	}
 	
-	public BookCondition findByIsbn(String isbn) {
-	    return bookconditionDao.findById(isbn)
-	                  .orElseThrow(() -> new RuntimeException("Book not found with isbn: " + isbn));
-	}
-
-	public void removeBookCondition(String isbn) {
-		bookconditionDao.deleteById(isbn);
-	}
+//	public BookCondition findByIsbn(String isbn) {
+//	    return bookconditionDao.findById(isbn)
+//	                  .orElseThrow(() -> new RuntimeException("Book not found with isbn: " + isbn));
+//	}
+//
+//	public void removeBookCondition(String isbn) {
+//		bookconditionDao.deleteById(isbn);
+//	}
 	public void addBookCondition(BookCondition bookcondition) {
 		bookconditionDao.save(bookcondition);
 	}
