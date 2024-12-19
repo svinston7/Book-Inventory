@@ -1,38 +1,40 @@
+
 import { Component } from '@angular/core';
-import {FormsModule} from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 import { User } from '../User';
 import { AuthService } from '../../../service/auth.service';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-register',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
   imagePath: string = 'assets/images/book-bg.jpg';
-  constructor(private authService:AuthService){}
 
-  user:User={
+  constructor(private authService: AuthService) {}
+
+  user: User = {
     firstName: '',
     lastName: '',
     phoneNumber: '',
     userName: '',
-    password: ''
-  }
+    password: '',
+    terms: false // Assuming terms is a boolean
+  };
 
-registerUser(event:Event) {
-  event.preventDefault();
-  this.authService.register(this.user).subscribe((e)=>{
-    alert(e)
-  });
-  
-
-}
-  isPasswordVisible: boolean = false;
-
-  togglePasswordVisibility(passwordInput:HTMLInputElement) :void{
-    passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
-    this.isPasswordVisible = !this.isPasswordVisible;
+  registerUser(event: Event, registerForm: any) {
+    event.preventDefault();
+    if (registerForm.valid) {
+      this.authService.register(this.user).subscribe((e) => {
+        alert(e);
+      });
+    } else {
+      alert('Please fill out all fields correctly');
+    }
   }
 }
+
+
