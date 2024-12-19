@@ -14,6 +14,16 @@
     background-position: center;
     min-height: 100%;
 }
+.tg{
+    color: aliceblue;
+    border-color: whitesmoke;
+}
+.tg:hover{
+    opacity: .4;
+}
+.check:active{
+    outline: none;
+}
 img{
     margin-top: 6%;
     height: 90%;
