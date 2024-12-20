@@ -30,7 +30,7 @@ public class CategoryService {
 		categoryDao.save(category);
 	}
 	
-	public Category updateDescription(int catId) {
-		//Category category=
-	}
+//	public Category updateDescription(int catId) {
+//		//Category category=
+//	}
 }

@@ -14,9 +14,9 @@ public class PurchaseLog {
 	private int Id;
 	
 	private int userId;
+	private int inventoryId;
 	
 	@ManyToOne
-    @JoinColumn(name = "InventoryID")
     private Inventory inventory;
 
 	public int getId() {
@@ -41,6 +41,18 @@ public class PurchaseLog {
 
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
+	}
+
+	public int getInventoryId() {
+		return inventoryId;
+	}
+
+	public void setInventoryId(int inventoryId) {
+		this.inventoryId = inventoryId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 	

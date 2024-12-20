@@ -9,8 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.model.PurchaseLog;
 @Repository
 	public interface PurchaseLogDAO extends JpaRepository<PurchaseLog, Integer> {
-	@Modifying
-	//@Query("")
-	List<PurchaseLog> findByUserId(int userId); 
+	
+	PurchaseLog findByUserId(int userId); 
 }
 

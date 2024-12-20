@@ -41,8 +41,8 @@ public class ShoppingCartController {
 	
 	@PutMapping("/update/{userid}")
 	public ResponseEntity<?> updateCart(@PathVariable int userid,String isbn){
-		List<ShoppingCart> shoppingCarts = cartservice.updateIsbn(userid,isbn );
-		return new ResponseEntity<List<ShoppingCart> >(shoppingCarts,HttpStatus.OK);
+		cartservice.updateIsbn(userid,isbn );
+		return new ResponseEntity< >("Updataed",HttpStatus.OK);
 	}
 	
 }
