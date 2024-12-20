@@ -28,6 +28,24 @@ BookConditionDAO bookconditionDao;
 //	public void removeBookCondition(String isbn) {
 //		bookconditionDao.deleteById(isbn);
 //	}
+	public BookCondition getBookCondition(int ranks) {
+		return bookconditionDao.findByRanks(ranks);
+		
+		
+	}
+	public void updateDescription(int rank,String description) {
+		BookCondition bookcondition=bookconditionDao.findByRanks(rank);
+		bookcondition.setDescription(description);
+	}
+	public void updateFullDescription(int rank,String fulldescription) {
+		BookCondition bookcondition=bookconditionDao.findByRanks(rank);
+		bookcondition.setFullDescription(fulldescription);
+		
+	}
+	public void updatePrice(int rank,double price) {
+		BookCondition bookcondition=bookconditionDao.findByRanks(rank);
+		bookcondition.setPrice(price);
+	}
 	public void addBookCondition(BookCondition bookcondition) {
 		bookconditionDao.save(bookcondition);
 	}

@@ -29,4 +29,10 @@ public class InventoryService {
 	public void addInventory(Inventory inventory) {
 		inventoryDao.save(inventory);
 	}
+	public void updatePurchased(int inventoryId,boolean purchased) {
+		Inventory inventory=inventoryDao.findById(inventoryId).orElse(null);
+		inventory.setPurchased(purchased);
+		inventoryDao.save(inventory);
+		
+	}
 }
