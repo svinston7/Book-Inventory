@@ -22,13 +22,13 @@ public class ReviewerService {
 	    return reviewerDao.findById(id)
 	                  .orElseThrow(() -> new RuntimeException("Reviewer not found with id: " + id));
 	}
-	public String updatereviewerFirstName(String name,int id) {
+	public String updatereviewerFirstName(int id,String name) {
 		Reviewer reviewer=reviewerDao.findById(id).orElse(null);
 		reviewer.setName(name);
 		reviewerDao.save(reviewer);
 		return "updated sucessfully";
 	}
-	public String updateReviewerEmployedId(String employedBy,int id) {
+	public String updateReviewerEmployedId(int id,String employedBy) {
 		Reviewer reviewer=reviewerDao.findById(id).orElse(null);
 		reviewer.setEmployedBy(employedBy);
 		reviewerDao.save(reviewer);

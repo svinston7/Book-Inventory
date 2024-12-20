@@ -8,13 +8,11 @@ import org.springframework.stereotype.Repository;
 import com.model.Author;
 import com.model.Book;
 @Repository
-	public interface BookDAO extends JpaRepository<Book,String> {
-	Author findByAuthorId(int id);
-	List<Book> findByIsbn(List<String> isbn);
+public interface BookDAO extends JpaRepository<Book,String> {
+	List<Book> findByIsbnIn(List<String> isbn);
 	Book findByTitle(String title);
-	Book findByPublisherId(String publisherId);
+	Book findByPublisherId(int publisherId);
 
-	List<Book> findByIsbn(List<String> isbn);
-	Author findByAuthorId(int id);
+	
 	}
 

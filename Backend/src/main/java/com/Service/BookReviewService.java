@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.dao.BookReviewDAO;
 import com.dao.UserDAO;
 import com.model.BookReview;
+import com.model.Reviewer;
 
 @Service
 public class BookReviewService {
@@ -18,14 +19,16 @@ public class BookReviewService {
 		return bookreviewDao.findAll();
 	}
 	
-//	public BookReview findByisbn(String isbn) {
-//	    return bookreviewDao.findById(isbn)
-//	                  .orElseThrow(() -> new RuntimeException("Bookreview not found with isbn: " + isbn));
-//	}
-//
-//	public void removeBookReview(String isbn) {
-//		bookreviewDao.deleteById(isbn);
-//	}
+	public BookReview findByisbn(String isbn) {
+	    return bookreviewDao.findByIsbn(isbn);
+	                  
+	}
+
+	public List<Reviewer> getAllReviewers(String isbn){
+		return bookreviewDao.findReviewersByIsbn(isbn);
+	}
+	
+	
 	public void addBookReview(BookReview bookreview) {
 		bookreviewDao.save(bookreview);
 	}

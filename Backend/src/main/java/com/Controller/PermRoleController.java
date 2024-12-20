@@ -18,7 +18,7 @@ import com.model.PermRole;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/apo/permrole")
+@RequestMapping("/api/permrole")
 public class PermRoleController {
 	
 	@Autowired
