@@ -42,7 +42,7 @@ public class PurchaseLogService {
 	}
 	
 	
-	public String updateInventoryByUserId(Integer userId, Integer inventoryId) {
+	public String updateInventoryByUserId(int userId, int inventoryId) {
         PurchaseLog purchase=purchaselogDao.findByUserId(userId);
         
        
