@@ -56,7 +56,7 @@ AuthorDAO authorDao;BookDAO bookDao;
 	}
 	public List<Book> getBooksByAuthor(int authorId){
 		List<BookAuthor> bookAuthors=bookauthorDao.findByAuthorId(authorId);
-		List<String> isbn=bookAuthors.stream().map(BookAuthor::getIsbn).collect(Collectors.toList());
+		List<String> isbn=bookAuthors.stream().map(bookauthor->bookauthor.getBook().getIsbn()).collect(Collectors.toList());
 		return bookDao.findByIsbn(isbn);
 				
 	}
