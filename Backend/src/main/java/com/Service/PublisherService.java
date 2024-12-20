@@ -29,4 +29,16 @@ public class PublisherService {
 	public void addPublisher(Publisher publisher) {
 		publisherDao.save(publisher);
 	}
+
+	public Publisher findByName(String name) {
+		
+		return publisherDao.findByName(name);
+	}
+	
+	public List<Publisher> findByState(String state) {
+		return publisherDao.findByStateCode(state);
+	}
+	public List<Publisher> findByCity(String city) {
+		return publisherDao.findByCity(city);
+	}
 }
