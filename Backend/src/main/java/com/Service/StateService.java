@@ -22,7 +22,12 @@ StateDAO stateDao;
 	    return stateDao.findById(statecode)
 	                  .orElseThrow(() -> new RuntimeException("State not found with code: " +statecode ));
 	}
-
+	public String updateStateName(String statecode,String statename){
+		State state=stateDao.findById(statecode).orElse(null);
+		state.setStateName(statename);
+		stateDao.save(state);
+		return "state name updated Sucessfully";
+	}
 	public void removeState(String statecode) {
 		stateDao.deleteById(statecode);
 	}
