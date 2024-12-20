@@ -14,7 +14,6 @@ import com.model.Book;
 	Book findByTitle(String title);
 	Book findByPublisherId(String publisherId);
 
-	List<Book> findByIsbn(List<String> isbn);
-	Author findByAuthorId(int id);
+	
 	}
 

@@ -29,4 +29,8 @@ public class CategoryService {
 	public void addCategory(Category category) {
 		categoryDao.save(category);
 	}
+	
+	public Category updateDescription(int catId) {
+		//Category category=
+	}
 }
