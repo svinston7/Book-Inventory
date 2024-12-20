@@ -18,6 +18,7 @@ public class PurchaseLogService {
 	@Autowired
 	PurchaseLogDAO purchaselogDao;
 	InventoryDAO inventoryDao;
+	
 	public List<PurchaseLog> getAll(){
 		return purchaselogDao.findAll();
 	}
@@ -36,27 +37,23 @@ public class PurchaseLogService {
 		
 	}
 	
-	public List<PurchaseLog> findByUserId(int userId) {
+	public PurchaseLog findByUserId(int userId) {
 		return purchaselogDao.findByUserId(userId);
 	}
 	
 	
-//	public String updateInventoryByUserId(Integer userId, Integer inventoryId) {
-//        List<PurchaseLog> purchaselog=purchaselogDao.findByUserId(userId);
-//        if(purchaselog.isEmpty()) {
-//        	return "No purchase log found for user with user id"+userId;
-//        	
-//        }
-//        Inventory inventory=inventoryDao.findById(inventoryId).orElse(null);
-//        
-//        if(inventory==null) {
-//        return "Inventory with id not found";
-//        }
-//        
-//        for(PurchaseLog purchase:purchaselog) {
-//        	//purchaselog.setInventory()
-//        }
-//        
-//        //incomplete
-//    }
+	public String updateInventoryByUserId(int userId, int inventoryId) {
+        PurchaseLog purchase=purchaselogDao.findByUserId(userId);
+        
+       
+        
+        if(purchase==null) {
+        return "Inventory with id not found";
+        }
+        else {
+        	purchase.setInventoryId(inventoryId);
+        }
+          	
+        		return "Successfully updated";
+    }
 }

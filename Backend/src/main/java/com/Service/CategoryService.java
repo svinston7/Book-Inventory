@@ -29,14 +29,16 @@ public class CategoryService {
 	public void addCategory(Category category) {
 		categoryDao.save(category);
 	}
+
 	public Category updateDescription(int catId,String catDescription) {
 		Category category=categoryDao.findById(catId).orElse(null);
 		if (category == null) {
-	        // Handle the case when the category is not found
+	       
 	        throw new RuntimeException("Category with ID " + catId + " not found.");
 		}
 		category.setCatDescription(catDescription);
 		categoryDao.save(category);
 		return category;
 	}
+
 }
