@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -17,8 +19,9 @@ public class Reviewer {
 	private String name;
 	private String employedBy;
 	
-	 @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
-	    private List<BookReview> bookReviews;
+	@ManyToOne
+    @JoinColumn(name = "book_review_id")
+    private BookReview bookReview;
 	
 	public Reviewer() {
 		super();
@@ -32,14 +35,15 @@ public class Reviewer {
 		this.employedBy = employedBy;
 	}
 	
-	
-	public List<BookReview> getBookReviews() {
-		return bookReviews;
+
+
+	public BookReview getBookReview() {
+		return bookReview;
 	}
 
 
-	public void setBookReviews(List<BookReview> bookReviews) {
-		this.bookReviews = bookReviews;
+	public void setBookReview(BookReview bookReview) {
+		this.bookReview = bookReview;
 	}
 
 

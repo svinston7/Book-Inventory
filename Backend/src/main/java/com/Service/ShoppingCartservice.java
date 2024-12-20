@@ -23,7 +23,7 @@ public String addShoppingCart(ShoppingCart shoppingcart) {
 public List<Book> getListOfBook(int userId){
 	List<ShoppingCart> shoppingcart=shoppingcartDao.findByUserId(userId);
 	List<String> isbn=shoppingcart.stream().map(cart->cart.getBook().getIsbn()).collect(Collectors.toList());
-	return bookDao.findByIsbn(isbn);
+	return bookDao.findByIsbnIn(isbn);
 }
 public void updateIsbn(int userid,String newIsbn) {
 	List<ShoppingCart> cart=shoppingcartDao.findByUserId(userid);

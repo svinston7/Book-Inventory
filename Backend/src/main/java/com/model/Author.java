@@ -17,19 +17,6 @@ public class Author {
 	private String lastName;
 	private String photo;
 	
-
-	@OneToMany(mappedBy="author",cascade = CascadeType.ALL)
-	List<BookAuthor> bookAuthors;
-	
-	
-	public List<BookAuthor> getBooks() {
-		return bookAuthors;
-	}
-	
-	public void setBooks(List<BookAuthor> books) {
-		this.bookAuthors = books;
-	}
-	
 	public Author() {}
 	
 	public Author(int authorId, String firstName, String lastName, String photo) {

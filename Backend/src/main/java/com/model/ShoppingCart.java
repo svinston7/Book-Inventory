@@ -12,14 +12,12 @@ public class ShoppingCart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; 
 
-    @ManyToOne
-    @JoinColumn(name = "UserID")
-    private User user;
+    private int userId;
+    private String isbn;
 
     @ManyToOne
-    @JoinColumn(name = "ISBN")
     private Book book;
-
+    
 	public int getId() {
 		return id;
 	}
@@ -28,12 +26,20 @@ public class ShoppingCart {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 
 	public Book getBook() {
@@ -43,6 +49,8 @@ public class ShoppingCart {
 	public void setBook(Book book) {
 		this.book = book;
 	}
+
+	
     
     
 }

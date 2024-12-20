@@ -23,35 +23,23 @@ public class User {
 	private String phoneNumber;
 	private String userName;
 	private String password;
+	private int roleNumber;
 	
 	
-	@ManyToOne
-    @JoinColumn(name = "RoleNumber", referencedColumnName = "RoleNumber")
-    private PermRole permRole;
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<PurchaseLog> purchaseLogs;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<ShoppingCart> shoppingCarts;
+	
 	
 	public User() {
 	}
-
-
-	public User(int userId, String firstName, String lastName, String phoneNumber, String userName, String password,
-			PermRole permRole) {
-		super();
-		this.userId = userId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.phoneNumber = phoneNumber;
-		this.userName = userName;
-		this.password = password;
-		this.permRole = permRole;
+	
+	public int getRoleNumber() {
+		return roleNumber;
 	}
-	
-	
+
+	public void setRoleNumber(int roleNumber) {
+		this.roleNumber = roleNumber;
+	}
+
 	public int getUserId() {
 		return userId;
 	}
@@ -88,48 +76,14 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public PermRole getRoleNumber() {
-		return permRole;
-	}
-	public void setRoleNumber(PermRole  roleNumber) {
-		this.permRole = roleNumber;
-	}
-
-
-	public PermRole getPermRole() {
-		return permRole;
-	}
-
-
-	public void setPermRole(PermRole permRole) {
-		this.permRole = permRole;
-	}
-
-
-	public List<PurchaseLog> getPurchaseLogs() {
-		return purchaseLogs;
-	}
-
-
-	public void setPurchaseLogs(List<PurchaseLog> purchaseLogs) {
-		this.purchaseLogs = purchaseLogs;
-	}
-
-
-	public List<ShoppingCart> getShoppingCarts() {
-		return shoppingCarts;
-	}
-
-
-	public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
-		this.shoppingCarts = shoppingCarts;
-	}
+	
+	
 
 
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber="
-				+ phoneNumber + ", userName=" + userName + ", password=" + password + ", roleNumber=" + permRole
+				+ phoneNumber + ", userName=" + userName + ", password=" + password 
 				+ "]";
 	}
 	

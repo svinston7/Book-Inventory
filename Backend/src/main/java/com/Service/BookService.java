@@ -11,8 +11,9 @@ import com.model.Book;
 
 @Service
 public class BookService {
+	
 	@Autowired
-BookDAO bookDao;
+	BookDAO bookDao;
 	
 	public List<Book> getAll(){
 		return bookDao.findAll();
@@ -44,7 +45,7 @@ BookDAO bookDao;
 		
 	}
 
-	public Book findByPublisherId(String publisherId) {
+	public Book findByPublisherId(int publisherId) {
 		
 		return bookDao.findByPublisherId(publisherId);
 	}

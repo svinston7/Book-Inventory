@@ -15,8 +15,9 @@ import com.model.BookAuthor;
 @Service
 public class AuthorService {
 	@Autowired
-AuthorDAO authorDao;BookDAO bookDao;
+	AuthorDAO authorDao;BookDAO bookDao;
 	BookAuthorDAO bookauthorDao;
+	
 	public List<Author> getAll(){
 		return authorDao.findAll();
 	}
@@ -57,8 +58,10 @@ AuthorDAO authorDao;BookDAO bookDao;
 
 	public List<Book> getBooksByAuthor(int authorId){
 		List<BookAuthor> bookAuthors=bookauthorDao.findByAuthorId(authorId);
-		List<String> isbn=bookAuthors.stream().map(bookauthor->bookauthor.getBook().getIsbn()).collect(Collectors.toList());
-		return bookDao.findByIsbn(isbn);
+	    List<String> isbnList = bookAuthors.stream()
+	                                       .map(BookAuthor::getIsbn) 
+	                                       .collect(Collectors.toList());
+		return bookDao.findByIsbnIn(isbnList);
 				
 	}
 
