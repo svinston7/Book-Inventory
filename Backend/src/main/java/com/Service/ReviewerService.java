@@ -22,7 +22,20 @@ public class ReviewerService {
 	    return reviewerDao.findById(id)
 	                  .orElseThrow(() -> new RuntimeException("Reviewer not found with id: " + id));
 	}
-
+	public String updatereviewerFirstName(String name,int id) {
+		Reviewer reviewer=reviewerDao.findById(id).orElse(null);
+		reviewer.setName(name);
+		reviewerDao.save(reviewer);
+		return "updated sucessfully";
+	}
+	public String updateReviewerEmployedId(String employedBy,int id) {
+		Reviewer reviewer=reviewerDao.findById(id).orElse(null);
+		reviewer.setEmployedBy(employedBy);
+		reviewerDao.save(reviewer);
+		return "updated sucessfully";
+		
+		
+	}
 	public void removeReviewer(int id) {
 		reviewerDao.deleteById(id);
 	}

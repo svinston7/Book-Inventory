@@ -1,17 +1,22 @@
 package com.Service;
  
 import java.util.List;
- 
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
  
 import com.dao.AuthorDAO;
+import com.dao.BookAuthorDAO;
 import com.dao.BookDAO;
 import com.model.Author;
+import com.model.Book;
+import com.model.BookAuthor;
 @Service
 public class AuthorService {
 	@Autowired
 AuthorDAO authorDao;BookDAO bookDao;
+	BookAuthorDAO bookauthorDao;
 	public List<Author> getAll(){
 		return authorDao.findAll();
 	}
@@ -48,5 +53,11 @@ AuthorDAO authorDao;BookDAO bookDao;
 			return "updated sucessfully";
 		}
 		return "author with " +lastname+"not found";
+	}
+	public List<Book> getBooksByAuthor(int authorId){
+		List<BookAuthor> bookAuthors=bookauthorDao.findByAuthorId(authorId);
+		List<String> isbn=bookAuthors.stream().map(BookAuthor::getIsbn).collect(Collectors.toList());
+		return bookDao.findByIsbn(isbn);
+				
 	}
 }
