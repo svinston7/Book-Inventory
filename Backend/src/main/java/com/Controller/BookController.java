@@ -48,19 +48,19 @@ public class BookController {
 		return new ResponseEntity<List<Book>> (bookList,HttpStatus.OK);
 	}
 	
-	@GetMapping("/{isbn}")
+	@GetMapping("/isbn/{isbn}")
 	public ResponseEntity<?>  getByisbn(@PathVariable String isbn) {
 		Book book = bookService.findByIsbn(isbn);
 		return new ResponseEntity<Book> (book,HttpStatus.OK);
 	}
 	
-	@GetMapping("/{title}")
+	@GetMapping("/title/{title}")
 	public ResponseEntity<?> getByTitle(@PathVariable String title){
 		Book book = bookService.findByTitle(title);
 		return new ResponseEntity<Book> (book,HttpStatus.OK);
 	}
 	
-	@GetMapping("/{publisherId}")
+	@GetMapping("/publisherId/{publisherId}")
 	public ResponseEntity<?> getByPublisherId(@PathVariable String publisherId){
 		Book book = bookService.findByPublisherId(publisherId);
 		return new ResponseEntity<Book> (book,HttpStatus.OK);

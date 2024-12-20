@@ -8,7 +8,10 @@ import com.model.BookAuthor;
 import com.model.*;
 @Repository
 	public interface BookAuthorDAO extends JpaRepository<BookAuthor,Integer> {
-		List<BookAuthor> findByAuthorId(int authorId);
-		
+
+
+	List<BookAuthor> findByAuthorId(int authorId);
+	
+
 	}
 

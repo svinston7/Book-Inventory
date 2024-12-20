@@ -54,10 +54,12 @@ AuthorDAO authorDao;BookDAO bookDao;
 		}
 		return "author with " +lastname+"not found";
 	}
+
 	public List<Book> getBooksByAuthor(int authorId){
 		List<BookAuthor> bookAuthors=bookauthorDao.findByAuthorId(authorId);
 		List<String> isbn=bookAuthors.stream().map(bookauthor->bookauthor.getBook().getIsbn()).collect(Collectors.toList());
 		return bookDao.findByIsbn(isbn);
 				
 	}
+
 }
