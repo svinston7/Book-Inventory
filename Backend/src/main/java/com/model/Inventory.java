@@ -21,10 +21,10 @@ public class Inventory {
 	private boolean purchased;
 	
 	
-	public Inventory(int inventoryId, Book isbn, int ranks, boolean purchased) {
+	public Inventory(int inventoryId, String isbn, int ranks, boolean purchased) {
 		super();
 		this.inventoryId = inventoryId;
-		this.book = isbn;
+		this.isbn = isbn;
 		this.ranks = ranks;
 		this.purchased = purchased;
 	}
