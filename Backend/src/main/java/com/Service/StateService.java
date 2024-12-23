@@ -28,9 +28,18 @@ StateDAO stateDao;
 		stateDao.save(state);
 		return "state name updated Sucessfully";
 	}
+//	public void removeState(String statecode) {
+//		stateDao.deleteById(statecode);
+//	}
 	public void removeState(String statecode) {
-		stateDao.deleteById(statecode);
+	    State state = stateDao.findById(statecode).orElse(null);
+	    if (state != null) {
+	        stateDao.deleteById(statecode);
+	    } else {
+	        throw new RuntimeException("State not found with code: " + statecode);
+	    }
 	}
+
 	public void addState(State state) {
 		stateDao.save(state);
 	}
