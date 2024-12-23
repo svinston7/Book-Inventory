@@ -12,9 +12,12 @@ export class ShowAllBooksService {
 
   BOOKURL:string = "http://localhost:9090/api/book"
 
-  showBooks(book:any):Observable<any>{
-    return this.httpClient.get(this.BOOKURL,book);
+  showBooks():Observable<any>{
+    return this.httpClient.get(this.BOOKURL);
   }
 
+  getByISBN(isbn:string){
+    return this.httpClient.get(this.BOOKURL+"/isbn/"+isbn);
+  }
 
 }

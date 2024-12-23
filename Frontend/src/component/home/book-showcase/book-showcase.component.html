@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{b.title}}</h5>
                     <p class="card-text">{{b.description}}</p>
-                    <a routerLink="['/viewbook',b.isbn]" class="btn btn-primary" (click)="dummy(b)">View Details</a>
+                    <a [routerLink]="['/viewbook', b.isbn]" class="btn btn-primary" (click)="dummy(b)">View Details</a>
                     <a  class="btn btn-primary ms-4">Add to Cart</a>
                 </div>
             </div>

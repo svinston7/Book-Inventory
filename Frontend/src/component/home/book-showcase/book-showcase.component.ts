@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { ShowAllBooksService } from '../../../service/show-all-books.service';
 import { Book } from '../Book';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-book-showcase',
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './book-showcase.component.html',
   styleUrl: './book-showcase.component.css'
 })
@@ -28,7 +29,7 @@ dummy(b: any) {
   allBooks:Book[]=[];
 
   ngOnInit(){
-    this.service.showBooks(this.book).subscribe((e)=>{
+    this.service.showBooks().subscribe((e)=>{
       this.allBooks=e;
     })
   }
