@@ -44,12 +44,12 @@ public class BookConditionController {
 		return new ResponseEntity<>("Updated",HttpStatus.OK);
 	}
 	
-	@PutMapping("/update/price/{ranks}")
+	@PutMapping("/update/description/{ranks}")
 	public ResponseEntity<?> updateDescription(@PathVariable int ranks,String desc) {
 		conditionService.updateDescription(ranks, desc);
 		return new ResponseEntity<>("Updated",HttpStatus.OK);
 	}
-	@PutMapping("/update/price/{ranks}")
+	@PutMapping("/update/fulldescription/{ranks}")
 	public ResponseEntity<?> updateFull(@PathVariable int ranks,String desc) {
 		conditionService.updateFullDescription(ranks, desc);
 		return new ResponseEntity<>("Updated",HttpStatus.OK);
