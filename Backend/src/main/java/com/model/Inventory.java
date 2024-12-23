@@ -13,17 +13,18 @@ public class Inventory {
 	private int inventoryId;
 	
 	@ManyToOne
-    @JoinColumn(name = "ISBN")
     private Book book;
+	
+	private String isbn;
 	
 	private int ranks;
 	private boolean purchased;
 	
 	
-	public Inventory(int inventoryId, Book isbn, int ranks, boolean purchased) {
+	public Inventory(int inventoryId, String isbn, int ranks, boolean purchased) {
 		super();
 		this.inventoryId = inventoryId;
-		this.book = isbn;
+		this.isbn = isbn;
 		this.ranks = ranks;
 		this.purchased = purchased;
 	}
@@ -51,6 +52,18 @@ public class Inventory {
 	}
 	public void setPurchased(boolean purchased) {
 		this.purchased = purchased;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 	
 

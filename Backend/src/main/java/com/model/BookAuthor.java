@@ -13,14 +13,9 @@ public class BookAuthor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
-	
-	@ManyToOne
-    @JoinColumn(name = "ISBN")
-    private Book book;
+	private String isbn;
+	private int authorId;
 
-    @ManyToOne
-    @JoinColumn(name = "AuthorID")
-    private Author author;
 
     @Column(name = "PrimaryAuthor")
     private String primaryAuthor;
@@ -33,20 +28,22 @@ public class BookAuthor {
 		Id = id;
 	}
 
-	public Book getBook() {
-		return book;
+	
+
+	public String getIsbn() {
+		return isbn;
 	}
 
-	public void setBook(Book book) {
-		this.book = book;
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 
-	public Author getAuthor() {
-		return author;
+	public int getAuthorId() {
+		return authorId;
 	}
 
-	public void setAuthor(Author author) {
-		this.author = author;
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
 	}
 
 	public String getPrimaryAuthor() {

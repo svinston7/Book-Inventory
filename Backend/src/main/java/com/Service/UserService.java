@@ -51,6 +51,43 @@ public class UserService {
 				}
 				return "failure";
 	}
+	
+	
+	
+	public void addUser(User user) {
+		userRepository.save(user);
+	}
+	public User getUser(int userId) {
+		return userRepository.findById(userId).orElse(null);
+	}
+	public void updateUserFirstName(int userId,String firstname) {
+		User user=userRepository.findById(userId).orElse(null);
+		user.setFirstName(firstname);
+		
+		
+		
+		
+		userRepository.save(user);
+		
+	}
+	public void updateUserLastName(int userId,String lastname) {
+		User user=userRepository.findById(userId).orElse(null);
+		user.setLastName(lastname);
+		
+		
+		
+		
+		userRepository.save(user);}
+	
+	public void updateUserPhoneNum(int userId,String phoneNumber) {
+		User user=userRepository.findById(userId).orElse(null);
+		user.setPhoneNumber(phoneNumber);
+		
+		
+		
+		
+		userRepository.save(user);}
+	
 
 	
 }

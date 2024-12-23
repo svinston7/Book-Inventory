@@ -4,4 +4,5 @@ export interface User{
 	 phoneNumber:string;
 	 userName:string;
 	 password:string;
+	 terms?: boolean; 
 }

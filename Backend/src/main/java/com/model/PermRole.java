@@ -16,8 +16,7 @@ public class PermRole {
 	private int roleNumber;
 	private String permRole;
 	
-	 @OneToMany(mappedBy = "permRole", cascade = CascadeType.ALL)
-	 private List<User> users;
+	
 	
 	public PermRole() {}
 	
@@ -39,13 +38,7 @@ public class PermRole {
 		this.permRole = permRole;
 	}
 
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
+	
 
 	@Override
 	public String toString() {

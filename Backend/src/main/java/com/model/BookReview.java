@@ -1,5 +1,8 @@
 package com.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,20 +10,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class BookReview {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id; // Composite key can be managed separately
-
-    @ManyToOne
-    @JoinColumn(name = "ISBN")
-    private Book book;
-
-    @ManyToOne
-    @JoinColumn(name = "ReviewerID")
-    private Reviewer reviewer;
+    private int id; 
+	
+    private String isbn;
+    private int reviewerId;
 
     @Column(name = "Rating")
     private int rating;
@@ -28,6 +27,9 @@ public class BookReview {
     @Column(name = "Comments")
     private String comments;
 
+    @OneToMany(mappedBy = "bookReview", cascade = CascadeType.ALL)
+    private List<Reviewer> reviewers;
+    
 	public int getId() {
 		return id;
 	}
@@ -36,20 +38,22 @@ public class BookReview {
 		this.id = id;
 	}
 
-	public Book getBook() {
-		return book;
+	
+
+	public String getIsbn() {
+		return isbn;
 	}
 
-	public void setBook(Book book) {
-		this.book = book;
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 
-	public Reviewer getReviewer() {
-		return reviewer;
+	public int getReviewerId() {
+		return reviewerId;
 	}
 
-	public void setReviewer(Reviewer reviewer) {
-		this.reviewer = reviewer;
+	public void setReviewerId(int reviewerId) {
+		this.reviewerId = reviewerId;
 	}
 
 	public int getRating() {
@@ -68,15 +72,25 @@ public class BookReview {
 		this.comments = comments;
 	}
 
+	public List<Reviewer> getReviewers() {
+		return reviewers;
+	}
+
+	public void setReviewers(List<Reviewer> reviewers) {
+		this.reviewers = reviewers;
+	}
+
 	public BookReview() {
 		super();
 	}
 
 	@Override
 	public String toString() {
-		return "BookReview [id=" + id + ", book=" + book + ", reviewer=" + reviewer + ", rating=" + rating
+		return "BookReview [id=" + id + ", isbn=" + isbn + ", reviewerId=" + reviewerId + ", rating=" + rating
 				+ ", comments=" + comments + "]";
 	}
+
+	
     
     
 	

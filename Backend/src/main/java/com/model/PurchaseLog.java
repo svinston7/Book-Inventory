@@ -13,12 +13,10 @@ public class PurchaseLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
 	
-	@ManyToOne
-    @JoinColumn(name = "UserID")
-    private User user;
+	private int userId;
+	private int inventoryId;
 	
 	@ManyToOne
-    @JoinColumn(name = "InventoryID")
     private Inventory inventory;
 
 	public int getId() {
@@ -29,12 +27,12 @@ public class PurchaseLog {
 		Id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(int userId) {
+		this.userId = userId;
 	}
 
 	public Inventory getInventory() {
@@ -43,6 +41,18 @@ public class PurchaseLog {
 
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
+	}
+
+	public int getInventoryId() {
+		return inventoryId;
+	}
+
+	public void setInventoryId(int inventoryId) {
+		this.inventoryId = inventoryId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 	

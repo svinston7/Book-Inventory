@@ -1,3 +1,4 @@
+
 <div class="container outer d-flex flex-column flex-md-row">
     <!-- Image Section -->
     <div class="col-md-6 d-none d-md-block">
@@ -9,32 +10,39 @@
             <h1>Create an Account</h1>
             <p>Already have an account? <a href="/login">Log in</a></p>
         </div>
-        <form (submit)="registerUser($event)">
+        <form #registerForm="ngForm" (ngSubmit)="registerUser($event, registerForm)">
             <div class="row g-3">
                 <div class="col-md-6">
-                    <input type="text" class="form-control" [(ngModel)]="user.firstName" name="firstName" placeholder="First Name" required>
+                    <input type="text" class="form-control" [(ngModel)]="user.firstName" name="firstName" placeholder="First Name" required #firstName="ngModel">
+                    <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">First Name is required</div>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" [(ngModel)]="user.lastName" name="lastName" placeholder="Last Name" required>
+                    <input type="text" class="form-control" [(ngModel)]="user.lastName" name="lastName" placeholder="Last Name" required #lastName="ngModel">
+                    <div *ngIf="lastName.invalid && lastName.touched" class="text-danger">Last Name is required</div>
                 </div>
             </div>
             <div class="mt-3">
-                <input type="text" class="form-control" [(ngModel)]="user.phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
+                <input type="text" class="form-control" [(ngModel)]="user.phoneNumber" name="phoneNumber" placeholder="Phone Number" required #phoneNumber="ngModel">
+                <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="text-danger">Phone Number is required</div>
             </div>
             <div class="mt-3">
-                <input type="text" class="form-control" [(ngModel)]="user.userName" name="userName" placeholder="User Name" required>
+                <input type="text" class="form-control" [(ngModel)]="user.userName" name="userName" placeholder="User Name" required #userName="ngModel">
+                <div *ngIf="userName.invalid && userName.touched" class="text-danger">User Name is required</div>
             </div>
-            <div class="mt-3 position-relative">
-                <input type="password" class="form-control" [(ngModel)]="user.password" name="password" #passwordInput type="password" placeholder="Password" required id="password">
-                <button type="button" class="btn btn-sm btn-outline-secondary position-absolute tg" style="top: 50%; right: 10px; transform: translateY(-50%);" (click)="togglePasswordVisibility(passwordInput)">{{ isPasswordVisible ? 'Hide' : 'Show' }}</button>
+            <div class="mt-3">
+                <input type="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="Password" required #password="ngModel">
+                <div *ngIf="password.invalid && password.touched" class="text-danger">Password is required</div>
             </div>
             <div class="form-check mt-3">
-                <input class="form-check-input" type="checkbox" name="terms" required>
+                <input class="form-check-input" type="checkbox" name="terms" required [(ngModel)]="user.terms" #terms="ngModel">
                 <label class="form-check-label">
                     Agree to terms and conditions
                 </label>
+                <div *ngIf="terms.invalid && terms.touched" class="text-danger">You must agree to the terms and conditions</div>
             </div>
-            <button type="submit" class="btn btn-primary w-100 mt-4">Create Account</button>
+            <button type="submit" class="btn btn-primary w-100 mt-4" [disabled]="registerForm.invalid">Create Account</button>
         </form>
     </div>
 </div>
+
+
