@@ -15,10 +15,10 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class InventoryServiceTest {
+class InventoryServiceTest {
 
     @Mock
-    private InventoryDAO inventoryDao;
+    private InventoryDAO inventoryDAO;
 
     @InjectMocks
     private InventoryService inventoryService;
@@ -26,111 +26,214 @@ public class InventoryServiceTest {
     private Inventory inventory;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
         inventory = new Inventory();
+        inventory.setInventoryId(1);
+        inventory.setIsbn("12345");
+        inventory.setRanks(10);
+        inventory.setPurchased(false);
     }
 
     @Test
-    public void testGetAllInventory() {
-        // Arrange
-        when(inventoryDao.findAll()).thenReturn(List.of(inventory));
+    void testGetAll() {
+        // Assuming the DAO method returns a list of inventory items
+        when(inventoryDAO.findAll()).thenReturn(List.of(inventory));
 
-        // Act
-        List<Inventory> result = inventoryService.getAll();
+        var inventoryList = inventoryService.getAll();
 
-        // Assert
-        assertNotNull(result);
-        assertEquals(1, result.size());
-        assertEquals(1, result.get(0).getInventoryId());
+        assertNotNull(inventoryList);
+        assertEquals(1, inventoryList.size());
+        verify(inventoryDAO, times(1)).findAll();
     }
 
     @Test
-    public void testFindById_Valid() {
-        // Arrange
-        when(inventoryDao.findById(1)).thenReturn(Optional.of(inventory));
+    void testFindById_InventoryExists() {
+        when(inventoryDAO.findById(1)).thenReturn(Optional.of(inventory));
 
-        // Act
-        Inventory result = inventoryService.findById(1);
+        Inventory foundInventory = inventoryService.findById(1);
 
-        // Assert
-        assertNotNull(result);
-        assertEquals(1, result.getInventoryId());
+        assertNotNull(foundInventory);
+        assertEquals(1, foundInventory.getInventoryId());
+        verify(inventoryDAO, times(1)).findById(1);
     }
 
     @Test
-    public void testFindById_Invalid() {
-        // Arrange
-        when(inventoryDao.findById(1)).thenReturn(Optional.empty());
+    void testFindById_InventoryNotFound() {
+        when(inventoryDAO.findById(1)).thenReturn(Optional.empty());
 
-        // Act and Assert
-        Exception exception = assertThrows(RuntimeException.class, () -> inventoryService.findById(1));
-        assertEquals("Inventory not found with id: 1", exception.getMessage());
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            inventoryService.findById(1);
+        });
+
+        assertEquals("Inventory not found with id: 1", thrown.getMessage());
+        verify(inventoryDAO, times(1)).findById(1);
     }
 
     @Test
-    public void testAddInventory() {
-        // Arrange
-        when(inventoryDao.save(inventory)).thenReturn(inventory);
+    void testAddInventory() {
+        when(inventoryDAO.save(any(Inventory.class))).thenReturn(inventory);
 
-        // Act
         inventoryService.addInventory(inventory);
 
-        // Assert
-        verify(inventoryDao, times(1)).save(inventory);
+        verify(inventoryDAO, times(1)).save(inventory);
     }
 
     @Test
-    public void testRemoveInventory() {
-        // Arrange
-        doNothing().when(inventoryDao).deleteById(1);
+    void testRemoveInventory() {
+        doNothing().when(inventoryDAO).deleteById(1);
 
-        // Act
         inventoryService.removeInventory(1);
 
-        // Assert
-        verify(inventoryDao, times(1)).deleteById(1);
+        verify(inventoryDAO, times(1)).deleteById(1);
     }
 
     @Test
-    public void testUpdatePurchased_Valid() {
-        // Arrange
-        when(inventoryDao.findById(1)).thenReturn(Optional.of(inventory));
-        when(inventoryDao.save(inventory)).thenReturn(inventory);
+    void testUpdatePurchased() {
+        when(inventoryDAO.findById(1)).thenReturn(Optional.of(inventory));
+        when(inventoryDAO.save(any(Inventory.class))).thenReturn(inventory);
 
-        // Act
         inventoryService.updatePurchased(1, true);
 
-        // Assert
         assertTrue(inventory.getPurchased());
-        verify(inventoryDao, times(1)).save(inventory);
+        verify(inventoryDAO, times(1)).findById(1);
+        verify(inventoryDAO, times(1)).save(inventory);
     }
+}
 
-  //  @Test
+//package com.app.ServiceTest;
+//
+//import com.Service.InventoryService;
+//import com.dao.InventoryDAO;
+//import com.model.Inventory;
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+//import org.mockito.InjectMocks;
+//import org.mockito.Mock;
+//import org.mockito.MockitoAnnotations;
+//
+//import java.util.List;
+//import java.util.Optional;
+//
+//import static org.junit.jupiter.api.Assertions.*;
+//import static org.mockito.Mockito.*;
+//
+//public class InventoryServiceTest {
+//
+//    @Mock
+//    private InventoryDAO inventoryDao;
+//
+//    @InjectMocks
+//    private InventoryService inventoryService;
+//
+//    private Inventory inventory;
+//
+//    @BeforeEach
+//    public void setUp() {
+//        MockitoAnnotations.openMocks(this);
+//        inventory = new Inventory();
+//    }
+//
+//    @Test
+//    public void testGetAllInventory() {
+//        // Arrange
+//        when(inventoryDao.findAll()).thenReturn(List.of(inventory));
+//
+//        // Act
+//        List<Inventory> result = inventoryService.getAll();
+//
+//        // Assert
+//        assertNotNull(result);
+//        assertEquals(1, result.size());
+//        assertEquals(1, result.get(0).getInventoryId());
+//    }
+//
+////    @Test
+////    public void testFindById_Valid() {
+////        // Arrange
+////        when(inventoryDao.findById(1)).thenReturn(Optional.of(inventory));
+////
+////        // Act
+////        Inventory result = inventoryService.findById(1);
+////
+////        // Assert
+////        assertNotNull(result);
+////        assertEquals(1, result.getInventoryId());
+////    }
+//
+//    @Test
+//    public void testFindById_Invalid() {
+//        // Arrange
+//        when(inventoryDao.findById(1)).thenReturn(Optional.empty());
+//
+//        // Act and Assert
+//        Exception exception = assertThrows(RuntimeException.class, () -> inventoryService.findById(1));
+//        assertEquals("Inventory not found with id: 1", exception.getMessage());
+//    }
+//
+//    @Test
+//    public void testAddInventory() {
+//        // Arrange
+//        when(inventoryDao.save(inventory)).thenReturn(inventory);
+//
+//        // Act
+//        inventoryService.addInventory(inventory);
+//
+//        // Assert
+//        verify(inventoryDao, times(1)).save(inventory);
+//    }
+//
+//    @Test
+//    public void testRemoveInventory() {
+//        // Arrange
+//        doNothing().when(inventoryDao).deleteById(1);
+//
+//        // Act
+//        inventoryService.removeInventory(1);
+//
+//        // Assert
+//        verify(inventoryDao, times(1)).deleteById(1);
+//    }
+//
+//    @Test
+//    public void testUpdatePurchased_Valid() {
+//        // Arrange
+//        when(inventoryDao.findById(1)).thenReturn(Optional.of(inventory));
+//        when(inventoryDao.save(inventory)).thenReturn(inventory);
+//
+//        // Act
+//        inventoryService.updatePurchased(1, true);
+//
+//        // Assert
+//        assertTrue(inventory.getPurchased());
+//        verify(inventoryDao, times(1)).save(inventory);
+//    }
+//
+//  //  @Test
+////    public void testUpdatePurchased_Invalid() {
+////        // Arrange
+////        when(inventoryDao.findById(1)).thenReturn(Optional.empty());
+////
+////        // Act and Assert
+////        Exception exception = assertThrows(RuntimeException.class, () -> inventoryService.updatePurchased(1, true));
+////        assertEquals("Inventory not found with id: 1", exception.getMessage());
+////    }
+//    @Test
 //    public void testUpdatePurchased_Invalid() {
 //        // Arrange
 //        when(inventoryDao.findById(1)).thenReturn(Optional.empty());
 //
 //        // Act and Assert
-//        Exception exception = assertThrows(RuntimeException.class, () -> inventoryService.updatePurchased(1, true));
+//        Exception exception = assertThrows(RuntimeException.class, () -> {
+//            Inventory inv = inventoryService.findById(1);
+//            if (inv == null) {
+//                throw new RuntimeException("Inventory not found with id: 1");
+//            }
+//            inv.setPurchased(true);
+//        });
 //        assertEquals("Inventory not found with id: 1", exception.getMessage());
 //    }
-    @Test
-    public void testUpdatePurchased_Invalid() {
-        // Arrange
-        when(inventoryDao.findById(1)).thenReturn(Optional.empty());
-
-        // Act and Assert
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            Inventory inv = inventoryService.findById(1);
-            if (inv == null) {
-                throw new RuntimeException("Inventory not found with id: 1");
-            }
-            inv.setPurchased(true);
-        });
-        assertEquals("Inventory not found with id: 1", exception.getMessage());
-    }
-}
+//}
 
 //package com.app.ServiceTest;
 //import com.Service.InventoryService;
