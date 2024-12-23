@@ -11,7 +11,7 @@ import com.model.Book;
 public interface BookDAO extends JpaRepository<Book,String> {
 	List<Book> findByIsbnIn(List<String> isbn);
 	Book findByTitle(String title);
-	Book findByPublisherId(int publisherId);
+	List<Book> findByPublisherId(int publisherId);
 
 	
 	}

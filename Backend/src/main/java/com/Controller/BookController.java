@@ -62,8 +62,8 @@ public class BookController {
 	
 	@GetMapping("/publisherId/{publisherId}")
 	public ResponseEntity<?> getByPublisherId(@PathVariable int publisherId){
-		Book book = bookService.findByPublisherId(publisherId);
-		return new ResponseEntity<Book> (book,HttpStatus.OK);
+		List<Book> book = bookService.findByPublisherId(publisherId);
+		return new ResponseEntity <List<Book>>(book,HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/{isbn}")

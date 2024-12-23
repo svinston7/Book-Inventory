@@ -45,7 +45,7 @@ public class BookService {
 		
 	}
 
-	public Book findByPublisherId(int publisherId) {
+	public List<Book> findByPublisherId(int publisherId) {
 		
 		return bookDao.findByPublisherId(publisherId);
 	}
