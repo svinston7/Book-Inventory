@@ -52,17 +52,14 @@ public class UserService {
 //				return "failure";
 //	}
 	public String verify(User user) {
-	    try {
+	    
 	        Authentication authenticate = authenticationManager.authenticate(
 	                new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword())
 	        );
 	        if (authenticate.isAuthenticated()) {
 	            return jwtService.generateToken(user.getUserName());
 	        }
-	    } catch (RuntimeException e) {
-	        // Handle authentication failure
-	        return "failure";
-	    }
+	    
 	    return "failure";
 	}
 
