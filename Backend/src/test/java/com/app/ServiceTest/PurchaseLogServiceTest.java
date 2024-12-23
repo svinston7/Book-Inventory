@@ -29,7 +29,7 @@ public class PurchaseLogServiceTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        Inventory inventory = new Inventory(1, "12345", 5, false);
+        Inventory inventory = new Inventory();
         purchaseLog = new PurchaseLog();
         purchaseLog.setId(1);
         purchaseLog.setUserId(101);

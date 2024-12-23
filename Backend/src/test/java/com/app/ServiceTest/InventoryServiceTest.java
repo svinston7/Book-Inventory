@@ -28,7 +28,7 @@ public class InventoryServiceTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        inventory = new Inventory(1, "12345", 10, false);
+        inventory = new Inventory();
     }
 
     @Test

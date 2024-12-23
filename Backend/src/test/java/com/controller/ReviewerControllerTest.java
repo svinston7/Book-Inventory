@@ -1,4 +1,4 @@
-package com.controller;
+package com.Controller;
 
 import com.Controller.ReviewerController;
 import com.Service.ReviewerService;
