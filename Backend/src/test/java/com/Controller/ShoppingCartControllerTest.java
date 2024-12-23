@@ -1,11 +1,11 @@
-//package com.Service;
+package com.Controller;
+
+import com.Controller.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-package com.Controller;
-
-import static org.mockito.Mockito.*;
+ import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
@@ -24,7 +24,7 @@ import com.model.Book;
 import com.model.ShoppingCart;
 
 @ExtendWith(MockitoExtension.class)
-public class ShoppingCartserviceTest {
+public class ShoppingCartControllerTest {
 
     @Mock
     private ShoppingCartservice shoppingCartService;
