@@ -69,16 +69,16 @@ public class UserController {
 			
 		}
 	
-//	@PutMapping("/update/firstname/{userId}")
-//	public User updateFirstName(@PathVariable("userId") int id) {
-//		
-//	}
-//	@PutMapping("/update/lastname/{userId}")
-//	public User updateLastName(@PathVariable("userId") int id) {
-//		
-//	}
-//	@PutMapping("/update/phonenumber/{userId}")
-//	public User updatePhoneNumber(@PathVariable("userId") int id) {
-//		
-//	}
+	@PutMapping("/update/firstname/{userId}")
+	public void updateFirstName(@PathVariable int userId,String firstName) {
+		userService.updateUserFirstName(userId, firstName);
+	}
+	@PutMapping("/update/lastname/{userId}")
+	public void updateLastName(@PathVariable int userId,String lastName) {
+		userService.updateUserLastName(userId, lastName);
+	}
+	@PutMapping("/update/phonenumber/{userId}")
+	public void updatePhoneNumber(@PathVariable int userId,String phonenumber) {
+		userService.updateUserPhoneNum(userId, phonenumber);
+	}
 }

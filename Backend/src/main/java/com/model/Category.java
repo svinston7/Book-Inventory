@@ -23,6 +23,10 @@ public class Category {
 		this.catDescription = catDescription;
 	}
 	
+	public Category() {
+		super();
+	}
+
 	public int getCatId() {
 		return catId;
 	}

@@ -17,6 +17,11 @@ public class State {
 	}
 	
 	
+	public State() {
+		super();
+	}
+
+
 	public String getStateCode() {
 		return stateCode;
 	}

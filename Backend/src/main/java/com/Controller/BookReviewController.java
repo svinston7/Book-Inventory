@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,7 +36,7 @@ public class BookReviewController {
 	}
 	
 	@GetMapping("{isbn}")
-	public ResponseEntity<?> getAllReviewers(@RequestBody String isbn) {
+	public ResponseEntity<?> getAllReviewers(@PathVariable String isbn) {
 		List<Reviewer> reviewersList = bookReviewService.getAllReviewers(isbn);
 		
 		return new ResponseEntity<List<Reviewer>>(reviewersList,HttpStatus.OK);
