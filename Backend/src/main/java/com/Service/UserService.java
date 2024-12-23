@@ -41,17 +41,31 @@ public class UserService {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		return userRepository.save(user);
 	}
+//	public String verify(User user) {
+//		Authentication authenticate
+//		=authenticationManager.authenticate(
+//				new UsernamePasswordAuthenticationToken(user.getUserName(),user.getPassword()));
+//		//var u=userRepository.findByUsername(user.getUsername());
+//				if(authenticate.isAuthenticated()) {
+//				  return jwtService.generateToken(user.getUserName());
+//				}
+//				return "failure";
+//	}
 	public String verify(User user) {
-		Authentication authenticate
-		=authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(user.getUserName(),user.getPassword()));
-		//var u=userRepository.findByUsername(user.getUsername());
-				if(authenticate.isAuthenticated()) {
-				  return jwtService.generateToken(user.getUserName());
-				}
-				return "failure";
+	    try {
+	        Authentication authenticate = authenticationManager.authenticate(
+	                new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword())
+	        );
+	        if (authenticate.isAuthenticated()) {
+	            return jwtService.generateToken(user.getUserName());
+	        }
+	    } catch (RuntimeException e) {
+	        // Handle authentication failure
+	        return "failure";
+	    }
+	    return "failure";
 	}
-	
+
 	
 	
 	public void addUser(User user) {
