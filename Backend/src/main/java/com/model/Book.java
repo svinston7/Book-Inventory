@@ -16,12 +16,10 @@ public class Book {
 	private String isbn;
 	private String title;
 	private String description;
-	
 	private int categoryId;
-	
 	private String edition;
 	private int publisherId;
-	
+	private String image;
 			
 	public Book() {}
 
@@ -33,8 +31,18 @@ public class Book {
 		this.isbn = isbn;
 	}
 
+	
+
 	public String getTitle() {
 		return title;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public void setTitle(String title) {
