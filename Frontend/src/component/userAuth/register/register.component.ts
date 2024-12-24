@@ -23,7 +23,7 @@ export class RegisterComponent {
     userName: '',
     password: '',
     terms: false // Assuming terms is a boolean
-  };
+  };  
 
   registerUser(event: Event, registerForm: any) {
     event.preventDefault();
