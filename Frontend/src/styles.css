@@ -4,7 +4,10 @@
     padding: 0;
 }
 body{
-    background-color: #676179;
+    background-image: url('assets/background.png');
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-size: cover;
     box-sizing: border-box;
     color: white;
     font-family: "Roboto", serif;
