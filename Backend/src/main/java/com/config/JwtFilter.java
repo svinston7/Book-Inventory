@@ -18,35 +18,51 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 @Component
 public class JwtFilter extends OncePerRequestFilter {
-	 @Autowired
-	    private JwtService jwtService;
-	    @Autowired 
-	    ApplicationContext context;
-		@Override
-		protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-				throws ServletException, IOException {
-			
-			String authHeader=request.getHeader("Authorization");
-			String token=null;
-			String username=null;
-			if(authHeader != null && authHeader.startsWith("Bearer")) {
-				token=authHeader.substring(7);
-				username= jwtService.extractUserName(token);
-			}
-			if(username !=null && SecurityContextHolder.getContext().getAuthentication()==null) {
-				UserDetails userDetails=context.getBean(CustomUserDetailsService.class).loadUserByUsername(username);
-				if(jwtService.validateToken(token,userDetails)) {
-					UsernamePasswordAuthenticationToken authToken=
-							new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
-					authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-					SecurityContextHolder.getContext().setAuthentication(authToken);
-				}
-			}
-			filterChain.doFilter(request, response);
-		}
-	       
-	
+    @Autowired
+    private JwtService jwtService;
 
+    @Autowired
+    ApplicationContext context;
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
+
+        // Set CORS headers
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200"); // Replace with your allowed origin
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+
+        // Handle preflight (OPTIONS) requests
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            return;
+        }
+
+        // JWT validation logic
+        String authHeader = request.getHeader("Authorization");
+        String token = null;
+        String username = null;
+
+        if (authHeader != null && authHeader.startsWith("Bearer")) {
+            token = authHeader.substring(7);
+            username = jwtService.extractUserName(token);
+        }
+
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            UserDetails userDetails = context.getBean(CustomUserDetailsService.class).loadUserByUsername(username);
+            if (jwtService.validateToken(token, userDetails)) {
+                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                        userDetails, null, userDetails.getAuthorities());
+                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(authToken);
+            }
+        }
+
+        filterChain.doFilter(request, response);
+    }
 }

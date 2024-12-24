@@ -1,4 +1,191 @@
-<a class="btn btn-primary p-4" href="/login" routeLink="/login" style="color:white;text-decoration: none;">Login</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index Component</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="index.component.css"> 
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  
+</head>
+<body>
+
+  <header>                     
+    <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">📖Books</label>
+      <ul class="displaybar">
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="/register">Login/Sign In</a></li>
+
+      </ul>
+    </nav>
+    
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="section-content">
+
+        <div class="hero-details">
+          
+          <h2 class="title" >Best Books</h2>
+          <h3 class="subtitle">Make your day great with our special books!</h3>
+          <p class="description">"A reader lives a thousand lives before he dies. The man who never reads lives only one." – George R.R. Martin</p>
+          
+          
+          <div class="buttons">
+            <a href="/register" routeLink="/register" class="button order-now" >Order Now</a>
+            <a href="#contact" class="button contact-us">Contact Us</a> 
+          </div>
+        </div>
+  
+        <div class="hero-image-wrapper">
+          <img  src="assets\newbook1.jpg"   alt="Hero" class="hero-image">
+  
+        </div>
+      </div>
+
+    </section>
+     
+    <section class="about-section" id="about">
+      <div class="section-content">
+        <div class="about-image-wrapper">
+          <img src="assets/about.jpg" alt="About" class="about-image">
+        </div>
+          <div class="about-details">
+            <h2 class="section-title" >About Us</h2>
+            <p class="text">Welcome to [Your Company/System Name], your trusted partner in efficient book inventory management. Our mission is to simplify the process of organizing, tracking, and managing book inventories for libraries, bookstores, schools, and personal collections.
+
+              In today’s fast-paced world, having a seamless system to manage books is essential. Whether you are a passionate reader, a bookseller, or a librarian, our platform is designed to cater to your unique needs. With powerful features, intuitive interfaces, and robust technology, 
+              we help you save time, reduce errors, and focus on what matters most—sharing the love of books.</p>
+            <div class="social-link-list">
+              <a href="#" class="social-link"><i class="fa-brands 
+                fa-facebook"></i></a>
+              <a href="#" class="social-link"><i class="fa-brands 
+                fa-instagram"></i></a>
+             
+              <a href="#" class="social-link"><i class="fa-brands 
+                fa-x-twitter"></i></a>
 
 
-<a class="btn btn-primary p-4" href="/register" routeLink="/register" style="color:white;text-decoration: none;">Register</a>
+            </div>
+              
+          </div>
+        
+      </div>
+    </section>
+     
+    <section class="gallery-section" id="gallery">
+      <h2 class="section-title">Gallery</h2>
+      <div class="section-content">
+        <ul class="gallery-list">
+          <li class="gallery-item">
+            <img src="assets/galleryimg1.jpg" alt="Gallery"
+            class="gallery-image">
+          </li>
+          <li class="gallery-item">
+            <img src="assets/galleryimg2.jpg" alt="Gallery"
+            class="gallery-image">
+          </li>
+          <li class="gallery-item">
+            <img src="assets/galleryimg3.jpg" alt="Gallery"
+            class="gallery-image">
+          </li>
+          <li class="gallery-item">
+            <img src="assets/galleryimg4.jpg" alt="Gallery"
+            class="gallery-image">
+          </li>
+          <li class="gallery-item">
+            <img src="assets/galleryimg5.jpg" alt="Gallery"
+            class="gallery-image">
+          </li>
+          <li class="gallery-item">
+            <img src="assets/galleryimg6.jpg" alt="Gallery"
+            class="gallery-image">
+          </li>
+        </ul>
+        
+      </div>
+    </section>
+    
+    <section class="contact-section" id="contact">
+      <h2 class="section-title">Contact Us</h2>
+      <div class="section-content">
+        <ul class="contact-info-list">
+          <li class="contact-info">
+            <i class="fa-solid fa-location-crosshairs"></i>
+            <p>123 ABC street, xyz village, PINCODE: 23456</p>
+          </li>
+          <li class="contact-info">
+            <i class="fa-regular fa-envelope"></i>
+            <p>info&#64;bookinventorywebsite.com</p>
+          </li>
+          <li class="contact-info">
+            <i class="fa-solid fa-phone"></i>
+            <p>(123) 456-78909</p>
+          </li>
+          <li class="contact-info">
+            <i class="fa-regular fa-clock"></i>
+            <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+          </li>
+          <li class="contact-info">
+            <i class="fa-regular fa-clock"></i>
+            <p>Saturday: 10:00 AM - 3:00 PM</p>
+          </li>
+
+          <li class="contact-info">
+            <i class="fa-regular fa-clock"></i>
+            <p>Sunday: Closed</p>
+          </li>
+          <li class="contact-info">
+            <i class="fa-solid fa-globe"></i>
+            <p>www.bookinventory.com</p>
+          </li>
+          
+        </ul>
+
+        <form action="#" class="contact-form">
+          <input type="text" placeholder="Your name" class="form-input"required>
+          <input type="email" placeholder="Your email" class="form-input" required>
+          <textarea placeholder="Your message" class="form-input" required></textarea>
+          <button class="submit-button" type="submit">Submit</button>
+        </form>        
+      </div>
+      
+    </section>
+
+    <footer class="footer-section">
+      <div class="section-content">
+        <p class="copyright-text">© 2024 Book Inventory</p>
+        <div class="social-link-list">
+          <a href="#" class="social-link"><i class="fa-brands 
+            fa-facebook"></i></a>
+          <a href="#" class="social-link"><i class="fa-brands 
+            fa-instagram"></i></a>
+         
+          <a href="#" class="social-link"><i class="fa-brands 
+            fa-x-twitter"></i></a>
+        </div>
+          <p class="policy-text">
+            <a href="#" class="policy-link">Privacy policy</a>
+            <span class="separator"> • </span>
+            <a href="#" class="policy-link">Refund policy</a>
+          </p>
+
+       
+      </div>
+
+    </footer>
+  </main>
+
+  
+</body>
+</html>

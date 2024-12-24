@@ -24,6 +24,11 @@ public class Publisher {
 	}
 	
 	
+	public Publisher() {
+		super();
+	}
+
+
 	public int getPublisherId() {
 		return publisherId;
 	}
