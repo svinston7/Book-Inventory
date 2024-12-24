@@ -58,6 +58,12 @@ export class LoginComponent {
     passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
     this.isPasswordVisible = !this.isPasswordVisible;
   }
+
+  ngOnInit(){
+    if(localStorage.getItem('token')){
+      localStorage.removeItem('token')
+    }
+  }
 }
 
 

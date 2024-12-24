@@ -8,7 +8,6 @@ import jakarta.persistence.Id;
 @Entity
 public class Publisher {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int publisherId;
 	private String name;
 	private String city;
