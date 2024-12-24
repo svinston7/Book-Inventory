@@ -3,8 +3,8 @@ import { IndexComponent } from '../component/index/index.component';
 import { LoginComponent } from '../component/userAuth/login/login.component';
 import { RegisterComponent } from '../component/userAuth/register/register.component';
 import { HomeComponent } from '../component/home/home.component';
-import { ViewBookComponent } from '../component/home/book-showcase/view-book/view-book.component';
 import { NavbarComponent } from '../component/navbar/navbar.component';
+import { ViewBookComponent } from '../component/book-showcase/view-book/view-book.component';
 
 
 export const routes: Routes = [

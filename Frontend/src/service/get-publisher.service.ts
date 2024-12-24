@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { text } from 'stream/consumers';
+import { Publisher } from '../component/book-showcase/Publisher';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +17,9 @@ export class GetPublisherService {
   }
 
 
-  getPublisherById(id:number):Observable<any>{
-    return this.httpClient.get(this.PUBLISHERURL+id,{
-      responseType:'text'
+  getPublisherById(id:number):Observable<Publisher>{
+    return this.httpClient.get<Publisher>(this.PUBLISHERURL+"/"+id,{
+      responseType:'json'
     });
   }
 

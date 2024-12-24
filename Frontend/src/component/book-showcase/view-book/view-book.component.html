@@ -1,31 +1,20 @@
 
-<div class="container-fluid">
+<div class="container-fluid acc">
     <div class="row">
         <div class="col-5 text-center p-4">
             
             <img src="https://picsum.photos/400/500" class="img-fluid img-thumbnail mt-3 shadow" alt="">
         </div>
         <div class="col-5 text-center">
-            <h2 class="my-3">{{book?.title}}</h2>
-            <h4 class="my-3">ISBN  {{book?.isbn}}</h4>
-
-            <!-- <div class="accordion acc text-center" id="accordionPanelsStayOpenExample">
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                        Description
-                    </button>
-                  </h2>
-                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                    <div class="accordion-body">
-                        {{book?.description}}
-                    </div>
-                  </div>
-                </div>
-            </div> -->
+            <h2 class="my-3">{{book.title}}</h2>
+            <h4 class="my-3">ISBN  {{book.isbn}}</h4>
                 
             <h6 class="my-3 text-start">Description:</h6>
-            <textarea [readonly]="isReadonly" class="my-3 acc">{{book?.description}}</textarea>
+            <p class="my-3 acc">{{book.description}}</p>
+
+            <h6>Publisher Details:</h6>
+            <p>Name : {{publisher.name}}</p>
+            <p>City: {{publisher.city}}</p>
         </div>
     </div>
 </div>
