@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { ShowAllBooksService } from '../../../service/show-all-books.service';
 import { ActivatedRoute } from '@angular/router';
-import { Book } from '../../home/Book';
+import { Book } from '../../../model/Book';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from "../../home/home.component";
 import { GetPublisherService } from '../../../service/get-publisher.service';
-import { Publisher } from '../Publisher';
+import { Publisher } from '../../../model/Publisher';
+import { CategoryService } from '../../../service/category.service';
+import { Category } from '../../../model/Category';
 
 @Component({
   selector: 'app-view-book',
@@ -28,11 +30,17 @@ export class ViewBookComponent {
     name: '',
     city: '',
     stateCode: ''
-  };
+  }
+  cat:Category={
+    catId: 0,
+    catDescription: ''
+  }
+
   constructor(
     private bookService:ShowAllBooksService,
     private route:ActivatedRoute,
-    private publisherService: GetPublisherService
+    private publisherService: GetPublisherService,
+    private catService:CategoryService
     ){}
 
   ngOnInit(){
@@ -44,9 +52,17 @@ export class ViewBookComponent {
     this.bookService.getByISBN(isbn).subscribe((data:any)=>{
     this.book = data
     this.getPublisherId(this.book.publisherId);
+    this.getCategory(this.book.categoryId)
   })
   }
 
+  getCategory(categoryId:number){
+    this.catService.getCategory(categoryId).subscribe(
+      (data)=> {
+        this.cat = data;
+      }
+    )
+  }
 
   getPublisherId(id:number){
     this.publisherService.getPublisherById(id).subscribe(
