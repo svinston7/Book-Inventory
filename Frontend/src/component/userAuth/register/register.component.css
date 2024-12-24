@@ -3,7 +3,7 @@
     color: #ffffff;
     margin: 5% auto;
     max-width: 900px;
-    background-color: #2b2738;
+    background-color: #0093AF;
     border-radius: 1rem;
     box-shadow: 2px 6px 11px rgba(0, 0, 0, 0.5);
     overflow: hidden;
@@ -39,35 +39,84 @@ img{
     box-shadow: none;
 }
 .btn-primary {
-    background-color: #6E54B5;
+    background-color: #483777;
     border: none;
 }
 .btn-primary:hover {
     background-color: #543a93;
 }
 a {
-    color: #836cc0;
+    color: darkslateblue;
 }
-
 a:hover {
     text-decoration: underline;
 }
 input {
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #676179;
+    border: 1px solid whitesmoke;
     border-radius: 5px;
-    background-color: #676179;
+    background-color: skyblue;
     color: wheat; 
   }
   input:focus {
     outline: none;
-    border-color: #8b8896;
-    background-color: #88868f;
+    border-color: whitesmoke;
+    background-color: #caf4f7a7;
   }
   input::placeholder {
-    color: #aca8a8; 
+    color: lightslategray; 
     font-style: italic; 
     font-size: 0.9rem; 
     margin-left: 4rem;
   }
+
+ /* Styles for the popup overlay (background) */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it appears above all other content */
+  }
+  
+  /* Styles for the popup container */
+  .popup {
+    background-color: #fff; /* White background for the popup */
+    padding: 20px 30px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    text-align: center; /* Center the text */
+    max-width: 400px; /* Limit width */
+    width: 90%; /* Adjust width for smaller screens */
+    color: #000; /* Ensure text is black */
+    font-size: 10px; /* Adjust font size */
+    font-family:"Poppins", sans-serif ;
+    animation: fadeIn 0.3s ease-in-out; /* Optional fade-in animation */
+  }
+  
+  /* Button inside the popup */
+  .popup button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  
