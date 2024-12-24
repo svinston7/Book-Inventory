@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { ShowAllBooksService } from '../../../../service/show-all-books.service';
+import { ShowAllBooksService } from '../../../service/show-all-books.service';
 import { ActivatedRoute } from '@angular/router';
-import { Book } from '../../Book';
+import { Book } from '../../home/Book';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from "../../home.component";
-import { NavbarComponent } from "../../../navbar/navbar.component";
+import { HomeComponent } from "../../home/home.component";
 
 @Component({
   selector: 'app-view-book',
-  imports: [CommonModule, HomeComponent, NavbarComponent],
+  imports: [CommonModule, HomeComponent],
   templateUrl: './view-book.component.html',
   styleUrl: './view-book.component.css'
 })
