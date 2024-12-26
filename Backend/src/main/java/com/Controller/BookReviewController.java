@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.BookReviewService;
+import com.exception.CustomException;
+import com.exception.Response;
 import com.model.BookReview;
 import com.model.Reviewer;
 
@@ -29,11 +31,22 @@ public class BookReviewController {
 	BookReviewService bookReviewService;
 	
 	@PostMapping("/post")
-	public ResponseEntity<?> postReview(@RequestBody BookReview review) {
-		bookReviewService.addBookReview(review);
-		
-		return new ResponseEntity<>("Success",HttpStatus.OK);
-	}
+    public ResponseEntity<?> postReview(@RequestBody BookReview review) {
+        
+        BookReview existingReview = bookReviewService.findByisbn(review.getIsbn());
+        
+        if (existingReview != null) {
+          
+            throw new CustomException("ADDFAILS", "Book Reviewer already exists");
+        }
+        
+        
+        bookReviewService.addBookReview(review);
+
+        
+        Response successResponse = new Response("POSTSUCCESS", "Book Reviewer added successfully");
+        return new ResponseEntity<>(successResponse, HttpStatus.OK);
+    }
 	
 	@GetMapping("{isbn}")
 	public ResponseEntity<?> getAllReviewers(@PathVariable String isbn) {

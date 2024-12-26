@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.BookService;
+import com.exception.CustomException;
+import com.exception.Response;
 import com.model.Book;
 
 @RestController
@@ -27,20 +29,20 @@ public class BookController {
 	@Autowired
 	BookService bookService;
 	
-	
-	@PostMapping("/post")
-	public ResponseEntity<?> postBook(@RequestBody Book book){
-		try {
-			bookService.addBook(book);
-			return new ResponseEntity<>(Map.of("code", "POSTSUCCESS", "message", "Book added successfully"),HttpStatus.OK);
-			
-		}
-		catch(Exception e) {
-			return new ResponseEntity<>( Map.of("code","ADDFAILS","message","Book already exist"),HttpStatus.INTERNAL_SERVER_ERROR);
+	 @PostMapping("/post")
+	    public ResponseEntity<Response> postBook(@RequestBody Book book) {
+	        // Check if book already exists by ISBN or title
+	        if (bookService.findByIsbn(book.getIsbn()) != null || bookService.findByTitle(book.getTitle()) != null) {
+	            throw new CustomException("ADDFAILS", "Book already exists");
+	        }
 
-		}
-		
-	}
+	        // Add book if not found
+	        bookService.addBook(book);
+
+	        // Return success response
+	        Response response = new Response("POSTSUCCESS", "Book added successfully");
+	        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+	    } 
 	
 	@GetMapping("")
 	public ResponseEntity<?>  getAllBooks() {

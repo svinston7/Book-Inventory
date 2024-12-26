@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.PublisherService;
+import com.exception.CustomException;
+import com.exception.Response;
 import com.model.Publisher;
 
 @RestController
@@ -27,15 +29,22 @@ public class PublisherController {
 	PublisherService publisherService;
 
 	@PostMapping("/post")
-	public ResponseEntity<?> postBook(@RequestBody Publisher publisher){
-		try {
-			publisherService.addPublisher(publisher);
-			return new ResponseEntity<>(Map.of("code", "POSTSUCCESS", "message", "Publisher added successfully"),HttpStatus.OK);
-		}
-		catch(Exception e) {
-			return new ResponseEntity<>(Map.of("code", "ADDFAILS", "message", "Book already exists"),HttpStatus.OK);
-		}		
-	}
+    public ResponseEntity<?> postPublisher(@RequestBody Publisher publisher) {
+       
+        Publisher existingPublisher = publisherService.findByName(publisher.getName());
+        
+        if (existingPublisher != null) {
+            
+            throw new CustomException("ADDFAILS", "Publisher already exists");
+        }
+
+        publisherService.addPublisher(publisher);
+
+    
+        Response successResponse = new Response("POSTSUCCESS", "Publisher added successfully");
+        return new ResponseEntity<>(successResponse, HttpStatus.CREATED);
+    }
+
 	
 	@GetMapping("")
 	public ResponseEntity<?> getAllPublishers(){

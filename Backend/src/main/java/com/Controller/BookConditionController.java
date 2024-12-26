@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.BookConditionService;
+import com.exception.CustomException;
+import com.exception.Response;
 import com.model.BookCondition;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,11 +28,17 @@ public class BookConditionController {
 	BookConditionService conditionService;
 	
 	@PostMapping("/post")
-	public ResponseEntity<?> postCondtion(@RequestBody BookCondition bookCondition ) {
-		
-		conditionService.addBookCondition(bookCondition);
-		return new ResponseEntity<>(bookCondition,HttpStatus.CREATED);
-	}
+    public ResponseEntity<Response> postCondition(@RequestBody BookCondition bookCondition) {
+       
+        if (conditionService.getBookCondition(bookCondition.getRanks()) != null) {
+            throw new CustomException("ADDFAILS", "Book condition already exists");
+        }
+
+        conditionService.addBookCondition(bookCondition);
+
+        Response response = new Response("POSTSUCCESS", "Book Condition added successfully");
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
 	
 	@GetMapping("/{ranks}")
 	public ResponseEntity<?> getCondition(@PathVariable int ranks) {

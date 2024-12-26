@@ -1,6 +1,8 @@
 package com.Controller;
 
 import com.Service.BookService;
+import com.exception.CustomException;
+import com.exception.Response;
 import com.model.Book;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,11 +11,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class BookControllerTest {
@@ -30,84 +31,100 @@ class BookControllerTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
         sampleBook = new Book();
+        sampleBook.setIsbn("123-456");
+        sampleBook.setTitle("Effective Java");
+        sampleBook.setDescription("Java Best Practices");
+        sampleBook.setCategoryId(1);
+        sampleBook.setEdition("3rd Edition");
+        sampleBook.setPublisherId(100);
     }
 
     @Test
-    void testPostBookSuccess() {
+    void testPostBook_Success() {
+        when(bookService.findByIsbn("123-456")).thenReturn(null);
+        when(bookService.findByTitle("Effective Java")).thenReturn(null);
         doNothing().when(bookService).addBook(sampleBook);
 
-        ResponseEntity<?> response = bookController.postBook(sampleBook);
+        ResponseEntity<Response> response = bookController.postBook(sampleBook);
 
-        assertEquals(200, response.getStatusCodeValue());
-        assertEquals(Map.of("code", "POSTSUCCESS", "message", "Book added successfully"), response.getBody());
+        assertEquals(201, response.getStatusCodeValue());
+        Response responseBody = response.getBody();
+        assertNotNull(responseBody);
+        assertEquals("POSTSUCCESS", responseBody.getCode());
+        assertEquals("Book added successfully", responseBody.getMessage());
         verify(bookService, times(1)).addBook(sampleBook);
     }
 
     @Test
-    void testPostBookFailure() {
-        doThrow(new RuntimeException("Duplicate book")).when(bookService).addBook(sampleBook);
+    void testPostBook_Failure() {
+        when(bookService.findByIsbn("123-456")).thenReturn(sampleBook);
 
-        ResponseEntity<?> response = bookController.postBook(sampleBook);
+        CustomException exception = assertThrows(CustomException.class, () -> {
+            bookController.postBook(sampleBook);
+        });
 
-        assertEquals(500, response.getStatusCodeValue());
-        assertEquals(Map.of("code", "ADDFAILS", "message", "Book already exist"), response.getBody());
-        verify(bookService, times(1)).addBook(sampleBook);
+        assertEquals("ADDFAILS", exception.getCode());
+        assertEquals("Book already exists", exception.getMessage());
+        verify(bookService, never()).addBook(sampleBook);
     }
 
     @Test
     void testGetAllBooks() {
-        List<Book> books = Arrays.asList(sampleBook);
-        when(bookService.getAll()).thenReturn(books);
+        when(bookService.getAll()).thenReturn(Collections.singletonList(sampleBook));
 
         ResponseEntity<?> response = bookController.getAllBooks();
 
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(books, response.getBody());
+        List<?> books = (List<?>) response.getBody();
+        assertNotNull(books);
+        assertEquals(1, books.size());
         verify(bookService, times(1)).getAll();
     }
 
     @Test
     void testGetByIsbn() {
-        when(bookService.findByIsbn("1234567890")).thenReturn(sampleBook);
+        when(bookService.findByIsbn("123-456")).thenReturn(sampleBook);
 
-        ResponseEntity<?> response = bookController.getByisbn("1234567890");
+        ResponseEntity<?> response = bookController.getByisbn("123-456");
 
         assertEquals(200, response.getStatusCodeValue());
         assertEquals(sampleBook, response.getBody());
-        verify(bookService, times(1)).findByIsbn("1234567890");
+        verify(bookService, times(1)).findByIsbn("123-456");
     }
 
     @Test
     void testGetByTitle() {
-        when(bookService.findByTitle("Sample Book")).thenReturn(sampleBook);
+        when(bookService.findByTitle("Effective Java")).thenReturn(sampleBook);
 
-        ResponseEntity<?> response = bookController.getByTitle("Sample Book");
+        ResponseEntity<?> response = bookController.getByTitle("Effective Java");
 
         assertEquals(200, response.getStatusCodeValue());
         assertEquals(sampleBook, response.getBody());
-        verify(bookService, times(1)).findByTitle("Sample Book");
+        verify(bookService, times(1)).findByTitle("Effective Java");
     }
 
     @Test
     void testGetByPublisherId() {
-        List<Book> books = Arrays.asList(sampleBook);
-        when(bookService.findByPublisherId(1)).thenReturn(books);
+        when(bookService.findByPublisherId(100)).thenReturn(Collections.singletonList(sampleBook));
 
-        ResponseEntity<?> response = bookController.getByPublisherId(1);
+        ResponseEntity<?> response = bookController.getByPublisherId(100);
 
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(books, response.getBody());
-        verify(bookService, times(1)).findByPublisherId(1);
+        List<?> books = (List<?>) response.getBody();
+        assertNotNull(books);
+        assertEquals(1, books.size());
+        verify(bookService, times(1)).findByPublisherId(100);
     }
 
     @Test
-    void testPutByIsbn() {
-        doNothing().when(bookService).updateBook("1234567890", sampleBook);
+    void testUpdateBook() {
+        when(bookService.findByIsbn("123-456")).thenReturn(sampleBook);
+        doNothing().when(bookService).updateBook("123-456", sampleBook);
 
-        ResponseEntity<?> response = bookController.putByIsbn("1234567890", sampleBook);
+        ResponseEntity<?> response = bookController.putByIsbn("123-456", sampleBook);
 
         assertEquals(200, response.getStatusCodeValue());
         assertEquals(sampleBook, response.getBody());
-        verify(bookService, times(1)).updateBook("1234567890", sampleBook);
+        verify(bookService, times(1)).updateBook("123-456", sampleBook);
     }
 }

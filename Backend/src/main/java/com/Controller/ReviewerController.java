@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.ReviewerService;
+import com.exception.CustomException;
+import com.exception.Response;
 import com.model.Reviewer;
 
 @RestController
@@ -24,13 +26,25 @@ public class ReviewerController {
 	@Autowired
 	ReviewerService reviewerService;
 	
-	
-	@PostMapping("/post")
-	public ResponseEntity<?> postReviewer(@RequestBody Reviewer reviewer) {
-		reviewerService.addReviewer(reviewer);
-		
-		return new ResponseEntity<>(Map.of("code", "POSTSUCCESS", "message", "Reviewer added successfully"),HttpStatus.OK);
-	}
+
+    @PostMapping("/post")
+    public ResponseEntity<?> postReviewer(@RequestBody Reviewer reviewer) {
+        
+        Reviewer existingReviewer = reviewerService.findById(reviewer.getReviewerId());
+        
+        if (existingReviewer != null) {
+            
+            throw new CustomException("ADDFAILS", "Reviewer already exists");
+        }
+
+       
+        reviewerService.addReviewer(reviewer);
+
+        
+        Response successResponse = new Response("POSTSUCCESS", "Reviewer added successfully");
+        return new ResponseEntity<>(successResponse, HttpStatus.CREATED);
+    }
+
 	
 	@GetMapping("/employedby/{reviewerId}")
 	public ResponseEntity<?> getReviewer(@RequestBody int id) {

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.PermRoleService;
+import com.exception.CustomException;
+import com.exception.Response;
 import com.model.PermRole;
 
 @RestController
@@ -25,11 +27,26 @@ public class PermRoleController {
 	PermRoleService roleService;
 	
 	@PostMapping("/post")
-	public ResponseEntity<?> postRole(@RequestBody PermRole role){
-		roleService.addPermRole(role);
-		return new ResponseEntity<PermRole>(role,HttpStatus.OK);
-		
-	}
+    public ResponseEntity<?> postRole(@RequestBody PermRole role) {
+      
+        PermRole existingRole = roleService.getAll().stream()
+                .filter(r -> r.getRoleNumber() == role.getRoleNumber())
+                .findFirst()
+                .orElse(null);
+
+        if (existingRole != null) {
+           
+            throw new CustomException("ADDFAILS", "Perm Role already exists");
+        }
+
+        
+        roleService.addPermRole(role);
+
+      
+        Response successResponse = new Response("POSTSUCCESS", "Perm Role added successfully");
+        return new ResponseEntity<>(successResponse, HttpStatus.CREATED);
+    }
+
 	
 	@GetMapping("/rolenumber/{rolenumber}")
 	public ResponseEntity<?> getRole(@PathVariable int roleNumber){

@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -12,7 +13,15 @@ import jakarta.persistence.OneToMany;
 public class Author {
 
 	@Id
+
 	private int authorId;
+	public Author(int authorId, String firstName, String lastName) {
+		super();
+		this.authorId = authorId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
 	private String firstName;
 	private String lastName;
 	private String photo;

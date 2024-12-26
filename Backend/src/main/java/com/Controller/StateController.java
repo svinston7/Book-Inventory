@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.StateService;
+import com.exception.CustomException;
+import com.exception.Response;
 import com.model.State;
 
 @RestController
@@ -26,11 +28,25 @@ public class StateController {
 	@Autowired
 	StateService stateService;
 	
-	@PostMapping("/post")
-	public ResponseEntity<?> postState(@RequestBody State state){
-		stateService.addState(state);
-		return new ResponseEntity<>(state,HttpStatus.OK);
-	}
+
+@PostMapping("/post")
+	    public ResponseEntity<?> postState(@RequestBody State state) {
+	        
+	        State existingState = stateService.findByCode(state.getStateCode());
+
+	        if (existingState != null) {
+	            
+	            throw new CustomException("ADDFAILS", "State already exists");
+	        }
+
+	      
+	        stateService.addState(state);
+
+	       
+	        Response successResponse = new Response("POSTSUCCESS", "State added successfully");
+	        return new ResponseEntity<>(successResponse, HttpStatus.CREATED);
+	    }
+
 	
 	@GetMapping("")
 	public ResponseEntity<?> getAllState(){

@@ -1,6 +1,10 @@
+
+
 package com.Controller;
 
 import com.Service.AuthorService;
+import com.exception.CustomException;
+import com.exception.Response;
 import com.model.Author;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 class AuthorControllerTest {
@@ -29,19 +35,68 @@ class AuthorControllerTest {
         MockitoAnnotations.openMocks(this);
 
         // Sample data for testing
-        sampleAuthor = new Author(1, "John", "Doe", "samplePhoto.jpg");
+        sampleAuthor = new Author(1, "John", "Doe");
     }
-
     @Test
-    void testPostAuthor() {
+    void testPostAuthor_Success() {
+        when(authorService.findByFirstName("John")).thenReturn(null);
+        when(authorService.findByLastName("Doe")).thenReturn(null);
         doNothing().when(authorService).addAuthor(sampleAuthor);
 
         ResponseEntity<?> response = authorController.postAuthor(sampleAuthor);
 
-        assertEquals(200, response.getStatusCodeValue());
-        assertEquals("POSTSUCCESS", ((Map) response.getBody()).get("code"));
+        assertEquals(201, response.getStatusCodeValue());
+        Response responseBody = (Response) response.getBody();
+        assertNotNull(responseBody);
+        assertEquals("POSTSUCCESS", responseBody.getCode());
+        assertEquals("Author added successfully", responseBody.getMessage());
         verify(authorService, times(1)).addAuthor(sampleAuthor);
     }
+
+    @Test
+    void testPostAuthor_Failure() {
+        when(authorService.findByFirstName("John")).thenReturn(sampleAuthor);
+        when(authorService.findByLastName("Doe")).thenReturn(sampleAuthor);
+
+        CustomException exception = assertThrows(CustomException.class, () -> {
+            authorController.postAuthor(sampleAuthor);
+        });
+
+        assertEquals("ADDFAILS", exception.getCode());
+        assertEquals("Author already exists", exception.getMessage());
+        verify(authorService, never()).addAuthor(sampleAuthor);
+    }
+
+//
+//    @Test
+//    void testPostAuthor() {
+//        // Mocking the addAuthor method to do nothing when called
+//        doNothing().when(authorService).addAuthor(sampleAuthor);
+//
+//        // Call the postAuthor method from the controller
+//        ResponseEntity<?> response = authorController.postAuthor(sampleAuthor);
+//
+//        // Assert the HTTP status code is 201 (Created) for a successful POST request
+//        assertEquals(201, response.getStatusCodeValue());
+//
+//        // Assert the response body contains the expected code and message
+//        assertEquals("POSTSUCCESS", ((Map) response.getBody()).get("code"));
+//        assertEquals("Author added successfully", ((Map) response.getBody()).get("message"));
+//
+//        // Verify the addAuthor method is called exactly once
+//        verify(authorService, times(1)).addAuthor(sampleAuthor);
+//    }
+
+//    @Test
+//    void testPostAuthor() {
+//        doNothing().when(authorService).addAuthor(sampleAuthor);
+//
+//        ResponseEntity<?> response = authorController.postAuthor(sampleAuthor);
+//
+//        assertEquals(200, response.getStatusCodeValue());
+//        assertEquals("POSTSUCCESS", ((Map) response.getBody()).get("code"));
+//        verify(authorService, times(1)).addAuthor(sampleAuthor);
+//    }
 
     @Test
     void testGetAuthorById() {

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.InventoryService;
+import com.exception.CustomException;
+import com.exception.Response;
 import com.model.Inventory;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,11 +31,26 @@ public class InventoryController {
 	InventoryService inventoryService;
 	
 	@PostMapping("/post")
-	public ResponseEntity<?> postInventory(@RequestBody Inventory entity) {
-		
-		inventoryService.addInventory(entity);
-		return new ResponseEntity<>("Sucess",HttpStatus.CREATED) ;
-	}
+    public ResponseEntity<?> postInventory(@RequestBody Inventory entity) {
+       
+        Inventory existingInventory = inventoryService.getAll().stream()
+                .filter(inventory -> inventory.getBook().getIsbn().equals(entity.getBook().getIsbn()))
+                .findFirst()
+                .orElse(null);
+
+        if (existingInventory != null) {
+            
+            throw new CustomException("ADDFAILS", "Inventory already exists");
+        }
+
+        
+        inventoryService.addInventory(entity);
+
+      
+        Response successResponse = new Response("POSTSUCCESS", "Inventory added successfully");
+        return new ResponseEntity<>(successResponse, HttpStatus.CREATED);
+    }	
+
 	
 	@GetMapping("{inventoryId}")
 	public ResponseEntity<?> getInventory(@PathVariable int inventoryId) {

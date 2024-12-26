@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.AuthorService;
+import com.exception.CustomException;
+import com.exception.Response;
 import com.model.Author;
 
 @RequestMapping("/api/author")
@@ -25,11 +27,22 @@ public class AuthorController {
 	@Autowired
 	AuthorService authorService;
 	
+    
 	@PostMapping("/post")
-	public ResponseEntity<?> postAuthor(@RequestBody Author author){
-		authorService.addAuthor(author);
-		return new ResponseEntity<>(Map.of("code","POSTSUCCESS"),HttpStatus.OK);
-	}
+    public ResponseEntity<?> postAuthor(@RequestBody Author author) {
+
+        if (authorService.findByFirstName(author.getFirstName()) != null &&
+                authorService.findByLastName(author.getLastName()) != null) {
+            throw new CustomException("ADDFAILS", "Author already exists");
+        }
+
+        
+        authorService.addAuthor(author);
+
+        Response response = new Response("POSTSUCCESS", "Author added successfully");
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+    }
 	
 	@GetMapping("/authorid/{authorId}")
 	public ResponseEntity<?> getAuthorById(@PathVariable int authorId){
