@@ -15,7 +15,7 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class BookReview {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id; 
 	
     private String isbn;
@@ -24,7 +24,7 @@ public class BookReview {
     @Column(name = "Rating")
     private int rating;
 
-    @Column(name = "Comments")
+    @Column(name = "Comments",length = 1000)
     private String comments;
 
     @OneToMany(mappedBy = "bookReview", cascade = CascadeType.ALL)

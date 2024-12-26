@@ -18,7 +18,7 @@ public class BookAuthor {
 
 
     @Column(name = "PrimaryAuthor")
-    private String primaryAuthor;
+    private boolean primaryAuthor;
 
 	public int getId() {
 		return Id;
@@ -46,11 +46,11 @@ public class BookAuthor {
 		this.authorId = authorId;
 	}
 
-	public String getPrimaryAuthor() {
+	public boolean getPrimaryAuthor() {
 		return primaryAuthor;
 	}
 
-	public void setPrimaryAuthor(String primaryAuthor) {
+	public void setPrimaryAuthor(boolean primaryAuthor) {
 		this.primaryAuthor = primaryAuthor;
 	}
     

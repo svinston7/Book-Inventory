@@ -37,9 +37,9 @@ public class BookReviewController {
 	
 	@GetMapping("{isbn}")
 	public ResponseEntity<?> getAllReviewers(@PathVariable String isbn) {
-		List<Reviewer> reviewersList = bookReviewService.getAllReviewers(isbn);
+		List<BookReview> reviewersList = bookReviewService.getAllReviewers(isbn);
 		
-		return new ResponseEntity<List<Reviewer>>(reviewersList,HttpStatus.OK);
+		return new ResponseEntity<List<BookReview>>(reviewersList,HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/rating/{isbn}")

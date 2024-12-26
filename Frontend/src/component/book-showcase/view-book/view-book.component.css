@@ -1,12 +1,45 @@
 .row>div{
-    height: 100vh;
-    /* background-color: hsla(33, 78%, 91%, 0.404) ; */
+   
     margin: 3%;
     /* border: 5px solid red; */
 }
 
 .acc{
-    background-color: hsla(208, 100%, 97%, 0);
-    width: 80%;
-    color:white;
+    background-color: hsla(208, 38%, 34%, 0.76);
+    
+}
+.acc {
+        background-color: hsla(210, 17%, 98%, 0.374); /* Light background for contrast */
+        border-radius: 10px; /* Rounded corners */
+        padding: 20px; /* Padding around the content */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+
+    h2, h4, h5, h6 {
+        transition: color 0.3s; /* Smooth color transition */
+    }
+
+    h2:hover, h4:hover, h5:hover, h6:hover {
+        color: #007bff; /* Change color on hover */
+    }
+
+    .img-fluid {
+        border: 5px solid #007bff; /* Blue border around the image */
+        border-radius: 10px; /* Rounded corners for the image */
+    }
+
+    .text-start {
+        text-align: left; /* Align text to the left */
+    }
+
+    .bg-light {
+        background-color: #e9ecef; /* Light background for description */
+    }
+
+    .rounded {
+        border-radius: 5px; /* Rounded corners for description */
+    }
+.review{
+    border:2px solid #007bff ;
+    height: 100vh;
 }

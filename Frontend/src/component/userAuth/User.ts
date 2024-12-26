@@ -5,4 +5,5 @@ export interface User{
 	 userName:string;
 	 password:string;
 	 terms?: boolean; 
+	 roleNumber:number;
 }

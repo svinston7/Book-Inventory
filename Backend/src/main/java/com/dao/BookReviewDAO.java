@@ -13,8 +13,8 @@ import com.model.Reviewer;
 
 	BookReview findByIsbn(String isbn);
 	
-	@Query("SELECT r FROM Reviewer r WHERE r.bookReview.isbn = :isbn")
-	List<Reviewer> findReviewersByIsbn(@Param("isbn") String isbn);
-//	List<Reviewer> findByIsbn(String isbn);
+	@Query("SELECT br FROM BookReview br WHERE br.isbn = :isbn")
+	List<BookReview> findReviewsByIsbn(@Param("isbn") String isbn);
+//	List<BookReview> findByIsbnIn(String isbn);
 	}
 

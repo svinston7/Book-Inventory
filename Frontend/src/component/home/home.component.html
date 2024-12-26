@@ -1,4 +1,15 @@
+<header>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        Book Inventory System 
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,26 +33,33 @@
           
           Book Inventory System 
         </a>
+=======
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <!-- Empty List Item (for future use) -->
+          <li class="nav-item">
+            <!-- <a class="nav-link active" aria-current="page" href="#">Link</a> -->
+          </li>
+        </ul>
 
-        <div class="collapse navbar-collapse" id="navbarScroll">
-          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-            <!-- Empty List Item (for future use) -->
-            <li class="nav-item">
-              <!-- <a class="nav-link active" aria-current="page" href="#">Link</a> -->
-            </li>
-          </ul>
+        <!-- Search Form and Buttons -->
+        <form class="d-flex" style="width: 500px;" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-primary me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="margin-left:2%;background-color: purple;border-color: purple;">
+            <i class="fa-duotone fa-solid fa-filter"></i>
+          </button>
+        </form>
+>>>>>>> e714d80a7ae2fbaf27c441836b6b1ed353056613
 
-          <!-- Search Form and Buttons -->
-          <form class="d-flex" style="width: 500px;" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-            <button class="btn btn-primary" type="button"data-bs-toggle="offcanvas"  data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="margin-left:2%;background-color: purple;border-color: purple;"><i class="fa-duotone fa-solid fa-filter"></i></button>
-          </form>
-
-          <!-- Icons: User and Cart -->
-          <div class="btn-group">
-            <button type="button" data-bs-toggle="dropdown" style="border: 0;; width: 50px;padding-left: -60px;" aria-expanded="false" data-bs-reference="parent">
-              <span style="position: relative; cursor: pointer; font-size: x-large; margin-right: 10px;">
+        <!-- Icons: User and Cart -->
+        <div class="d-flex align-items-center">
+          <span class="me-3" style="position: relative; cursor: pointer; font-size: x-large;">
+            <i class="fa-solid fa-cart-shopping" style="background-color: purple; color: white; padding: 10px; border-radius: 30%;"></i>
+          </span>
+          <div class="btn-group me-3">
+            <button type="button" data-bs-toggle="dropdown" style="border: 0; width: 50px;" aria-expanded="false" data-bs-reference="parent">
+              <span style="position: relative; cursor: pointer; font-size: x-large;">
                 <i class="fa-solid fa-user" style="background-color: purple; color: white; padding: 10px; border-radius: 30%;"></i>
               </span>
             </button>
@@ -55,34 +73,38 @@
               </li>
             </ul>
           </div>
+<<<<<<< HEAD
           <a routerLink="/shoppingcart">
             <span style="position: relative; cursor: pointer; font-size: x-large; margin-right:0px;">
               <i class="fa-solid fa-cart-shopping" style="background-color: purple; color: white; padding: 10px; border-radius: 30%;"></i>
             </span>
           </a>
           
+=======
+>>>>>>> e714d80a7ae2fbaf27c441836b6b1ed353056613
         </div>
       </div>
-    </nav>
-  </header>
-
-  <!-- Offcanvas -->
-  <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Filter</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">
-        <h4>Category</h4>
-        <input type="checkbox">
-        <label>Romcom</label>
-        <input type="checkbox">
-        <label>SciFi</label>
-        <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 50%;">
-            <button class="btn btn-primary" type="button">Apply Filters</button>
-          </div>
+  </nav>
+</header>
+
+<!-- Offcanvas -->
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Filter</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h4>Category</h4>
+    <input type="checkbox">
+    <label>Romcom</label>
+    <input type="checkbox">
+    <label>SciFi</label>
+    <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 50%;">
+      <button class="btn btn-primary" type="button">Apply Filters</button>
     </div>
   </div>
+<<<<<<< HEAD
 
   <!-- Bootstrap JS and Popper.js for functionality -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybB4LTHuyQdRx93duR8Ocds1uXmeuHggl7zApCwwh34P6k2K1T" crossorigin="anonymous"></script>
@@ -90,3 +112,6 @@
 </body>
 </html>
 
+=======
+</div>
+>>>>>>> e714d80a7ae2fbaf27c441836b6b1ed353056613

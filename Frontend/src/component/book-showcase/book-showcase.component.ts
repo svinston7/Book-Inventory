@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ShowAllBooksService } from '../../service/show-all-books.service';
-import { Book } from '../home/Book';
+import { Book } from '../../model/Book';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
