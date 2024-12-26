@@ -16,5 +16,7 @@ import com.model.Reviewer;
 	@Query("SELECT br FROM BookReview br WHERE br.isbn = :isbn")
 	List<BookReview> findReviewsByIsbn(@Param("isbn") String isbn);
 //	List<BookReview> findByIsbnIn(String isbn);
+	
+	
 	}
 

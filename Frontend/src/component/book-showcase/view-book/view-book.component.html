@@ -33,9 +33,16 @@
             <h2 class="text-start d-inline">User Reviews</h2>
             <button class="float-end px-4 py-2 me-4 btn btn-primary">Write a review</button>
             <div class="ms-4 p-2 fw-bold fs-4">
-                <span class="text-primary">Please read and apply the rules before posting a comment. </span> <br>
+                <span class="text-primary text-center">Please read and apply the rules before posting a comment. </span> <br>
                 By sharing your comment, you agree to all the relevant terms.
             </div>
+        </div>
+
+        <div *ngFor="let review of reviewList" class="review-content mx-5 mb-3 " >
+            <h5 class="mx-5">{{review.name}}</h5>
+            <p class="mx-5">{{review.employedBy}}</p><br>
+            <p class="mx-5">Rating : {{review.rating}}/10</p>
+            <p class="mx-5">{{review.comments}}</p>
         </div>
     </div>
 </div>
