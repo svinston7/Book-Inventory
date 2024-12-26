@@ -5,13 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dao.AuthorDAO;
 import com.dao.BookAuthorDAO;
 import com.dao.UserDAO;
+import com.model.Author;
 import com.model.BookAuthor;
 import com.model.User;
 @Service
 public class BookAuthorService {
 
+	@Autowired
+	AuthorDAO authordao;
 	@Autowired
 	BookAuthorDAO bookauthorDao;
 	
@@ -30,4 +34,9 @@ public class BookAuthorService {
 	public void addBookAuthor(BookAuthor bookauthor) {
 		bookauthorDao.save(bookauthor);
 	}
+	public Author getAuthorDetailsByIsbn(String isbn){
+		BookAuthor bookauthor=bookauthorDao.findByIsbn(isbn);
+		return authordao.findById(bookauthor.getAuthorId()).orElse(null);
 }
+}
+
