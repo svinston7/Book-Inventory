@@ -31,15 +31,14 @@ public class BookController {
 	
 	 @PostMapping("/post")
 	    public ResponseEntity<Response> postBook(@RequestBody Book book) {
-	        // Check if book already exists by ISBN or title
+	       
 	        if (bookService.findByIsbn(book.getIsbn()) != null || bookService.findByTitle(book.getTitle()) != null) {
 	            throw new CustomException("ADDFAILS", "Book already exists");
 	        }
 
-	        // Add book if not found
+	  
 	        bookService.addBook(book);
 
-	        // Return success response
 	        Response response = new Response("POSTSUCCESS", "Book added successfully");
 	        return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	    } 

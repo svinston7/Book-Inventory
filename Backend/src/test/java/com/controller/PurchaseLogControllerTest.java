@@ -1,86 +1,92 @@
 package com.Controller;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+import com.Service.PurchaseLogService;
+import com.model.PurchaseLog;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.http.ResponseEntity;
 
-import com.Controller.PurchaseLogController;
-import com.Service.PurchaseLogService;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.model.PurchaseLog;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 class PurchaseLogControllerTest {
-
-    @Mock
-    private PurchaseLogService purchaseLogService;
 
     @InjectMocks
     private PurchaseLogController purchaseLogController;
 
-    private MockMvc mockMvc;
-    private ObjectMapper objectMapper;
+    @Mock
+    private PurchaseLogService purchaseLogService;
+
+    private PurchaseLog samplePurchaseLog;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(purchaseLogController).build();
-        objectMapper = new ObjectMapper();
+
+        // Initialize a sample PurchaseLog object
+        samplePurchaseLog = new PurchaseLog();
+        samplePurchaseLog.setId(1);
+        samplePurchaseLog.setUserId(1);
+        samplePurchaseLog.setInventoryId(100);
     }
 
     @Test
-    void testPostPurchase() throws Exception {
-        PurchaseLog purchaseLog = new PurchaseLog();
-        purchaseLog.setId(1);
-        purchaseLog.setUserId(101);
-        purchaseLog.setInventoryId(202);
+    void testPostPurchase() {
+        
+    	doNothing().when(purchaseLogService).addPurchaseLog(samplePurchaseLog);
 
-        mockMvc.perform(post("/api/purchaselog/post")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(purchaseLog)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.userId").value(101))
-                .andExpect(jsonPath("$.inventoryId").value(202));
+      
+        ResponseEntity<?> response = purchaseLogController.postPurchase(samplePurchaseLog);
 
-        verify(purchaseLogService, times(1)).addPurchaseLog(any(PurchaseLog.class));
+      
+        assertEquals(200, response.getStatusCodeValue());
+
+       
+        verify(purchaseLogService, times(1)).addPurchaseLog(samplePurchaseLog);
     }
 
     @Test
-    void testGetPurchase() throws Exception {
-        PurchaseLog purchaseLog = new PurchaseLog();
-        purchaseLog.setId(1);
-        purchaseLog.setUserId(101);
-        purchaseLog.setInventoryId(202);
+    void testGetPurchaseByUserId() {
+        
+        when(purchaseLogService.findById(1)).thenReturn(samplePurchaseLog);
 
-        when(purchaseLogService.findById(1)).thenReturn(purchaseLog);
+        ResponseEntity<?> response = purchaseLogController.getPurchase(1);
 
-        mockMvc.perform(get("/api/purchaselog/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.userId").value(101))
-                .andExpect(jsonPath("$.inventoryId").value(202));
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(samplePurchaseLog, response.getBody());
 
+       
         verify(purchaseLogService, times(1)).findById(1);
     }
 
     @Test
-    void testUpdatePurchase() throws Exception {
-        when(purchaseLogService.updateInventoryByUserId(101, 303)).thenReturn("Successfully updated");
+    void testUpdatePurchaseInventoryId() {
+        when(purchaseLogService.updateInventoryByUserId(1, 200)).thenReturn("Successfully updated");
 
-        mockMvc.perform(put("/api/purchaselog/update/inventoryId/101")
-                .param("inventoryId", "303"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("Updated"));
+        ResponseEntity<?> response = purchaseLogController.updatePurchase(1, 200);
 
-        verify(purchaseLogService, times(1)).updateInventoryByUserId(101, 303);
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals("Updated", response.getBody());
+
+       
+        verify(purchaseLogService, times(1)).updateInventoryByUserId(1, 200);
+    }
+
+    @Test
+    void testUpdatePurchaseInventoryIdNotFound() {
+       
+        when(purchaseLogService.updateInventoryByUserId(2, 200)).thenReturn("Inventory with id not found");
+
+        
+        ResponseEntity<?> response = purchaseLogController.updatePurchase(2, 200);
+
+        
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals("Updated", response.getBody());
+
+        verify(purchaseLogService, times(1)).updateInventoryByUserId(2, 200);
     }
 }

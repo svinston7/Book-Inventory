@@ -67,36 +67,7 @@ class AuthorControllerTest {
         verify(authorService, never()).addAuthor(sampleAuthor);
     }
 
-//
-//    @Test
-//    void testPostAuthor() {
-//        // Mocking the addAuthor method to do nothing when called
-//        doNothing().when(authorService).addAuthor(sampleAuthor);
-//
-//        // Call the postAuthor method from the controller
-//        ResponseEntity<?> response = authorController.postAuthor(sampleAuthor);
-//
-//        // Assert the HTTP status code is 201 (Created) for a successful POST request
-//        assertEquals(201, response.getStatusCodeValue());
-//
-//        // Assert the response body contains the expected code and message
-//        assertEquals("POSTSUCCESS", ((Map) response.getBody()).get("code"));
-//        assertEquals("Author added successfully", ((Map) response.getBody()).get("message"));
-//
-//        // Verify the addAuthor method is called exactly once
-//        verify(authorService, times(1)).addAuthor(sampleAuthor);
-//    }
 
-//    @Test
-//    void testPostAuthor() {
-//        doNothing().when(authorService).addAuthor(sampleAuthor);
-//
-//        ResponseEntity<?> response = authorController.postAuthor(sampleAuthor);
-//
-//        assertEquals(200, response.getStatusCodeValue());
-//        assertEquals("POSTSUCCESS", ((Map) response.getBody()).get("code"));
-//        verify(authorService, times(1)).addAuthor(sampleAuthor);
-//    }
 
     @Test
     void testGetAuthorById() {

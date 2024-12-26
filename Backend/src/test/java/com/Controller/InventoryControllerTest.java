@@ -35,49 +35,44 @@ class InventoryControllerTest {
 
     @Test
     void testPostInventory() {
-        // Mock service behavior
+       
         doNothing().when(inventoryService).addInventory(sampleInventory);
 
-        // Call the method
         ResponseEntity<?> response = inventoryController.postInventory(sampleInventory);
 
-        // Assert the response
         assertEquals(201, response.getStatusCodeValue());
-        assertEquals("Sucess", response.getBody());
+        
+        com.exception.Response responseBody = (com.exception.Response) response.getBody();
+        
+        assertEquals("POSTSUCCESS", responseBody.getCode());
+        assertEquals("Inventory added successfully", responseBody.getMessage()); 
 
-        // Verify that the service method was called once
         verify(inventoryService, times(1)).addInventory(sampleInventory);
     }
 
     @Test
     void testGetInventory() {
-        // Mock service behavior
+       
         when(inventoryService.findById(1)).thenReturn(sampleInventory);
 
-        // Call the method
         ResponseEntity<?> response = inventoryController.getInventory(1);
 
-        // Assert the response
         assertEquals(200, response.getStatusCodeValue());
         assertEquals(sampleInventory, response.getBody());
 
-        // Verify that the service method was called once
         verify(inventoryService, times(1)).findById(1);
     }
 
     @Test
     void testUpdatePurchased() {
-        // Mock service behavior
+       
         doNothing().when(inventoryService).updatePurchased(1, true);
 
-        // Call the method
         ResponseEntity<?> response = inventoryController.putMethodName(1, true);
 
-        // Assert the response
         assertEquals(200, response.getStatusCodeValue());
         assertEquals("Updated", response.getBody());
 
-        // Verify that the service method was called once
         verify(inventoryService, times(1)).updatePurchased(1, true);
     }
 }

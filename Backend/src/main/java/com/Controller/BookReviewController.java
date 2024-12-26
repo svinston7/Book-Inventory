@@ -54,14 +54,27 @@ public class BookReviewController {
 		
 		return new ResponseEntity<List<Reviewer>>(reviewersList,HttpStatus.OK);
 	}
-	
+//	
+//	@PutMapping("/update/rating/{isbn}")
+//	public ResponseEntity<?> updateRating(@RequestBody String isbn,int rating) {
+//		BookReview bookReview = bookReviewService.findByisbn(isbn);
+//		bookReview.setRating(rating);
+//		bookReviewService.addBookReview(bookReview);
+//		return new ResponseEntity<String>("Updated",HttpStatus.OK);
+//	}
 	@PutMapping("/update/rating/{isbn}")
-	public ResponseEntity<?> updateRating(@RequestBody String isbn,int rating) {
-		BookReview bookReview = bookReviewService.findByisbn(isbn);
-		bookReview.setRating(rating);
-		bookReviewService.addBookReview(bookReview);
-		return new ResponseEntity<String>("Updated",HttpStatus.OK);
+	public ResponseEntity<?> updateRating(@RequestBody String isbn, int rating) {
+	    BookReview bookReview = bookReviewService.findByisbn(isbn);
+	    
+	    if (bookReview == null) {
+	        throw new RuntimeException("Book not found with isbn: " + isbn);
+	    }
+	    
+	    bookReview.setRating(rating);
+	    bookReviewService.addBookReview(bookReview);
+	    return new ResponseEntity<>("Updated", HttpStatus.OK);
 	}
+
 	
 	@PutMapping("/update/comment/{isbn}")
 	public ResponseEntity<?> updateComment(@RequestBody String isbn,String comment) {

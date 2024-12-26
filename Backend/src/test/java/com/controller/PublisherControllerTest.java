@@ -1,135 +1,178 @@
 package com.Controller;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import java.util.Arrays;
-import java.util.List;
-
+import com.Service.PublisherService;
+import com.model.Publisher;
+import com.exception.CustomException;
+import com.exception.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.http.ResponseEntity;
 
-import com.Controller.PublisherController;
-import com.Service.PublisherService;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.model.Publisher;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 class PublisherControllerTest {
-
-    @Mock
-    private PublisherService publisherService;
 
     @InjectMocks
     private PublisherController publisherController;
 
-    private MockMvc mockMvc;
-    private ObjectMapper objectMapper;
+    @Mock
+    private PublisherService publisherService;
+
+    private Publisher samplePublisher;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(publisherController).build();
-        objectMapper = new ObjectMapper();
+        samplePublisher = new Publisher(1, "Sample Publisher", "Sample City", "SC");
     }
 
     @Test
-    void testPostBook() throws Exception {
-        Publisher mockPublisher = new Publisher();
-        mockPublisher.setName("Test Publisher");
-        mockPublisher.setCity("Test City");
-        mockPublisher.setStateCode("TS");
+    void testPostPublisher() {
+        when(publisherService.findByName(samplePublisher.getName())).thenReturn(null);
 
-        mockMvc.perform(post("/api/publisher/post")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(mockPublisher)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.code").value("POSTSUCCESS"))
-                .andExpect(jsonPath("$.message").value("Publisher added successfully"));
+        ResponseEntity<?> response = publisherController.postPublisher(samplePublisher);
 
-        verify(publisherService, times(1)).addPublisher(any(Publisher.class));
+       
+        assertEquals(201, response.getStatusCodeValue());
+
+        Response responseBody = (Response) response.getBody();
+        assertEquals("POSTSUCCESS", responseBody.getCode());
+        assertEquals("Publisher added successfully", responseBody.getMessage());
+
+        verify(publisherService, times(1)).addPublisher(samplePublisher);
     }
 
     @Test
-    void testGetAllPublishers() throws Exception {
-        List<Publisher> mockPublishers = Arrays.asList(
-                new Publisher(1, "Publisher1", "City1", "State1"),
-                new Publisher(2, "Publisher2", "City2", "State2")
-        );
+    void testPostPublisherAlreadyExists() {
+       
+        when(publisherService.findByName(samplePublisher.getName())).thenReturn(samplePublisher);
 
-        when(publisherService.getAll()).thenReturn(mockPublishers);
+        CustomException thrown = assertThrows(CustomException.class, () -> {
+            publisherController.postPublisher(samplePublisher);
+        });
 
-        mockMvc.perform(get("/api/publisher"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").value("Publisher1"))
-                .andExpect(jsonPath("$[1].name").value("Publisher2"));
+        assertEquals("ADDFAILS", thrown.getCode());
+        assertEquals("Publisher already exists", thrown.getMessage());
+
+     
+        verify(publisherService, never()).addPublisher(samplePublisher);
+    }
+
+    @Test
+    void testGetAllPublishers() {
+      
+        List<Publisher> publisherList = Arrays.asList(samplePublisher);
+        when(publisherService.getAll()).thenReturn(publisherList);
+
+       
+        ResponseEntity<?> response = publisherController.getAllPublishers();
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(publisherList, response.getBody());
 
         verify(publisherService, times(1)).getAll();
     }
 
     @Test
-    void testGetPublisherById() throws Exception {
-        Publisher mockPublisher = new Publisher(1, "Publisher1", "City1", "State1");
+    void testGetPublisherById() {
+     
+        when(publisherService.findById(1)).thenReturn(samplePublisher);
 
-        when(publisherService.findById(1)).thenReturn(mockPublisher);
+     
+        ResponseEntity<?> response = publisherController.getPublisher(1);
 
-        mockMvc.perform(get("/api/publisher/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Publisher1"))
-                .andExpect(jsonPath("$.city").value("City1"));
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(samplePublisher, response.getBody());
 
+       
         verify(publisherService, times(1)).findById(1);
     }
 
     @Test
-    void testUpdatePublisherCity() throws Exception {
-        Publisher mockPublisher = new Publisher(1, "Publisher1", "City1", "State1");
+    void testGetPublisherByName() {
+        
+        when(publisherService.findByName("Sample Publisher")).thenReturn(samplePublisher);
 
-        when(publisherService.findById(1)).thenReturn(mockPublisher);
+       
+        ResponseEntity<?> response = publisherController.getPublisherByName("Sample Publisher");
 
-        mockMvc.perform(put("/api/publisher/update/city/1")
-                .param("city", "New City"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.city").value("New City"));
+      
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(samplePublisher, response.getBody());
 
-        verify(publisherService, times(1)).findById(1);
-        verify(publisherService, times(1)).addPublisher(mockPublisher);
+       
+        verify(publisherService, times(1)).findByName("Sample Publisher");
     }
 
     @Test
-    void testGetPublisherByName() throws Exception {
-        Publisher mockPublisher = new Publisher(1, "Publisher1", "City1", "State1");
+    void testGetPublisherByCity() {
+       
+        List<Publisher> publisherList = Arrays.asList(samplePublisher);
+        when(publisherService.findByCity("Sample City")).thenReturn(publisherList);
 
-        when(publisherService.findByName("Publisher1")).thenReturn(mockPublisher);
+     
+        ResponseEntity<?> response = publisherController.getPublisherByCity("Sample City");
 
-        mockMvc.perform(get("/api/publisher/name/Publisher1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Publisher1"))
-                .andExpect(jsonPath("$.city").value("City1"));
+      
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(publisherList, response.getBody());
 
-        verify(publisherService, times(1)).findByName("Publisher1");
+        verify(publisherService, times(1)).findByCity("Sample City");
     }
 
     @Test
-    void testGetPublisherByCity() throws Exception {
-        List<Publisher> mockPublishers = Arrays.asList(
-                new Publisher(1, "Publisher1", "City1", "State1"),
-                new Publisher(2, "Publisher2", "City1", "State2")
-        );
+    void testUpdatePublisherCity() {
+       
+        when(publisherService.findById(1)).thenReturn(samplePublisher);
+        doNothing().when(publisherService).addPublisher(samplePublisher);
 
-        when(publisherService.findByCity("City1")).thenReturn(mockPublishers);
+        
+        ResponseEntity<?> response = publisherController.updatePublisherCity(1, "New City");
 
-        mockMvc.perform(get("/api/publisher/city/City1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").value("Publisher1"))
-                .andExpect(jsonPath("$[1].name").value("Publisher2"));
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(samplePublisher, response.getBody());
+        assertEquals("New City", samplePublisher.getCity());
 
-        verify(publisherService, times(1)).findByCity("City1");
+       
+        verify(publisherService, times(1)).addPublisher(samplePublisher);
+    }
+
+    @Test
+    void testUpdatePublisherName() {
+        
+        when(publisherService.findById(1)).thenReturn(samplePublisher);
+        doNothing().when(publisherService).addPublisher(samplePublisher);
+
+      
+        ResponseEntity<?> response = publisherController.updatePublisherName(1, "Updated Publisher");
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(samplePublisher, response.getBody());
+        assertEquals("Updated Publisher", samplePublisher.getName());
+
+        
+        verify(publisherService, times(1)).addPublisher(samplePublisher);
+    }
+
+    @Test
+    void testUpdatePublisherState() {
+        
+        when(publisherService.findById(1)).thenReturn(samplePublisher);
+        doNothing().when(publisherService).addPublisher(samplePublisher);
+
+        ResponseEntity<?> response = publisherController.updatePublisherState(1, "Updated State");
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(samplePublisher, response.getBody());
+        assertEquals("Updated State", samplePublisher.getStateCode());
+
+        verify(publisherService, times(1)).addPublisher(samplePublisher);
     }
 }

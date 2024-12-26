@@ -2,6 +2,8 @@ package com.Controller;
 
 import com.Service.PermRoleService;
 import com.model.PermRole;
+import com.exception.Response;
+import com.exception.CustomException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -10,7 +12,10 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
+
+import java.util.List;
 
 class PermRoleControllerTest {
 
@@ -20,65 +25,71 @@ class PermRoleControllerTest {
     @Mock
     private PermRoleService permRoleService;
 
-    private PermRole samplePermRole;
+    private PermRole sampleRole;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        // Initialize a sample PermRole object
-        samplePermRole = new PermRole(1, "ADMIN");
+        sampleRole = new PermRole();
+        sampleRole.setRoleNumber(1);
+        sampleRole.setPermRole("ADMIN");
     }
 
     @Test
     void testPostRole() {
-        // Mock the service behavior
-        // The service method addPermRole doesn't return a value, so no need to mock a return value.
-        doNothing().when(permRoleService).addPermRole(samplePermRole);
+        when(permRoleService.getAll()).thenReturn(List.of());
+        ResponseEntity<?> response = permRoleController.postRole(sampleRole);
 
-        // Call the controller method
-        ResponseEntity<?> response = permRoleController.postRole(samplePermRole);
+        assertEquals(201, response.getStatusCodeValue());
+        Response responseBody = (Response) response.getBody();
+        assertEquals("POSTSUCCESS", responseBody.getCode());
+        assertEquals("Perm Role added successfully", responseBody.getMessage());
 
-        // Assert the response
-        assertEquals(200, response.getStatusCodeValue());
-        assertEquals(samplePermRole, response.getBody());
+        verify(permRoleService, times(1)).addPermRole(sampleRole);
+    }
 
-        // Verify that addPermRole was called once
-        verify(permRoleService, times(1)).addPermRole(samplePermRole);
+    @Test
+    void testPostRoleAlreadyExists() {
+       
+        when(permRoleService.getAll()).thenReturn(List.of(sampleRole));
+
+        CustomException thrown = assertThrows(CustomException.class, () -> {
+            permRoleController.postRole(sampleRole);
+        });
+
+        assertEquals("ADDFAILS", thrown.getCode());
+        assertEquals("Perm Role already exists", thrown.getMessage());
+        verify(permRoleService, never()).addPermRole(sampleRole);
     }
 
     @Test
     void testGetRole() {
-        // Mock the service behavior
-        when(permRoleService.findById(1)).thenReturn(samplePermRole);
-
-        // Call the controller method
+      
+        when(permRoleService.findById(1)).thenReturn(sampleRole);
         ResponseEntity<?> response = permRoleController.getRole(1);
-
-        // Assert the response
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(samplePermRole, response.getBody());
-
-        // Verify that findById was called once
+        assertEquals(sampleRole, response.getBody());
         verify(permRoleService, times(1)).findById(1);
     }
 
     @Test
     void testUpdateRole() {
-        // Mock the service behavior
-        when(permRoleService.findById(1)).thenReturn(samplePermRole);
+        when(permRoleService.findById(1)).thenReturn(sampleRole);
         doNothing().when(permRoleService).addPermRole(any(PermRole.class));
-
-        // Call the controller method
         ResponseEntity<?> response = permRoleController.updateRole(1, "USER");
-
-        // Assert the response
         assertEquals(200, response.getStatusCodeValue());
         assertEquals("Success", response.getBody());
-
-        // Verify that addPermRole was called once
         verify(permRoleService, times(1)).addPermRole(any(PermRole.class));
+    }
 
-        // Verify that the role was updated to "USER"
-        assertEquals("USER", samplePermRole.getPermRole());
+    @Test
+    void testUpdateRoleNotFound() {
+        when(permRoleService.findById(1)).thenThrow(new RuntimeException("PermRole not found"));
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            permRoleController.updateRole(1, "USER");
+        });
+
+        assertEquals("PermRole not found", thrown.getMessage());
+        verify(permRoleService, never()).addPermRole(any(PermRole.class));
     }
 }

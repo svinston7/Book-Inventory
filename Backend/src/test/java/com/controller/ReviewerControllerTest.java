@@ -1,8 +1,10 @@
 package com.Controller;
 
-import com.Controller.ReviewerController;
 import com.Service.ReviewerService;
 import com.model.Reviewer;
+import com.exception.CustomException;
+import com.exception.Response;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -10,10 +12,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
-import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+
+import java.util.Map;
 
 class ReviewerControllerTest {
 
@@ -29,19 +31,39 @@ class ReviewerControllerTest {
     }
 
     @Test
-    void testPostReviewer() {
+    void testPostReviewer_Success() {
         Reviewer reviewer = new Reviewer(1, "John Doe", "ABC Corp");
 
+        when(reviewerService.findById(1)).thenReturn(null);  // Simulate reviewer not existing
         doNothing().when(reviewerService).addReviewer(reviewer);
 
         ResponseEntity<?> response = reviewerController.postReviewer(reviewer);
 
-        assertEquals(200, response.getStatusCodeValue());
-        assertTrue(response.getBody() instanceof Map);
-        Map<?, ?> body = (Map<?, ?>) response.getBody();
-        assertEquals("POSTSUCCESS", body.get("code"));
-        assertEquals("Reviewer added successfully", body.get("message"));
+        assertEquals(201, response.getStatusCodeValue());  // 201 for CREATED
+        assertInstanceOf(Response.class, response.getBody());  // Assert as Response, not Map
+        
+        Response body = (Response) response.getBody();
+        assertEquals("POSTSUCCESS", body.getCode());
+        assertEquals("Reviewer added successfully", body.getMessage());
+        
         verify(reviewerService, times(1)).addReviewer(reviewer);
+    }
+
+
+
+    @Test
+    void testPostReviewer_AlreadyExists() {
+        Reviewer reviewer = new Reviewer(1, "John Doe", "ABC Corp");
+
+        when(reviewerService.findById(1)).thenReturn(reviewer);
+
+        CustomException exception = assertThrows(CustomException.class, () -> {
+            reviewerController.postReviewer(reviewer);
+        });
+
+        assertEquals("ADDFAILS", exception.getCode());
+        assertEquals("Reviewer already exists", exception.getMessage());
+        verify(reviewerService, never()).addReviewer(any());
     }
 
     @Test
