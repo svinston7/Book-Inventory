@@ -43,7 +43,7 @@ public class BookReviewController {
 	}
 	
 	@PutMapping("/update/rating/{isbn}")
-	public ResponseEntity<?> updateRating(@RequestBody String isbn,int rating) {
+	public ResponseEntity<?> updateRating(@RequestBody String isbn,@RequestBody int rating) {
 		BookReview bookReview = bookReviewService.findByisbn(isbn);
 		bookReview.setRating(rating);
 		bookReviewService.addBookReview(bookReview);
@@ -51,7 +51,7 @@ public class BookReviewController {
 	}
 	
 	@PutMapping("/update/comment/{isbn}")
-	public ResponseEntity<?> updateComment(@RequestBody String isbn,String comment) {
+	public ResponseEntity<?> updateComment(@RequestBody String isbn,@RequestBody String comment) {
 		BookReview bookReview = bookReviewService.findByisbn(isbn);
 		bookReview.setComments(comment);
 		bookReviewService.addBookReview(bookReview);

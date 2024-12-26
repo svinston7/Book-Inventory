@@ -40,7 +40,7 @@ public class ShoppingCartController {
 	}
 	
 	@PutMapping("/update/{userid}")
-	public ResponseEntity<?> updateCart(@PathVariable int userid,String isbn){
+	public ResponseEntity<?> updateCart(@PathVariable int userid,@RequestBody String isbn){
 		cartservice.updateIsbn(userid,isbn );
 		return new ResponseEntity< >("Updataed",HttpStatus.OK);
 	}

@@ -52,7 +52,7 @@ public class AuthorController {
 	}
 	
 	@PutMapping("/firstname/{authorId}")
-	public ResponseEntity<?> updateFirstName(@PathVariable int authorId,String firstname){
+	public ResponseEntity<?> updateFirstName(@PathVariable int authorId,@RequestBody String firstname){
 		Author author = authorService.findById(authorId);
 		author.setFirstName(firstname);
 		authorService.addAuthor(author);
@@ -61,7 +61,7 @@ public class AuthorController {
 	}
 	
 	@PutMapping("/lastname/{authorId}")
-	public ResponseEntity<?> updateLastName(@PathVariable int authorId,String lastname){
+	public ResponseEntity<?> updateLastName(@PathVariable int authorId,@RequestBody String lastname){
 		Author author = authorService.findById(authorId);
 		author.setLastName(lastname);
 		authorService.addAuthor(author);

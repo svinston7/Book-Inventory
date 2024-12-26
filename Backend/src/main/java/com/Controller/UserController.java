@@ -57,28 +57,21 @@ public class UserController {
 	        
 	        
 	    }
-	 @GetMapping("/getmessage")
-		public String getMessage(@RequestBody User user) 
-		{ 
-			
-			
-			
-				 return "Hello World";
-			
-		
-			
-		}
+	 @PutMapping("/update/role/{userId}")
+	 public void updateRole(@PathVariable int userId,@RequestBody int roleNumber) {
+		 
+	 }
 	
 	@PutMapping("/update/firstname/{userId}")
-	public void updateFirstName(@PathVariable int userId,String firstName) {
+	public void updateFirstName(@PathVariable int userId,@RequestBody String firstName) {
 		userService.updateUserFirstName(userId, firstName);
 	}
 	@PutMapping("/update/lastname/{userId}")
-	public void updateLastName(@PathVariable int userId,String lastName) {
+	public void updateLastName(@PathVariable int userId,@RequestBody String lastName) {
 		userService.updateUserLastName(userId, lastName);
 	}
 	@PutMapping("/update/phonenumber/{userId}")
-	public void updatePhoneNumber(@PathVariable int userId,String phonenumber) {
+	public void updatePhoneNumber(@PathVariable int userId,@RequestBody String phonenumber) {
 		userService.updateUserPhoneNum(userId, phonenumber);
 	}
 }

@@ -66,21 +66,21 @@ public class PublisherController {
 	}
 	
 	@PutMapping("/update/city/{publisherId}")
-	public ResponseEntity<?> updatePublisherCity(@PathVariable int publisherId,String city){
+	public ResponseEntity<?> updatePublisherCity(@PathVariable int publisherId,@RequestBody String city){
 		Publisher publisher = publisherService.findById(publisherId);
 		publisher.setCity(city);
 		publisherService.addPublisher(publisher);
 		return new ResponseEntity<Publisher>(publisher,HttpStatus.OK);
 	}
 	@PutMapping("/update/name/{publisherId}")
-	public ResponseEntity<?> updatePublisherName(@PathVariable int publisherId,String name){
+	public ResponseEntity<?> updatePublisherName(@PathVariable int publisherId,@RequestBody String name){
 		Publisher publisher = publisherService.findById(publisherId);
 		publisher.setName(name);
 		publisherService.addPublisher(publisher);
 		return new ResponseEntity<Publisher>(publisher,HttpStatus.OK);
 	}
 	@PutMapping("/update/state/{publisherId}")
-	public ResponseEntity<?> updatePublisherState(@PathVariable int publisherId,String state){
+	public ResponseEntity<?> updatePublisherState(@PathVariable int publisherId,@RequestBody String state){
 		Publisher publisher = publisherService.findById(publisherId);
 		publisher.setStateCode(state);
 		publisherService.addPublisher(publisher);

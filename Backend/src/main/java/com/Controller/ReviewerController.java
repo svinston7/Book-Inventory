@@ -40,13 +40,13 @@ public class ReviewerController {
 	}
 	
 	@PutMapping("/name/{reviewerId}")
-	public ResponseEntity<?> updateName(@RequestBody int id,String name) {
-		String res = reviewerService.updatereviewerFirstName(id, name);
+	public ResponseEntity<?> updateName(@PathVariable int reviewerId,@RequestBody String name) {
+		String res = reviewerService.updatereviewerFirstName(reviewerId, name);
 		return new ResponseEntity<>(res,HttpStatus.OK);
 	}
 	@PutMapping("employedby/{reviewerId}")
-	public ResponseEntity<?> updateEmployedBy(@RequestBody int id,String name) {
-		String res = reviewerService.updateReviewerEmployedId(id, name);
+	public ResponseEntity<?> updateEmployedBy(@PathVariable int reviewerId,@RequestBody String name) {
+		String res = reviewerService.updateReviewerEmployedId(reviewerId, name);
 		return new ResponseEntity<>(res,HttpStatus.OK);
 	}
 	

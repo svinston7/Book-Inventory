@@ -45,7 +45,7 @@ public class StateController {
 	}
 	
 	@PutMapping("/update/{stateId}")
-	public ResponseEntity<?> updateState(@PathVariable String stateId,String stateName){
+	public ResponseEntity<?> updateState(@PathVariable String stateId,@RequestBody String stateName){
 		State state = stateService.findByCode(stateId);
 		state.setStateName(stateName);
 		stateService.addState(state);

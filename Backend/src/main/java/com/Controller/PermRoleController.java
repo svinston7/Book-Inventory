@@ -39,7 +39,7 @@ public class PermRoleController {
 	}
 	
 	@PutMapping("/update/permrole/{rolenumber}")
-	public ResponseEntity<?> updateRole(@PathVariable int roleNumber,String role){
+	public ResponseEntity<?> updateRole(@PathVariable int roleNumber,@RequestBody String role){
 		PermRole roleObj = roleService.findById(roleNumber);
 		roleObj.setPermRole(role);
 		roleService.addPermRole(roleObj);

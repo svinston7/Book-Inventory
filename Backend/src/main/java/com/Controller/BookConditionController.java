@@ -39,18 +39,18 @@ public class BookConditionController {
 	}
 	
 	@PutMapping("/update/price/{ranks}")
-	public ResponseEntity<?> updatePrice(@PathVariable int ranks,double price) {
+	public ResponseEntity<?> updatePrice(@PathVariable int ranks,@RequestBody double price) {
 		conditionService.updatePrice(ranks, price);
 		return new ResponseEntity<>("Updated",HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/description/{ranks}")
-	public ResponseEntity<?> updateDescription(@PathVariable int ranks,String desc) {
+	public ResponseEntity<?> updateDescription(@PathVariable int ranks,@RequestBody String desc) {
 		conditionService.updateDescription(ranks, desc);
 		return new ResponseEntity<>("Updated",HttpStatus.OK);
 	}
 	@PutMapping("/update/fulldescription/{ranks}")
-	public ResponseEntity<?> updateFull(@PathVariable int ranks,String desc) {
+	public ResponseEntity<?> updateFull(@PathVariable int ranks,@RequestBody String desc) {
 		conditionService.updateFullDescription(ranks, desc);
 		return new ResponseEntity<>("Updated",HttpStatus.OK);
 	}

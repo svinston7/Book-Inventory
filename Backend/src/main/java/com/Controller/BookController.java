@@ -67,7 +67,7 @@ public class BookController {
 	}
 	
 	@PutMapping("/update/{isbn}")
-	public ResponseEntity<?>  putByIsbn(@PathVariable String isbn,Book book) {
+	public ResponseEntity<?>  putByIsbn(@PathVariable String isbn,@RequestBody Book book) {
 		bookService.updateBook(isbn, book);
 		return new ResponseEntity<Book> (book,HttpStatus.OK);
 	}
