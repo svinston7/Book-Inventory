@@ -1,20 +1,42 @@
 <app-home></app-home>
+<div class="d-flex justify-content-start mb-3">
+    <a href="javascript:history.back()" class="btn btn-primary">Back</a>
+</div>
 <div class="container-fluid acc">
-    <div class="row">
+    <div class="row justify-content-center align-items-center">
         <div class="col-5 text-center p-4">
             
             <img src="https://picsum.photos/400/500" class="img-fluid img-thumbnail mt-3 shadow" alt="">
         </div>
         <div class="col-5 text-center">
-            <h2 class="my-3">{{book.title}}</h2>
-            <h4 class="my-3">ISBN  {{book.isbn}}</h4>
+            <h2 class="my-3 text-primary">{{book.title}}</h2>
+            <h4 class="my-3 text-secondary">ISBN: <span class="text-info">{{book.isbn}}</span></h4>
                 
-            <h6 class="my-3 text-start">Description:</h6>
-            <p class="my-3 acc">{{book.description}}</p>
-            <h5>Category : {{cat.catDescription}}</h5>
-            <h6>Publisher Details:</h6>
-            <p>Name : {{publisher.name}}</p>
-            <p>City: {{publisher.city}}</p>
+            <h6 class="my-3 text-start text-success">Description:</h6>
+            <p class="my-3 acc text-dark bg-light p-3 rounded">{{book.description}}</p>
+            <h5 class="text-warning">Category: <span class="text-danger">{{cat.catDescription}}</span></h5>
+            <h6 class="text-info">Publisher Details:</h6>
+            <p class="text-muted">Name: <span class="fw-bold">{{publisher.name}}</span></p>
+            <p class="text-muted">City: <span class="fw-bold">{{publisher.city}}</span></p>
+
+            <div class="author-details">
+
+
+            </div>
+
+            <button>Add to cart</button>
+        </div>
+    </div>
+
+    <div class="review col-11 mx-5 px-3">
+        <div class="review-header mx-5 p-3">
+            <h2 class="text-start d-inline">User Reviews</h2>
+            <button class="float-end px-4 py-2 me-4 btn btn-primary">Write a review</button>
+            <div class="ms-4 p-2 fw-bold fs-4">
+                <span class="text-primary">Please read and apply the rules before posting a comment. </span> <br>
+                By sharing your comment, you agree to all the relevant terms.
+            </div>
         </div>
     </div>
 </div>
+

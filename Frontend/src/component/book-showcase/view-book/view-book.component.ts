@@ -15,6 +15,7 @@ import { Category } from '../../../model/Category';
   templateUrl: './view-book.component.html',
   styleUrl: './view-book.component.css'
 })
+
 export class ViewBookComponent {
   book:Book ={
     isbn: '',

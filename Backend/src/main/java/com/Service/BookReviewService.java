@@ -24,8 +24,8 @@ public class BookReviewService {
 	                  
 	}
 
-	public List<Reviewer> getAllReviewers(String isbn){
-		return bookreviewDao.findReviewersByIsbn(isbn);
+	public List<BookReview> getAllReviewers(String isbn){
+		return bookreviewDao.findReviewsByIsbn(isbn);
 	}
 	
 	

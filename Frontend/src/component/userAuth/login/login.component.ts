@@ -21,7 +21,8 @@ export class LoginComponent {
     lastName: '',
     phoneNumber: '',
     userName: '',
-    password: ''
+    password: '',
+    roleNumber:3 //default user
   };
   token: any;
   trylogin: boolean = false;
