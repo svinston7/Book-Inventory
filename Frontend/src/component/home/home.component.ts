@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ShoppingcartComponent } from '../shoppingcart/shoppingcart.component';
 
 @Component({
   selector: 'app-home',
