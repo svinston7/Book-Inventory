@@ -1,9 +1,9 @@
 
 .outer {
-    color: #ffffff;
+    color: black;
     margin: 5% auto;
     max-width: 900px;
-    background-color: #0093AF;
+    background-image: linear-gradient(to left,rgb(101, 98, 98),rgb(223, 221, 221));
     border-radius: 1rem;
     box-shadow: 2px 6px 11px rgba(0, 0, 0, 0.5);
     overflow: hidden;
@@ -42,7 +42,7 @@ a:hover {
     text-decoration: underline;
 }
 .span-user{
-    background-color :#ecf8fc;
+    background-color :rgb(238, 247, 255);
     
     
     border:none;
@@ -50,8 +50,8 @@ a:hover {
     color: black;
 }
 .tg{
-    color: aliceblue;
-    border-color: whitesmoke;
+    color: rgb(6, 12, 17);
+    border-color:black;
 }
 .tg:hover{
     opacity: .4;
@@ -61,8 +61,8 @@ input {
     font-size: 1rem;
     border: 1px solid whitesmoke;
     border-radius: 5px;
-    background-color:skyblue;
-    color: wheat; 
+    background-color:rgb(250, 247, 240);
+    color:black; 
   }
   input:focus {
     outline: none;
