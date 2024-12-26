@@ -40,6 +40,13 @@
         border-radius: 5px; /* Rounded corners for description */
     }
 .review{
-    border:2px solid #007bff ;
+    /* border:2px solid #007bff ; */
     height: 100vh;
+    color: black;
+}
+.review-content{
+   border: 2px solid black;
+   border-radius: 5rem;
+   padding-left: 5rem;
+   padding-top: 4px;
 }

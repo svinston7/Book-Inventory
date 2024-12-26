@@ -45,12 +45,13 @@ html{
     scroll-behavior: smooth;
 }
 nav{
-    background:var(--secondary-color);
+    background-color:black;
     height:80px;
     width:100%;
 
 }
 label.logo{
+    
     color:white;
     font-size:35px;
     line-height:80px;
@@ -72,13 +73,28 @@ nav ul li a{
     font-size: 17px;
     text-transform:uppercase;
     padding:7px 13px;
-    border-radius: 3px;
+    border-radius: 25px;
     text-decoration: none;
     
     
     
 }
 
+nav .logo img {
+    height: 60px; /* Adjust as needed */
+    width: 100px;
+    display: inline-block;
+    margin-right: 5px;
+  }
+  nav .logo {
+    text-decoration: none;
+    margin-right: auto; /* Push it to the left */
+  }
+  nav .logo.title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-left: -10px; /* Adjust this value to remove extra space */
+  }
 h2{
     color: black;
     
@@ -90,6 +106,7 @@ a.active,a:hover{
     color:white;
     text-decoration: none;
     background:var(--primary-color);
+   
     transition: .5s;
 }
 .checkbtn{
@@ -112,6 +129,7 @@ a.active,a:hover{
     }
     nav ul li a{
         font-size:16px;
+       
     }
 }
 
@@ -127,7 +145,8 @@ a.active,a:hover{
         top:80px;
         left:-100%;
         text-align:center;
-        background-color: var(--secondary-color);
+        background-color: #252525;
+       
         transition: all .5s;
 
     }
@@ -157,6 +176,7 @@ button{
     background:none;
     text-decoration: none;
     color: inherit;
+    
 }
 img{
     width:100%;
@@ -198,14 +218,22 @@ header{
 
 .hero-section{
     min-height: 100vh;
-    background-color: #8fd3fe;
-    mask-repeat: no-repeat;
+   background-image: url(/assets/bg15.png);
+   
+   background-repeat: no-repeat;
+   background-size: cover;
+   display: flex; /* Ensures the content is a flex container */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; 
+   
 }
 .hero-section .section-content{
-    display: flex;
-    align-items: center;
-    min-height: 100vh;
-    justify-content: space-between;
+    text-align: center; /* Centers text inside the content */
+    max-width: 800px; /* Optional: Restricts the content width */
+    padding: 20px; /* Adds some padding for better spacing */
+    background: rgba(255, 255, 255, 0.8); /* Optional: Semi-transparent background */
+    border-radius: 10px; /
+
     
 }
 
@@ -213,47 +241,51 @@ header{
    font-size: var(--font-size-xxl);
    color: var(--secondary-color);
    font-family: "Miniver" , sans-serif;
-
+   margin-bottom: 10px;
 
 }
 .hero-section .hero-details .subtitle{
-    margin-top: 8px;
-    max-width: 60%;
-  
+    
+    margin-bottom: 15px;
+    color:var(--dark-color);
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-semibold);
 }
 .hero-section .hero-details .description{
-    max-width: 70%;
-    margin:24px 0 40px;
+    
+    margin-bottom: 20px;
     font-size: var(--font-size-m);
 }
-.hero-section .hero-details .buttons{
-    display:flex;
-    gap: 23px;
+
+.hero-section .hero-details .button{
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    text-decoration: none;
+    color:var(--white-color);
+    background-color:var(--secondary-color);
+    border-radius: 5px;
+    transition: background-color 0.3s;
 
 }
-.hero-section .hero-details .button{
-    padding: 10px 26px;
-    border: 2px solid transparent;
-    color:var(--primary-color);
-    border-radius: var(--border-radius-m);
-    background: var(--secondary-color);
-    font-weight: var(--font-weight-medium);
-    transition:0.3s ease;
-    text-decoration: none;
-
+.hero-section .section-content .hero-details .buttons {
+    display: flex;
+    justify-content: center; /* Aligns the buttons horizontally */
+    align-items: center; /* Ensures vertical alignment if needed */
+   /* Adds spacing between buttons */
+    margin-top: 20px; /* Optional: Adds space between the buttons and other elements */
 }
 .hero-section .hero-details .button:hover,
 .hero-section .hero-details .contact-us{
     text-decoration:none ;
-    color:var(--white-color);
-    border-color:var(--white-color);
+    color:var(--dark-color);
+    border-color:var(--primary-color);
     background: transparent;
 }
 
 .hero-section .hero-details .contact-us{
-    color:var(--primary-color);
+    color:var(--white);
     border-color:var(--secondary-color);
     background: var(--secondary-color);
 }
@@ -264,7 +296,7 @@ header{
 
 .about-section{
     padding:120px 0;
-    background: #daf0ff;
+    background: rgba(255, 255, 255, 0.8);
    
 
 }
@@ -327,7 +359,7 @@ header{
 .gallery-section{
     
     
-    background-color: #daf0ff;
+   
 }
 .gallery-section .gallery-list{
     margin-left: 5%;
