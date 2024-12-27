@@ -35,24 +35,23 @@ class PurchaseLogControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(purchaseLogController).build();
         objectMapper = new ObjectMapper();
     }
-
     @Test
     void testPostPurchase() throws Exception {
+        // Arrange
         PurchaseLog purchaseLog = new PurchaseLog();
-        purchaseLog.setId(1);
-        purchaseLog.setUserId(101);
-        purchaseLog.setInventoryId(202);
+        doNothing().when(purchaseLogService).addPurchaseLog(any(PurchaseLog.class));
 
+        // Act and Assert
         mockMvc.perform(post("/api/purchaselog/post")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(purchaseLog)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.userId").value(101))
-                .andExpect(jsonPath("$.inventoryId").value(202));
+                .andExpect(jsonPath("$.code").value("POSTSUCCESS"))
+                .andExpect(jsonPath("$.message").value("Log added successfully"));
 
         verify(purchaseLogService, times(1)).addPurchaseLog(any(PurchaseLog.class));
     }
+
 
     @Test
     void testGetPurchase() throws Exception {
@@ -74,13 +73,18 @@ class PurchaseLogControllerTest {
 
     @Test
     void testUpdatePurchase() throws Exception {
-        when(purchaseLogService.updateInventoryByUserId(101, 303)).thenReturn("Successfully updated");
+        // Arrange: Mock the service method
+        when(purchaseLogService.updateInventoryByUserId(101, 303)).thenReturn("Updated");
 
+        // Act & Assert: Perform the PUT request and verify the response
         mockMvc.perform(put("/api/purchaselog/update/inventoryId/101")
-                .param("inventoryId", "303"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("Updated"));
+                .contentType(MediaType.APPLICATION_JSON) // Set content type as JSON
+                .content("303")) // Send the inventoryId in the request body
+                .andExpect(status().isOk()) // Expect HTTP 200 OK
+                .andExpect(content().string("Updated")); // Assert the response content
 
+        // Verify the service interaction
         verify(purchaseLogService, times(1)).updateInventoryByUserId(101, 303);
     }
+
 }

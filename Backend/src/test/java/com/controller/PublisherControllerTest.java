@@ -1,5 +1,6 @@
 package com.Controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -92,14 +93,16 @@ class PublisherControllerTest {
         Publisher mockPublisher = new Publisher(1, "Publisher1", "City1", "State1");
 
         when(publisherService.findById(1)).thenReturn(mockPublisher);
-
+        
         mockMvc.perform(put("/api/publisher/update/city/1")
-                .param("city", "New City"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("New City"))  // Send city as a plain string in the body
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.city").value("New City"));
 
         verify(publisherService, times(1)).findById(1);
         verify(publisherService, times(1)).addPublisher(mockPublisher);
+       
     }
 
     @Test
