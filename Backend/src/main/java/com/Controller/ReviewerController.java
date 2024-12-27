@@ -48,12 +48,15 @@ public class ReviewerController {
 	}
 	
 	@PutMapping("/name/{reviewerId}")
+
 	public ResponseEntity<?> updateName(@PathVariable int reviewerId,@RequestBody String name) throws InvalidInputException, ResourceNotFoundException {
 		String res = reviewerService.updatereviewerFirstName(reviewerId, name);
 		return new ResponseEntity<>(res,HttpStatus.OK);
 	}
 	@PutMapping("employedby/{reviewerId}")
+
 	public ResponseEntity<?> updateEmployedBy(@PathVariable int reviewerId,@RequestBody String name) throws InvalidInputException, ResourceNotFoundException {
+
 		String res = reviewerService.updateReviewerEmployedId(reviewerId, name);
 		return new ResponseEntity<>(res,HttpStatus.OK);
 	}

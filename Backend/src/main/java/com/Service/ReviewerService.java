@@ -28,14 +28,17 @@ public class ReviewerService {
 		reviewerDao.save(reviewer);
 		return "updated sucessfully";
 	}
-	public String updateReviewerEmployedId(int reviewerId, String employedBy) {
-	    Reviewer reviewer = reviewerDao.findById(reviewerId).orElseThrow(() -> new ResourceNotFoundException("Reviewer with ID " + reviewerId + " not found"));
+	public String updateReviewerEmployedId(int id,String employedBy) {
+		Reviewer reviewer=reviewerDao.getById(id);
+		System.out.println(reviewer.getEmployedBy());
+		reviewer.setEmployedBy(employedBy);
+		System.out.println(reviewer.getEmployedBy());
 
-	    System.out.println("Old Employer: " + reviewer.getEmployedBy());
-	    reviewer.setEmployedBy(employedBy);
-	    reviewerDao.save(reviewer);
+		reviewerDao.save(reviewer);
+		return "updated sucessfully";
+		
+		
 
-	    return "Reviewer with ID " + reviewerId + " updated successfully to employedBy: " + employedBy;
 	}
 	public void removeReviewer(int id) {
 		reviewerDao.deleteById(id);
