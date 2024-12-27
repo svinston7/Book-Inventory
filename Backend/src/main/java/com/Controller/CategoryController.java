@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.CategoryService;
+import com.exception.InvalidInputException;
+import com.exception.ResourceNotFoundException;
+import com.exception.Response;
 import com.model.Category;
 
 @RestController
@@ -25,19 +28,26 @@ public class CategoryController {
 	
 	@PostMapping("/post")
 	public ResponseEntity<?> postCategory(@RequestBody Category category) {
-		categoryService.addCategory(category);
 		
-		return new ResponseEntity<> (category,HttpStatus.CREATED);
-	}
+		try {
+			categoryService.addCategory(category);	        
+	        return ResponseEntity.ok(new Response("POSTSUCCESS", "Category added successfully"));
+	     } catch (Exception e) {
+	        // Log the exception for debugging
+	        e.printStackTrace();
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body(new Response("ADDFAILS", "An unexpected error occurred"));
+	    }
+		}
 	
 	@GetMapping("/{catId}")
-	public ResponseEntity<?> getCat(@PathVariable int catId){
+	public ResponseEntity<?> getCat(@PathVariable int catId)  throws InvalidInputException, ResourceNotFoundException {
 		Category cat = categoryService.findById(catId);
 		return new ResponseEntity<Category>(cat,HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/description/{catId}")
-	public ResponseEntity<?> updateCat(@PathVariable int catId,String description){
+	public ResponseEntity<?> updateCat(@PathVariable int catId,@RequestBody String description) throws InvalidInputException, ResourceNotFoundException {
 		Category cat = categoryService.updateDescription(catId, description);
 		return new ResponseEntity<Category>(cat,HttpStatus.OK);
 	}

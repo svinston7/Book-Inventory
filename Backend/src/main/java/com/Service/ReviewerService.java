@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.ReviewerDAO;
-
+import com.exception.ResourceNotFoundException;
 import com.model.Reviewer;
 
 @Service
@@ -18,12 +18,12 @@ public class ReviewerService {
 		return reviewerDao.findAll();
 	}
 	
-	public Reviewer findById(int id) {
-	    return reviewerDao.findById(id)
-	                  .orElseThrow(() -> new RuntimeException("Reviewer not found with id: " + id));
+	public Reviewer findById(int reviewerId) {
+	    return reviewerDao.findById(reviewerId)
+	                  .orElseThrow(() -> new RuntimeException("Reviewer not found with id: " + reviewerId));
 	}
-	public String updatereviewerFirstName(int id,String name) {
-		Reviewer reviewer=reviewerDao.findById(id).orElse(null);
+	public String updatereviewerFirstName(int reviewerId,String name) {
+		Reviewer reviewer=reviewerDao.findById(reviewerId).orElse(null);
 		reviewer.setName(name);
 		reviewerDao.save(reviewer);
 		return "updated sucessfully";
@@ -38,6 +38,7 @@ public class ReviewerService {
 		return "updated sucessfully";
 		
 		
+
 	}
 	public void removeReviewer(int id) {
 		reviewerDao.deleteById(id);

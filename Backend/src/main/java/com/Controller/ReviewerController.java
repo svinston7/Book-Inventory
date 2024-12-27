@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.ReviewerService;
+import com.exception.InvalidInputException;
+import com.exception.ResourceNotFoundException;
+import com.exception.Response;
 import com.model.Reviewer;
 
 @RestController
@@ -27,25 +30,33 @@ public class ReviewerController {
 	
 	
 	@PostMapping("/post")
-	public ResponseEntity<?> postReviewer(@RequestBody Reviewer reviewer) {
-		reviewerService.addReviewer(reviewer);
+	public ResponseEntity<?> postReviewer(@RequestBody Reviewer reviewer) throws InvalidInputException {
+		try {
+			reviewerService.addReviewer(reviewer);
+	        return ResponseEntity.ok(new Response("POSTSUCCESS", "Reviewer added successfully"));
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body(new Response("ADDFAILS", "An unexpected error occurred"));
+	    }
 		
-		return new ResponseEntity<>(Map.of("code", "POSTSUCCESS", "message", "Reviewer added successfully"),HttpStatus.OK);
 	}
 	
 	@GetMapping("/employedby/{reviewerId}")
-	public ResponseEntity<?> getReviewer(@PathVariable int reviewerId) {
+	public ResponseEntity<?> getReviewer(@PathVariable int reviewerId)throws InvalidInputException, ResourceNotFoundException  {
 		Reviewer reviewer = reviewerService.findById(reviewerId);
 		return new ResponseEntity<>(reviewer,HttpStatus.OK);
 	}
 	
 	@PutMapping("/name/{reviewerId}")
-	public ResponseEntity<?> updateName(@PathVariable int reviewerId,String name) {
+
+	public ResponseEntity<?> updateName(@PathVariable int reviewerId,@RequestBody String name) throws InvalidInputException, ResourceNotFoundException {
 		String res = reviewerService.updatereviewerFirstName(reviewerId, name);
 		return new ResponseEntity<>(res,HttpStatus.OK);
 	}
 	@PutMapping("employedby/{reviewerId}")
-	public ResponseEntity<?> updateEmployedBy(@PathVariable int reviewerId,String name) {
+
+	public ResponseEntity<?> updateEmployedBy(@PathVariable int reviewerId,@RequestBody String name) throws InvalidInputException, ResourceNotFoundException {
+
 		String res = reviewerService.updateReviewerEmployedId(reviewerId, name);
 		return new ResponseEntity<>(res,HttpStatus.OK);
 	}

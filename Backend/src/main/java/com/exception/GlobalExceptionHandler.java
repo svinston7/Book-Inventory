@@ -1,81 +1,62 @@
 package com.exception;
 
-import com.exception.*;
+import java.time.LocalDateTime;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-
-import java.util.HashMap;
-import java.util.Map;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    private Map<String, Object> buildResponse(String message, HttpStatus status) {
-        Map<String, Object> response = new HashMap<>();
-        
-        response.put("status", status.value());
-      
-        response.put("message", message);
-        return response;
-    }
-
- //  HTTP 200 
-    @ExceptionHandler(SuccessException.class)
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> handleSuccess(SuccessException ex) {
-        return new ResponseEntity<>(buildResponse(ex.getMessage(), HttpStatus.OK), HttpStatus.OK);
-    }
- // HTTP 201 
-    @ExceptionHandler(CreationException.class)
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> handleCreation(CreationException ex) {
-        return new ResponseEntity<>(buildResponse(ex.getMessage(), HttpStatus.CREATED), HttpStatus.CREATED);
-    }
-    // HTTP 202 
-    @ExceptionHandler(AcceptedException.class)
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<?> handleAccepted(AcceptedException ex) {
-        return new ResponseEntity<>(buildResponse(ex.getMessage(), HttpStatus.ACCEPTED), HttpStatus.ACCEPTED);
-    }
-
-     
-    //HTTP 404 
     @ExceptionHandler(ResourceNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<?> handleResourceNotFound(ResourceNotFoundException ex) {
-        return new ResponseEntity<>(buildResponse(ex.getMessage(), HttpStatus.NOT_FOUND), HttpStatus.NOT_FOUND);
+    public ResponseEntity<ErrorDetails> handleResourceNotFoundException(ResourceNotFoundException exc) {
+        ErrorDetails errorDetails = new ErrorDetails(
+                exc.getMessage(), 
+                HttpStatus.NOT_FOUND.value(), 
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDetails);
     }
 
-    //HTTP 400 
-    @ExceptionHandler(BadRequestException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<?> handleBadRequest(BadRequestException ex) {
-        return new ResponseEntity<>(buildResponse(ex.getMessage(), HttpStatus.BAD_REQUEST), HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(InvalidInputException.class)
+    public ResponseEntity<ErrorDetails> handleInvalidInputException(InvalidInputException ex) {
+        ErrorDetails errorDetails = new ErrorDetails(
+                ex.getMessage(), 
+                HttpStatus.BAD_REQUEST.value(), 
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDetails);
     }
 
-    // HTTP 401 
     @ExceptionHandler(UnauthorizedException.class)
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public ResponseEntity<?> handleUnauthorized(UnauthorizedException ex) {
-        return new ResponseEntity<>(buildResponse(ex.getMessage(), HttpStatus.UNAUTHORIZED), HttpStatus.UNAUTHORIZED);
+    public ResponseEntity<ErrorDetails> handleUnauthorizedException(UnauthorizedException ex) {
+        ErrorDetails errorDetails = new ErrorDetails(
+                ex.getMessage(), 
+                HttpStatus.UNAUTHORIZED.value(), 
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorDetails);
     }
 
-    // HTTP 403 
-    @ExceptionHandler(SecurityException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    public ResponseEntity<?> handleForbidden(SecurityException ex) {
-        return new ResponseEntity<>(buildResponse(ex.getMessage(), HttpStatus.FORBIDDEN), HttpStatus.FORBIDDEN);
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ErrorDetails> handleForbiddenException(ForbiddenException ex) {
+        ErrorDetails errorDetails = new ErrorDetails(
+                ex.getMessage(), 
+                HttpStatus.FORBIDDEN.value(), 
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorDetails);
     }
 
-    // HTTP 500 
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<?> handleGlobalException(Exception ex) {
-        return new ResponseEntity<>(buildResponse(ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ErrorDetails> handleGenericException(Exception ex) {
+        ErrorDetails errorDetails = new ErrorDetails(
+        		ex.getMessage(), 
+                HttpStatus.INTERNAL_SERVER_ERROR.value(), 
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDetails);
     }
 }
-

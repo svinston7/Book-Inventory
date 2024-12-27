@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.PermRoleService;
+import com.exception.InvalidInputException;
+import com.exception.ResourceNotFoundException;
+import com.exception.Response;
 import com.model.PermRole;
 
 @RestController
@@ -25,21 +28,26 @@ public class PermRoleController {
 	PermRoleService roleService;
 	
 	@PostMapping("/post")
-	public ResponseEntity<?> postRole(@RequestBody PermRole role){
-		roleService.addPermRole(role);
-		return new ResponseEntity<PermRole>(role,HttpStatus.OK);
+	public ResponseEntity<?> postRole(@RequestBody PermRole role)throws InvalidInputException {
+		try {
+			roleService.addPermRole(role);
+	        return ResponseEntity.ok(new Response("POSTSUCCESS", "Role added successfully"));
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body(new Response("ADDFAILS", "An unexpected error occurred"));
+	    }
 		
 	}
 	
 	@GetMapping("/rolenumber/{rolenumber}")
-	public ResponseEntity<?> getRole(@PathVariable int roleNumber){
+	public ResponseEntity<?> getRole(@PathVariable int roleNumber)throws InvalidInputException, ResourceNotFoundException {
 		PermRole role = roleService.findById(roleNumber);
 		return new ResponseEntity<PermRole>(role,HttpStatus.OK);
 
 	}
 	
 	@PutMapping("/update/permrole/{rolenumber}")
-	public ResponseEntity<?> updateRole(@PathVariable int roleNumber,String role){
+	public ResponseEntity<?> updateRole(@PathVariable int roleNumber,@RequestBody String role)throws InvalidInputException, ResourceNotFoundException {
 		PermRole roleObj = roleService.findById(roleNumber);
 		roleObj.setPermRole(role);
 		roleService.addPermRole(roleObj);

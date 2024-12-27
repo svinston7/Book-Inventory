@@ -25,14 +25,7 @@ public class UserService {
 	@Autowired
 	private  JwtService jwtService;
 	
-	/*public UserService(UserDAO userRepository, BCryptPasswordEncoder bCryptPasswordEncoder,
-			 AuthenticationManager authenticationManager,JwtService jwtService		) {
-		super();
-		this.userRepository = userRepository;
-		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-		this.authenticationManager = authenticationManager;
-		this.jwtService=jwtService;
-	}*/
+	
 	public User register(User user) {
 		// TODO Auto-generated method stub
 		 if (user.getUserName() == null || user.getPassword() == null) {
@@ -41,16 +34,7 @@ public class UserService {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		return userRepository.save(user);
 	}
-//	public String verify(User user) {
-//		Authentication authenticate
-//		=authenticationManager.authenticate(
-//				new UsernamePasswordAuthenticationToken(user.getUserName(),user.getPassword()));
-//		//var u=userRepository.findByUsername(user.getUsername());
-//				if(authenticate.isAuthenticated()) {
-//				  return jwtService.generateToken(user.getUserName());
-//				}
-//				return "failure";
-//	}
+
 	public String verify(User user) {
 	    
 	        Authentication authenticate = authenticationManager.authenticate(
@@ -74,31 +58,22 @@ public class UserService {
 	public void updateUserFirstName(int userId,String firstname) {
 		User user=userRepository.findById(userId).orElse(null);
 		user.setFirstName(firstname);
-		
-		
-		
-		
 		userRepository.save(user);
 		
 	}
 	public void updateUserLastName(int userId,String lastname) {
 		User user=userRepository.findById(userId).orElse(null);
 		user.setLastName(lastname);
-		
-		
-		
-		
 		userRepository.save(user);}
 	
 	public void updateUserPhoneNum(int userId,String phoneNumber) {
 		User user=userRepository.findById(userId).orElse(null);
-		user.setPhoneNumber(phoneNumber);
-		
-		
-		
-		
+		user.setPhoneNumber(phoneNumber);	
 		userRepository.save(user);}
 	
-
-	
+	public void updateRole(int userId,int role) {
+		User user=userRepository.findById(userId).orElse(null);
+		user.setRoleNumber(role);
+		userRepository.save(user);}
+		
 }
