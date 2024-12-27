@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.UserService;
 import com.dao.UserDAO;
+import com.exception.InvalidInputException;
+import com.exception.ResourceNotFoundException;
 import com.model.User;
 
 @RestController
@@ -58,20 +60,20 @@ public class UserController {
 	        
 	    }
 	 @PutMapping("/update/role/{userId}")
-	 public void updateRole(@PathVariable int userId,@RequestBody int roleNumber) {
+	 public void updateRole(@PathVariable int userId,@RequestBody int roleNumber)throws InvalidInputException, ResourceNotFoundException  {
 		 
 	 }
 	
 	@PutMapping("/update/firstname/{userId}")
-	public void updateFirstName(@PathVariable int userId,@RequestBody String firstName) {
+	public void updateFirstName(@PathVariable int userId,@RequestBody String firstName)throws InvalidInputException, ResourceNotFoundException  {
 		userService.updateUserFirstName(userId, firstName);
 	}
 	@PutMapping("/update/lastname/{userId}")
-	public void updateLastName(@PathVariable int userId,@RequestBody String lastName) {
+	public void updateLastName(@PathVariable int userId,@RequestBody String lastName) throws InvalidInputException, ResourceNotFoundException {
 		userService.updateUserLastName(userId, lastName);
 	}
 	@PutMapping("/update/phonenumber/{userId}")
-	public void updatePhoneNumber(@PathVariable int userId,@RequestBody String phonenumber) {
+	public void updatePhoneNumber(@PathVariable int userId,@RequestBody String phonenumber) throws InvalidInputException, ResourceNotFoundException {
 		userService.updateUserPhoneNum(userId, phonenumber);
 	}
 }

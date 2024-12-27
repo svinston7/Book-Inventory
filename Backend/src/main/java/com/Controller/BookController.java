@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.BookService;
+import com.exception.InvalidInputException;
+import com.exception.ResourceNotFoundException;
+import com.exception.Response;
 import com.model.Book;
 
 @RestController
@@ -29,45 +32,43 @@ public class BookController {
 	
 	
 	@PostMapping("/post")
-	public ResponseEntity<?> postBook(@RequestBody Book book){
+	public ResponseEntity<?> postBook(@RequestBody Book book) throws InvalidInputException {
 		try {
-			bookService.addBook(book);
-			return new ResponseEntity<>(Map.of("code", "POSTSUCCESS", "message", "Book added successfully"),HttpStatus.OK);
-			
-		}
-		catch(Exception e) {
-			return new ResponseEntity<>( Map.of("code","ADDFAILS","message","Book already exist"),HttpStatus.INTERNAL_SERVER_ERROR);
-
-		}
+	        bookService.addBook(book);
+	        return ResponseEntity.ok(new Response("POSTSUCCESS", "Book added successfully"));
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body(new Response("ADDFAILS", "An unexpected error occurred"));
+	    }
 		
 	}
 	
 	@GetMapping("")
-	public ResponseEntity<?>  getAllBooks() {
+	public ResponseEntity<?>  getAllBooks()  throws  ResourceNotFoundException {
 		List<Book>bookList = bookService.getAll();
 		return new ResponseEntity<List<Book>> (bookList,HttpStatus.OK);
 	}
 	
 	@GetMapping("/isbn/{isbn}")
-	public ResponseEntity<?>  getByisbn(@PathVariable String isbn) {
+	public ResponseEntity<?>  getByisbn(@PathVariable String isbn)  throws InvalidInputException, ResourceNotFoundException {
 		Book book = bookService.findByIsbn(isbn);
 		return new ResponseEntity<Book> (book,HttpStatus.OK);
 	}
 	
 	@GetMapping("/title/{title}")
-	public ResponseEntity<?> getByTitle(@PathVariable String title){
+	public ResponseEntity<?> getByTitle(@PathVariable String title) throws InvalidInputException, ResourceNotFoundException {
 		Book book = bookService.findByTitle(title);
 		return new ResponseEntity<Book> (book,HttpStatus.OK);
 	}
 	
 	@GetMapping("/publisherId/{publisherId}")
-	public ResponseEntity<?> getByPublisherId(@PathVariable int publisherId){
+	public ResponseEntity<?> getByPublisherId(@PathVariable int publisherId) throws InvalidInputException, ResourceNotFoundException {
 		List<Book> book = bookService.findByPublisherId(publisherId);
 		return new ResponseEntity <List<Book>>(book,HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/{isbn}")
-	public ResponseEntity<?>  putByIsbn(@PathVariable String isbn,@RequestBody Book book) {
+	public ResponseEntity<?>  putByIsbn(@PathVariable String isbn,@RequestBody Book book)  throws InvalidInputException, ResourceNotFoundException {
 		bookService.updateBook(isbn, book);
 		return new ResponseEntity<Book> (book,HttpStatus.OK);
 	}

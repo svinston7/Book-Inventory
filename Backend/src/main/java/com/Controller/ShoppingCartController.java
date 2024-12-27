@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.ShoppingCartservice;
+import com.exception.InvalidInputException;
+import com.exception.ResourceNotFoundException;
+import com.exception.Response;
 import com.model.Book;
 import com.model.ShoppingCart;
 
@@ -27,20 +30,24 @@ public class ShoppingCartController {
 	ShoppingCartservice cartservice;
 
 	@PostMapping("/post")
-	public ResponseEntity<?> postCart(@RequestBody ShoppingCart cart){
-		String res = cartservice.addShoppingCart(cart);
-		return new ResponseEntity<>(res,HttpStatus.OK);
+	public ResponseEntity<?> postCart(@RequestBody ShoppingCart cart)throws InvalidInputException {
+		try {
+			String res = cartservice.addShoppingCart(cart);
+	        return ResponseEntity.ok(new Response("POSTSUCCESS", "Cart added successfully"));
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body(new Response("ADDFAILS", "An unexpected error occurred"));
+	    }
 		
 	}
-	
 	@GetMapping("/{userid}")
-	public ResponseEntity<?> getCart(@PathVariable int userid){
+	public ResponseEntity<?> getCart(@PathVariable int userid)throws InvalidInputException, ResourceNotFoundException {
 		List<Book> bookList = cartservice.getListOfBook(userid);
 		return new ResponseEntity<List<Book>>(bookList,HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/{userid}")
-	public ResponseEntity<?> updateCart(@PathVariable int userid,@RequestBody String isbn){
+	public ResponseEntity<?> updateCart(@PathVariable int userid,@RequestBody String isbn)throws InvalidInputException, ResourceNotFoundException {
 		cartservice.updateIsbn(userid,isbn );
 		return new ResponseEntity< >("Updataed",HttpStatus.OK);
 	}

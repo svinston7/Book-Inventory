@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.Service.BookAuthorService;
+import com.exception.InvalidInputException;
+import com.exception.ResourceNotFoundException;
+import com.exception.Response;
 import com.model.Author;
 import com.model.BookAuthor;
 
@@ -20,19 +23,19 @@ public class BookAuthorController {
 
     // Get all book authors
     @GetMapping("/getallbookauthors")
-    public ResponseEntity<List<BookAuthor>> getAllBookAuthors() {
+    public ResponseEntity<List<BookAuthor>> getAllBookAuthors() throws InvalidInputException, ResourceNotFoundException{
         List<BookAuthor> bookAuthors = bookAuthorService.getAll();
         return new ResponseEntity<>(bookAuthors, HttpStatus.OK);
     }
     
     @GetMapping("/isbn/{isbn}")
-    public ResponseEntity<?> getAuthorDetailsByIsbn(@PathVariable String isbn){
+    public ResponseEntity<?> getAuthorDetailsByIsbn(@PathVariable String isbn)throws InvalidInputException, ResourceNotFoundException{
     	Author author=bookAuthorService.getAuthorDetailsByIsbn(isbn);
     	return new ResponseEntity<>(author,HttpStatus.OK);
     }
     // Get a book author by ID
     @GetMapping("/{id}")
-    public ResponseEntity<BookAuthor> getBookAuthorById(@PathVariable int id) {
+    public ResponseEntity<BookAuthor> getBookAuthorById(@PathVariable int id) throws InvalidInputException, ResourceNotFoundException{
         try {
             BookAuthor bookAuthor = bookAuthorService.findById(id);
             return new ResponseEntity<>(bookAuthor, HttpStatus.OK);
@@ -43,14 +46,20 @@ public class BookAuthorController {
 
     // Add a new book author
     @PostMapping("/post")
-    public ResponseEntity<String> addBookAuthor(@RequestBody BookAuthor bookAuthor) {
-        bookAuthorService.addBookAuthor(bookAuthor);
-        return new ResponseEntity<>("Book author added successfully", HttpStatus.CREATED);
-    }
- 
+    public ResponseEntity<?> addBookAuthor(@RequestBody BookAuthor bookAuthor)throws InvalidInputException {
+		try {
+			bookAuthorService.addBookAuthor(bookAuthor);
+	        return ResponseEntity.ok(new Response("POSTSUCCESS", "BookAuhtor added successfully"));
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body(new Response("ADDFAILS", "An unexpected error occurred"));
+	    }
+		
+		
+	}
     // Delete a book author by ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteBookAuthor(@PathVariable int id) {
+    public ResponseEntity<String> deleteBookAuthor(@PathVariable int id) throws InvalidInputException, ResourceNotFoundException{
         try {
             bookAuthorService.removeBookAuthor(id);
             return new ResponseEntity<>("Book author deleted successfully", HttpStatus.OK);

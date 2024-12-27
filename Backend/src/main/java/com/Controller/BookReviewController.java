@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.BookReviewService;
+import com.exception.InvalidInputException;
+import com.exception.ResourceNotFoundException;
+import com.exception.Response;
 import com.model.BookReview;
 import com.model.Reviewer;
 
@@ -29,21 +32,27 @@ public class BookReviewController {
 	BookReviewService bookReviewService;
 	
 	@PostMapping("/post")
-	public ResponseEntity<?> postReview(@RequestBody BookReview review) {
-		bookReviewService.addBookReview(review);
-		
-		return new ResponseEntity<>("Success",HttpStatus.OK);
-	}
+	public ResponseEntity<?> postReview(@RequestBody BookReview review) throws InvalidInputException  {
+		 try {
+		        bookReviewService.addBookReview(review);
+		        return ResponseEntity.ok(new Response("POSTSUCCESS", "Review added successfully"));
+		    } catch (Exception e) {
+		        // Log the exception for debugging
+		        e.printStackTrace();
+		        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+		                .body(new Response("ADDFAILS", "An unexpected error occurred"));
+		    }
+		 }
 	
 	@GetMapping("{isbn}")
-	public ResponseEntity<?> getAllReviewers(@PathVariable String isbn) {
+	public ResponseEntity<?> getAllReviewers(@PathVariable String isbn) throws InvalidInputException, ResourceNotFoundException  {
 		List<BookReview> reviewersList = bookReviewService.getAllReviewers(isbn);
 		
 		return new ResponseEntity<List<BookReview>>(reviewersList,HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/rating/{isbn}")
-	public ResponseEntity<?> updateRating(@RequestBody String isbn,@RequestBody int rating) {
+	public ResponseEntity<?> updateRating(@RequestBody String isbn,@RequestBody int rating) throws InvalidInputException, ResourceNotFoundException  {
 		BookReview bookReview = bookReviewService.findByisbn(isbn);
 		bookReview.setRating(rating);
 		bookReviewService.addBookReview(bookReview);
@@ -51,7 +60,7 @@ public class BookReviewController {
 	}
 	
 	@PutMapping("/update/comment/{isbn}")
-	public ResponseEntity<?> updateComment(@RequestBody String isbn,@RequestBody String comment) {
+	public ResponseEntity<?> updateComment(@RequestBody String isbn,@RequestBody String comment) throws InvalidInputException, ResourceNotFoundException  {
 		BookReview bookReview = bookReviewService.findByisbn(isbn);
 		bookReview.setComments(comment);
 		bookReviewService.addBookReview(bookReview);
