@@ -29,8 +29,11 @@ public class ReviewerService {
 		return "updated sucessfully";
 	}
 	public String updateReviewerEmployedId(int id,String employedBy) {
-		Reviewer reviewer=reviewerDao.findById(id).orElse(null);
+		Reviewer reviewer=reviewerDao.getById(id);
+		System.out.println(reviewer.getEmployedBy());
 		reviewer.setEmployedBy(employedBy);
+		System.out.println(reviewer.getEmployedBy());
+
 		reviewerDao.save(reviewer);
 		return "updated sucessfully";
 		

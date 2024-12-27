@@ -1,5 +1,6 @@
 package com.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,14 @@ public class BookAuthorService {
 	public void addBookAuthor(BookAuthor bookauthor) {
 		bookauthorDao.save(bookauthor);
 	}
-	public Author getAuthorDetailsByIsbn(String isbn){
-		BookAuthor bookauthor=bookauthorDao.findByIsbn(isbn);
-		return authordao.findById(bookauthor.getAuthorId()).orElse(null);
+	public List<Author> getAuthorDetailsByIsbn(String isbn){
+		List<BookAuthor> bookauthor=bookauthorDao.findByIsbn(isbn);
+		List<Author> authors=new ArrayList<>();
+		for(BookAuthor bookauthor1:bookauthor) {
+			
+			authordao.findById(bookauthor1.getAuthorId()).ifPresent(authors::add);
+		}
+		return  authors;
 }
 }
 

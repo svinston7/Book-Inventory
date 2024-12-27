@@ -27,7 +27,7 @@ public class BookAuthorController {
     
     @GetMapping("/isbn/{isbn}")
     public ResponseEntity<?> getAuthorDetailsByIsbn(@PathVariable String isbn){
-    	Author author=bookAuthorService.getAuthorDetailsByIsbn(isbn);
+    	List<Author> author=bookAuthorService.getAuthorDetailsByIsbn(isbn);
     	return new ResponseEntity<>(author,HttpStatus.OK);
     }
     // Get a book author by ID
