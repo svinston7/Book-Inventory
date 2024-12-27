@@ -32,7 +32,7 @@ public class BookAuthorServiceTest {
         bookAuthor.setId(1);
         bookAuthor.setIsbn("12345");
         bookAuthor.setAuthorId(101);
-        bookAuthor.setPrimaryAuthor("John Doe");
+        bookAuthor.setPrimaryAuthor(true);
     }
  
     @Test
@@ -46,7 +46,7 @@ public class BookAuthorServiceTest {
         // Assert
         assertNotNull(bookAuthors);
         assertEquals(1, bookAuthors.size());
-        assertEquals("John Doe", bookAuthors.get(0).getPrimaryAuthor());
+        assertEquals(true, bookAuthors.get(0).getPrimaryAuthor());
     }
  
     @Test
@@ -59,7 +59,7 @@ public class BookAuthorServiceTest {
  
         // Assert
         assertNotNull(result);
-        assertEquals("John Doe", result.getPrimaryAuthor());
+        assertEquals(true, result.getPrimaryAuthor());
     }
  
     @Test

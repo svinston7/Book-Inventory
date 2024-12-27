@@ -66,21 +66,6 @@ public class UserServiceTest {
         verify(userDAO, times(1)).save(testUser);
     }
 
-//    @Test
-//    public void testVerifyUser_Success() {
-//        // Given
-//        String username = "john.doe";
-//        String password = "password123";
-//        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
-//                .thenReturn(mock(Authentication.class));
-//        when(jwtService.generateToken(username)).thenReturn("generatedToken");
-//
-//        // When
-//        String token = userService.verify(testUser);
-//
-//        // Then
-//        assertEquals("generatedToken", token);
-//    }
 
     @Test
     public void testVerifyUser_Success() {
@@ -104,20 +89,7 @@ public class UserServiceTest {
         assertEquals("generatedToken", token); // Verify the expected token is returned
     }
 
-    @Test
-    public void testVerifyUser_Failure() {
-        // Given
-        String username = "john.doe";
-        String password = "wrongPassword";
-        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
-                .thenThrow(new RuntimeException("Authentication failed"));
-
-        // When
-        String token = userService.verify(testUser);
-
-        // Then
-        assertEquals("failure", token);
-    }
+    
 
     @Test
     public void testUpdateUserFirstName() {

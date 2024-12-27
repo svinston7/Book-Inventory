@@ -29,7 +29,7 @@ public class ReviewerService {
 		return "updated sucessfully";
 	}
 	public String updateReviewerEmployedId(int id,String employedBy) {
-		Reviewer reviewer=reviewerDao.getById(id);
+		Reviewer reviewer=reviewerDao.findById(id).orElseThrow(() -> new RuntimeException("Reviewer not found with id: " + id));;
 		System.out.println(reviewer.getEmployedBy());
 		reviewer.setEmployedBy(employedBy);
 		System.out.println(reviewer.getEmployedBy());

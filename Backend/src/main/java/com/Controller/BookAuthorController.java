@@ -29,11 +29,7 @@ public class BookAuthorController {
         return new ResponseEntity<>(bookAuthors, HttpStatus.OK);
     }
     
-    @GetMapping("/isbn/{isbn}")
-
-    public ResponseEntity<?> getAuthorDetailsByIsbn(@PathVariable String isbn){
-    	
-
+    @GetMapping("/isbn/{isbn}")	
     public ResponseEntity<?> getAuthorDetailsByIsbn(@PathVariable String isbn)throws InvalidInputException, ResourceNotFoundException{
     	List<Author> author=bookAuthorService.getAuthorDetailsByIsbn(isbn);
     	return new ResponseEntity<>(author,HttpStatus.OK);

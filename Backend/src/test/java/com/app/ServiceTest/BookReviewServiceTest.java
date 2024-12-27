@@ -93,15 +93,15 @@ public class BookReviewServiceTest {
     @Test
     public void testGetAllReviewers() {
         // Arrange
-        when(bookReviewDAO.findReviewersByIsbn("12345")).thenReturn(List.of(reviewer));
- 
+        when(bookReviewDAO.findReviewsByIsbn("12345")).thenReturn(List.of(bookReview));
+
         // Act
         var reviewersList = bookReviewService.getAllReviewers("12345");
- 
+
         // Assert
-        assertNotNull(reviewersList);
-        assertEquals(1, reviewersList.size());
-        assertEquals("John Doe", reviewersList.get(0).getName());
+        assertNotNull(reviewersList, "Reviewers list should not be null");
+        assertEquals(1, reviewersList.size(), "Reviewers list size should match");
+        assertEquals("12345", reviewersList.get(0).getIsbn(), "Book ISBN should match");
     }
  
     @Test
