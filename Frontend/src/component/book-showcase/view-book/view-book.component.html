@@ -19,11 +19,11 @@
             <p class="text-muted">Name: <span class="fw-bold">{{publisher.name}}</span></p>
             <p class="text-muted">City: <span class="fw-bold">{{publisher.city}}</span></p>
 
-            <div class="author-details">
-
+            <h4 >Authors</h4>
+            <div class="author-details" *ngFor="let auth of authorList">
+                <p class="ms-3">{{auth.firstName}} {{auth.lastName}}</p>
 
             </div>
-
             <button>Add to cart</button>
         </div>
     </div>

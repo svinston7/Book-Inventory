@@ -11,6 +11,8 @@ import { Category } from '../../../model/Category';
 import { ReviewsService } from '../../../service/reviews.service';
 import { Review } from '../../../model/Review';
 import { Reviewer } from '../../../model/Reviewer';
+import { Author } from '../../../model/Author';
+import { GetAuthorService } from '../../../service/get-author.service';
 
 @Component({
   selector: 'app-view-book',
@@ -47,13 +49,21 @@ export class ViewBookComponent {
     name: '',
     employedBy: ''
   }
+  author:Author={
+    authorId: 0,
+    firstName: '',
+    lastName: '',
+    photo: '',
+    bookList: [],
+    primary: false
+  }
 
   reviewer:Reviewer={
     reviewerId: 0,
     name: '',
     employedBy: null
   }
-
+  authorList:Author[]=[]
   reviewList:Review[]=[]
 
   constructor(
@@ -61,7 +71,8 @@ export class ViewBookComponent {
     private route:ActivatedRoute,
     private publisherService: GetPublisherService,
     private catService:CategoryService,
-    private reviewService:ReviewsService
+    private reviewService:ReviewsService,
+    private authorService:GetAuthorService
     ){}
 
   ngOnInit(){
@@ -69,15 +80,18 @@ export class ViewBookComponent {
   }
 
 
+  //fetch book and init all other fn
   getBookByISBN(isbn:string){
     this.bookService.getByISBN(isbn).subscribe((data:any)=>{
     this.book = data
     this.getPublisherId(this.book.publisherId);
     this.getCategory(this.book.categoryId)
     this.getReviews(this.book.isbn)
+    this.getAuthor(this.book.isbn)
   })
   }
 
+  //fetch category
   getCategory(categoryId:number){
     this.catService.getCategory(categoryId).subscribe(
       (data)=> {
@@ -85,7 +99,7 @@ export class ViewBookComponent {
       }
     )
   }
-
+ //fetch publishers
   getPublisherId(id:number){
     this.publisherService.getPublisherById(id).subscribe(
       (data)=>{
@@ -94,6 +108,8 @@ export class ViewBookComponent {
     )
   }
 
+
+  //fetch reviews with reviewers
   getReviews(isbn: string) {
     this.reviewService.getReviewByISBN(isbn).subscribe((data) => {
       this.reviewList = data;
@@ -112,6 +128,16 @@ export class ViewBookComponent {
         }
       }
     });
+  }
+
+
+  //get author with details
+  getAuthor(isbn:string){
+    this.authorService.getAuthorBook(isbn).subscribe((authBookData)=>{
+      this.authorList=authBookData;
+      
+
+    })
   }
 
 }

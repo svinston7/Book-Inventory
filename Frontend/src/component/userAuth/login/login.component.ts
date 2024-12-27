@@ -37,9 +37,11 @@ export class LoginComponent {
       return;
     }
 
-    this.authService.login(this.user).subscribe((e) => {
+    this.authService.login(this.user).subscribe(
+      (e) => {
       this.token = e;
       localStorage.setItem('token', this.token);
+      localStorage.setItem('userName',this.user.userName)
 
       if (this.isAuthenticated()) {
         this.router.navigate(['/home']);
@@ -63,6 +65,7 @@ export class LoginComponent {
   ngOnInit(){
     if(localStorage.getItem('token')){
       localStorage.removeItem('token')
+      localStorage.removeItem('userName')
     }
   }
 }
