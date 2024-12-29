@@ -31,10 +31,43 @@
     <div class="review col-11 mx-5 px-3">
         <div class="review-header mx-5 p-3">
             <h2 class="text-start d-inline">User Reviews</h2>
-            <button class="float-end px-4 py-2 me-4 btn btn-primary">Write a review</button>
+            <button class="float-end px-4 py-2 me-4 btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Write a review</button>
+            
+            <!-- //modal dialog box -->
+
+            <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-floating mb-2">
+                            <input type="number" [(ngModel)]="dummyReview.rating" class="form-control" placeholder="Enter rating here" id="ratingInput" min="0" max="10" [value]="review.rating || ''">
+                            <label for="ratingInput">Rating</label>
+                        </div>
+                        <div class="form-floating">
+                            <textarea class="form-control pt-4" [(ngModel)]="dummyReview.comments" style="height: 100px" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                            <label for="floatingTextarea">Comments</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      
+                      <button type="button" class="btn btn-primary" (click)="postReview()" >Post</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+           
+              <!-- Modal ends here -->
             <div class="ms-4 p-2 fw-bold fs-4">
                 <span class="text-primary text-center">Please read and apply the rules before posting a comment. </span> <br>
                 By sharing your comment, you agree to all the relevant terms.
+            </div>
+            <div *ngIf="successMessage" class="alert alert-success mt-3" role="alert">
+                {{ successMessage }}
             </div>
         </div>
 

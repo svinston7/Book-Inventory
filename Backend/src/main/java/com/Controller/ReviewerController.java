@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,11 +28,10 @@ public class ReviewerController {
 
 	@Autowired
 	ReviewerService reviewerService;
-	
-	
 	@PostMapping("/post")
 	public ResponseEntity<?> postReviewer(@RequestBody Reviewer reviewer) throws InvalidInputException {
 		try {
+	        
 			reviewerService.addReviewer(reviewer);
 	        return ResponseEntity.ok(new Response("POSTSUCCESS", "Reviewer added successfully"));
 	    } catch (Exception e) {

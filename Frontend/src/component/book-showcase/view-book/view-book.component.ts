@@ -13,10 +13,12 @@ import { Review } from '../../../model/Review';
 import { Reviewer } from '../../../model/Reviewer';
 import { Author } from '../../../model/Author';
 import { GetAuthorService } from '../../../service/get-author.service';
-
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { randomInt } from 'crypto';
+declare var bootstrap: any; 
 @Component({
   selector: 'app-view-book',
-  imports: [CommonModule, HomeComponent],
+  imports: [CommonModule, HomeComponent,FormsModule,ReactiveFormsModule ],
   templateUrl: './view-book.component.html',
   styleUrl: './view-book.component.css'
 })
@@ -63,8 +65,15 @@ export class ViewBookComponent {
     name: '',
     employedBy: null
   }
+  dummyReview = {
+    isbn: this.review.isbn,
+    reviewerId: this.review.reviewerId,
+    rating: this.review.rating,
+    comments: this.review.comments,
+  };
   authorList:Author[]=[]
   reviewList:Review[]=[]
+  successMessage: string | undefined;
 
   constructor(
     private bookService:ShowAllBooksService,
@@ -72,8 +81,11 @@ export class ViewBookComponent {
     private publisherService: GetPublisherService,
     private catService:CategoryService,
     private reviewService:ReviewsService,
-    private authorService:GetAuthorService
-    ){}
+    private authorService:GetAuthorService,
+    
+    ){
+      
+    }
 
   ngOnInit(){
     this.route.params.subscribe(params => this.getBookByISBN(params['isbn']))
@@ -117,7 +129,7 @@ export class ViewBookComponent {
       if (this.reviewList.length > 0) {
         for (let i = 0; i < this.reviewList.length; i++) {
           const reviewerId = this.reviewList[i].reviewerId;
-          
+          localStorage.setItem('reviewerId',reviewerId+"")
   
           // Fetch the reviewer for each review
           this.reviewService.getReviewerByID(reviewerId).subscribe((reviewerData) => {
@@ -139,5 +151,22 @@ export class ViewBookComponent {
 
     })
   }
-
+  postReview(): void {
+    
+    const storedName = localStorage.getItem('userName');
+    this.reviewer.name = storedName ? storedName : 'Anonymous';
+    this.reviewer.reviewerId = Math.floor(Math.random() * (1000 - 100 + 1)) + 100;
+    this.reviewer.employedBy = 'Anonymous'
+    this.reviewService.postReviewer(this.reviewer).subscribe(
+      (e)=>{
+        this.dummyReview.isbn = this.book.isbn
+        this.dummyReview.reviewerId = this.reviewer.reviewerId
+        this.reviewService.postReview(this.dummyReview).subscribe();
+      }
+    )
+    this.successMessage = 'Posted successfully!';
+    const modal = document.getElementById('staticBackdrop') as any;
+    const modalInstance = bootstrap.Modal.getInstance(modal);
+    modalInstance.hide();
+  }
 }

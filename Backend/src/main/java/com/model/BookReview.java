@@ -27,8 +27,7 @@ public class BookReview {
     @Column(name = "Comments",length = 1000)
     private String comments;
 
-    @OneToMany(mappedBy = "bookReview", cascade = CascadeType.ALL)
-    private List<Reviewer> reviewers;
+    
     
 	public int getId() {
 		return id;
@@ -72,13 +71,7 @@ public class BookReview {
 		this.comments = comments;
 	}
 
-	public List<Reviewer> getReviewers() {
-		return reviewers;
-	}
-
-	public void setReviewers(List<Reviewer> reviewers) {
-		this.reviewers = reviewers;
-	}
+	
 
 	public BookReview() {
 		super();

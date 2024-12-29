@@ -14,7 +14,6 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Reviewer {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int reviewerId;
 	private String name;
 	private String employedBy;
@@ -37,14 +36,7 @@ public class Reviewer {
 	
 
 
-	public BookReview getBookReview() {
-		return bookReview;
-	}
-
-
-	public void setBookReview(BookReview bookReview) {
-		this.bookReview = bookReview;
-	}
+	
 
 
 	public int getReviewerId() {

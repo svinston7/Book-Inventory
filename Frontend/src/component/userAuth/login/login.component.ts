@@ -42,7 +42,6 @@ export class LoginComponent {
       this.token = e;
       localStorage.setItem('token', this.token);
       localStorage.setItem('userName',this.user.userName)
-
       if (this.isAuthenticated()) {
         this.router.navigate(['/home']);
       }
