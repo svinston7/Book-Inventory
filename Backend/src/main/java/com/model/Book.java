@@ -79,6 +79,18 @@ public class Book {
 
 
 
+	public Book(String isbn, String title, String description, int categoryId, String edition, int publisherId,
+			String image) {
+		super();
+		this.isbn = isbn;
+		this.title = title;
+		this.description = description;
+		this.categoryId = categoryId;
+		this.edition = edition;
+		this.publisherId = publisherId;
+		this.image = image;
+	}
+
 	public void setPublisherId(int publisherId) {
 		this.publisherId = publisherId;
 	}

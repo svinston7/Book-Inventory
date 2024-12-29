@@ -44,11 +44,7 @@ public class BookReviewServiceTest {
         reviewer.setName("John Doe");
         reviewer.setEmployedBy("Company XYZ");
  
-        // Set BookReview reference in Reviewer
-        reviewer.setBookReview(bookReview);
- 
-        // Adding the reviewer to the book review
-        bookReview.setReviewers(List.of(reviewer));  // Assuming BookReview has a list of reviewers
+         // Assuming BookReview has a list of reviewers
     }
  
     @Test
