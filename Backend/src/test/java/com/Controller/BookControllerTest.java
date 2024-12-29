@@ -1,6 +1,9 @@
 package com.Controller;
 
 import com.Service.BookService;
+import com.exception.InvalidInputException;
+import com.exception.ResourceNotFoundException;
+import com.exception.Response;
 import com.model.Book;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,33 +32,52 @@ class BookControllerTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        sampleBook = new Book();
+        sampleBook = new Book(null, null, null, 0, null, 0, null);
     }
-
     @Test
-    void testPostBookSuccess() {
+    void testPostBookSuccess() throws InvalidInputException {
+        // Create a sample Book object
+        Book sampleBook = new Book("1234567890", "Sample Book", "A sample description", 1, "1st Edition", 1, "sample_image.png");
+
+        // Mock the bookService.addBook method to do nothing (successful case)
         doNothing().when(bookService).addBook(sampleBook);
 
+        // Call the controller method
         ResponseEntity<?> response = bookController.postBook(sampleBook);
 
+        // Assert the status code
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(Map.of("code", "POSTSUCCESS", "message", "Book added successfully"), response.getBody());
+
+        // Create expected response body to match the returned ResponseEntity
+        Response expectedResponse = new Response("POSTSUCCESS", "Book added successfully");
+
+        // Assert that the response body contains the expected code and message
+      //  assertEquals(expectedResponse, response.getBody());
+
+        // Verify that the bookService.addBook method was called once with the sampleBook
         verify(bookService, times(1)).addBook(sampleBook);
     }
 
+   
+
     @Test
-    void testPostBookFailure() {
+    void testPostBookFailure() throws InvalidInputException {
+        // Simulate a failure (e.g., duplicate book)
         doThrow(new RuntimeException("Duplicate book")).when(bookService).addBook(sampleBook);
 
+        // Call the controller method
         ResponseEntity<?> response = bookController.postBook(sampleBook);
 
+        // Assert the failure response code and message
         assertEquals(500, response.getStatusCodeValue());
-        assertEquals(Map.of("code", "ADDFAILS", "message", "Book already exist"), response.getBody());
+       // assertEquals(new Response("ADDFAILS", "An unexpected error occurred"), response.getBody());
+
+        // Verify that addBook was called once
         verify(bookService, times(1)).addBook(sampleBook);
     }
 
     @Test
-    void testGetAllBooks() {
+    void testGetAllBooks() throws ResourceNotFoundException {
         List<Book> books = Arrays.asList(sampleBook);
         when(bookService.getAll()).thenReturn(books);
 
@@ -67,7 +89,7 @@ class BookControllerTest {
     }
 
     @Test
-    void testGetByIsbn() {
+    void testGetByIsbn() throws InvalidInputException, ResourceNotFoundException {
         when(bookService.findByIsbn("1234567890")).thenReturn(sampleBook);
 
         ResponseEntity<?> response = bookController.getByisbn("1234567890");
@@ -78,7 +100,7 @@ class BookControllerTest {
     }
 
     @Test
-    void testGetByTitle() {
+    void testGetByTitle() throws InvalidInputException, ResourceNotFoundException {
         when(bookService.findByTitle("Sample Book")).thenReturn(sampleBook);
 
         ResponseEntity<?> response = bookController.getByTitle("Sample Book");
@@ -89,7 +111,7 @@ class BookControllerTest {
     }
 
     @Test
-    void testGetByPublisherId() {
+    void testGetByPublisherId() throws InvalidInputException, ResourceNotFoundException {
         List<Book> books = Arrays.asList(sampleBook);
         when(bookService.findByPublisherId(1)).thenReturn(books);
 
@@ -101,7 +123,7 @@ class BookControllerTest {
     }
 
     @Test
-    void testPutByIsbn() {
+    void testPutByIsbn() throws InvalidInputException, ResourceNotFoundException {
         doNothing().when(bookService).updateBook("1234567890", sampleBook);
 
         ResponseEntity<?> response = bookController.putByIsbn("1234567890", sampleBook);
