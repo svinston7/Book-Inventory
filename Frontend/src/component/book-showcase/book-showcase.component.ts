@@ -3,6 +3,8 @@ import { ShowAllBooksService } from '../../service/show-all-books.service';
 import { Book } from '../../model/Book';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Category } from '../../model/Category';
+import { CategoryService } from '../../service/category.service';
 
 @Component({
   selector: 'app-book-showcase',
@@ -12,7 +14,11 @@ import { RouterModule } from '@angular/router';
 })
 export class BookShowcaseComponent {
 
-  constructor(private service:ShowAllBooksService){}
+  constructor(
+    private bookService:ShowAllBooksService,
+    private catService:CategoryService
+    
+    ){}
 
   book:Book={
     isbn: '',
@@ -23,12 +29,18 @@ export class BookShowcaseComponent {
     publisherId: 0,
     image: ''
   }
-  
+  cat :Category={
+    catId: 0,
+    catDescription: ''
+  }
   allBooks:Book[]=[];
-
+  allCategory:Category[]=[]
   ngOnInit(){
-    this.service.showBooks().subscribe((e)=>{
+    this.bookService.showBooks().subscribe((e)=>{
       this.allBooks=e;
+      this.catService.getAllCat().subscribe((e)=>{
+        this.allCategory = e;
+      });
     })
   }
 }

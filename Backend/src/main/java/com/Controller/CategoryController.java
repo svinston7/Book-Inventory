@@ -1,5 +1,7 @@
 package com.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +41,11 @@ public class CategoryController {
 	                .body(new Response("ADDFAILS", "An unexpected error occurred"));
 	    }
 		}
+	@GetMapping("/getall")
+	public ResponseEntity<?> getAllCat()  throws InvalidInputException, ResourceNotFoundException {
+		List<Category> cat = categoryService.getAll();
+		return new ResponseEntity<>(cat,HttpStatus.OK);
+	}
 	
 	@GetMapping("/{catId}")
 	public ResponseEntity<?> getCat(@PathVariable int catId)  throws InvalidInputException, ResourceNotFoundException {

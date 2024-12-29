@@ -13,9 +13,7 @@ public class Category {
 	private int catId;
 	private String catDescription;
 	
-//	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-//    private List<Book> books;
-	
+
 	
 	public Category(int catId, String catDescription) {
 		super();

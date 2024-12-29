@@ -21,9 +21,11 @@
         <form class="d-flex" style="width: 500px;" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
+          <!-- filter  -->
           <button class="btn btn-primary me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="margin-left:2%;background-color: purple;border-color: purple;">
             <i class="fa-duotone fa-solid fa-filter"></i>
           </button>
+
         </form>
  
         <!-- Icons: User and Cart -->
@@ -60,12 +62,13 @@
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    <h4>Category</h4>
-    <input type="checkbox">
-    <label>Romcom</label>
-    <input type="checkbox">
-    <label>SciFi</label>
-    <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 50%;">
+    <h3>Category</h3>
+    <div class="categories" *ngFor="let c of allCategory">
+      <input type="checkbox" id="cat">
+      <label for="cat">{{c.catDescription}}</label>
+    </div>
+    
+    <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 20%;">
       <button class="btn btn-primary" type="button">Apply Filters</button>
     </div>
   </div>

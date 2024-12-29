@@ -29,7 +29,6 @@ export class LoginComponent {
 
   loginUser(event: Event) {
     event.preventDefault();
-    console.log(this.user);
 
     // Only proceed if all fields are filled
     if (!this.user.userName || !this.user.password) {
