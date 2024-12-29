@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Service.UserService;
@@ -64,10 +65,15 @@ public class UserController {
 		 
 	 }
 	
-	@PutMapping("/update/firstname/{userId}")
-	public void updateFirstName(@PathVariable int userId,@RequestBody String firstName)throws InvalidInputException, ResourceNotFoundException  {
-		userService.updateUserFirstName(userId, firstName);
-	}
+	 @PutMapping("/update/firstname/{userId}")
+	 public ResponseEntity<?> updateFirstName(@PathVariable("userId") int userId, 
+	                                             @RequestBody String firstName) {
+	    
+	         userService.updateUserFirstName(userId, firstName);  // Call service method to update firstName
+	         return ResponseEntity.ok().build();  // Return 200 OK if successful
+	     
+	 }
+
 	@PutMapping("/update/lastname/{userId}")
 	public void updateLastName(@PathVariable int userId,@RequestBody String lastName) throws InvalidInputException, ResourceNotFoundException {
 		userService.updateUserLastName(userId, lastName);

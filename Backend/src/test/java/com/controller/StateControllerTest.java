@@ -49,9 +49,8 @@ class StateControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"stateCode\":\"CA\", \"stateName\":\"California\"}"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.stateCode").value("CA"))
-                .andExpect(jsonPath("$.stateName").value("California"));
-
+                .andExpect(jsonPath("$.code").value("POSTSUCCESS"))
+                .andExpect(jsonPath("$.message").value("State added successfully"));
         verify(stateService, times(1)).addState(any(State.class));
     }
 
@@ -96,10 +95,12 @@ class StateControllerTest {
         doNothing().when(stateService).addState(any(State.class));
 
         mockMvc.perform(put("/api/state/update/CA")
-                .param("stateName", "New California"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("New California"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.stateCode").value("CA"))
                 .andExpect(jsonPath("$.stateName").value("New California"));
+
 
         verify(stateService, times(1)).findByCode("CA");
         verify(stateService, times(1)).addState(any(State.class));

@@ -76,8 +76,9 @@ class UserControllerTest {
         doNothing().when(userService).updateUserFirstName(anyInt(), anyString());
 
         mockMvc.perform(put("/api/user/update/firstname/1")
-                .param("firstName", "NewName"))
-                .andExpect(status().isOk());
+                .contentType(MediaType.TEXT_PLAIN) // Set the content type to match the expected plain text
+                .content("NewName")) // Send the firstName in the request body
+                .andExpect(status().isOk()); // Expect HTTP 200 OK
 
         verify(userService, times(1)).updateUserFirstName(1, "NewName");
     }
