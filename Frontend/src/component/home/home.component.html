@@ -1,7 +1,11 @@
 <header class="mb-5">
   <nav class="position-relative navbar navbar-expand-lg bg-body-tertiary ">
     <div class=" position-fixed top-0 start-0 z-3 bg-white container-fluid p-2 mb-2">
-      <a class="navbar-brand" href="#">
+      <!-- menu btn -->
+      <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-solid fa-bars"></i> Menu</button>
+
+
+      <a class="navbar-brand ms-3" href="#">
         Book Inventory System
       </a>
      
@@ -61,7 +65,71 @@
   </nav>
 </header>
  
-<!-- Offcanvas -->
+<!-- menu  off canvas -->
+<!-- Enhanced Menu Offcanvas -->
+<div
+  class="offcanvas offcanvas-start w-25 bg-dark text-white"
+  data-bs-scroll="true"
+  tabindex="-1"
+  id="offcanvasWithBothOptions"
+  aria-labelledby="offcanvasWithBothOptionsLabel"
+>
+  <div class="offcanvas-header border-bottom border-secondary">
+    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+      <i class="bi bi-bookshelf me-2"></i> Book Inventory
+    </h5>
+    <button
+      type="button"
+      class="btn-close btn-close-white"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <!-- Offcanvas Navigation -->
+    <ul class="list-group list-group-flush">
+      <!-- View Books -->
+      <li class="list-group-item bg-dark text-white border-secondary">
+        <a href="/book-showcase" class="nav-link text-white d-flex align-items-center my-3">
+          <i class="fa-solid fa-book  me-3 fs-4 text-warning"></i>
+          <span>View Books</span>
+        </a>
+      </li>
+      <!-- View Authors -->
+      <li class="list-group-item bg-dark text-white border-secondary ">
+        <a href="/view-authors" class="nav-link text-white d-flex align-items-center my-3">
+          <i class="fa-solid fa-pen me-3 fs-4 text-success"></i>
+          <span>View Authors</span>
+        </a>
+      </li>
+      <!-- Profile -->
+      <li class="list-group-item bg-dark text-white border-secondary">
+        <a href="/profile" class="nav-link text-white d-flex align-items-center my-3">
+          <i class="fa-solid fa-user me-3 fs-4 text-primary"></i>
+          <span>Profile</span>
+        </a>
+      </li>
+      <!-- Post a Book -->
+      <li class="list-group-item bg-dark text-white border-secondary">
+        <a href="/post-book" class="nav-link text-white d-flex align-items-center my-3">
+          <i class="fa-solid fa-circle-plus me-3 fs-4 text-danger"></i>
+          <span>Post a Book</span>
+        </a>
+      </li>
+      <!-- Admin Portal -->
+      <li class="list-group-item bg-dark text-white border-secondary">
+        <a href="/admin-portal" class="nav-link text-white d-flex align-items-center my-3">
+          <i class="fa-solid fa-lock me-3 fs-4 text-info"></i>
+          <span>Admin Portal</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+<!-- filter Offcanvas -->
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Filter</h5>
@@ -69,11 +137,7 @@
   </div>
   <div class="offcanvas-body">
     <h3>Category</h3>
-    <!-- <div class="categories" *ngFor="let c of allCategory">
-      <input type="checkbox" id="cat">
-      <label for="cat">{{c.catDescription}}</label>
-    </div> -->
-
+    
     <ul class="list-group">
       
       <li class="list-group-item" *ngFor="let c of allCategory">
