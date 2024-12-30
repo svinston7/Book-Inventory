@@ -63,13 +63,30 @@
   </div>
   <div class="offcanvas-body">
     <h3>Category</h3>
-    <div class="categories" *ngFor="let c of allCategory">
+    <!-- <div class="categories" *ngFor="let c of allCategory">
       <input type="checkbox" id="cat">
       <label for="cat">{{c.catDescription}}</label>
-    </div>
+    </div> -->
+
+    <ul class="list-group">
+      
+      <li class="list-group-item" *ngFor="let c of allCategory">
+
+        <input  class="form-check-input me-1"
+          type="checkbox"
+          value=""
+          [value]="c.catId"
+          [checked]="selectedCategories.has(c.catId)"
+          (change)="onCheckboxChange(c.catId, $event)"
+          id="checkbox-{{c.catId}}"
+        >
+
+        <label class="form-check-label" for="firstCheckbox">{{c.catDescription}}</label>
+      </li>
+    </ul>
     
     <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 20%;">
-      <button class="btn btn-primary" type="button">Apply Filters</button>
+      <button class="btn btn-primary" type="button" data-bs-dismiss="offcanvas" (click)="filter()">Apply Filters</button>
     </div>
   </div>
 </div>

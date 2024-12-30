@@ -20,6 +20,7 @@ export class BookShowcaseComponent {
     
     ){}
 
+    selectedCatSet!:Set<number>
   book:Book={
     isbn: '',
     title: '',
@@ -35,12 +36,27 @@ export class BookShowcaseComponent {
   }
   allBooks:Book[]=[];
   allCategory:Category[]=[]
+  filteredBooks:Book[]=[]
+
+  isEmpty():boolean{
+    return this.filteredBooks.length===0
+  }
   ngOnInit(){
     this.bookService.showBooks().subscribe((e)=>{
       this.allBooks=e;
-      this.catService.getAllCat().subscribe((e)=>{
-        this.allCategory = e;
+      this.catService.invokeFunction$.subscribe(() => {  // Subscribe to changes from the CategoryService
+        this.filterBooks();
       });
+      this.filterBooks();  // Initial filtering based on the current selection
+     
     })
   }
+
+  filterBooks() {
+    
+    this.selectedCatSet = this.catService.getSelectedCategories() || new Set();
+    this.filteredBooks = this.allBooks.filter(book => this.selectedCatSet.has(book.categoryId));
+    console.log(this.filteredBooks);
+  }
 }
+
