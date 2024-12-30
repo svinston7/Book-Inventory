@@ -50,7 +50,6 @@ export class BookShowcaseComponent {
 
       this.catService.searchQuery$.subscribe((query) => {
         this.filteredBooks = this.searchBooksByTitle(this.allBooks, query); // Filter based on search query
-        console.log(this.filteredBooks)
       });
 
       this.filterBooks();  // Initial filtering based on the current selection
@@ -68,7 +67,6 @@ export class BookShowcaseComponent {
 
   searchBooksByTitle(allBooks: Book[], searchQuery: string): Book[] {
     const query = searchQuery.toLowerCase().trim(); // Normalize query (case insensitive, trim spaces)
-    console.log(searchQuery)
     return allBooks.filter(book => book.title.toLowerCase().includes(query));
   }
 }

@@ -56,7 +56,6 @@ filter() {
   
 onSearch(event: Event): void {
   event.preventDefault();
-  console.log('inviked')
   const input = event.target as HTMLInputElement; // Cast to HTMLInputElement
   const query = input.value; // Access the 'value' property safely
   this.catService.setSearchQuery(query); // Emit the search query

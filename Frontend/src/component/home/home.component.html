@@ -36,7 +36,9 @@
  
         <!-- Icons: User and Cart -->
         <div class="d-flex align-items-center">
-          <span class="me-3" style="position: relative; cursor: pointer; font-size: x-large;">
+          <span class="me-3" 
+          data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on top"
+          style="position: relative; cursor: pointer; font-size: x-large;">
             <i class="fa-solid fa-cart-shopping" style="background-color: purple; color: white; padding: 10px; border-radius: 30%;"></i>
           </span>
           <div class="btn-group me-3">
@@ -46,12 +48,10 @@
               </span>
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="#"><i class="fa-regular fa-user"></i>  Profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
-                <button class="dropdown-item" (click)="logout()">Logout</button>
+                <button class="dropdown-item" (click)="logout()"> <i class="fas fa-sign-out-alt"></i>  Logout</button>
               </li>
             </ul>
           </div>
