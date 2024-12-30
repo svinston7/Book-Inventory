@@ -32,12 +32,13 @@ public class UserController {
 	
 
 
-	/*@GetMapping("/{userId}")
-	public User getUserById(@PathVariable("userId") int id) {
-	    return userService.findById(id); 
+	@GetMapping("/{username}")
+	public ResponseEntity<?>  getUserById(@PathVariable String username) {
+	    User u= userService.findByUserName(username); 
+	    return new ResponseEntity<>(u,HttpStatus.OK);
 	}
 	
-	@PostMapping("/post")
+	/*@PostMapping("/post")
 	public ResponseEntity<?> addUser(@RequestBody User user) {
 		userService.addUser(user);
 		return new ResponseEntity<>(user+"Added",HttpStatus.OK);

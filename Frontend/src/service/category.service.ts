@@ -31,4 +31,12 @@
       return this.selectedCategorieSet
     }
 
+
+      // for search fn
+    private searchQuerySource = new Subject<string>();
+    searchQuery$ = this.searchQuerySource.asObservable();
+
+    setSearchQuery(query: string): void {
+      this.searchQuerySource.next(query); // Emit the search query
+    } 
   }

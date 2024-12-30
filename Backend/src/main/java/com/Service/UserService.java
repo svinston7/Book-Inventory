@@ -75,5 +75,9 @@ public class UserService {
 		User user=userRepository.findById(userId).orElse(null);
 		user.setRoleNumber(role);
 		userRepository.save(user);}
+
+	public User findByUserName(String username) {
+		return userRepository.findByUserName(username);
+	}
 		
 }

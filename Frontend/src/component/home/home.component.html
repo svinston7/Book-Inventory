@@ -18,9 +18,15 @@
         </ul>
  
         <!-- Search Form and Buttons -->
-        <form class="d-flex" style="width: 500px;" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+        <form class="d-flex" style="width: 500px;" role="search" >
+          <!-- search bar -->
+          <input class="form-control me-2"
+           type="search" placeholder="Search" aria-label="Search"
+           (input)="onSearch($event)"
+          >
+
+
+          <button class="btn btn-outline-success" >Search</button>
           <!-- filter  -->
           <button class="btn btn-primary me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="margin-left:2%;background-color: purple;border-color: purple;">
             <i class="fa-duotone fa-solid fa-filter"></i>

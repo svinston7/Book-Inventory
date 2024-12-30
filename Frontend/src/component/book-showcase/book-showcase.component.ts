@@ -47,6 +47,12 @@ export class BookShowcaseComponent {
       this.catService.invokeFunction$.subscribe(() => {  // Subscribe to changes from the CategoryService
         this.filterBooks();
       });
+
+      this.catService.searchQuery$.subscribe((query) => {
+        this.filteredBooks = this.searchBooksByTitle(this.allBooks, query); // Filter based on search query
+        console.log(this.filteredBooks)
+      });
+
       this.filterBooks();  // Initial filtering based on the current selection
      
     })
@@ -56,7 +62,14 @@ export class BookShowcaseComponent {
     
     this.selectedCatSet = this.catService.getSelectedCategories() || new Set();
     this.filteredBooks = this.allBooks.filter(book => this.selectedCatSet.has(book.categoryId));
-    console.log(this.filteredBooks);
+  }
+
+  // search books
+
+  searchBooksByTitle(allBooks: Book[], searchQuery: string): Book[] {
+    const query = searchQuery.toLowerCase().trim(); // Normalize query (case insensitive, trim spaces)
+    console.log(searchQuery)
+    return allBooks.filter(book => book.title.toLowerCase().includes(query));
   }
 }
 
