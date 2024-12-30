@@ -4,13 +4,14 @@
       <!-- For the 'allBooks' array -->
       <ng-container *ngFor="let b of allBooks">
         <div *ngIf="isEmpty()" class="col-sm-6 col-xl-4 mb-3">
-          <div class="card">
-            <img src="https://picsum.photos/200/300" class="card-img-top img-card" alt="...">
+          <div class="card pop" [routerLink]="['/viewbook', b.isbn]">
+            <img src="https://picsum.photos/200/300" class="card-img-top img-card" alt="book-img">
             <div class="card-body">
-              <h5 class="card-title">{{b.title}}</h5>
-              <p class="card-text">Edition - {{b.edition}}</p>
-              <a [routerLink]="['/viewbook', b.isbn]" class="btn btn-primary">View Details</a>
-              <a class="btn btn-primary ms-4">Add to Cart</a>
+              <h5 class="card-title title gradient-color">{{b.title}}</h5>
+              <!-- <p class="card-text">Edition - {{b.edition}}</p> -->
+              <p class="popup ms-4">Click to preview</p>
+              <!-- <a [routerLink]="['/viewbook', b.isbn]" class="btn btn-primary">View Details</a> -->
+              <!-- <a class="btn btn-primary ms-4">Add to Cart</a> -->
             </div>
           </div>
         </div>
@@ -19,13 +20,15 @@
       <!-- For the 'filteredBooks' array -->
       <ng-container *ngFor="let b of filteredBooks">
         <div *ngIf="!isEmpty()" class="col-sm-6 col-xl-4 mb-3">
-          <div class="card">
-            <img src="https://picsum.photos/200/300" class="card-img-top img-card" alt="...">
+          <div class="card pop" [routerLink]="['/viewbook', b.isbn]">
+            <img src="https://picsum.photos/200/300" class="card-img-top img-card" alt="book-img">
             <div class="card-body">
-              <h5 class="card-title">{{b.title}}</h5>
-              <p class="card-text">Edition - {{b.edition}}</p>
-              <a [routerLink]="['/viewbook', b.isbn]" class="btn btn-primary">View Details</a>
-              <a class="btn btn-primary ms-4">Add to Cart</a>
+              <h5 class="card-title title gradient-color">{{b.title}}</h5>
+              <p class="popup">Click to preview</p>
+
+              <!-- <p class="card-text">Edition - {{b.edition}}</p> -->
+              <!-- <a [routerLink]="['/viewbook', b.isbn]" class="btn btn-primary">View Details</a> -->
+              <!-- <a class="btn btn-primary ms-4">Add to Cart</a> -->
             </div>
           </div>
         </div>
