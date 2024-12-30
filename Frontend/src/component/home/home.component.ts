@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { ShoppingcartComponent } from '../shoppingcart/shoppingcart.component';
 import { Category } from '../../model/Category';
 import { CategoryService } from '../../service/category.service';
+import { User } from '../userAuth/User';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -21,15 +23,31 @@ export class HomeComponent {
   }
 allCategory:Category[]=[]
 selectedCategories: Set<number> = new Set();
-
+user:User={
+  firstName: '',
+  lastName: '',
+  phoneNumber: '',
+  userName: '',
+  password: '',
+  roleNumber: 0
+}
 
   constructor(
     private router:Router,
-    private catService:CategoryService
+    private catService:CategoryService,
+    private userService:AuthService
     ){}
 
     ngOnInit(){
-      this.catService.getAllCat().subscribe((e)=>this.allCategory = e)
+      const userName = localStorage.getItem('userName')
+      this.catService.getAllCat().subscribe((e)=>{
+        this.allCategory = e
+        if(userName){
+          this.userService.getUserByUserName(userName).subscribe((data)=>{
+            this.user = data
+            })
+        }
+      })
     }
 
     onCheckboxChange(catId: number, event: Event) {
@@ -45,7 +63,7 @@ selectedCategories: Set<number> = new Set();
       }
     }
 logout() {
-  localStorage.removeItem('token');
+  localStorage.clear()
   this.router.navigate(['']); 
 }
 filter() {

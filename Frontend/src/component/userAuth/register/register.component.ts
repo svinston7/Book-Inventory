@@ -42,7 +42,7 @@ export class RegisterComponent {
       },
       (error) => {
         // Handle error (optional)
-        this.popupMessage = 'An error occurred during registration. Please try again.';
+        this.popupMessage = 'User Already Exists. Please try again.';
         this.isPopupVisible = true;
       });
     } else {

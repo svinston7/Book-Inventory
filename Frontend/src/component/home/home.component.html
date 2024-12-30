@@ -90,14 +90,14 @@
     <ul class="list-group list-group-flush">
       <!-- View Books -->
       <li class="list-group-item bg-dark text-white border-secondary">
-        <a href="/book-showcase" class="nav-link text-white d-flex align-items-center my-3">
+        <a href="/home" class="nav-link text-white d-flex align-items-center my-3">
           <i class="fa-solid fa-book  me-3 fs-4 text-warning"></i>
           <span>View Books</span>
         </a>
       </li>
       <!-- View Authors -->
       <li class="list-group-item bg-dark text-white border-secondary ">
-        <a href="/view-authors" class="nav-link text-white d-flex align-items-center my-3">
+        <a href="/authors" class="nav-link text-white d-flex align-items-center my-3">
           <i class="fa-solid fa-pen me-3 fs-4 text-success"></i>
           <span>View Authors</span>
         </a>
@@ -110,14 +110,14 @@
         </a>
       </li>
       <!-- Post a Book -->
-      <li class="list-group-item bg-dark text-white border-secondary">
+      <li *ngIf="user.roleNumber===2 || user.roleNumber===4" class="list-group-item bg-dark text-white border-secondary">
         <a href="/post-book" class="nav-link text-white d-flex align-items-center my-3">
           <i class="fa-solid fa-circle-plus me-3 fs-4 text-danger"></i>
           <span>Post a Book</span>
         </a>
       </li>
       <!-- Admin Portal -->
-      <li class="list-group-item bg-dark text-white border-secondary">
+      <li *ngIf="user.roleNumber===4" class="list-group-item bg-dark text-white border-secondary">
         <a href="/admin-portal" class="nav-link text-white d-flex align-items-center my-3">
           <i class="fa-solid fa-lock me-3 fs-4 text-info"></i>
           <span>Admin Portal</span>

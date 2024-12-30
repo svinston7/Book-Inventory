@@ -1,6 +1,8 @@
 package com.Controller;
 
+import org.hibernate.NonUniqueResultException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -45,12 +47,22 @@ public class UserController {
 	}*/
     
 	@PostMapping("/register")
-	public ResponseEntity<?> register(@RequestBody User user) {
+	public ResponseEntity<?> register(@RequestBody User user) throws Exception {
 		if (user.getUserName() == null || user.getPassword() == null) {
             throw new IllegalArgumentException("Username and password are required");
         }
-
-		userService.register(user);
+		try {
+			if((userService.findByUserName(user.getUserName())) == null) {
+				userService.register(user);
+			}
+			else {
+				throw new Exception("User already Exists");
+			}
+		}
+		catch(IncorrectResultSizeDataAccessException e) {
+			throw new Exception("User already Exists");
+		}
+		
 		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
 	 @PostMapping("/login")

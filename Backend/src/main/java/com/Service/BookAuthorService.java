@@ -2,14 +2,17 @@ package com.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.AuthorDAO;
 import com.dao.BookAuthorDAO;
+import com.dao.BookDAO;
 import com.dao.UserDAO;
 import com.model.Author;
+import com.model.Book;
 import com.model.BookAuthor;
 import com.model.User;
 @Service
@@ -19,6 +22,8 @@ public class BookAuthorService {
 	AuthorDAO authordao;
 	@Autowired
 	BookAuthorDAO bookauthorDao;
+	@Autowired
+	BookDAO bookDao;
 	
 	public List<BookAuthor> getAll(){
 		return bookauthorDao.findAll();
@@ -45,5 +50,20 @@ public class BookAuthorService {
 		return  authors;
 
 }
+	
+	public List<Book> getBookDetailsById(int id){
+		List<BookAuthor> bookAuthors = bookauthorDao.findByAuthorId(id);
+
+	    // Extract all ISBNs (or book IDs) from the BookAuthor entries
+	    List<String> isbns = bookAuthors.stream()
+	                                    .map(BookAuthor::getIsbn) // Assuming BookAuthor has an `isbn` field
+	                                    .collect(Collectors.toList());
+
+	    // Fetch all books corresponding to the extracted ISBNs
+	    return bookDao.findByIsbnIn(isbns);
+
+}
+	
+	
 }
 

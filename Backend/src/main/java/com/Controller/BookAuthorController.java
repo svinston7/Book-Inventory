@@ -12,6 +12,7 @@ import com.exception.InvalidInputException;
 import com.exception.ResourceNotFoundException;
 import com.exception.Response;
 import com.model.Author;
+import com.model.Book;
 import com.model.BookAuthor;
 
 @RestController
@@ -40,6 +41,16 @@ public class BookAuthorController {
         try {
             BookAuthor bookAuthor = bookAuthorService.findById(id);
             return new ResponseEntity<>(bookAuthor, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @GetMapping("authorid/{authorid}")
+    public ResponseEntity<?> getAuthorById(@PathVariable int authorid) throws InvalidInputException, ResourceNotFoundException{
+        try {
+            List<Book > books = bookAuthorService.getBookDetailsById(authorid);
+            return new ResponseEntity<>(books, HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

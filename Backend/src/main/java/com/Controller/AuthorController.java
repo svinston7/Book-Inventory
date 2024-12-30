@@ -1,5 +1,6 @@
 package com.Controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,13 @@ public class AuthorController {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 	                .body(new Response("ADDFAILS", "An unexpected error occurred"));
 	    }
+		
+	}
+	
+	@GetMapping("/allauthors")
+	public ResponseEntity<?> getAllAuthors()throws ResourceNotFoundException {
+		List<Author> author = authorService.getAll();
+		return new ResponseEntity<>(author,HttpStatus.OK);
 		
 	}
 	

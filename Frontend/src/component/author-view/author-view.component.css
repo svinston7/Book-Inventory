@@ -1,0 +1,44 @@
+.author-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-right: 20px;
+}
+
+.author-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;  /* Makes the image circular */
+    margin-bottom: 10px; /* Space between the image and the name */
+}
+
+.books-list {
+    margin-left: 20px;
+}
+
+.book-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.book-item img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+/* .book-item:hover{
+    background-color: rgb(143, 250, 214);
+} */
+.book-item h6 {
+    font-size: 14px;
+    margin: 0;
+}
+
+.book-item h4 {
+    font-size: 16px;
+    font-weight: bold;
+}

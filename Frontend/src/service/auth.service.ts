@@ -22,4 +22,8 @@ export class AuthService {
       responseType:'text'
     })
   }
+
+  getUserByUserName(username:string):Observable<any>{
+    return this.httpClient.get(this.RESTURL+username)
+  }
 }

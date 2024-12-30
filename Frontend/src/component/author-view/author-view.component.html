@@ -1,0 +1,29 @@
+<app-home></app-home>
+<div class="container mt-5">
+    <div class="list-group">
+        <div class="list-group-item" *ngFor="let a of AuthorList" style="display: flex; align-items: center; margin-bottom: 20px;">
+            <!-- Author's Image and Name (Left Side) -->
+            <div class="author-info" style="flex-shrink: 0; text-align: center; margin-right: 20px;">
+                <img src="assets/profile.png" alt="Author" class="author-img" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;"><br>
+                <h3 class="mb-1" style="font-size: 1.2rem;">{{ a.firstName }}</h3>
+            </div>
+
+            <!-- Books List (Right Side) -->
+            <div class="books-list" style="flex-grow: 1;">
+                <div class="mt-3">
+                    <div class="nobooks text text-info" *ngIf="!a.bookList || a.bookList.length === 0">
+                        No Books found!!
+                    </div>
+                    <div *ngFor="let b of a.bookList" class="book-item ps-2 mb-3 position-relative w-75">
+                        <!-- <img src="https://picsum.photos/200/100" class="img-fluid" alt="Book Cover"> -->
+                        <h6 class="mt-2">ISBN: {{ b.isbn }}</h6>
+                        <h4 class="card-text">Title: {{ b.title }}</h4>
+                        <button class="position-absolute top-25 end-0 btn btn-outline-secondary" [routerLink]="['/viewbook', b.isbn]">View book</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
