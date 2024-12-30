@@ -22,7 +22,7 @@
         </ul>
  
         <!-- Search Form and Buttons -->
-        <form class="d-flex" style="width: 500px;" role="search" >
+        <form class="d-flex" style="width: 500px;" role="search"  >
           <!-- search bar -->
           <input class="form-control me-2"
            type="search" placeholder="Search" aria-label="Search"
@@ -52,7 +52,7 @@
               </span>
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#"><i class="fa-regular fa-user"></i>  Profile</a></li>
+              <li><a class="dropdown-item" href="/profile"><i class="fa-regular fa-user"></i>  Profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
                 <button class="dropdown-item" (click)="logout()"> <i class="fas fa-sign-out-alt"></i>  Logout</button>
@@ -107,6 +107,13 @@
         <a href="/profile" class="nav-link text-white d-flex align-items-center my-3">
           <i class="fa-solid fa-user me-3 fs-4 text-primary"></i>
           <span>Profile</span>
+        </a>
+      </li>
+      <!-- Book Conditions  -->
+      <li *ngIf="user.roleNumber===2 || user.roleNumber===4" class="list-group-item bg-dark text-white border-secondary">
+        <a href="/bookcondition" class="nav-link text-white d-flex align-items-center my-3">
+          <i class="fa-solid fa-circle-plus me-3 fs-4 text-danger"></i>
+          <span>Book Condition</span>
         </a>
       </li>
       <!-- Post a Book -->

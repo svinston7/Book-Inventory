@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ShoppingcartComponent } from '../shoppingcart/shoppingcart.component';
 import { Category } from '../../model/Category';
 import { CategoryService } from '../../service/category.service';
-import { User } from '../userAuth/User';
+import { User } from '../../model/User';
 import { AuthService } from '../../service/auth.service';
 
 @Component({

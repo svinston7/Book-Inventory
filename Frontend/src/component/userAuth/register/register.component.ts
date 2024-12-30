@@ -1,7 +1,7 @@
 
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { User } from '../User';
+import { User } from '../../../model/User';
 import { AuthService } from '../../../service/auth.service';
 import { CommonModule } from '@angular/common';
 import { response } from 'express';
