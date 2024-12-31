@@ -22,7 +22,7 @@
         </ul>
  
         <!-- Search Form and Buttons -->
-        <form class="d-flex" style="width: 500px;" role="search"  >
+        <form class="d-flex" style="width: 500px;" role="search" *ngIf="showDiv"  >
           <!-- search bar -->
           <input class="form-control me-2"
            type="search" placeholder="Search" aria-label="Search"
@@ -114,7 +114,7 @@
       <!-- Book Conditions  -->
       <li *ngIf="user.roleNumber===2 || user.roleNumber===4" class="list-group-item bg-dark text-white border-secondary">
         <a href="/bookcondition" class="nav-link text-white d-flex align-items-center my-3">
-          <i class="fa-solid fa-circle-plus me-3 fs-4 text-danger"></i>
+          <i class="fa-solid fa-warehouse me-3 fs-4 text-info"></i>
           <span>Book Condition</span>
         </a>
       </li>
@@ -129,7 +129,7 @@
       </li>
       <!-- Admin Portal -->
       <li *ngIf="user.roleNumber===4" class="list-group-item bg-dark text-white border-secondary">
-        <a href="/admin-portal" class="nav-link text-white d-flex align-items-center my-3">
+        <a href="/admin" class="nav-link text-white d-flex align-items-center my-3">
           <i class="fa-solid fa-lock me-3 fs-4 text-info"></i>
           <span>Admin Portal</span>
         </a>

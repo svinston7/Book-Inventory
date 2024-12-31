@@ -1,0 +1,88 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Initially hidden */
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    transition: left 0.3s;
+    padding-top: 20px;
+}
+.admin-container{
+    color: black;
+}
+.sidebar.open {
+    left: 0; /* Show when the menu is open */
+}
+
+.sidebar-content {
+    padding: 20px;
+}
+
+.toggle-sidebar {
+    background: none;
+    border: none;
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Main content */
+.content {
+    margin-left: 0;
+    padding: 20px;
+    transition: margin-left 0.3s;
+}
+
+/* When the sidebar is open, push content to the right */
+.sidebar.open ~ .content {
+    margin-left: 250px;
+}
+
+/* Centered Title */
+.centered-title {
+    text-align: center;
+    font-size: 2em;
+    margin: 20px 0;
+}
+
+/* Table Cards */
+.tables-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Ensures spacing between cards */
+    justify-content: center; /* Centers the cards horizontally */
+}
+
+.table-card {
+    padding: 20px;
+    border-radius: 10px;
+    width: calc(50% - 30px); /* Ensures two columns with even spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 20px; /* Adds space at the bottom of each card */
+}
+
+.table-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.table-card p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.table-card .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.table-card .btn:hover {
+    background-color: #0056b3;
+}

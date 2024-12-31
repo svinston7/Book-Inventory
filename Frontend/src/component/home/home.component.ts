@@ -32,6 +32,7 @@ user:User={
   roleNumber: 0,
   userId: 0
 }
+  showDiv: boolean=false;
 
   constructor(
     private router:Router,
@@ -49,6 +50,7 @@ user:User={
             })
         }
       })
+      this.showDiv = this.router.url.includes('/home');
     }
 
     onCheckboxChange(catId: number, event: Event) {

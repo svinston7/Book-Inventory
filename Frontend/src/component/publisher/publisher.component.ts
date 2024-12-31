@@ -4,6 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { publishBook } from '../../service/publishbook.service';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-publisher',
@@ -14,6 +15,7 @@ import { publishBook } from '../../service/publishbook.service';
     CommonModule,
     FormsModule,
     HttpClientModule,
+    HomeComponent,
   ],
 })
 export class PublisherComponent {

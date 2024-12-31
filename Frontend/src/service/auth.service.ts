@@ -11,6 +11,8 @@ export class AuthService {
 
   RESTURL:string = "http://localhost:9090/api/user/";
 
+  isAuthenticated= false;
+  
   register(user:any):Observable<any>{
     return this.httpClient.post(this.RESTURL+"register",user,{
       responseType:'text'
@@ -18,6 +20,7 @@ export class AuthService {
   }
 
   login(user:any):Observable<any>{
+    this.isAuthenticated = true;
     return this.httpClient.post(this.RESTURL+"login",user,{
       responseType:'text'
     })
@@ -31,7 +34,7 @@ export class AuthService {
     return this.httpClient.get(this.RESTURL+username)
   }
 
-
+  
 
 
   updateFirstName(userId: number, firstName: string): Observable<any> {

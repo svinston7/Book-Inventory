@@ -11,6 +11,8 @@ import { PublisherComponent } from '../component/publisher/publisher.component';
 import { AuthorViewComponent } from '../component/author-view/author-view.component';
 import { BookConditionComponent } from '../component/book-condition/book-condition.component';
 import { ProfileComponent } from '../component/profile/profile.component';
+import { AdminComponent } from '../component/admin/admin.component';
+import { AuthGuard } from '../guard/auth.guard';
 
 
 
@@ -18,11 +20,13 @@ export const routes: Routes = [
     {path:'',component:IndexComponent},
     {path:'login',component:LoginComponent},
     {path:'register',component:RegisterComponent},
-    {path:'home',component:NavbarComponent},
-    {path:'viewbook/:isbn',component:ViewBookComponent},
-    {path:'authors',component:AuthorViewComponent},
-    {path:'bookcondition',component:BookConditionComponent},
-    {path:'profile',component:ProfileComponent},
-    {path:'addbook',component:PublisherComponent},  
+    {path:'home',component:NavbarComponent,canActivate:[AuthGuard]},
+    {path:'viewbook/:isbn',component:ViewBookComponent,canActivate:[AuthGuard]},
+    {path:'authors',component:AuthorViewComponent,canActivate:[AuthGuard]},
+    {path:'bookcondition',component:BookConditionComponent,canActivate:[AuthGuard]},
+    {path:'profile',component:ProfileComponent,canActivate:[AuthGuard]},
+    {path:'addbook',component:PublisherComponent,canActivate:[AuthGuard]},  
+    {path:'admin',component:AdminComponent,canActivate:[AuthGuard]},
+    // { path: '**', redirectTo: '/login' }
   
 ];
