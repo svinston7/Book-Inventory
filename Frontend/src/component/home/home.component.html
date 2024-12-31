@@ -22,7 +22,7 @@
         </ul>
  
         <!-- Search Form and Buttons -->
-        <form class="d-flex" style="width: 500px;" role="search" >
+        <form class="d-flex" style="width: 500px;" role="search"  >
           <!-- search bar -->
           <input class="form-control me-2"
            type="search" placeholder="Search" aria-label="Search"
@@ -52,7 +52,7 @@
               </span>
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#"><i class="fa-regular fa-user"></i>  Profile</a></li>
+              <li><a class="dropdown-item" href="/profile"><i class="fa-regular fa-user"></i>  Profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
                 <button class="dropdown-item" (click)="logout()"> <i class="fas fa-sign-out-alt"></i>  Logout</button>
@@ -90,14 +90,14 @@
     <ul class="list-group list-group-flush">
       <!-- View Books -->
       <li class="list-group-item bg-dark text-white border-secondary">
-        <a href="/book-showcase" class="nav-link text-white d-flex align-items-center my-3">
+        <a href="/home" class="nav-link text-white d-flex align-items-center my-3">
           <i class="fa-solid fa-book  me-3 fs-4 text-warning"></i>
           <span>View Books</span>
         </a>
       </li>
       <!-- View Authors -->
       <li class="list-group-item bg-dark text-white border-secondary ">
-        <a href="/view-authors" class="nav-link text-white d-flex align-items-center my-3">
+        <a href="/authors" class="nav-link text-white d-flex align-items-center my-3">
           <i class="fa-solid fa-pen me-3 fs-4 text-success"></i>
           <span>View Authors</span>
         </a>
@@ -109,16 +109,24 @@
           <span>Profile</span>
         </a>
       </li>
+      <!-- Book Conditions  -->
+      <li *ngIf="user.roleNumber===2 || user.roleNumber===4" class="list-group-item bg-dark text-white border-secondary">
+        <a href="/bookcondition" class="nav-link text-white d-flex align-items-center my-3">
+          <i class="fa-solid fa-circle-plus me-3 fs-4 text-danger"></i>
+          <span>Book Condition</span>
+        </a>
+      </li>
       <!-- Post a Book -->
-      <li class="list-group-item bg-dark text-white border-secondary">
-        <a href="/publish" class="nav-link text-white d-flex align-items-center my-3">
+
+      <li *ngIf="user.roleNumber===2 || user.roleNumber===4" class="list-group-item bg-dark text-white border-secondary">
+        <a href="/addbook" class="nav-link text-white d-flex align-items-center my-3">
           <i class="fa-solid fa-circle-plus me-3 fs-4 text-danger"></i>
           <span>Post a Book</span>
          
         </a>
       </li>
       <!-- Admin Portal -->
-      <li class="list-group-item bg-dark text-white border-secondary">
+      <li *ngIf="user.roleNumber===4" class="list-group-item bg-dark text-white border-secondary">
         <a href="/admin-portal" class="nav-link text-white d-flex align-items-center my-3">
           <i class="fa-solid fa-lock me-3 fs-4 text-info"></i>
           <span>Admin Portal</span>

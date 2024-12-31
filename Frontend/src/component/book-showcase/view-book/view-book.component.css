@@ -6,6 +6,7 @@
 
 .acc{
     background-color: hsla(208, 38%, 34%, 0.76);
+    margin-top: 6rem;
     
 }
 .acc {
@@ -49,4 +50,23 @@
    border-radius: 5rem;
    padding-left: 5rem;
    padding-top: 4px;
+}
+
+/* Absolute position for the back button */
+.back-btn-container {
+    position: absolute;
+    top: 6rem; /* Adjust the distance from the top */
+    left: 10px; /* Adjust the distance from the left */
+    z-index: 999; /* Ensure it's above other elements */
+}
+
+/* Optional: style the back button */
+.back-btn-container .btn {
+    font-size: 1.2rem; /* Adjust button size */
+    padding: 10px 20px;
+}
+
+/* General layout and styling */
+.container-fluid.acc {
+    margin-top: 50px; /* Add space for the absolute button */
 }

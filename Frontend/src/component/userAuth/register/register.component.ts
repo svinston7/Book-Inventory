@@ -1,7 +1,7 @@
 
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { User } from '../User';
+import { User } from '../../../model/User';
 import { AuthService } from '../../../service/auth.service';
 import { CommonModule } from '@angular/common';
 import { response } from 'express';
@@ -24,8 +24,10 @@ export class RegisterComponent {
     phoneNumber: '',
     userName: '',
     password: '',
-    terms: false, // Assuming terms is a boolean\
+    terms: false,
     roleNumber: 3 //default user
+    ,
+    userId: 0
   };
 
   
@@ -42,7 +44,7 @@ export class RegisterComponent {
       },
       (error) => {
         // Handle error (optional)
-        this.popupMessage = 'An error occurred during registration. Please try again.';
+        this.popupMessage = 'User Already Exists. Please try again.';
         this.isPopupVisible = true;
       });
     } else {

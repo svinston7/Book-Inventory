@@ -1,5 +1,7 @@
 package com.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +46,12 @@ public class InventoryController {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 	                .body(new Response("ADDFAILS", "An unexpected error occurred"));
 	    }	}
+	
+	@GetMapping("getall")
+	public ResponseEntity<?> getall() throws InvalidInputException, ResourceNotFoundException{
+		List<Inventory> invList = inventoryService.getAll();
+		return new ResponseEntity<>(invList,HttpStatus.OK);
+	}
 	
 	@GetMapping("{inventoryId}")
 	public ResponseEntity<?> getInventory(@PathVariable int inventoryId) throws InvalidInputException, ResourceNotFoundException  {

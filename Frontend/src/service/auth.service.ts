@@ -22,4 +22,29 @@ export class AuthService {
       responseType:'text'
     })
   }
+
+  getUserByUserName(username:string):Observable<any>{
+    return this.httpClient.get(this.RESTURL+username)
+  }
+
+  getUser(username:string):Observable<any>{
+    return this.httpClient.get(this.RESTURL+username)
+  }
+
+
+
+
+  updateFirstName(userId: number, firstName: string): Observable<any> {
+
+    return this.httpClient.put(`${this.RESTURL}update/firstname/${userId}`, firstName);
+  }
+
+  updateLastName(userId: number, lastName: string): Observable<any> {
+    return this.httpClient.put(`${this.RESTURL}update/lastname/${userId}`, lastName);
+  }
+
+
+  updatePhoneNumber(userId: number, phoneNumber: string): Observable<any> {
+    return this.httpClient.put(`${this.RESTURL}update/phonenumber/${userId}`, phoneNumber);
+  }
 }

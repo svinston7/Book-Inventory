@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../service/auth.service';
-import { User } from '../User';
+import { User } from '../../../model/User';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,7 +22,9 @@ export class LoginComponent {
     phoneNumber: '',
     userName: '',
     password: '',
-    roleNumber:3 //default user
+    roleNumber: 3 //default user
+    ,
+    userId: 0
   };
   token: any;
   trylogin: boolean = false;
