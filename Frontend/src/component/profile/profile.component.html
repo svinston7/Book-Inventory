@@ -1,0 +1,65 @@
+<app-home></app-home>
+
+<div class="profile-container">
+    <div class="avatar-container">
+        <img [src]="avatarUrl" alt="Profile Avatar" class="avatar" />
+        <input 
+          *ngIf="isEditing" 
+          type="file" 
+          (change)="onAvatarChange($event)" 
+          accept="image/*" 
+          class="avatar-upload"
+        />
+      </div>
+    <h1>{{UserName}}</h1>
+    <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input 
+          id="firstName"
+          [value]="FirstName" 
+          [readonly]="!isEditing" 
+          (input)="onFirstNameChange($event)" 
+          type="text" 
+          placeholder="Enter First Name"
+          aria-label="First Name"
+        />
+      </div>
+    <div class="form-group">
+      <!-- Last Name -->
+      <label for="lastName">Last Name:</label>
+      <input 
+        id="lastName"
+        [value]="LastName" 
+        [readonly]="!isEditing" 
+        (input)="onLastNameChange($event)" 
+        type="text" 
+      />
+    </div>
+    <div class="form-group">
+      <!-- Full Name -->
+      <label for="fullName">Full Name:</label>
+      <input 
+        id="fullName"
+        [value]="FullName" 
+        readonly 
+        type="text" 
+      />
+    </div>
+    <div class="form-group">
+      <!-- Contact -->
+      <label for="contact">Contact:</label>
+      <input 
+        id="contact"
+        [value]="Contact" 
+        [readonly]="!isEditing" 
+        (input)="onContactChange($event)" 
+        type="tel" 
+      />
+    </div>
+    <!-- Edit/Save Button -->
+    <div class="action-button">
+      <button (click)="toggleEdit()">
+        {{ isEditing ? 'Save' : 'Edit' }}
+      </button>
+    </div>
+  </div>

@@ -6,6 +6,7 @@ import { NavbarComponent } from '../component/navbar/navbar.component';
 import { ViewBookComponent } from '../component/book-showcase/view-book/view-book.component';
 import { AuthorViewComponent } from '../component/author-view/author-view.component';
 import { BookConditionComponent } from '../component/book-condition/book-condition.component';
+import { ProfileComponent } from '../component/profile/profile.component';
 
 
 export const routes: Routes = [
@@ -15,5 +16,6 @@ export const routes: Routes = [
     {path:'home',component:NavbarComponent},
     {path:'viewbook/:isbn',component:ViewBookComponent},
     {path:'authors',component:AuthorViewComponent},
-    {path:'bookcondition',component:BookConditionComponent}
+    {path:'bookcondition',component:BookConditionComponent},
+    {path:'profile',component:ProfileComponent},
 ];

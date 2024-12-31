@@ -29,7 +29,8 @@ user:User={
   phoneNumber: '',
   userName: '',
   password: '',
-  roleNumber: 0
+  roleNumber: 0,
+  userId: 0
 }
 
   constructor(
