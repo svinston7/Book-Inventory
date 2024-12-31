@@ -24,8 +24,10 @@ export class RegisterComponent {
     phoneNumber: '',
     userName: '',
     password: '',
-    terms: false, // Assuming terms is a boolean\
+    terms: false,
     roleNumber: 3 //default user
+    ,
+    userId: 0
   };
 
   
