@@ -1,1 +1,48 @@
-<p>shoppingcart works!</p>
+<app-home> </app-home>
+
+<div class="container">
+    <div class="row">
+      <div class="col-12" *ngFor="let book of books">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img [src]="book.image" class="img-fluid rounded-start" alt="Book Image">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ book.title }}</h5>
+                <p class="card-text">{{ book.description }}</p>
+                <p class="card-text"><small class="text-body-secondary">ISBN: {{ book.isbn }}</small></p>
+                <button (click)="removeBook(book.isbn)">
+                  <i class="fa-regular fa-square-minus"></i> Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <!-- Toast button for demonstration -->
+    <button id="liveToastBtn" class="btn btn-primary">Show Toast</button>
+   
+    <!-- Toast notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">Notification</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          {{ toastMessage }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isPopupVisible" class="popup-overlay">
+    <div class="popup">
+      <h3 >{{ popupMessage }}</h3>
+     
+      <button class="btn-primary" (click)="isPopupVisible = false">Close</button>
+    </div>
+  </div>

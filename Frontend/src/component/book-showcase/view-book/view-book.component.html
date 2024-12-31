@@ -24,8 +24,7 @@
                 <p class="ms-3">{{auth.firstName}} {{auth.lastName}}</p>
 
             </div>
-            <button>Add to cart</button>
-        </div>
+            <button class="btn btn-primary"   (click)="addtocart(book.isbn)">Add to cart</button>        </div>
     </div>
 
     <div class="review col-11 mx-5 px-3">
@@ -70,6 +69,13 @@
                 {{ successMessage }}
             </div>
         </div>
+        <div *ngIf="isPopupVisible" class="popup-overlay">
+            <div class="popup">
+              <h3 >{{ popupMessage }}</h3>
+        
+              <button class="btn-primary" (click)="isPopupVisible = false">Close</button>
+            </div>
+          </div>
 
         <div *ngFor="let review of reviewList" class="review-content mx-5 mb-3 " >
             <h5 class="mx-5">{{review.name}}</h5>

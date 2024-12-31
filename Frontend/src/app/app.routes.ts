@@ -13,6 +13,7 @@ import { BookConditionComponent } from '../component/book-condition/book-conditi
 import { ProfileComponent } from '../component/profile/profile.component';
 import { AdminComponent } from '../component/admin/admin.component';
 import { AuthGuard } from '../guard/auth.guard';
+import { ShoppingcartComponent } from '../component/shoppingcart/shoppingcart.component';
 
 
 
@@ -27,6 +28,7 @@ export const routes: Routes = [
     {path:'profile',component:ProfileComponent,canActivate:[AuthGuard]},
     {path:'addbook',component:PublisherComponent,canActivate:[AuthGuard]},  
     {path:'admin',component:AdminComponent,canActivate:[AuthGuard]},
+    {path:'shoppingcart',component:ShoppingcartComponent}
     // { path: '**', redirectTo: '/login' }
   
 ];

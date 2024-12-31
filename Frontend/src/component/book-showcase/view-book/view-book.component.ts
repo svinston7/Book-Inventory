@@ -15,6 +15,11 @@ import { Author } from '../../../model/Author';
 import { GetAuthorService } from '../../../service/get-author.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { randomInt } from 'crypto';
+import { CartService } from '../../../service/cart.service';
+import { response } from 'express';
+import { retry } from 'rxjs';
+import { Cart } from '../../../model/Cart';
+
 declare var bootstrap: any; 
 @Component({
   selector: 'app-view-book',
@@ -42,6 +47,11 @@ export class ViewBookComponent {
   cat:Category={
     catId: 0,
     catDescription: ''
+  }
+  cart:Cart={
+    userName: '',
+    isbn: '',
+
   }
   review:Review={
     isbn: '',
@@ -74,6 +84,8 @@ export class ViewBookComponent {
   authorList:Author[]=[]
   reviewList:Review[]=[]
   successMessage: string | undefined;
+  isPopupVisible = false;
+  popupMessage: string = '';
 
   constructor(
     private bookService:ShowAllBooksService,
@@ -82,7 +94,7 @@ export class ViewBookComponent {
     private catService:CategoryService,
     private reviewService:ReviewsService,
     private authorService:GetAuthorService,
-    
+    private cartservice:CartService
     ){
       
     }
@@ -169,4 +181,40 @@ export class ViewBookComponent {
     const modalInstance = bootstrap.Modal.getInstance(modal);
     modalInstance.hide();
   }
-}
+  addtocart(isbn:string) {
+    const username = localStorage.getItem("userName");
+    if (!username) {
+      console.error("Username not found");
+      return;
+    }
+
+    // Fetch the user's cart items
+    const cart:Cart={
+      userName: username,
+      isbn: isbn,
+    };
+
+        // Post each cart item individually
+        this.cartservice.postCart(cart).subscribe({
+          next: (response) => {console.log(`Cart item added successfully:`, response);
+            //window.alert("book added to your cart sucessfully");
+            this.popupMessage = 'Your Book has been sucessfully added to the cart';
+        this.isPopupVisible=true;
+
+          },
+          error: (err) => console.error(`Error adding cart item:`, err)
+
+
+        });
+
+    }
+    
+  }
+
+
+
+
+
+
+
+
