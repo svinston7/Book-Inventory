@@ -166,7 +166,7 @@ const RazorpayOptions = {
         color: '#6466e3'
       },
       handler: (response: any) => {
-        // Successful payment callback
+        
         console.log('Payment successful. Payment ID:', response.razorpay_payment_id);
 
         // Navigate to home after successful payment
@@ -183,10 +183,8 @@ const RazorpayOptions = {
       const rzp = new Razorpay(RazorpayOptions);
       rzp.open();
 
-      // Optional: Handle payment failure explicitly
-      rzp.on('payment.failed', (response: any) => {
-        console.error('Payment failed:', response.error);
-      });
+      
+      
     } catch (error) {
       console.error('Error initializing Razorpay:', error);
     }
