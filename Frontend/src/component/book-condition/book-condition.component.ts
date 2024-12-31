@@ -6,10 +6,11 @@ import { Book } from '../../model/Book';
 import { Condition } from '../../model/Condition';
 import { error } from 'console';
 import { HomeComponent } from '../home/home.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-book-condition',
-  imports: [HomeComponent],
+  imports: [HomeComponent,CommonModule],
   templateUrl: './book-condition.component.html',
   styleUrl: './book-condition.component.css'
 })
@@ -22,7 +23,7 @@ ngOnInit(){
   this.conService.getInventory().subscribe((e)=>{
     this.invList = e;
 
-    for(let i=0;i<this.invList.length;i++){
+    for(let i=0;i<this.invList.length-1;i++){
       this.bookService.getByISBN(this.invList[i].isbn).subscribe((book:any)=>{
         if(book!=null)
         this.invList[i].book = book

@@ -22,7 +22,7 @@ header {
 
 .navbar-brand {
   font-weight: bold;
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   color:bl;
 }
 
@@ -73,9 +73,7 @@ header {
   text-decoration: none;
 }
 
-.offcanvas .list-group-item a:hover {
-  text-decoration: underline;
-}
+
 
 /* Filter Offcanvas */
 #offcanvasScrolling .offcanvas-header {
@@ -100,25 +98,6 @@ header {
   border-color: purple;
 }
 
-/* Icons */
-.fa-cart-shopping,
-.fa-user {
-  font-size: 1.25rem;
-  padding: 10px;
-  background-color: purple;
-  color: white;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.fa-cart-shopping:hover,
-.fa-user:hover {
-  background-color: #6f42c1;
-}
-
-.fa-user {
-  margin-right: 0.5rem;
-}
 
 .dropdown-menu {
   border: none;
