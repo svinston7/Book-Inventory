@@ -95,7 +95,7 @@ class InventoryServiceTest {
 
         inventoryService.updatePurchased(1, true);
 
-        assertTrue(inventory.getPurchased());
+        assertTrue(inventory.isPurchased());
         verify(inventoryDAO, times(1)).findById(1);
         verify(inventoryDAO, times(1)).save(inventory);
     }

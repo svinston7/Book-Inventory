@@ -20,27 +20,34 @@ public class Inventory {
 	
 	private int ranks;
 	private boolean purchased;
-	
-	
-	public Inventory() {
+	public Inventory(int inventoryId, Book book, String isbn, int ranks, boolean purchased) {
 		super();
 		this.inventoryId = inventoryId;
+		this.book = book;
 		this.isbn = isbn;
 		this.ranks = ranks;
 		this.purchased = purchased;
 	}
-	
+	public Inventory() {
+		super();
+	}
 	public int getInventoryId() {
 		return inventoryId;
 	}
 	public void setInventoryId(int inventoryId) {
 		this.inventoryId = inventoryId;
 	}
-	public Book getIsbn() {
+	public Book getBook() {
 		return book;
 	}
-	public void setIsbn(Book isbn) {
-		this.book = isbn;
+	public void setBook(Book book) {
+		this.book = book;
+	}
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 	public int getRanks() {
 		return ranks;
@@ -48,24 +55,17 @@ public class Inventory {
 	public void setRanks(int ranks) {
 		this.ranks = ranks;
 	}
-	public boolean getPurchased() {
+	public boolean isPurchased() {
 		return purchased;
 	}
 	public void setPurchased(boolean purchased) {
 		this.purchased = purchased;
 	}
-
-	public Book getBook() {
-		return book;
-	}
-
-	public void setBook(Book book) {
-		this.book = book;
-	}
-
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+	@Override
+	public String toString() {
+		return "Inventory [inventoryId=" + inventoryId + ", book=" + book + ", isbn=" + isbn + ", ranks=" + ranks
+				+ ", purchased=" + purchased + "]";
 	}
 	
-
+	
 }

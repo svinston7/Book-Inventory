@@ -4,36 +4,17 @@ import { Inventory } from '../../model/Inventory';
 import { ShowAllBooksService } from '../../service/show-all-books.service';
 import { Book } from '../../model/Book';
 import { Condition } from '../../model/Condition';
+import { error } from 'console';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-book-condition',
-  imports: [],
+  imports: [HomeComponent],
   templateUrl: './book-condition.component.html',
   styleUrl: './book-condition.component.css'
 })
 export class BookConditionComponent {
-//   book:Book={
-//     isbn: '',
-//     title: '',
-//     description: '',
-//     categoryId: 0,
-//     edition: '',
-//     publisherId: 0,
-//     image: ''
-//   }
-//   condition:Condition={
-//     ranks: 0,
-//     description: '',
-//     fullDescription: '',
-//     price: 0
-//   }
-// inv:Inventory={
-//   isbn: '',
-//   ranks: 0,
-//   purchased: false,
-//   book: this.book,
-//   condition: this.condition
-// }
+
 invList:Inventory[]=[];
 constructor(private conService:ConditionService,private bookService:ShowAllBooksService){}
 
@@ -43,31 +24,28 @@ ngOnInit(){
 
     for(let i=0;i<this.invList.length;i++){
       this.bookService.getByISBN(this.invList[i].isbn).subscribe((book:any)=>{
+        if(book!=null)
         this.invList[i].book = book
-      })
+      },
+        (error)=>{
+          console.log(error)
+        }
+      )
       this.conService.getRanks(this.invList[i].ranks).subscribe((cond)=>{
-        this.invList[i].condition = cond;
+        this.invList[i].condition = cond;},
+        (error)=>{
+          console.log(error)
       })
 
       console.log(this.invList[i])
     }
-    // this.invList.forEach((inv)=>{
-    //   this.bookService.getByISBN(inv.isbn).subscribe((bookData:any)=>{
-    //     this.invList = bookData;
-        
-    //   })
-    // })
-    // this.invList.forEach((con)=>{
-    //   this.conService.getRanks(con.ranks).subscribe((cond)=>{
-    //     this.condition=cond;
-    //   })
-    // })
+    
+  },(error)=>{
+    console.log(error)
   })
   
 }
 
-getInventory(){
 
-}
   
 }
