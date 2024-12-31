@@ -17,6 +17,7 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   user: User = {
+    userId:0,
     firstName: '',
     lastName: '',
     phoneNumber: '',

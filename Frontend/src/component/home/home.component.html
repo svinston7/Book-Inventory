@@ -3,8 +3,8 @@
     <div class=" position-fixed top-0 start-0 z-3 bg-white container-fluid p-2 mb-2">
       <!-- menu btn -->
       <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-solid fa-bars"></i> Menu</button>
-
-
+ 
+ 
       <a class="navbar-brand ms-3" href="#">
         Book Inventory System
       </a>
@@ -28,19 +28,19 @@
            type="search" placeholder="Search" aria-label="Search"
            (input)="onSearch($event)"
           >
-
-
+ 
+ 
           <button class="btn btn-outline-success" >Search</button>
           <!-- filter  -->
           <button class="btn btn-primary me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="margin-left:2%;background-color: purple;border-color: purple;">
             <i class="fa-duotone fa-solid fa-filter"></i>
           </button>
-
+ 
         </form>
  
         <!-- Icons: User and Cart -->
         <div class="d-flex align-items-center">
-          <span class="me-3" 
+          <span class="me-3"
           data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on top"
           style="position: relative; cursor: pointer; font-size: x-large;">
             <i class="fa-solid fa-cart-shopping" style="background-color: purple; color: white; padding: 10px; border-radius: 30%;"></i>
@@ -126,9 +126,9 @@
     </ul>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
 <!-- filter Offcanvas -->
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
@@ -137,11 +137,11 @@
   </div>
   <div class="offcanvas-body">
     <h3>Category</h3>
-    
+   
     <ul class="list-group">
-      
+     
       <li class="list-group-item" *ngFor="let c of allCategory">
-
+ 
         <input  class="form-check-input me-1"
           type="checkbox"
           value=""
@@ -150,11 +150,11 @@
           (change)="onCheckboxChange(c.catId, $event)"
           id="checkbox-{{c.catId}}"
         >
-
+ 
         <label class="form-check-label" for="firstCheckbox">{{c.catDescription}}</label>
       </li>
     </ul>
-    
+   
     <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 20%;">
       <button class="btn btn-primary" type="button" data-bs-dismiss="offcanvas" (click)="filter()">Apply Filters</button>
     </div>

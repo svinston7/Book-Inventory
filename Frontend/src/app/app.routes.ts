@@ -5,6 +5,7 @@ import { RegisterComponent } from '../component/userAuth/register/register.compo
 import { HomeComponent } from '../component/home/home.component';
 import { NavbarComponent } from '../component/navbar/navbar.component';
 import { ViewBookComponent } from '../component/book-showcase/view-book/view-book.component';
+import { ProfileComponent } from '../component/profile/profile.component';
 
 
 export const routes: Routes = [
@@ -12,5 +13,6 @@ export const routes: Routes = [
     {path:'login',component:LoginComponent},
     {path:'register',component:RegisterComponent},
     {path:'home',component:NavbarComponent},
-    {path:'viewbook/:isbn',component:ViewBookComponent}
+    {path:'viewbook/:isbn',component:ViewBookComponent},
+    {path:'profile',component:ProfileComponent}
 ];

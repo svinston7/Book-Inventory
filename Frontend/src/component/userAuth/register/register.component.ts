@@ -19,6 +19,7 @@ export class RegisterComponent {
   constructor(private authService: AuthService) {}
 
   user: User = {
+    userId:0,
     firstName: '',
     lastName: '',
     phoneNumber: '',

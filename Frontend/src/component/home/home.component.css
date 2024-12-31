@@ -1,13 +1,177 @@
-.dot {
-    height: 60px;
-    width: 60px;
-    background-color: #bbb;
-    border-radius: 60%;
-    display: inline-block;
+
+/* General Header Styles */
+header {
+    margin-bottom: 5rem;
   }
-.dot:hover{
-    background-color: aquamarine;
-}
-.cart{
-    background-color: beige;
-}
+  
+  .navbar {
+    background-color: #f8f9fa; /* Light background for navbar */
+    z-index: 1050; /* Ensure it is on top of other elements */
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color:bl;
+  }
+  
+  .navbar-toggler {
+    border: none;
+  }
+  
+  .navbar-toggler-icon {
+    filter: invert(50%);
+  }
+  
+  .navbar .form-control {
+    width: 400px;
+  }
+  
+  .navbar .btn {
+    margin-left: 0.5rem;
+  }
+  
+  /* Menu Offcanvas */
+  .offcanvas {
+    color:#f8f9fa;
+    background-color: #343a40; /* Dark background for offcanvas */
+  }
+  
+  .offcanvas .offcanvas-header {
+    
+    border-bottom: 1px solid #6c757d;
+  }
+  
+  .offcanvas .offcanvas-title {
+    color: #f8f9fa;
+    font-weight: bold;
+  }
+  
+  .offcanvas .btn-close {
+    filter: invert(100%);
+  }
+  
+  .offcanvas .list-group-item {
+    color:#f8f9fa;
+    background-color: #343a40;
+    border-color: #6c757d;
+  }
+  
+  .offcanvas .list-group-item a {
+    color: #f8f9fa;
+    text-decoration: none;
+  }
+  
+  .offcanvas .list-group-item a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Filter Offcanvas */
+  #offcanvasScrolling .offcanvas-header {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #offcanvasScrolling .offcanvas-title {
+   
+    font-weight: bold;
+  }
+  
+  #offcanvasScrolling .list-group-item {
+    border: none;
+  }
+  
+  #offcanvasScrolling .form-check-label {
+    margin-left: 0.5rem;
+  }
+  
+  #offcanvasScrolling .btn-primary {
+    background-color: purple;
+    border-color: purple;
+  }
+  
+  /* Icons */
+  .fa-cart-shopping,
+  .fa-user {
+    font-size: 1.25rem;
+    padding: 10px;
+    background-color: purple;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .fa-cart-shopping:hover,
+  .fa-user:hover {
+    background-color: #6f42c1;
+  }
+  
+  .fa-user {
+    margin-right: 0.5rem;
+  }
+  
+  .dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropdown-item i {
+    margin-right: 0.5rem;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* Buttons */
+  button[data-bs-toggle="offcanvas"] {
+    color: #6c757d;
+  }
+  
+  button[data-bs-toggle="offcanvas"]:hover {
+    color:white;
+  }
+  
+  .btn-outline-success {
+    border-color: green;
+  }
+  
+  .btn-outline-success:hover {
+    background-color: green;
+    color: white;
+  }
+  
+  /* Tooltip */
+  [data-bs-toggle="tooltip"] {
+    position: relative;
+  }
+  
+  [data-bs-toggle="tooltip"]:hover::after {
+    content: attr(data-bs-title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .navbar .form-control {
+      width: 100%;
+    }
+  
+    .navbar .btn {
+      margin-top: 0.5rem;
+      margin-left: 0;
+    }
+  }
+  
