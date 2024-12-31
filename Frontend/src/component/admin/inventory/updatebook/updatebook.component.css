@@ -1,0 +1,101 @@
+/* Container for the update book form */
+.update-book-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+/* Header styling */
+.update-book-container h2 {
+  text-align: center;
+  color: #333;
+}
+
+/* Styling for the form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Form group styling */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+/* Label styling */
+label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Input field styling */
+input.form-control, select.form-control {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+input.form-control:focus, select.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Button styling */
+button.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Disabled button styling */
+button.btn:disabled {
+  background-color: #c0c0c0;
+  cursor: not-allowed;
+}
+
+/* Alert for inventory not found */
+.alert {
+  padding: 15px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Responsive design: form fields should take full width on smaller screens */
+@media (max-width: 768px) {
+  .update-book-container {
+    padding: 15px;
+    margin: 10px;
+  }
+  
+  form {
+    gap: 10px;
+  }
+
+  input.form-control, select.form-control {
+    font-size: 14px;
+  }
+
+  button.btn {
+    font-size: 14px;
+  }
+}

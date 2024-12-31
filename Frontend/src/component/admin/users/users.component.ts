@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../model/User';
 import { UserService } from '../../../service/service/user.service';
+import { FormsModule } from '@angular/forms';
 
   // Adjust path as needed
 
 @Component({
   selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  standalone: true, 
+  imports:[FormsModule],
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css']
 })
 export class UserComponent implements OnInit {
 

@@ -1,6 +1,7 @@
 .admin-container {
     display: flex;
     height: 100vh;
+    flex-direction: row;
 }
 
 .sidebar {
@@ -8,6 +9,11 @@
     background-color: #2c3e50;
     color: white;
     padding: 20px;
+    position: fixed;  /* Fixed position for the sidebar */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;  /* Ensure it's above other content */
 }
 
 .sidebar h2 {
@@ -35,19 +41,33 @@
 
 .content {
     flex-grow: 1;
+    margin-left: 250px; /* Space for sidebar */
     padding: 20px;
+    transition: margin-left 0.3s ease;  /* Smooth transition for responsiveness */
 }
 
-button {
-    margin: 10px 0;
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .admin-container {
+        flex-direction: column;
+    }
 
-button:hover {
-    background-color: #2980b9;
+    .sidebar {
+        position: absolute;
+        left: -250px; /* Initially hidden */
+        width: 100%;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.open {
+        left: 0; /* Show sidebar on mobile when open */
+    }
+
+    .content {
+        margin-left: 0; /* Content full width */
+    }
+
+    .sidebar ul li {
+        text-align: center;
+    }
 }

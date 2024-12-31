@@ -1,19 +1,177 @@
 <div class="admin-container">
-    <aside class="sidebar">
-      <h2>Admin Panel</h2>
-      <nav>
-        <ul>
-          <li routerLinkActive="active" [routerLink]="['/admin/dashboard']">Dashboard</li>
-          <li routerLinkActive="active" [routerLink]="['/admin/inventory']">Manage Inventory</li>
-          <li routerLinkActive="active" [routerLink]="['/admin/users']">Manage Users</li>
-          <li routerLinkActive="active" [routerLink]="['/admin/roles']">Manage Roles</li>
-          <li routerLinkActive="active" [routerLink]="['/admin/reports']">Reports</li>
-          <li (click)="logout()">Logout</li>
-        </ul>
-      </nav>
+    <!-- Sidebar -->
+    <aside class="sidebar" [ngClass]="{'open': isSidebarOpen}">
+        <!-- Hamburger Button (for mobile) -->
+        <button class="toggle-sidebar" (click)="toggleSidebar()">☰</button>
+
+        <!-- Sidebar Content -->
+        <div *ngIf="isSidebarOpen" class="sidebar-content">
+            <h2>Admin Panel</h2>
+            <nav>
+                <ul>
+                    <li routerLinkActive="active" [routerLink]="['/admin/dashboard']">Dashboard</li>
+                    <li routerLinkActive="active" [routerLink]="['/admin/inventory']">Manage Inventory</li>
+                    <li routerLinkActive="active" [routerLink]="['/admin/users']">Manage Users</li>
+                    <li routerLinkActive="active" [routerLink]="['/admin/roles']">Manage Roles</li>
+                    <li routerLinkActive="active" [routerLink]="['/admin/categories']">Manage Categories</li>
+                    <li routerLinkActive="active" [routerLink]="['/admin/publishers']">Manage Publishers</li>
+                    <li routerLinkActive="active" [routerLink]="['/admin/purchaselog']">Purchase Log</li>
+                    <li routerLinkActive="active" [routerLink]="['/admin/bookcondition']">Book Conditions</li>
+                    <li (click)="logout()">Logout</li>
+                </ul>
+            </nav>
+        </div>
     </aside>
 
+    <!-- Main Content Area -->
     <main class="content">
-      <router-outlet></router-outlet>
+        <!-- Centered Admin Panel Title -->
+        <h1 class="centered-title">Admin Panel </h1>
+
+        <!-- Tables for Admin Management -->
+        <section class="tables-section">
+            <div class="table-card">
+                <h3>User Management</h3>
+                <p>Manage admin login and user details</p>
+                <button class="btn btn-primary" [routerLink]="['/admin/users']">Go to Users</button>
+            </div>
+
+            <div class="table-card">
+                <h3>PermRole Management</h3>
+                <p>Check and assign admin roles</p>
+                <button class="btn btn-primary" [routerLink]="['/admin/roles']">Go to Roles</button>
+            </div>
+
+            <div class="table-card">
+                <h3>Inventory Management</h3>
+                <p>Manage books in the inventory</p>
+                <button class="btn btn-primary" [routerLink]="['/admin/inventory']">Go to Inventory</button>
+            </div>
+
+            <div class="table-card">
+                <h3>Book Management</h3>
+                <p>Manage book details</p>
+                <button class="btn btn-primary" [routerLink]="['/admin/books']">Go to Books</button>
+            </div>
+
+            <div class="table-card">
+                <h3>Category Management</h3>
+                <p>Manage book categories</p>
+                <button class="btn btn-primary" [routerLink]="['/admin/categories']">Go to Categories</button>
+            </div>
+
+            <div class="table-card">
+                <h3>Publisher Management</h3>
+                <p>Manage publisher information</p>
+                <button class="btn btn-primary" [routerLink]="['/admin/publishers']">Go to Publishers</button>
+            </div>
+
+            <div class="table-card">
+                <h3>Purchase Log</h3>
+                <p>Track book sales and purchases</p>
+                <button class="btn btn-primary" [routerLink]="['/admin/purchaselog']">Go to Purchase Log</button>
+            </div>
+
+            <div class="table-card">
+                <h3>Book Conditions</h3>
+                <p>Manage book conditions (new, used, etc.)</p>
+                <button class="btn btn-primary" [routerLink]="['/admin/bookcondition']">Go to Book Conditions</button>
+            </div>
+        </section>
     </main>
 </div>
+
+<!-- Inline CSS -->
+<style>
+    /* Sidebar Styling */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px; /* Initially hidden */
+        width: 250px;
+        height: 100%;
+        background-color: #333;
+        transition: left 0.3s;
+        padding-top: 20px;
+    }
+
+    .sidebar.open {
+        left: 0; /* Show when the menu is open */
+    }
+
+    .sidebar-content {
+        padding: 20px;
+        color: white;
+    }
+
+    .toggle-sidebar {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 30px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+
+    /* Main content */
+    .content {
+        margin-left: 0;
+        padding: 20px;
+        transition: margin-left 0.3s;
+    }
+
+    /* When the sidebar is open, push content to the right */
+    .sidebar.open ~ .content {
+        margin-left: 250px;
+    }
+
+    /* Centered Title */
+    .centered-title {
+        text-align: center;
+        font-size: 2em;
+        margin: 20px 0;
+    }
+
+    /* Table Cards */
+    .tables-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px; /* Ensures spacing between cards */
+        justify-content: center; /* Centers the cards horizontally */
+    }
+
+    .table-card {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        width: calc(50% - 30px); /* Ensures two columns with even spacing */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin-bottom: 20px; /* Adds space at the bottom of each card */
+    }
+
+    .table-card h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .table-card p {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .table-card .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .table-card .btn:hover {
+        background-color: #0056b3;
+    }
+</style>

@@ -8,16 +8,37 @@ import { AuthorViewComponent } from '../component/author-view/author-view.compon
 import { PurchaseLogComponent } from '../component/admin/purchaselog/purchaselog.component';
 import { RoleComponent } from '../component/admin/roles/roles.component';
 import { UserComponent } from '../component/admin/users/users.component';
-
+import { InventoryComponent } from '../component/admin/inventory/inventory.component';
+import { AddbookComponent } from '../component/admin/addbook/addbook.component';
+import { UpdateBookComponent } from '../component/admin/updatebook/updatebook.component';
+import { DashboardComponent } from '../component/admin/dashboard/dashboard.component';
 
 export const routes: Routes = [
-    {path:'',component:IndexComponent},
-    {path:'login',component:LoginComponent},
-    {path:'register',component:RegisterComponent},
-    {path:'home',component:NavbarComponent},
-    {path:'viewbook/:isbn',component:ViewBookComponent},
-    {path:'authors',component:AuthorViewComponent},
-    { path: 'purchase-log', component: PurchaseLogComponent },
-    { path: 'roles', component: RoleComponent },
-    { path: 'user', component: UserComponent }
-];
+    { path: '', component: IndexComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'home', component: NavbarComponent },
+    { path: 'viewbook/:isbn', component: ViewBookComponent },
+    { path: 'authors', component: AuthorViewComponent },
+  
+    // Admin Routes with /admin prefix
+    {
+      path: 'admin',
+      children: [
+        { path: 'dashboard', component: DashboardComponent },
+        { path: 'inventory', component: InventoryComponent, children: [
+            { path: 'add', component: AddbookComponent },
+            { path: 'update/:id', component: UpdateBookComponent },
+          ]
+        },
+        { path: 'users', component: UserComponent },
+        { path: 'roles', component: RoleComponent },
+        { path: 'reports', component: PurchaseLogComponent },
+        { path: 'book', component: BookComponent },
+        { path: 'category', component: CategoryComponent },
+        { path: 'publisher', component: PublisherComponent },
+        { path: 'purchaseLog', component: PurchaseLogComponent },
+        { path: 'bookCondition', component: BookConditionComponent },
+      ]
+    },
+  ];

@@ -6,8 +6,8 @@ import { RoleService } from '../../../service/service/role.service';
 
 @Component({
   selector: 'app-role',
-  templateUrl: './role.component.html',
-  styleUrls: ['./role.component.css']
+  templateUrl: './roles.component.html',
+  styleUrls: ['./roles.component.css']
 })
 export class RoleComponent implements OnInit {
 
@@ -65,6 +65,10 @@ export class RoleComponent implements OnInit {
       }
     );
   }
+  editRole(selectedRole: any) {
+    this.role = { ...selectedRole };  // Spread operation here
+  }
+  
 
   // Delete a role
   deleteRole(roleId: number): void {

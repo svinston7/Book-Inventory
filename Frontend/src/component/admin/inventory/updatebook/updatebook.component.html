@@ -1,0 +1,69 @@
+<div class="update-book-container">
+    <h2>Update Book Inventory</h2>
+    
+    <!-- If the selected inventory is not available, show an error message -->
+    <div *ngIf="!selectedInventory" class="alert alert-danger">
+      Inventory not found.
+    </div>
+  
+    <!-- If selectedInventory exists, display the form -->
+    <div *ngIf="selectedInventory">
+      <form (ngSubmit)="updateInventory()" #updateForm="ngForm">
+        <div class="form-group">
+          <label for="isbn">ISBN</label>
+          <input 
+            type="text" 
+            id="isbn" 
+            class="form-control" 
+            [(ngModel)]="selectedInventory.isbn" 
+            name="isbn" 
+            required 
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="ranks">Ranks</label>
+          <input 
+            type="number" 
+            id="ranks" 
+            class="form-control" 
+            [(ngModel)]="selectedInventory.ranks" 
+            name="ranks" 
+            required
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="purchased">Purchased</label>
+          <select 
+            id="purchased" 
+            class="form-control" 
+            [(ngModel)]="selectedInventory.purchased" 
+            name="purchased"
+            required
+          >
+            <option [ngValue]="true">Yes</option>
+            <option [ngValue]="false">No</option>
+          </select>
+        </div>
+  
+        <!-- Book details section, can be expanded later -->
+        <div class="form-group">
+          <label for="book">Book</label>
+          <input 
+            type="text" 
+            id="book" 
+            class="form-control" 
+            [(ngModel)]="selectedInventory.book?.title" 
+            name="book" 
+            readonly
+          />
+        </div>
+  
+        <button type="submit" class="btn btn-primary" [disabled]="!updateForm.form.valid">
+          Update Inventory
+        </button>
+      </form>
+    </div>
+  </div>
+  

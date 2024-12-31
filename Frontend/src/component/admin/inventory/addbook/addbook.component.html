@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>Add New Inventory</h2>
+    <form (ngSubmit)="addInventory()">
+      <div class="form-group">
+        <label for="isbn">ISBN:</label>
+        <input type="text" id="isbn" [(ngModel)]="newInventory.isbn" name="isbn" class="form-control" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="ranks">Ranks:</label>
+        <input type="number" id="ranks" [(ngModel)]="newInventory.ranks" name="ranks" class="form-control" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="purchased">Purchased:</label>
+        <input type="checkbox" id="purchased" [(ngModel)]="newInventory.purchased" name="purchased" />
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Add Inventory</button>
+    </form>
+  </div>
+  

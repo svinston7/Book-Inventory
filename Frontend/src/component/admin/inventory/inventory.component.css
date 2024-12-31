@@ -1,0 +1,55 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .add-inventory-form, .search-inventory, .inventory-list {
+    margin-bottom: 30px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  h3 {
+    margin-top: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  input[type="text"], input[type="number"], input[type="checkbox"] {
+    width: 100%;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
+  .table th, .table td {
+    text-align: center;
+  }
+  
+  .inventory-details {
+    margin-top: 20px;
+  }
+  
+  .inventory-details p {
+    margin: 5px 0;
+  }
+  
+  .inventory-list table {
+    width: 100%;
+  }
+  
+  .inventory-list .btn {
+    margin: 5px;
+  }
+  
+  hr {
+    border-top: 1px solid #ccc;
+    margin: 30px 0;
+  }
+  

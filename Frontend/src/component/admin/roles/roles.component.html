@@ -1,4 +1,4 @@
-<div class="role-container">
+<div class="roles-container">
     <h2>Manage Roles</h2>
   
     <!-- Success and Error Messages -->
@@ -41,7 +41,8 @@
           <td>{{ role.roleName }}</td>
           <td>{{ role.roleDescription }}</td>
           <td>
-            <button (click)="role = { ...role }" class="btn btn-warning">Edit</button>
+            <button (click)="editRole(role)" class="btn btn-warning">Edit</button>
+
             <button (click)="deleteRole(role.roleId)" class="btn btn-danger">Delete</button>
           </td>
         </tr>

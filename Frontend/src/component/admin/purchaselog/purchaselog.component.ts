@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 import { PurchaseLog } from '../../../model/PurchaseLog';
 import { PurchaseLogService } from '../../../service/service/purchaselog.service';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-purchase-log',
-  templateUrl: './purchase-log.component.html',
-  styleUrls: ['./purchase-log.component.css']
+  imports:[FormsModule],
+  templateUrl: './purchaselog.component.html',
+  styleUrls: ['./purchaselog.component.css']
 })
 export class PurchaseLogComponent implements OnInit {
 

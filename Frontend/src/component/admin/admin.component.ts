@@ -10,11 +10,15 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent {
   currentPage: string = 'dashboard';
-
+  isSidebarOpen: boolean = false; 
   constructor(private router: Router) {}
 
   navigate(page: string): void {
     this.currentPage = page;
+  }
+  // Toggle sidebar visibility
+  toggleSidebar(): void {
+    this.isSidebarOpen = !this.isSidebarOpen;
   }
 
   logout(): void {
