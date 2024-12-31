@@ -1,26 +1,6 @@
 <app-home></app-home>
+
 <div class="admin-container">
-    <!-- Sidebar -->
-    <aside class="sidebar" [ngClass]="{'open': isSidebarOpen}">
-        <!-- Hamburger Button (for mobile) -->
-        <button class="toggle-sidebar" (click)="toggleSidebar()">☰</button>
- 
-        <!-- Sidebar Content -->
-        <div  class="sidebar-content">
-            <h2>Admin Panel</h2>
-            <nav>
-                <ul>
-                    <li><a href="/admin/inventory"  [routerLink]="['/admin/inventory']">Manage Inventory</a></li>
-                    <li></li>
-                    <li><a href="/admin/roles" [routerLink]="['/admin/roles']">Manage Roles</a></li>
-                    <li><a href="/admin/categories"  [routerLink]="['/admin/categories']">Manage Categories</a></li>
-                    <li><a href="/admin/publishers"  [routerLink]="['/admin/publishers']">Manage Publishers</a></li>
-                    <li><a href="/admin/purchaselog"  [routerLink]="['/admin/purchaselog']">Purchase Log</a></li>
-                    <li><a href="/admin/bookcondition"  [routerLink]="['/admin/bookcondition']">Book Conditions</a></li>
-                </ul>
-            </nav>
-        </div>
-    </aside>
  
     <!-- Main Content Area -->
     <main class="content">
@@ -38,7 +18,7 @@
             <div class="table-card">
                 <h3>PermRole Management</h3>
                 <p>Check and assign admin roles</p>
-                <button class="btn btn-primary" [routerLink]="['/admin/roles']">Go to Roles</button>
+                <a class="btn btn-primary" href="admin-role"> Go to Roles</a>
             </div>
  
             <div class="table-card">
