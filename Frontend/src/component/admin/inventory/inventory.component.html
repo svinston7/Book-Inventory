@@ -1,0 +1,12 @@
+<h2>Inventory Management</h2>
+<button (click)="addBook()">Add Book</button>
+<table>
+  <tr *ngFor="let book of books">
+    <td>{{ book.title }}</td>
+    <td>{{ book.author }}</td>
+    <td>
+      <button (click)="editBook(book)">Edit</button>
+      <button (click)="deleteBook(book.id)">Delete</button>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,51 @@
+<div class="role-container">
+    <h2>Manage Roles</h2>
+  
+    <!-- Success and Error Messages -->
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Add/Update Role Form -->
+    <form (ngSubmit)="role.roleId ? updateRole() : addRole()">
+      <div class="form-group">
+        <label for="roleName">Role Name</label>
+        <input type="text" id="roleName" [(ngModel)]="role.roleName" name="roleName" required class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="roleDescription">Role Description</label>
+        <input type="text" id="roleDescription" [(ngModel)]="role.roleDescription" name="roleDescription" required class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">
+        {{ role.roleId ? 'Update Role' : 'Add Role' }}
+      </button>
+    </form>
+  
+    <!-- Role List -->
+    <h3>Existing Roles</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Role ID</th>
+          <th>Role Name</th>
+          <th>Role Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let role of roles">
+          <td>{{ role.roleId }}</td>
+          <td>{{ role.roleName }}</td>
+          <td>{{ role.roleDescription }}</td>
+          <td>
+            <button (click)="role = { ...role }" class="btn btn-warning">Edit</button>
+            <button (click)="deleteRole(role.roleId)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

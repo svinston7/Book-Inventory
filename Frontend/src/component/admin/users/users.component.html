@@ -1,0 +1,59 @@
+<div class="user-container">
+    <h2>User Registration</h2>
+    <form (ngSubmit)="register()">
+      <div class="form-group">
+        <label for="userName">Username</label>
+        <input type="text" id="userName" [(ngModel)]="user.userName" name="userName" required class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" [(ngModel)]="user.password" name="password" required class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+  
+    <!-- Success and Error Messages -->
+    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  
+    <h2>User Login</h2>
+    <form (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="loginUserName">Username</label>
+        <input type="text" id="loginUserName" [(ngModel)]="loginData.userName" name="loginUserName" required class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" [(ngModel)]="loginData.password" name="loginPassword" required class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <div *ngIf="loginMessage" class="alert alert-success">{{ loginMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  
+    <h2>Update User Info</h2>
+    <form (ngSubmit)="updateFirstName()">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" [(ngModel)]="user.firstName" name="firstName" required class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Update First Name</button>
+    </form>
+  
+    <form (ngSubmit)="updateLastName()">
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" [(ngModel)]="user.lastName" name="lastName" required class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Update Last Name</button>
+    </form>
+  
+    <form (ngSubmit)="updatePhoneNumber()">
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" id="phoneNumber" [(ngModel)]="user.phoneNumber" name="phoneNumber" required class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Update Phone Number</button>
+    </form>
+  </div>
+  
