@@ -18,12 +18,17 @@ export class BookConditionComponent {
 
 invList:Inventory[]=[];
 constructor(private conService:ConditionService,private bookService:ShowAllBooksService){}
-
+index=70;
 ngOnInit(){
   this.conService.getInventory().subscribe((e)=>{
-    this.invList = e;
+    this.invList = e.map((item: any) => ({
+      ...item,
+      
+      book: { title: '', isbn: '' }, // Default values
+      condition: { description: '', fullDescription: '' }, // Default values
+    }));
 
-    for(let i=0;i<this.invList.length-1;i++){
+    for(let i=0;i<this.invList.length;i++){
       this.bookService.getByISBN(this.invList[i].isbn).subscribe((book:any)=>{
         if(book!=null)
         this.invList[i].book = book

@@ -5,19 +5,26 @@
         <tr>
             <td>Inventory ID</td>
             <td>Book Title</td>
-            <td>Book ISBN</td>
+            <td class="isbn">Book ISBN</td>
             <td>Book Condition</td>
             <td>Description on Condition</td>
+            <td>Availablity</td>
         </tr>
     </thead>
 
     <tbody>
-        <tr *ngFor="let i of invList;let index = index">
-            <td>{{index+1}}</td>
-            <td>{{i.book?.title}}</td>
-            <td>{{i.book?.isbn}}</td>
-            <td>{{i.condition?.description}}</td>
+        <tr *ngFor="let i of invList;let index=index">
+            <td>{{i.inventoryId}}</td>
+            <td>{{i.book.title}}</td>
+            <td>{{i.book.isbn}}</td>
+            <td>{{i.condition.description}}</td>
             <td>{{i.condition.fullDescription}}</td>
+            <td class="text-center">
+                <!-- green tick -->
+                <p *ngIf="!i.purchased" >&#9989;</p> 
+                <!-- red cross -->
+                <p *ngIf="i.purchased">&#10060;</p>
+            </td>
         </tr>
     </tbody>
 </table>
