@@ -1,0 +1,185 @@
+<div class="maincontainer">
+    <div class="container">
+      <h1>Add a Book</h1>
+      <form (ngSubmit)="onSubmit(publishForm)" #publishForm="ngForm">
+        <div class="form-grid">
+          <!-- Left Column -->
+          <div class="left-column">
+            <!-- Publisher Name -->
+            <div>
+              <label for="publisherName">Publisher Name:</label>
+              <input
+                type="text"
+                id="publisherName"
+                name="publisherName"
+                placeholder="Enter publisher's name"
+                required
+                ngModel
+                #publisherName="ngModel"
+              />
+              <div *ngIf="publisherName.invalid && publisherName.touched" class="error">
+                Publisher Name is required.
+              </div>
+            </div>
+  
+            <!-- Publisher ID -->
+            <div>
+              <label for="publisherId">Publisher ID:</label>
+              <input
+                type="number"
+                id="publisherId"
+                name="publisherId"
+                placeholder="Enter publisher ID"
+                required
+                ngModel
+                #publisherId="ngModel"
+              />
+              <div *ngIf="publisherId.invalid && publisherId.touched" class="error">
+                Publisher ID is required.
+              </div>
+            </div>
+  
+            <!-- Email -->
+            <div>
+              <label for="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter publisher's email"
+                required
+                ngModel
+                #email="ngModel"
+              />
+              <div *ngIf="email.invalid && email.touched" class="error">
+                A valid email is required.
+              </div>
+            </div>
+          </div>
+  
+          <!-- Right Column -->
+          <div class="right-column">
+            <!-- Book Title -->
+            <div>
+              <label for="title">Book Title:</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Enter the book title"
+                required
+                ngModel
+                #title="ngModel"
+              />
+              <div *ngIf="title.invalid && title.touched" class="error">
+                Book Title is required.
+              </div>
+            </div>
+  
+            <!-- Edition -->
+            <div>
+              <label for="edition">Edition:</label>
+              <input
+                type="number"
+                id="edition"
+                name="edition"
+                placeholder="Enter the edition number"
+                required
+                ngModel
+                #edition="ngModel"
+              />
+              <div *ngIf="edition.invalid && edition.touched" class="error">
+                Edition is required.
+              </div>
+            </div>
+  
+            <!-- ISBN Number -->
+            <div>
+              <label for="isbn">ISBN :</label>
+              <input
+                type="text"
+                id="isbn"
+                name="isbn"
+                placeholder="Enter the ISBN value"
+                ngModel
+                #isbn="ngModel"
+              />
+              <div *ngIf="isbn.invalid && isbn.touched" class="error">
+                Please enter a valid ISBN value.
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Category Dropdown -->
+        <div>
+          <label for="category">Category:</label>
+          <select
+            id="category"
+            name="category"
+            required
+            ngModel
+            #category="ngModel"
+          >
+            <option value="" disabled selected>
+              Select a category
+            </option>
+            <option value="1">Romance</option>
+            <option value="2">Comics</option>
+            <option value="3">Programming</option>
+            <option value="4">Database</option>
+            <option value="5">Networking</option>
+            <option value="6">Library Science</option>
+            <option value="7">Science</option>
+            <option value="8">Geography</option>
+            <option value="9">Sports</option>
+          </select>
+          <div *ngIf="category.invalid && category.touched" class="error">
+            Please select a category.
+          </div>
+        </div>
+  
+        <!-- Book Description -->
+        <div>
+          <label for="bookDescription">Book Description:</label>
+          <textarea
+            id="bookDescription"
+            name="bookDescription"
+            placeholder="Enter a brief description of the book"
+            required
+            ngModel
+            #bookDescription="ngModel"
+          ></textarea>
+          <div *ngIf="bookDescription.invalid && bookDescription.touched" class="error">
+            Book Description is required.
+          </div>
+        </div>
+  
+        <!-- Book Cover Page (Image URL) -->
+        <div>
+          <label for="image">Book Cover Page (Image URL):</label>
+          <input
+            type="text"
+            id="image"
+            name="image"
+            placeholder="Enter the URL for the book cover image"
+            required
+            ngModel
+            #image="ngModel"
+          />
+          <div *ngIf="image.invalid && image.touched" class="error">
+            Please enter a valid image URL.
+          </div>
+        </div>
+  
+        <!-- Submit Button -->
+        <button type="submit" [disabled]="publishForm.invalid">Submit</button>
+      </form>
+  
+      <!-- Alert Box -->
+      <div *ngIf="isPopupVisible" class="alert-box">
+        {{ popupMessage }}
+      </div>
+    </div>
+  </div>
+  

@@ -232,7 +232,7 @@ header{
     max-width: 800px; /* Optional: Restricts the content width */
     padding: 20px; /* Adds some padding for better spacing */
     background: rgba(255, 255, 255, 0.8); /* Optional: Semi-transparent background */
-    border-radius: 10px; /
+    border-radius: 10px; 
 
     
 }
@@ -390,7 +390,7 @@ header{
 }
 
 .gallery-section .gallery-list .gallery-item{
-    width: calc(100% / 2 -30px);
+    width: calc(100% / 2 - 30px);
 
 }
 
