@@ -26,11 +26,14 @@ export class RegisterComponent {
     password: '',
     terms: false, // Assuming terms is a boolean\
     roleNumber: 3 //default user
+    ,
+    userid: 0
   };
 
   
   registerUser(event: Event, registerForm: any) {
     event.preventDefault();
+
     if (registerForm.valid) {
       
      
@@ -38,6 +41,7 @@ export class RegisterComponent {
         this.popupMessage = 'Your account has been created successfully!🎉';
         this.isPopupVisible=true;
        
+        localStorage.setItem('username',this.user.userName);
 
       },
       (error) => {

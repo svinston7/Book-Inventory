@@ -11,6 +11,10 @@ import { Category } from '../../../model/Category';
 import { ReviewsService } from '../../../service/reviews.service';
 import { Review } from '../../../model/Review';
 import { Reviewer } from '../../../model/Reviewer';
+import { CartService } from '../../../service/cart.service';
+import { response } from 'express';
+import { retry } from 'rxjs';
+import { Cart } from '../../../model/Cart';
 
 @Component({
   selector: 'app-view-book',
@@ -27,7 +31,8 @@ export class ViewBookComponent {
     categoryId: 0,
     edition: '',
     publisherId: 0,
-    image: ''
+    image: '',
+    
   }
   publisher: Publisher={
     publisherId: 0,
@@ -53,15 +58,23 @@ export class ViewBookComponent {
     name: '',
     employedBy: null
   }
-
+  cart:Cart={
+    userName: '',
+    isbn: '',
+   
+  }
   reviewList:Review[]=[]
+ 
+  isPopupVisible = false;
+  popupMessage: string = ''; 
 
   constructor(
     private bookService:ShowAllBooksService,
     private route:ActivatedRoute,
     private publisherService: GetPublisherService,
     private catService:CategoryService,
-    private reviewService:ReviewsService
+    private reviewService:ReviewsService,
+    private cartservice:CartService
     ){}
 
   ngOnInit(){
@@ -114,4 +127,43 @@ export class ViewBookComponent {
     });
   }
 
+  addtocart(isbn:string) {
+    const username = localStorage.getItem("username");
+    if (!username) {
+      console.error("Username not found");
+      return;
+    }
+  
+    // Fetch the user's cart items
+    const cart:Cart={
+      userName: username,
+      isbn: isbn,
+    };
+  
+        // Post each cart item individually
+        this.cartservice.postCart(cart).subscribe({
+          next: (response) => {console.log(`Cart item added successfully:`, response);
+            //window.alert("book added to your cart sucessfully");
+            this.popupMessage = 'Your Book has been sucessfully added to the cart';
+        this.isPopupVisible=true;
+       
+          },
+          error: (err) => console.error(`Error adding cart item:`, err)
+          
+        
+        });
+     
+    }
+  }
+    
+
+ 
+ 
+
+
+
+
+function addtocart(isbn: any, string: any) {
+  throw new Error('Function not implemented.');
 }
+

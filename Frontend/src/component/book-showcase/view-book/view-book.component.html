@@ -24,7 +24,7 @@
 
             </div>
 
-            <button>Add to cart</button>
+            <button class="btn btn-primary"   (click)="addtocart(book.isbn)">Add to cart</button>
         </div>
     </div>
 
@@ -46,4 +46,12 @@
         </div>
     </div>
 </div>
+
+<div *ngIf="isPopupVisible" class="popup-overlay">
+    <div class="popup">
+      <h3 >{{ popupMessage }}</h3>
+      
+      <button class="btn-primary" (click)="isPopupVisible = false">Close</button>
+    </div>
+  </div>
 
