@@ -1,0 +1,76 @@
+<div class="container">
+    <h1>Category Management</h1>
+  
+    <!-- Table to Display Categories -->
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td>{{ category.catId }}</td>
+          <td>
+            <!-- Inline Editing Section -->
+            <div *ngIf="editingCategory === category; else viewMode" class="inline-edit">
+              <input
+                [(ngModel)]="newValues[category.catId]"
+                class="inline-input"
+                placeholder="Enter new description"
+              />
+            </div>
+            <ng-template #viewMode>
+              {{ category.catDescription }}
+            </ng-template>
+          </td>
+          <td>
+            <button
+              *ngIf="editingCategory !== category"
+              class="btn btn-primary"
+              (click)="startEditing(category)"
+            >
+              Edit
+            </button>
+            <div *ngIf="editingCategory === category" class="inline-edit-actions">
+              <button class="btn btn-success" (click)="updateCategory(category.catId)">Save</button>
+              <button class="btn btn-secondary" (click)="cancelEditing()">Cancel</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Section to Add New Category -->
+    <h2>Add New Category</h2>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+  
+    <form (ngSubmit)="addCategory()">
+      <div class="form-group">
+        <label for="catId">ID</label>
+        <input
+          id="catId"
+          [(ngModel)]="newCategory.catId"
+          name="catId"
+          class="form-control"
+          type="number"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="catDescription">Description</label>
+        <input
+          id="catDescription"
+          [(ngModel)]="newCategory.catDescription"
+          name="catDescription"
+          class="form-control"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Add Category</button>
+    </form>
+  </div>
+  
