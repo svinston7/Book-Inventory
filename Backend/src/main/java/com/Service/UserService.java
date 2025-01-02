@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.model.PermRole;
 import com.model.User;
+import com.dao.PermRoleDAO;
 import com.dao.UserDAO;
 
 
@@ -25,6 +26,9 @@ public class UserService {
 	private  AuthenticationManager authenticationManager;
 	@Autowired
 	private  JwtService jwtService;
+	
+	@Autowired
+	private PermRoleDAO roleDao;
 	
 	
 	public User register(User user) {
@@ -72,8 +76,9 @@ public class UserService {
 		user.setPhoneNumber(phoneNumber);	
 		userRepository.save(user);}
 	
-	public void updateRole(int userId,PermRole role) {
+	public void updateRole(int userId,int roleNumber) {
 		User user=userRepository.findById(userId).orElse(null);
+		PermRole role = roleDao.findById(roleNumber).orElse(null);
 		user.setRole(role);
 		userRepository.save(user);}
 

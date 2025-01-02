@@ -77,8 +77,8 @@ public class UserController {
 	        
 	    }
 	 @PutMapping("/update/role/{userId}")
-	 public void updateRole(@PathVariable int userId,@RequestBody PermRole roleNumber)throws InvalidInputException, ResourceNotFoundException  {
-		 userService.updateRole(userId, roleNumber);userService.updateRole(userId,roleNumber);
+	 public void updateRole(@PathVariable int userId,@RequestBody int roleNumber)throws InvalidInputException, ResourceNotFoundException  {
+		 userService.updateRole(userId, roleNumber);
 	 }
 	
 	 @PutMapping("/update/firstname/{userId}")
