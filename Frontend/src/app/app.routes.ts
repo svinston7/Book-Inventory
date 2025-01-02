@@ -17,6 +17,7 @@ import { ShoppingcartComponent } from '../component/shoppingcart/shoppingcart.co
 import { AdminBookComponent } from '../component/admin/admin-book/admin-book.component';
 import { PermroleComponent } from '../component/admin/permrole/permrole.component';
 import { AdminAuthorComponent } from '../component/admin/admin-author/admin-author.component';
+import { AdminCategoryComponent } from '../component/admin/admin-category/admin-category.component';
 
 
 
@@ -36,7 +37,7 @@ export const routes: Routes = [
     {path:'shoppingcart',component:ShoppingcartComponent},
     {path:'admin-role',component:PermroleComponent},
     {path:'admin-author',component:AdminAuthorComponent},
-
+{path:'admin-category',component:AdminCategoryComponent}
     // { path: '**', redirectTo: '/login' }
   
 ];
