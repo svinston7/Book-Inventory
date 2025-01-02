@@ -3,16 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { error } from 'console';
+import { HomeComponent } from '../../home/home.component';
+
 
 @Component({
   selector: 'app-admin-author',
-  imports: [CommonModule,FormsModule],
-
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-admin-author',
-  imports: [],
+  imports: [CommonModule,FormsModule,HomeComponent],
   templateUrl: './admin-author.component.html',
   styleUrl: './admin-author.component.css'
 })

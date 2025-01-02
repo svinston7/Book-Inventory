@@ -5,10 +5,11 @@ import { FormsModule, ɵInternalFormsSharedModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../../model/User';
 import { HttpHeaders } from '@angular/common/http';
+import { HomeComponent } from '../../home/home.component';
 
 @Component({
   selector: 'app-permrole',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,HomeComponent],
   templateUrl: './permrole.component.html',
   styleUrl: './permrole.component.css'
 })

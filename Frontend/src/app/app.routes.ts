@@ -15,6 +15,7 @@ import { AdminComponent } from '../component/admin/admin.component';
 import { AuthGuard } from '../guard/auth.guard';
 import { ShoppingcartComponent } from '../component/shoppingcart/shoppingcart.component';
 import { PermroleComponent } from '../component/admin/permrole/permrole.component';
+import { AdminAuthorComponent } from '../component/admin/admin-author/admin-author.component';
 
 
 
@@ -31,7 +32,8 @@ export const routes: Routes = [
     {path:'addbook',component:PublisherComponent,canActivate:[AuthGuard]},  
     {path:'admin',component:AdminComponent,canActivate:[AuthGuard]},
     {path:'shoppingcart',component:ShoppingcartComponent},
-    {path:'admin-role',component:PermroleComponent}
+    {path:'admin-role',component:PermroleComponent},
+    {path:'admin-author',component:AdminAuthorComponent},
 
     // { path: '**', redirectTo: '/login' }
   
