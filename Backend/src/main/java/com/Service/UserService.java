@@ -74,10 +74,15 @@ public class UserService {
 	public void updateRole(int userId,int role) {
 		User user=userRepository.findById(userId).orElse(null);
 		user.setRoleNumber(role);
-		userRepository.save(user);}
+		userRepository.save(user);
+	}
 
 	public User findByUserName(String username) {
 		return userRepository.findByUserName(username);
+	}
+
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
 	}
 		
 }

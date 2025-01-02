@@ -1,17 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  private searchQuerySubject = new BehaviorSubject<string>('');
+searchQuery$ = this.searchQuerySubject.asObservable();
+  setSearchQuery(query: string) {
+    this.searchQuerySubject.next(query);
+  }
+  
   constructor(private httpClient:HttpClient) { }
 
   RESTURL:string = "http://localhost:9090/api/user/";
 
   isAuthenticated= false;
+   // Get all users
+   getAllUsers(headers: unknown): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.RESTURL}all`);
+  }
   
   register(user:any):Observable<any>{
     return this.httpClient.post(this.RESTURL+"register",user,{
@@ -49,5 +58,9 @@ export class AuthService {
 
   updatePhoneNumber(userId: number, phoneNumber: string): Observable<any> {
     return this.httpClient.put(`${this.RESTURL}update/phonenumber/${userId}`, phoneNumber);
+  }
+
+  updateRole(userId: number, role: number): Observable<any>{
+    return this.httpClient.put(`${this.RESTURL}update/role/${userId}`, role,{responseType:'json'});
   }
 }
