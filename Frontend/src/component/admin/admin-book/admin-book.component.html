@@ -1,1 +1,40 @@
-<p>admin-book works!</p>
+<div class="container">
+  <h2>Books</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ISBN</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Edition</th>
+        <th>Category ID</th>
+        <th>Publisher ID</th>
+        <th>Image</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{ book.isbn }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.description }}</td>
+        <td>{{ book.edition }}</td>
+        <td>{{ book.categoryId }}</td>
+        <td>{{ book.publisherId }}</td>
+        <td>
+          <img [src]="book.image" alt="Book Image" width="50">
+        </td>
+        <td>
+          <!-- Form for editing the entire book -->
+          <input [(ngModel)]="book.title" placeholder="New title" />
+          <input [(ngModel)]="book.description" placeholder="New description" />
+          <input [(ngModel)]="book.edition" placeholder="New edition" />
+          <input [(ngModel)]="book.categoryId" placeholder="New category ID" />
+          <input [(ngModel)]="book.publisherId" placeholder="New publisher ID" />
+          <input [(ngModel)]="book.image" placeholder="New image URL" />
+          <button (click)="updateBook(book.isbn)" class="btn btn-success">Update</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
