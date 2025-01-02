@@ -1,0 +1,54 @@
+<div class="search-container">
+  <form action="/action_page.php">
+    <input type="text" placeholder="Filter by Username" #filter>
+    <button class="primary" type="button" (click)="filterUsers(filter.value)">Search</button>
+  </form>
+</div>
+
+
+<div *ngIf="isLoading">Loading users...</div>
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Phone Number</th>
+      <th>Username</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of filteredUsers">
+      <td>{{ user.userId }}</td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.phoneNumber }}</td>
+      <td>{{ user.userName }}</td>
+      <td>
+        <!-- Role select when in edit mode -->
+        <ng-container *ngIf="isEditing && selectedRoleMap[user.userId] !== undefined; else displayRole">
+          <select [(ngModel)]="selectedRoleMap[user.userId]" name="role" (change)="updateRole(user.userId, selectedRoleMap[user.userId] || 0)">
+            <option value="3">User</option>
+            <option value="4">Admin</option>
+          </select>
+        </ng-container>
+        <ng-template #displayRole>
+          {{ user.role.roleNumber === 0 ? 'User' : 'Admin' }}
+        </ng-template>
+      </td>
+      
+      <td>
+        <!-- Edit button to toggle edit mode for this user -->
+        <button (click)="toggleEditMode(user)">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="filteredUsers.length === 0 && !isLoading">
+  No users found.
+</div>

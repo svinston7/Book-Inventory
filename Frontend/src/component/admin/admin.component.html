@@ -1,26 +1,7 @@
 <app-home></app-home>
+
 <div class="admin-container">
-    <!-- Sidebar -->
-    <aside class="sidebar" [ngClass]="{'open': isSidebarOpen}">
-        <!-- Hamburger Button (for mobile) -->
-        <button class="toggle-sidebar" (click)="toggleSidebar()">☰</button>
- 
-        <!-- Sidebar Content -->
-        <div  class="sidebar-content">
-            <h2>Admin Panel</h2>
-            <nav>
-                <ul>
-                    <li><a href="/admin/inventory"  [routerLink]="['/admin/inventory']">Manage Inventory</a></li>
-                    <li></li>
-                    <li><a href="/admin/roles" [routerLink]="['/admin/roles']">Manage Roles</a></li>
-                    <li><a href="/admin/categories"  [routerLink]="['/admin/categories']">Manage Categories</a></li>
-                    <li><a href="/admin/publishers"  [routerLink]="['/admin/publishers']">Manage Publishers</a></li>
-                    <li><a href="/admin/purchaselog"  [routerLink]="['/admin/purchaselog']">Purchase Log</a></li>
-                    <li><a href="/admin/bookcondition"  [routerLink]="['/admin/bookcondition']">Book Conditions</a></li>
-                </ul>
-            </nav>
-        </div>
-    </aside>
+
  
     <!-- Main Content Area -->
     <main class="content">
@@ -29,52 +10,48 @@
  
         <!-- Tables for Admin Management -->
         <section class="tables-section">
-            <div class="table-card">
-                <h3>User Management</h3>
-                <p>Manage admin login and user details</p>
-                <a class="btn btn-primary" href="/admin-users" >Manage Users</a>
-            </div>
+            
  
             <div class="table-card">
-                <h3>PermRole Management</h3>
+                <h3>Role Management</h3>
                 <p>Check and assign admin roles</p>
-                <button class="btn btn-primary" [routerLink]="['/admin/roles']">Go to Roles</button>
+                <a class="btn btn-primary" href="/admin-role"> Go to Roles</a>
             </div>
  
             <div class="table-card">
                 <h3>Inventory Management</h3>
                 <p>Manage books in the inventory</p>
-                <button class="btn btn-primary" [routerLink]="['/admin/inventory']">Go to Inventory</button>
+                <a class="btn btn-primary" href="/admin-inventory" [routerLink]="['/admin-inventory']">Go to Inventory</a>
             </div>
  
             <div class="table-card">
                 <h3>Book Management</h3>
                 <p>Manage book details</p>
-                <button class="btn btn-primary" [routerLink]="['/admin/books']">Go to Books</button>
+                <a class="btn btn-primary" href="/admin-books" [routerLink]="['/admin-books']">Go to Books</a>
             </div>
  
             <div class="table-card">
                 <h3>Category Management</h3>
                 <p>Manage book categories</p>
-                <button class="btn btn-primary" [routerLink]="['/admin/categories']">Go to Categories</button>
+                <a class="btn btn-primary" href="/admin-category" [routerLink]="['/admin/categories']">Go to Categories</a>
             </div>
  
             <div class="table-card">
                 <h3>Publisher Management</h3>
                 <p>Manage publisher information</p>
-                <button class="btn btn-primary" [routerLink]="['/admin/publishers']">Go to Publishers</button>
+                <a class="btn btn-primary" href="/admin-publisher" [routerLink]="['/admin/publishers']">Go to Publishers</a>
             </div>
  
             <div class="table-card">
                 <h3>Purchase Log</h3>
                 <p>Track book sales and purchases</p>
-                <button class="btn btn-primary" [routerLink]="['/admin/purchaselog']">Go to Purchase Log</button>
+                <a class="btn btn-primary" href="/admin-purchaselog" [routerLink]="['/admin/purchaselog']">Go to Purchase Log</a>
             </div>
  
             <div class="table-card">
                 <h3>Book Conditions</h3>
                 <p>Manage book conditions (new, used, etc.)</p>
-                <button class="btn btn-primary" [routerLink]="['/admin/bookcondition']">Go to Book Conditions</button>
+                <a class="btn btn-primary" href="/admin-condition" [routerLink]="['/admin/bookcondition']">Go to Book Conditions</a>
             </div>
         </section>
     </main>

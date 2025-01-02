@@ -7,6 +7,12 @@ import { error } from 'console';
 @Component({
   selector: 'app-admin-author',
   imports: [CommonModule,FormsModule],
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-admin-author',
+  imports: [],
   templateUrl: './admin-author.component.html',
   styleUrl: './admin-author.component.css'
 })
@@ -95,4 +101,5 @@ updateAuthor(author:any):void{
     }
   });
 }
+
 }

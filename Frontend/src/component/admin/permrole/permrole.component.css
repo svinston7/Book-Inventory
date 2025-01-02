@@ -1,0 +1,113 @@
+/* Styling the Loading and Error Messages */
+.is-loading {
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .error {
+    font-size: 16px;
+    color: #dc3545;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling the Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  thead {
+    background-color: #007bff;
+    color: black;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid ;
+    color: black;
+  }
+  
+  th {
+    font-weight: bold;
+  }
+  
+  /* Hover Effect for Table Rows */
+  tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Styling when no users are found */
+  .no-users {
+    font-size: 18px;
+    color: #6c757d;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  /* Center the table within the container */
+  table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
+/* Container for the search bar and button, centered */
+.search-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
+  gap: 10px;
+  margin-bottom: 20px;     /* Add space below the search bar */
+  width: 100%;             /* Ensure the container takes up the full width */
+}
+
+/* Style for the search input */
+.search-container .form-control {
+  width: 250px; /* Adjust the width as needed */
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Style for the search button */
+.search-container .btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #28a745;
+  color: #28a745;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.search-container .btn:hover {
+  background-color: #28a745;
+  color: white;
+  border: 1px solid #28a745;
+}
+
+  
+  /* Responsive design: Table should adjust on smaller screens */
+  @media (max-width: 768px) {
+    table {
+      width: 100%;
+    }
+  
+    th, td {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .is-loading, .error, .no-users {
+      font-size: 16px;
+    }
+  }
+  

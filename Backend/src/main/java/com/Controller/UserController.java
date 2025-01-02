@@ -1,5 +1,7 @@
 package com.Controller;
 
+import java.util.List;
+
 import org.hibernate.NonUniqueResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
@@ -20,6 +22,7 @@ import com.Service.UserService;
 import com.dao.UserDAO;
 import com.exception.InvalidInputException;
 import com.exception.ResourceNotFoundException;
+import com.model.PermRole;
 import com.model.User;
 
 @RestController
@@ -39,12 +42,12 @@ public class UserController {
 	    User u= userService.findByUserName(username); 
 	    return new ResponseEntity<>(u,HttpStatus.OK);
 	}
+	@GetMapping("/all")
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
 	
-	/*@PostMapping("/post")
-	public ResponseEntity<?> addUser(@RequestBody User user) {
-		userService.addUser(user);
-		return new ResponseEntity<>(user+"Added",HttpStatus.OK);
-	}*/
+	
     
 	@PostMapping("/register")
 	public ResponseEntity<?> register(@RequestBody User user) throws Exception {
@@ -74,8 +77,8 @@ public class UserController {
 	        
 	    }
 	 @PutMapping("/update/role/{userId}")
-	 public void updateRole(@PathVariable int userId,@RequestBody int roleNumber)throws InvalidInputException, ResourceNotFoundException  {
-		 
+	 public void updateRole(@PathVariable int userId,@RequestBody PermRole roleNumber)throws InvalidInputException, ResourceNotFoundException  {
+		 userService.updateRole(userId, roleNumber);userService.updateRole(userId,roleNumber);
 	 }
 	
 	 @PutMapping("/update/firstname/{userId}")

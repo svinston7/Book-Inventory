@@ -1,88 +1,76 @@
 <app-home></app-home>
-<div class="back-btn-container">
-    <a href="javascript:history.back()" class="btn btn-primary">Back</a>
+<div class="back-btn-container position-absolute">
+    <a href="javascript:history.back()" class="btn btn-outline-primary">⬅ Back</a>
 </div>
 <div class="container-fluid acc">
     <div class="row justify-content-center align-items-center">
+        <!-- Image Section -->
         <div class="col-5 text-center p-4">
-            
-            <img src="https://picsum.photos/400/500" class="img-fluid img-thumbnail mt-3 shadow" alt="">
+            <img src="https://picsum.photos/400/500" class="img-fluid img-thumbnail mt-3 shadow" alt="Book Cover">
         </div>
+        <!-- Book Details Section -->
         <div class="col-5 text-center">
-            <h2 class="my-3 text-primary">{{book.title}}</h2>
+            <h2 class="my-3 text-gradient">{{book.title}}</h2>
             <h4 class="my-3 text-secondary">ISBN: <span class="text-info">{{book.isbn}}</span></h4>
                 
             <h6 class="my-3 text-start text-success">Description:</h6>
             <p class="my-3 acc text-dark bg-light p-3 rounded">{{book.description}}</p>
+            
             <h5 class="text-warning">Category: <span class="text-danger">{{cat.catDescription}}</span></h5>
             <h6 class="text-info">Publisher Details:</h6>
             <p class="text-muted">Name: <span class="fw-bold">{{publisher.name}}</span></p>
             <p class="text-muted">City: <span class="fw-bold">{{publisher.city}}</span></p>
 
-            <h4 >Authors</h4>
+            <h4 class="text-decoration-underline text-gradient">Authors</h4>
             <div class="author-details" *ngFor="let auth of authorList">
-                <p class="ms-3">{{auth.firstName}} {{auth.lastName}}</p>
-
+                <p class="ms-3 text-gradient">{{auth.firstName}} {{auth.lastName}}</p>
             </div>
-            <button class="btn btn-primary"   (click)="addtocart(book.isbn)">Add to cart</button>        </div>
+            <button class="btn btn-primary gradient-btn" (click)="addtocart(book.isbn)">Add to Cart</button>
+        </div>
     </div>
 
+    <!-- Reviews Section -->
     <div class="review col-11 mx-5 px-3">
         <div class="review-header mx-5 p-3">
-            <h2 class="text-start d-inline">User Reviews</h2>
-            <button class="float-end px-4 py-2 me-4 btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                Write a review</button>
+            <h2 class="text-start d-inline text-gradient">User Reviews</h2>
+            <button class="float-end px-4 py-2 me-4 btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Write a Review
+            </button>
             
-            <!-- //modal dialog box -->
-
+            <!-- Modal Dialog -->
             <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Write a Review</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="form-floating mb-2">
-                            <input type="number" [(ngModel)]="dummyReview.rating" class="form-control" placeholder="Enter rating here" id="ratingInput" min="0" max="10" [value]="review.rating || ''">
+                            <input type="number" [(ngModel)]="dummyReview.rating" class="form-control" placeholder="Enter rating" id="ratingInput" min="0" max="10" [value]="review.rating || ''">
                             <label for="ratingInput">Rating</label>
                         </div>
                         <div class="form-floating">
-                            <textarea class="form-control pt-4" [(ngModel)]="dummyReview.comments" style="height: 100px" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                            <textarea class="form-control pt-4" [(ngModel)]="dummyReview.comments" style="height: 100px" placeholder="Leave a comment" id="floatingTextarea"></textarea>
                             <label for="floatingTextarea">Comments</label>
                         </div>
                     </div>
                     <div class="modal-footer">
-                      
-                      <button type="button" class="btn btn-primary" (click)="postReview()" >Post</button>
+                      <button type="button" class="btn btn-primary gradient-btn" (click)="postReview()">Post</button>
                     </div>
                   </div>
                 </div>
             </div>
-
-           
-              <!-- Modal ends here -->
-            <div class="ms-4 p-2 fw-bold fs-4">
-                <span class="text-primary text-center">Please read and apply the rules before posting a comment. </span> <br>
-                By sharing your comment, you agree to all the relevant terms.
-            </div>
-            <div *ngIf="successMessage" class="alert alert-success mt-3" role="alert">
-                {{ successMessage }}
-            </div>
+            <!-- Modal Ends -->
+            
+            <p class="text-warning ms-4">By posting a comment, you agree to the terms.</p>
         </div>
-        <div *ngIf="isPopupVisible" class="popup-overlay">
-            <div class="popup">
-              <h3 >{{ popupMessage }}</h3>
         
-              <button class="btn-primary" (click)="isPopupVisible = false">Close</button>
-            </div>
-          </div>
-
-        <div *ngFor="let review of reviewList" class="review-content mx-5 mb-3 " >
-            <h5 class="mx-5">{{review.name}}</h5>
-            <p class="mx-5">{{review.employedBy}}</p><br>
-            <p class="mx-5">Rating : {{review.rating}}/10</p>
+        <!-- Reviews List -->
+        <div *ngFor="let review of reviewList" class="review-content mx-5 mb-3 bg-light shadow rounded">
+            <h5 class="text-primary mx-5">{{review.name}}</h5>
+            <p class="text-muted mx-5">Rating: <strong>{{review.rating}}/10</strong></p>
             <p class="mx-5">{{review.comments}}</p>
         </div>
     </div>
 </div>
-

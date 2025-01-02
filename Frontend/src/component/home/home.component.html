@@ -58,10 +58,10 @@
               </span>
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="/profile"><i class="fa-regular fa-user"></i>  Profile</a></li>
+              <li><a class="dropdown-item" href="/profile"><i class="fa-regular fa-user"></i>Profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
-                <button class="dropdown-item" (click)="logout()"> <i class="fas fa-sign-out-alt"></i>  Logout</button>
+                <button class="dropdown-item" (click)="logout()"> <i class="fas fa-sign-out-alt"></i>Logout</button>
               </li>
             </ul>
           </div>
@@ -116,7 +116,7 @@
         </a>
       </li>
       <!-- Book Conditions  -->
-      <li *ngIf="user.roleNumber===2 || user.roleNumber===4" class="list-group-item bg-dark text-white border-secondary">
+      <li *ngIf="user.role.roleNumber===2 || user.role.roleNumber===4" class="list-group-item bg-dark text-white border-secondary">
         <a href="/bookcondition" class="nav-link text-white d-flex align-items-center my-3">
           <i class="fa-solid fa-warehouse me-3 fs-4 text-info"></i>
           <span>Book Condition</span>
@@ -124,7 +124,7 @@
       </li>
       <!-- Post a Book -->
 
-      <li *ngIf="user.roleNumber===2 || user.roleNumber===4" class="list-group-item bg-dark text-white border-secondary">
+      <li *ngIf="user.role.roleNumber===2 || user.role.roleNumber===4" class="list-group-item bg-dark text-white border-secondary">
         <a href="/addbook" class="nav-link text-white d-flex align-items-center my-3">
           <i class="fa-solid fa-circle-plus me-3 fs-4 text-danger"></i>
           <span>Post a Book</span>
@@ -132,7 +132,7 @@
         </a>
       </li>
       <!-- Admin Portal -->
-      <li *ngIf="user.roleNumber===4" class="list-group-item bg-dark text-white border-secondary">
+      <li *ngIf="user.role.roleNumber===4" class="list-group-item bg-dark text-white border-secondary">
         <a href="/admin" class="nav-link text-white d-flex align-items-center my-3">
           <i class="fa-solid fa-lock me-3 fs-4 text-info"></i>
           <span>Admin Portal</span>

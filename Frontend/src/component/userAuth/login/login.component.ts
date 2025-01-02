@@ -22,8 +22,10 @@ export class LoginComponent {
     phoneNumber: '',
     userName: '',
     password: '',
-    roleNumber: 3 //default user
-    ,
+    role:{
+      roleNumber:3,
+      roleName:''
+    },
     userId: 0
   };
   token: any;

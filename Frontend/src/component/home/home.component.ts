@@ -29,8 +29,10 @@ user:User={
   phoneNumber: '',
   userName: '',
   password: '',
-  roleNumber: 0,
-  userId: 0
+  role:{
+    roleNumber:3,
+    roleName:''
+  },  userId: 0
 }
   showDiv: boolean=false;
 
