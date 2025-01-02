@@ -4,9 +4,10 @@ import { CartService } from '../../service/cart.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HomeComponent } from '../home/home.component';
+import { Router } from '@angular/router';
 //import * as bootstrap from 'bootstrap';
  
- 
+ declare var Razorpay:any;
 @Component({
   selector: 'app-shoppingcart',
   imports: [CommonModule,HomeComponent],
@@ -14,14 +15,15 @@ import { HomeComponent } from '../home/home.component';
   styleUrl: './shoppingcart.component.css'
 })
 export class ShoppingcartComponent {
- 
+  price=100;
   toastMessage: string = '';
   isToastVisible: boolean = false;
   isPopupVisible = false;
   popupMessage: string = '';
  
 constructor(private cartService:CartService,
-  private http: HttpClient
+  private http: HttpClient,
+  private router:Router
 ){
  
 }
@@ -112,6 +114,81 @@ getCart(userName:string){
                
             }
            
-           
-          }
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+payNow() {
+const RazorpayOptions = {
+  key: 'rzp_test_zWhcqYLonnFntk',
+  amount: this.price * 100, 
+  currency: 'INR',
+  name: 'Book Inventory',
+  description: 'Sample Razorpay demo',
+  image: 'https://i.imgur.com/FApqk3D.jpeg',
+      prefill: {
+        name: 'Book Inventory',
+        email: 'sam@gmail.com',
+        contact: '9898989898'
+      },
+      theme: {
+        color: '#6466e3'
+      },
+      handler: (response: any) => {
+        
+        console.log('Payment successful. Payment ID:', response.razorpay_payment_id);
+
+        // Navigate to home after successful payment
+        this.router.navigate(['/home']);
+      },
+      modal: {
+        ondismiss: () => {
+          console.log('Payment modal dismissed');
+        }
+      }
+    };
+
+    try {
+      const rzp = new Razorpay(RazorpayOptions);
+      rzp.open();
+
+      
+      
+    } catch (error) {
+      console.error('Error initializing Razorpay:', error);
+    }
+  }
+
+}
        
