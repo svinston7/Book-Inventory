@@ -63,7 +63,7 @@ export class PermroleComponent implements OnInit{
   
     // Pre-fill the selected role if necessary
     if (this.isEditing) {
-      this.selectedRoleMap[user.userId] = user.role.roleNumber;
+      this.selectedRoleMap[user.userId] = user.roleNumber;
     } else {
       // Reset if needed
       delete this.selectedRoleMap[user.userId];

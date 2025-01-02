@@ -8,5 +8,5 @@ export interface User{
 	 userName:string;
 	 password:string;
 	 terms?: boolean; 
-	 role:Role;
+	 roleNumber:number;
 }

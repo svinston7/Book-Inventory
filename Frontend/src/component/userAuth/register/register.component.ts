@@ -25,10 +25,8 @@ export class RegisterComponent {
     userName: '',
     password: '',
     terms: false,
-    role:{
-      roleNumber:3,
-      roleName:''
-    },
+    
+    roleNumber:3,
     userId: 0
   };
 

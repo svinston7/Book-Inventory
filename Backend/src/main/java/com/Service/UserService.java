@@ -79,7 +79,7 @@ public class UserService {
 	public void updateRole(int userId,int roleNumber) {
 		User user=userRepository.findById(userId).orElse(null);
 		PermRole role = roleDao.findById(roleNumber).orElse(null);
-		user.setRole(role);
+		user.setRoleNumber(roleNumber);
 		userRepository.save(user);}
 
 	public User findByUserName(String username) {

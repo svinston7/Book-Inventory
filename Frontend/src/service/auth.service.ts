@@ -15,7 +15,7 @@ searchQuery$ = this.searchQuerySubject.asObservable();
   constructor(private httpClient:HttpClient) { }
 
   RESTURL:string = "http://localhost:9090/api/user/";
-
+  ROLEURL:String = "http://localhost:9090/api/permrole/"
   isAuthenticated= false;
    // Get all users
    getAllUsers(headers: unknown): Observable<any[]> {
@@ -62,5 +62,9 @@ searchQuery$ = this.searchQuerySubject.asObservable();
 
   updateRole(userId: number, role: number): Observable<any>{
     return this.httpClient.put(`${this.RESTURL}update/role/${userId}`, role,{responseType:'json'});
+  }
+
+  getRole(role:number):Observable<any>{
+    return this.httpClient.get(this.ROLEURL+"rolenumber/"+role)
   }
 }

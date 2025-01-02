@@ -18,13 +18,12 @@ public class CustomUserDetails implements UserDetails {
     public CustomUserDetails(User user) {
         super();
         this.user = user;
-        this.role = user.getRole(); // Directly use the role associated with the user
+        this.role = new PermRole(); // Directly use the role associated with the user
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String authority = "ROLE_" + role.getPermRole();
-        System.out.println("Assigned Authority: " + authority);
         return Collections.singletonList(new SimpleGrantedAuthority(authority));
     }
 
