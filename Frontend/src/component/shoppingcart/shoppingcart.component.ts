@@ -105,10 +105,11 @@ getCart(userName:string){
                 .subscribe({
                   next: () => {
                     //alert('Item removed successfully!');
-                    this.popupMessage = 'Your Book has been sucessfully added to the cart';
+                    this.popupMessage = 'Your Book has been removed ';
                     this.isPopupVisible=true;
                    
-                    this.books = this.books.filter((book) => book.isbn !== isbn); // Update the UI to reflect the removal
+                    // this.books = this.books.filter((book) => book.isbn !== isbn); // Update the UI to reflect the removal
+                    this.getCart(this.username??'');
                   }
                 });
                
