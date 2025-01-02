@@ -24,8 +24,8 @@ public class User {
 	private String userName;
 	private String password;
 	
-	 @ManyToOne
-	    @JoinColumn(name = "role_number", referencedColumnName = "roleNumber")
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "role_number", referencedColumnName = "roleNumber")
 	    private PermRole role;
 	
 	 

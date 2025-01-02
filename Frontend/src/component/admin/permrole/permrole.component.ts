@@ -62,7 +62,7 @@ export class PermroleComponent implements OnInit{
   
     // Pre-fill the selected role if necessary
     if (this.isEditing) {
-      this.selectedRoleMap[user.userId] = user.roleNumber;
+      this.selectedRoleMap[user.userId] = user.role.roleNumber;
     } else {
       // Reset if needed
       delete this.selectedRoleMap[user.userId];
@@ -79,8 +79,7 @@ export class PermroleComponent implements OnInit{
   updateRole(userId: number, role: number): void {
     const token = localStorage.getItem('token');
     
-    console.log(role)
-    console.log(userId)
+   
     role=Number(role)
     
       this.authService.updateRole(userId, role).subscribe();
