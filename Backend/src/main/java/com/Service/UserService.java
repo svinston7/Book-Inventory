@@ -80,5 +80,9 @@ public class UserService {
 	public User findByUserName(String username) {
 		return userRepository.findByUserName(username);
 	}
+
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
+	}
 		
 }
