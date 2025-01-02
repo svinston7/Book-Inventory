@@ -37,7 +37,7 @@ export const routes: Routes = [
     {path:'shoppingcart',component:ShoppingcartComponent},
     {path:'admin-role',component:PermroleComponent},
     {path:'admin-author',component:AdminAuthorComponent},
-{path:'admin-category',component:AdminCategoryComponent}
+    {path:'admin-category',component:AdminCategoryComponent}
     // { path: '**', redirectTo: '/login' }
   
 ];
