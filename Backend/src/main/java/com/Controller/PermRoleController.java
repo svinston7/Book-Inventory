@@ -39,7 +39,8 @@ public class PermRoleController {
 		
 	}
 	
-	@GetMapping("/rolenumber/{rolenumber}")
+	@GetMapping("/rolenumber/{roleNumber}")
+	@PreAuthorize("hasRole('ROLE_Admin')")
 	public ResponseEntity<?> getRole(@PathVariable int roleNumber)throws InvalidInputException, ResourceNotFoundException {
 		PermRole role = roleService.findById(roleNumber);
 		return new ResponseEntity<PermRole>(role,HttpStatus.OK);

@@ -23,22 +23,27 @@ public class User {
 	private String phoneNumber;
 	private String userName;
 	private String password;
-	private int roleNumber;
 	
+	 @ManyToOne
+	    @JoinColumn(name = "role_number", referencedColumnName = "roleNumber")
+	    private PermRole role;
 	
-	
+	 
 	
 	
 	public User() {
 	}
 	
-	public int getRoleNumber() {
-		return roleNumber;
+	
+	public PermRole getRole() {
+		return role;
 	}
 
-	public void setRoleNumber(int roleNumber) {
-		this.roleNumber = roleNumber;
+
+	public void setRole(PermRole role) {
+		this.role = (role);
 	}
+
 
 	public int getUserId() {
 		return userId;
