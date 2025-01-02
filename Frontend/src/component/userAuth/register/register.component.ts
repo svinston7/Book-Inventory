@@ -25,8 +25,10 @@ export class RegisterComponent {
     userName: '',
     password: '',
     terms: false,
-    roleNumber: 3 //default user
-    ,
+    role:{
+      roleNumber:3,
+      roleName:''
+    },
     userId: 0
   };
 

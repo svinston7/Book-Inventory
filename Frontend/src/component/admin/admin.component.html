@@ -1,6 +1,7 @@
 <app-home></app-home>
 
 <div class="admin-container">
+
  
     <!-- Main Content Area -->
     <main class="content">
@@ -53,6 +54,13 @@
                 <p>Manage book conditions (new, used, etc.)</p>
                 <a class="btn btn-primary" href="/admin-condition" [routerLink]="['/admin/bookcondition']">Go to Book Conditions</a>
             </div>
+
+            <div class="table-card">
+                <h3>Manage Author</h3>
+                <p>Manage Author-Update and add </p>
+                <a class="btn btn-primary" href="/admin-author" >Manage Author</a>
+            </div>
+ 
         </section>
     </main>
     <router-outlet></router-outlet>

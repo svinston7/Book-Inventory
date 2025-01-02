@@ -22,8 +22,10 @@ export class LoginComponent {
     phoneNumber: '',
     userName: '',
     password: '',
-    roleNumber: 3 //default user
-    ,
+    role:{
+      roleNumber:3,
+      roleName:''
+    },
     userId: 0
   };
   token: any;
@@ -31,7 +33,7 @@ export class LoginComponent {
 
   loginUser(event: Event) {
     event.preventDefault();
-
+    
     // Only proceed if all fields are filled
     if (!this.user.userName || !this.user.password) {
       this.trylogin = true;

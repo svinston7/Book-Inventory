@@ -23,22 +23,34 @@ public class User {
 	private String phoneNumber;
 	private String userName;
 	private String password;
+	
 	private int roleNumber;
 	
-	
-	
+	 
 	
 	
 	public User() {
 	}
 	
+	
+	
+
+
 	public int getRoleNumber() {
 		return roleNumber;
 	}
 
+
+
+
+
 	public void setRoleNumber(int roleNumber) {
 		this.roleNumber = roleNumber;
 	}
+
+
+
+
 
 	public int getUserId() {
 		return userId;
