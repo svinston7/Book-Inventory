@@ -1,6 +1,10 @@
 <app-home> </app-home>
 
 <div class="container">
+  <div *ngIf="books.length === 0" class="text-center my-5">
+    <h3 style="color: red;">Your cart is empty</h3>
+    <!-- <button class="btn btn-primary" routerLink="/home">Go to Home</button> -->
+  </div>
     <div class="row">
       <div class="col-12" *ngFor="let book of books">
         <div class="card mb-3" style="max-width: 540px;">
