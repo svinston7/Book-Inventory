@@ -87,4 +87,17 @@ class ReviewerControllerTest {
         assertEquals("updated successfully", response.getBody());
         verify(reviewerService, times(1)).updateReviewerEmployedId(1, "New Corp");
     }
+    @Test
+    void testPostReviewer_MissingFields() throws InvalidInputException {
+        // Arrange
+        Reviewer reviewer = new Reviewer(1, "", ""); // Empty fields
+        
+        // Act
+        ResponseEntity<?> response = reviewerController.postReviewer(reviewer);
+
+        // Assert
+        assertEquals(400, response.getStatusCodeValue());
+        assertTrue(((Response) response.getBody()).getMessage().contains("Invalid input"));
+    }
+
 }

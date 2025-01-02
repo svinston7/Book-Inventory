@@ -1,5 +1,6 @@
 package com.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,8 +17,26 @@ public class ShoppingCart {
 
     @ManyToOne
     private Book book;
+    
+    @Column(name = "user_name", nullable = false)
     private String userName;
-    public String getUserName() {
+    
+    public ShoppingCart(String userName, Book book) {
+        this.userName = userName;
+        this.book = book;
+    }
+
+    public ShoppingCart(int id, String isbn, Book book, String userName) {
+		super();
+		this.id = id;
+		this.isbn = isbn;
+		this.book = book;
+		this.userName = userName;
+	}
+
+	public ShoppingCart() {}
+
+	public String getUserName() {
 		return userName;
 	}
 

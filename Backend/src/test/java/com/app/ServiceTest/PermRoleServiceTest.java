@@ -44,6 +44,15 @@ public class PermRoleServiceTest {
         assertEquals(1, result.size());
         assertEquals("Admin", result.get(0).getPermRole());
     }
+    @Test
+    public void testGetAllPermRoles_EmptyList() {
+        when(permRoleDao.findAll()).thenReturn(List.of());
+
+        List<PermRole> result = permRoleService.getAll();
+
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Expected empty list");
+    }
 
     @Test
     public void testFindById_Valid() {
@@ -92,4 +101,21 @@ public class PermRoleServiceTest {
         // Assert
         verify(permRoleDao, times(1)).deleteById(1);
     }
+    @Test
+    public void testUpdatePermRole() {
+        // Arrange
+        PermRole permRole = new PermRole(1, "Admin");
+        when(permRoleDao.findById(1)).thenReturn(Optional.of(permRole));
+
+        // Act
+        permRoleService.updatePermRole(1, "SuperAdmin");
+
+        // Assert
+        assertEquals("SuperAdmin", permRole.getPermRole());
+        verify(permRoleDao, times(1)).save(permRole);
+    }
+
+    
+
+
 }

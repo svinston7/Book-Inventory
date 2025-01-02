@@ -30,4 +30,10 @@ public class PermRoleService {
 	public void addPermRole(PermRole PermRole) {
 		PermRoleDao.save(PermRole);
 	}
+
+	public void updatePermRole(int i, String string) {
+		PermRole role = PermRoleDao.findById(i).orElse(null);
+		role.setPermRole(string);
+		PermRoleDao.save(role);
+	}
 }

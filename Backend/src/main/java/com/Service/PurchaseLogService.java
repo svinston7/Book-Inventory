@@ -17,6 +17,7 @@ import com.model.User;
 public class PurchaseLogService {
 	@Autowired
 	PurchaseLogDAO purchaselogDao;
+	@Autowired
 	InventoryDAO inventoryDao;
 	
 	public List<PurchaseLog> getAll(){
@@ -52,6 +53,7 @@ public class PurchaseLogService {
         }
         else {
         	purchase.setInventoryId(inventoryId);
+        	purchaselogDao.save(purchase);
         }
           	
         		return "Successfully updated";
