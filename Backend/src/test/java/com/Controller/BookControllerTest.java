@@ -32,12 +32,12 @@ class BookControllerTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        sampleBook = new Book(null, null, null, 0, null, 0, null);
+        sampleBook = new Book(null, null, null, 0, null, 0, null, 0);
     }
     @Test
     void testPostBookSuccess() throws InvalidInputException {
         // Create a sample Book object
-        Book sampleBook = new Book("1234567890", "Sample Book", "A sample description", 1, "1st Edition", 1, "sample_image.png");
+        Book sampleBook = new Book("1234567890", "Sample Book", "A sample description", 1, "1st Edition", 1, "sample_image.png", 0);
 
         // Mock the bookService.addBook method to do nothing (successful case)
         doNothing().when(bookService).addBook(sampleBook);

@@ -102,7 +102,7 @@ class BookAuthorControllerTest {
 
     @Test
     void testGetAuthorById() throws Exception {
-        Book book = new Book("1234", "Test Book", "Description", 1, "First Edition", 1, "image.jpg");
+        Book book = new Book("1234", "Test Book", "Description", 1, "First Edition", 1, "image.jpg", 0);
         List<Book> books = Arrays.asList(book);
         when(bookAuthorService.getBookDetailsById(101)).thenReturn(books);
 

@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrl: './shoppingcart.component.css'
 })
 export class ShoppingcartComponent {
-  price=100;
+  
   toastMessage: string = '';
   isToastVisible: boolean = false;
   isPopupVisible = false;
@@ -58,7 +58,7 @@ ngOnInit() {
 }
  
  calculateTotalCost():void{
-  this.totalCost=this.books.reduce((sum,book)=>sum+book.price,0);
+  this.totalCost=Number(this.books.reduce((sum,book)=>sum+book.price,0));
  }
 getCart(userName:string){
   this.cartService.getCart(userName).subscribe((data:any[])=>

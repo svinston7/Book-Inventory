@@ -36,7 +36,7 @@ class ShoppingCartControllerTest {
     public void testAddToCart_WithBook() throws InvalidInputException {
         // Arrange
         ShoppingCart cart = new ShoppingCart();
-        cart.setBook(new Book("ISBN123", "Book1", "Description1", 1, "1st", 101, "image.jpg"));
+        cart.setBook(new Book("ISBN123", "Book1", "Description1", 1, "1st", 101, "image.jpg", 0));
 
         doNothing().when(cartservice).addShoppingCart(cart);
 
@@ -56,7 +56,7 @@ class ShoppingCartControllerTest {
         // Arrange
         ShoppingCart cart = new ShoppingCart();
         cart.setIsbn("ISBN123");
-        Book book = new Book("ISBN123", "Book1", "Description1", 1, "1st", 101, "image.jpg");
+        Book book = new Book("ISBN123", "Book1", "Description1", 1, "1st", 101, "image.jpg", 0);
 
         when(bookservice.findByIsbn("ISBN123")).thenReturn(book);
         doNothing().when(cartservice).addShoppingCart(cart);
@@ -98,8 +98,8 @@ class ShoppingCartControllerTest {
         // Arrange
         String username = "testUser";
         List<Book> bookList = Arrays.asList(
-                new Book("ISBN123", "Book1", "Description1", 1, "1st", 101, "image.jpg"),
-                new Book("ISBN456", "Book2", "Description2", 2, "2nd", 102, "image2.jpg")
+                new Book("ISBN123", "Book1", "Description1", 1, "1st", 101, "image.jpg", 0),
+                new Book("ISBN456", "Book2", "Description2", 2, "2nd", 102, "image2.jpg", 0)
         );
 
         when(cartservice.getListOfBook(username)).thenReturn(bookList);
