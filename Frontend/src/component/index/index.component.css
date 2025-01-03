@@ -270,6 +270,7 @@ header{
 
 }
 .hero-section .section-content .hero-details .buttons {
+    color:whitesmoke;
     display: flex;
     justify-content: center; /* Aligns the buttons horizontally */
     align-items: center; /* Ensures vertical alignment if needed */
@@ -356,11 +357,7 @@ header{
 
 
 }
-.gallery-section{
-    
-    
-   
-}
+
 .gallery-section .gallery-list{
     margin-left: 5%;
     display: flex;

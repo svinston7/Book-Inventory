@@ -198,7 +198,7 @@ export class ViewBookComponent {
         this.cartservice.postCart(cart).subscribe({
           next: (response) => {console.log(`Cart item added successfully:`, response);
             //window.alert("book added to your cart sucessfully");
-            this.popupMessage = 'Your Book has been sucessfully added to the cart';
+            this.popupMessage = 'Your Book has been sucessfully added to the cart🛒';
         this.isPopupVisible=true;
 
           },

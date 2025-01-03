@@ -1,9 +1,14 @@
-
+h1{
+ 
+  background: -webkit-linear-gradient(#4389A2, #5C258D ,#4389A2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .outer {
     color: black;
     margin: 5% auto;
     max-width: 900px;
-    background-image: linear-gradient(to right,rgb(101, 98, 98),rgb(223, 221, 221));
+    background: linear-gradient(to left,rgb(91, 192, 203), #ffffff);
     border-radius: 1rem;
     box-shadow: 2px 6px 11px rgba(0, 0, 0, 0.5);
     overflow: hidden;
@@ -70,43 +75,91 @@ input {
     font-size: 0.9rem; 
     margin-left: 4rem;
   }
-
- /* Styles for the popup overlay (background) */
+ 
+/* Popup Overlay */
 .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Ensure it appears above all other content */
-  }
-  
-  /* Styles for the popup container */
+  position: fixed; /* Ensures the overlay is fixed relative to the viewport */
+  top: 0;
+  left: 0;
+  width: 100%; /* Covers the entire width of the screen */
+  height: 100%; /* Covers the entire height of the screen */
+  background-color: rgba(0, 0, 0, 0.6); /* Adds a darker semi-transparent background */
+  z-index: 1050; /* Ensures the popup appears above other content */
+  display: flex; /* Centers the popup content */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Popup Content */
+.popup {
+  background: linear-gradient(135deg, #e3f2fd, #90caf9); /* Adds a gradient background */
+  padding: 40px; /* Adds padding inside the popup */
+  border-radius: 30px 5px; /* Unique shape for the popup (rounded with some sharp edges) */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); /* Floating shadow effect */
+  text-align: center; /* Centers text within the popup */
+  max-width: 450px; /* Maximum width of the popup */
+  width: 90%; /* Adjusts width to screen size */
+  font-family: 'Poppins', sans-serif; /* Modern font for better style */
+  color: #333; /* Text color */
+}
+
+/* Popup Header */
+.popup h3 {
+  margin-bottom: 20px; /* Space below the header */
+  font-size: 1.8rem; /* Larger font size for the header */
+  font-weight: 600; /* Slightly bolder text */
+  color: #0d47a1; /* Dark blue header text */
+}
+
+/* Close Button */
+.popup button {
+  background: linear-gradient(to right, #42a5f5, #1e88e5); /* Gradient for button background */
+  color: #fff; /* White text */
+  border: none;
+  padding: 12px 30px; /* Adds padding for a bigger button */
+  border-radius: 20px; /* Fully rounded button */
+  font-family: 'Poppins', sans-serif; /* Font matches popup */
+  font-size: 1rem; /* Adjusted font size */
+  font-weight: 500; /* Medium weight for better visibility */
+  transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+.popup button:hover {
+  background: linear-gradient(to right, #1e88e5, #42a5f5); /* Reversed gradient on hover */
+  transform: scale(1.05); /* Slight zoom-in on hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+}
+
+/* Responsive Popup */
+@media (max-width: 768px) {
   .popup {
-    background-color: #fff; /* White background for the popup */
-    padding: 20px 30px;
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    text-align: center; /* Center the text */
-    max-width: 400px; /* Limit width */
-    width: 90%; /* Adjust width for smaller screens */
-    color: #000; /* Ensure text is black */
-    font-size: 10px; /* Adjust font size */
-    font-family:"Poppins", sans-serif ;
-    animation: fadeIn 0.3s ease-in-out; /* Optional fade-in animation */
+      padding: 20px;
+      font-size: 0.9rem;
+      width: 95%;
   }
-  
-  /* Button inside the popup */
-  .popup button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    font-size: 16px;
+}
+
+  .btn-grad {background-image: linear-gradient(to right, #5C258D 0%, #4389A2  51%, #5C258D  100%)}
+  .btn-grad {
+     margin: 10px;
+     padding: 10px 45px;
+     text-align: center;
+     text-transform: uppercase;
+     transition: 0.5s;
+     background-size: 200% auto;
+     color: white;            
+     box-shadow: 0 0 20px #eee;
+     border-radius: 10px;
+     text-decoration: none;
   }
-  
+         
+.btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+         
+    
   /* Fade-in animation */
   @keyframes fadeIn {
     from {

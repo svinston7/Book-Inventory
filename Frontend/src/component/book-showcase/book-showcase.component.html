@@ -5,9 +5,9 @@
       <ng-container *ngFor="let b of allBooks">
         <div *ngIf="isEmpty()" class="col-sm-6 col-xl-4 mb-3">
           <div class="card pop" [routerLink]="['/viewbook', b.isbn]">
-            <img src="https://picsum.photos/200/300" class="card-img-top img-card" alt="book-img">
+            <img src={{b.image}} class="card-img-top img-card" alt="book-img">
             <div class="card-body">
-              <h5 class="card-title title gradient-color">{{b.title}}</h5>
+              <h5 class=" title ">{{b.title}}</h5>
               <!-- <p class="card-text">Edition - {{b.edition}}</p> -->
               <p class="popup ms-4">Click to preview</p>
               <!-- <a [routerLink]="['/viewbook', b.isbn]" class="btn btn-primary">View Details</a> -->
@@ -21,7 +21,7 @@
       <ng-container *ngFor="let b of filteredBooks">
         <div *ngIf="!isEmpty()" class="col-sm-6 col-xl-4 mb-3">
           <div class="card pop" [routerLink]="['/viewbook', b.isbn]">
-            <img src="https://picsum.photos/200/300" class="card-img-top img-card" alt="book-img">
+            <img src={{b.image}} class="card-img-top img-card" alt="book-img">
             <div class="card-body">
               <h5 class="card-title title gradient-color">{{b.title}}</h5>
               <p class="popup">Click to preview</p>
