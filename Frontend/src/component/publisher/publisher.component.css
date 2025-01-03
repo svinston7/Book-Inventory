@@ -134,34 +134,74 @@
   }
   
   /* Alert Box Styling */
-  .alert-box {
-    position: fixed;
-    top: 10%;
-    left: 50%; 
-    transform: translateX(-50%);
-    padding: 20px;
-    background: #0d47a1;
-    color: #64b5f6;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    z-index: 1000;
+  /* Improved Alert Box Styling */
+.alert-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  width: 80%;
+  max-width: 400px;
+  background: linear-gradient(135deg, #1699b7, #1fbec6);
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.popup-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.popup-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.popup-message {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.close-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: white;
+  color: #2196f3;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+  background: #f1f1f1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
   }
-  
-  .alert-box button {
-    margin-top: 10px;
-    background: #1e88e5;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
   }
-  
-  .alert-box button:hover {
-    background: #64b5f6;
-  }
+}
+
   
   /* Validation Errors */
   .error {
