@@ -1,34 +1,42 @@
 <app-home> </app-home>
 
-<div class="container">
-  <div *ngIf="books.length === 0" class="text-center my-5">
-    <h3 style="color: red;">Your cart is empty</h3>
-    <!-- <button class="btn btn-primary" routerLink="/home">Go to Home</button> -->
+<div class="card">
+  <div class="card-body">
+    <div *ngIf="books.length === 0" class="text-center my-5">
+      <h3 style="color: red;">Your cart is empty</h3>
+      <!-- <button class="btn btn-primary" routerLink="/home">Go to Home</button> -->
+    </div>
   </div>
-    <div class="row">
-      <div class="col-12" *ngFor="let book of books">
-        <div class="card mb-3" style="max-width: 540px;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img [src]="book.image" class="img-fluid rounded-start" alt="Book Image">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">{{ book.title }}</h5>
-                <p class="card-text">{{ book.description }}</p>
-                <p class="card-text"><small class="text-body-secondary">ISBN: {{ book.isbn }}</small></p>
-                <button (click)="removeBook(book.isbn)">
-                  <i class="fa-regular fa-square-minus"></i> Remove
-                </button>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12" *ngFor="let book of books">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img [src]="book.image" class="img-fluid rounded-start" alt="Book Image">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ book.title }}</h5>
+                  <p class="card-text">{{ book.description }}</p>
+                  <p class="card-text">{{ book.price}}</p>
+                  <p class="card-text"><small class="text-body-secondary">ISBN: {{ book.isbn }}</small></p>
+                  <button (click)="removeBook(book.isbn)">
+                    <i class="fa-regular fa-square-minus"></i> Remove
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+    
    
     <!-- Toast button for demonstration -->
-    <button id="liveToastBtn" class="btn btn-primary">Show Toast</button>
+   
    
     <!-- Toast notification -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
@@ -51,4 +59,5 @@
 
     </div>
   </div>
+  <h4 class="mt-2">Total Cost:{{totalCost}}</h4>
   <button class="btn btn-dark m-5" (click)="payNow()">Proceed to Pay</button>

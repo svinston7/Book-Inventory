@@ -36,7 +36,8 @@ export class ViewBookComponent {
     categoryId: 0,
     edition: '',
     publisherId: 0,
-    image: ''
+    image: '',
+    price: 0
   }
   publisher: Publisher={
     publisherId: 0,

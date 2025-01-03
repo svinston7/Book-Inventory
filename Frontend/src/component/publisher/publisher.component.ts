@@ -49,11 +49,12 @@ export class PublisherComponent {
         title: publishForm.value.title,
         description: publishForm.value.bookDescription,
         categoryId: publishForm.value.category,
+        price:publishForm.value.price.toString(),
         edition: publishForm.value.edition,
         isbn: publishForm.value.isbn,
         image: publishForm.value.image,
       };
-
+console.log('form data sent to backend;');
       this.publishbook.publishBook(formData).subscribe(
         (response) => {
           console.log('Book Data Submitted:', response);
