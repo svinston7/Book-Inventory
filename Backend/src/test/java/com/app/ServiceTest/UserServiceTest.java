@@ -71,8 +71,6 @@ public class UserServiceTest {
     public void testVerifyUser_Success() {
         // Given
         String username = "john.doe";
-        String password = "password123";
-        
         // Mock the Authentication object
         Authentication mockAuthentication = mock(Authentication.class);
         when(mockAuthentication.isAuthenticated()).thenReturn(true); // Ensure authentication is successful

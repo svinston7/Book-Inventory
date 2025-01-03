@@ -10,11 +10,10 @@ import org.springframework.stereotype.Service;
 import com.dao.AuthorDAO;
 import com.dao.BookAuthorDAO;
 import com.dao.BookDAO;
-import com.dao.UserDAO;
 import com.model.Author;
 import com.model.Book;
 import com.model.BookAuthor;
-import com.model.User;
+
 @Service
 public class BookAuthorService {
 

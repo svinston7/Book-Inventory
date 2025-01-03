@@ -6,5 +6,5 @@ export interface Book{
     edition: string;
     publisherId: number;
     image: string;
-    price:number
+    price:number;
 }

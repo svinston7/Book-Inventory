@@ -12,6 +12,9 @@ import { CommonModule } from '@angular/common';
 })
 export class AdminBookComponent implements OnInit {
   books: Book[] = [];
+  popupMessage: string = '';
+  isPopupVisible: boolean = false;
+  
 
   constructor(private showAllBooksService: ShowAllBooksService) {}
 
@@ -36,7 +39,9 @@ export class AdminBookComponent implements OnInit {
     if (updatedBook) {
       this.showAllBooksService.updateBook(isbn, updatedBook).subscribe(
         (response) => {
-          alert('Book updated successfully!');
+          //alert('Book updated successfully!');
+          this.popupMessage='Book updated successfully!';
+            this.isPopupVisible=true;
           this.fetchBooks(); // Refresh the book list
         },
         (error) => {

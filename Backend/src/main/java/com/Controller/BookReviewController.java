@@ -16,7 +16,6 @@ import com.exception.InvalidInputException;
 import com.exception.ResourceNotFoundException;
 import com.exception.Response;
 import com.model.BookReview;
-import com.model.Reviewer;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;

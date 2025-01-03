@@ -1,12 +1,10 @@
 package com.Controller;
 
-import com.Controller.ReviewerController;
 import com.Service.ReviewerService;
 import com.exception.InvalidInputException;
 import com.exception.ResourceNotFoundException;
 import com.model.Reviewer;
 
-import org.apache.catalina.connector.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -14,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

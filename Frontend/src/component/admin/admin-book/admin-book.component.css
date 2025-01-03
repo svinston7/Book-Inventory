@@ -62,3 +62,29 @@ button {
 .btn-success:hover {
   background-color: #218838;
 }
+
+.popup-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(66, 118, 144, 0.8);
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.popup-message button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.popup-message button:hover {
+  background-color: #d32f2f;
+}
+
+

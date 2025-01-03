@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrl: './shoppingcart.component.css'
 })
 export class ShoppingcartComponent {
-  price=100;
+  
   toastMessage: string = '';
   isToastVisible: boolean = false;
   isPopupVisible = false;
@@ -65,6 +65,7 @@ ngOnInit() {
   this.GSTCost = parseFloat((this.bookCost / 12).toFixed(2)); // Ensures 2 decimal places
   this.totalCost = parseFloat((this.bookCost + this.GSTCost).toFixed(2));
   console.log(this.totalCost)
+
  }
 getCart(userName:string){
   this.cartService.getCart(userName).subscribe((data:any[])=>

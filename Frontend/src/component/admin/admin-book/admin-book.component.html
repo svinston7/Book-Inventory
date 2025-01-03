@@ -1,5 +1,12 @@
 <div class="container">
   <h2>Books</h2>
+
+  <!-- Popup message -->
+  <div *ngIf="isPopupVisible" class="popup-message">
+    <p>{{ popupMessage }}</p>
+    <button (click)="isPopupVisible = false">Close</button>
+  </div>
+
   <table class="table table-striped">
     <thead>
       <tr>

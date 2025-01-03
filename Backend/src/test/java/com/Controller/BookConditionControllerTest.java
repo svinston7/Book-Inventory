@@ -10,20 +10,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
- 
+
 class BookConditionControllerTest {
  
     @InjectMocks
@@ -33,13 +25,11 @@ class BookConditionControllerTest {
     private BookConditionService conditionService;
  
     private BookCondition sampleCondition;
-    private MockMvc mockMvc;
-    private ObjectMapper objectMapper;
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(bookConditionController).build();
-        objectMapper = new ObjectMapper();
+        MockMvcBuilders.standaloneSetup(bookConditionController).build();
+        new ObjectMapper();
         // Sample data for testing
         sampleCondition = new BookCondition(1, "Good", "Full description of condition", 12.99);
     }

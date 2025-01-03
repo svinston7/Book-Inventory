@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.PublisherDAO;
-import com.dao.UserDAO;
 import com.model.Publisher;
-import com.model.User;
 @Service
 public class PublisherService {
 	@Autowired

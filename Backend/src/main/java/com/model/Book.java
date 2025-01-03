@@ -1,14 +1,10 @@
 package com.model;
 
-import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+
 
 @Entity
 public class Book {
@@ -105,7 +101,7 @@ public class Book {
 
 
 	public Book(String isbn, String title, String description, int categoryId, String edition, int publisherId,
-			String image, float price) {
+			String image) {
 		super();
 		this.isbn = isbn;
 		this.title = title;
@@ -114,7 +110,6 @@ public class Book {
 		this.edition = edition;
 		this.publisherId = publisherId;
 		this.image = image;
-		this.price=price;
 	}
 
 	public void setPublisherId(int publisherId) {

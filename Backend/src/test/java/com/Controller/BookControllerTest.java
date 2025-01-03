@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -27,12 +26,12 @@ class BookControllerTest {
     @Mock
     private BookService bookService;
 
-    private Book sampleBook;
+    private Book book;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        sampleBook = new Book(null, null, null, 0, null, 0, null);
+        book = new Book(null, null, null, 0, null, 0, null);
     }
     @Test
     void testPostBookSuccess() throws InvalidInputException {
@@ -63,22 +62,22 @@ class BookControllerTest {
     @Test
     void testPostBookFailure() throws InvalidInputException {
         // Simulate a failure (e.g., duplicate book)
-        doThrow(new RuntimeException("Duplicate book")).when(bookService).addBook(sampleBook);
+        doThrow(new RuntimeException("Duplicate book")).when(bookService).addBook(book);
 
         // Call the controller method
-        ResponseEntity<?> response = bookController.postBook(sampleBook);
+        ResponseEntity<?> response = bookController.postBook(book);
 
         // Assert the failure response code and message
         assertEquals(500, response.getStatusCodeValue());
        // assertEquals(new Response("ADDFAILS", "An unexpected error occurred"), response.getBody());
 
         // Verify that addBook was called once
-        verify(bookService, times(1)).addBook(sampleBook);
+        verify(bookService, times(1)).addBook(book);
     }
 
     @Test
     void testGetAllBooks() throws ResourceNotFoundException {
-        List<Book> books = Arrays.asList(sampleBook);
+        List<Book> books = Arrays.asList(book);
         when(bookService.getAll()).thenReturn(books);
 
         ResponseEntity<?> response = bookController.getAllBooks();
@@ -90,29 +89,29 @@ class BookControllerTest {
 
     @Test
     void testGetByIsbn() throws InvalidInputException, ResourceNotFoundException {
-        when(bookService.findByIsbn("1234567890")).thenReturn(sampleBook);
+        when(bookService.findByIsbn("1234567890")).thenReturn(book);
 
         ResponseEntity<?> response = bookController.getByisbn("1234567890");
 
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(sampleBook, response.getBody());
+        assertEquals(book, response.getBody());
         verify(bookService, times(1)).findByIsbn("1234567890");
     }
 
     @Test
     void testGetByTitle() throws InvalidInputException, ResourceNotFoundException {
-        when(bookService.findByTitle("Sample Book")).thenReturn(sampleBook);
+        when(bookService.findByTitle("Sample Book")).thenReturn(book);
 
         ResponseEntity<?> response = bookController.getByTitle("Sample Book");
 
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(sampleBook, response.getBody());
+        assertEquals(book, response.getBody());
         verify(bookService, times(1)).findByTitle("Sample Book");
     }
 
     @Test
     void testGetByPublisherId() throws InvalidInputException, ResourceNotFoundException {
-        List<Book> books = Arrays.asList(sampleBook);
+        List<Book> books = Arrays.asList(book);
         when(bookService.findByPublisherId(1)).thenReturn(books);
 
         ResponseEntity<?> response = bookController.getByPublisherId(1);
@@ -124,12 +123,12 @@ class BookControllerTest {
 
     @Test
     void testPutByIsbn() throws InvalidInputException, ResourceNotFoundException {
-        doNothing().when(bookService).updateBook("1234567890", sampleBook);
+        doNothing().when(bookService).updateBook("1234567890", book);
 
-        ResponseEntity<?> response = bookController.putByIsbn("1234567890", sampleBook);
+        ResponseEntity<?> response = bookController.putByIsbn("1234567890", book);
 
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(sampleBook, response.getBody());
-        verify(bookService, times(1)).updateBook("1234567890", sampleBook);
+        assertEquals(book, response.getBody());
+        verify(bookService, times(1)).updateBook("1234567890", book);
     }
 }

@@ -22,9 +22,11 @@
             
             <p class="text-muted ms-3">City: <span class="my-3 text-dark  p-3 rounded">{{publisher.city}}</span></p>
             <h6 class="my-3 text-start">Authors:</h6>
+
             <div class="author-details" *ngFor="let auth of authorList">
                 <p class="text-dark ms-3  rounded">{{auth.firstName}} {{auth.lastName}}</p>
             </div>
+            <p class="text-muted">Price: <span class="my-3 text-dark  p-3 rounded">{{book.price}}</span></p>            
             <button class="btn btn-primary gradient-btn" (click)="addtocart(book.isbn)">Add to Cart</button>
         </div>
     </div>
