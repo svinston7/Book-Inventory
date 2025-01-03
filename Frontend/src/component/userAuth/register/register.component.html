@@ -2,7 +2,7 @@
 <div class="container outer d-flex flex-column flex-md-row">
     <!-- Image Section -->
     <div class="col-md-6 d-none d-md-block">
-        <img src="assets/rside8.png" class="img-fluid " alt="Left-side image">
+        <img src="assets/rside12.avif" class="img-fluid " alt="Left-side image">
     </div>
     <!-- Login Section -->
     <div class="login-outer col-md-6">
@@ -40,7 +40,7 @@
                 </label>
                 <div *ngIf="terms.invalid && terms.touched" class="text-danger">You must agree to the terms and conditions</div>
             </div>
-            <button type="submit" class="btn btn-primary w-100 mt-4" [disabled]="registerForm.invalid">Create Account</button>
+            <button type="submit" class="btn-grad" [disabled]="registerForm.invalid">Create Account</button>
         </form>
     </div>
    
@@ -52,7 +52,7 @@
 <div *ngIf="isPopupVisible" class="popup-overlay">
     <div class="popup">
       <h3 >{{ popupMessage }}</h3>
-      <button class="btn btn-primary" (click)="closePopup()">OK</button>
+      <button class=" btn-primary" (click)="closePopup()">OK</button>
     </div>
   </div>
 

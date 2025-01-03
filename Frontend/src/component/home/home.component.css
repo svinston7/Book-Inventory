@@ -23,7 +23,12 @@ header {
 .navbar-brand {
   font-weight: bold;
   /* font-size: 1.5rem; */
-  color:bl;
+ 
+ 
+    background: -webkit-linear-gradient(#4389A2,purple,#4389A2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
 }
 
 .navbar-toggler {
