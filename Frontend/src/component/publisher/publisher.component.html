@@ -120,6 +120,7 @@
               id="isbn"
               name="isbn"
               placeholder="Enter the ISBN value"
+              required
               ngModel
               #isbn="ngModel"
             />
@@ -194,10 +195,15 @@
       <!-- Submit Button -->
       <button type="submit" [disabled]="publishForm.invalid">Submit</button>
     </form>
-
-    <!-- Alert Box -->
+    
     <div *ngIf="isPopupVisible" class="alert-box">
-      {{ popupMessage }}
+      <div class="popup-header">
+        <span class="popup-icon">🎉</span>
+        <span class="popup-title">Notification</span>
+      </div>
+      <div class="popup-message">
+        {{ popupMessage }}
+      </div>
+      <button (click)="isPopupVisible = false" class="close-btn">Close</button>
     </div>
-  </div>
-</div>
+    
