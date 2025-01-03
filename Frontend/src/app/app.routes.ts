@@ -18,6 +18,7 @@ import { AdminBookComponent } from '../component/admin/admin-book/admin-book.com
 import { PermroleComponent } from '../component/admin/permrole/permrole.component';
 import { AdminAuthorComponent } from '../component/admin/admin-author/admin-author.component';
 import { AdminCategoryComponent } from '../component/admin/admin-category/admin-category.component';
+import { AdminPublisherComponent } from '../component/admin/admin-publisher/admin-publisher.component';
 
 
 
@@ -37,7 +38,8 @@ export const routes: Routes = [
     {path:'shoppingcart',component:ShoppingcartComponent},
     {path:'admin-role',component:PermroleComponent},
     {path:'admin-author',component:AdminAuthorComponent},
-    {path:'admin-category',component:AdminCategoryComponent}
+    {path:'admin-category',component:AdminCategoryComponent},
+    { path: 'admin-publisher', component: AdminPublisherComponent, canActivate: [AuthGuard] },
     // { path: '**', redirectTo: '/login' }
   
 ];

@@ -1,1 +1,84 @@
-<p>admin-publisher works!</p>
+<div class="admin-publisher-container">
+  <h2>Publisher Management</h2>
+
+  <!-- Popup message -->
+  <div *ngIf="isPopupVisible" class="popup-message">
+    <p>{{ popupMessage }}</p>
+    <button (click)="isPopupVisible = false">Close</button>
+  </div>
+
+  <!-- Flex container for Add form -->
+  <div class="publisher-forms">
+    <!-- Add Publisher Section -->
+    <div class="add-publisher">
+      <button (click)="toggleAddPublisherForm()">Add Publisher</button>
+
+      <div *ngIf="showAddPublisherForm">
+        <h3>Add New Publisher</h3>
+        <form (ngSubmit)="addPublisher()">
+          <label for="publisherId">Publisher ID:</label>
+          <input type="text" id="publisherId" [(ngModel)]="newPublisher.publisherId" name="publisherId" required>
+
+          <label for="name">Publisher Name:</label>
+          <input type="text" id="name" [(ngModel)]="newPublisher.name" name="name" required>
+
+          <label for="city">City:</label>
+          <input type="text" id="city" [(ngModel)]="newPublisher.city" name="city" required>
+
+          <label for="stateCode">State Code:</label>
+          <input type="text" id="stateCode" [(ngModel)]="newPublisher.stateCode" name="stateCode" required>
+
+          <button type="submit">Add Publisher</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Publisher List -->
+  <table>
+    <thead>
+      <tr>
+        <th>Publisher Name</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let publisher of publishers">
+        <td>{{ publisher.name }}</td>
+        <td>{{ publisher.city }}</td>
+        <td>{{ publisher.stateCode }}</td>
+        <td>
+          <button (click)="toggleEditForm(publisher.publisherId)">Edit</button>
+
+          <!-- Inline Update Form - Visible when Edit is clicked -->
+          <form *ngIf="selectedPublisherId === publisher.publisherId" (ngSubmit)="updatePublisher(publisher.publisherId)" class="inline-update-form">
+            <h4>Update Publisher</h4>
+            
+            <!-- Step 1: Field Selection -->
+            <label for="field">Select Field:</label>
+            <select [(ngModel)]="selectedField" name="field" (change)="showValueInput(publisher.publisherId)" required>
+              <option value="" disabled selected>Select Field</option>
+              <option value="name">Name</option>
+              <option value="city">City</option>
+              <option value="stateCode">State</option>
+            </select>
+
+            <!-- Step 2: Display Input Box After Field Selection -->
+            <div *ngIf="showValueInputBox && selectedPublisherId === publisher.publisherId">
+              <label for="newValue">Enter {{ selectedField }}:</label>
+              <input type="text" [(ngModel)]="updateValue" name="newValue" required placeholder="Enter new value">
+            </div>
+
+            <!-- Update and Cancel Buttons -->
+            <div *ngIf="showValueInputBox && selectedPublisherId === publisher.publisherId">
+              <button type="submit" class="update-btn">Update</button>
+              <button type="button" class="cancel-btn" (click)="cancelEdit()">Cancel</button>
+            </div>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
