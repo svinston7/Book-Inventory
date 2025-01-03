@@ -10,9 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import org.springframework.stereotype.Service;
 
-import com.model.PermRole;
 import com.model.User;
-import com.dao.PermRoleDAO;
 import com.dao.UserDAO;
 
 
@@ -27,12 +25,9 @@ public class UserService {
 	@Autowired
 	private  JwtService jwtService;
 	
-	@Autowired
-	private PermRoleDAO roleDao;
 	
 	
 	public User register(User user) {
-		// TODO Auto-generated method stub
 		 if (user.getUserName() == null || user.getPassword() == null) {
 		        throw new IllegalArgumentException("Username and password are required");
 		    }
@@ -78,7 +73,6 @@ public class UserService {
 	
 	public void updateRole(int userId,int roleNumber) {
 		User user=userRepository.findById(userId).orElse(null);
-		PermRole role = roleDao.findById(roleNumber).orElse(null);
 		user.setRoleNumber(roleNumber);
 		userRepository.save(user);}
 

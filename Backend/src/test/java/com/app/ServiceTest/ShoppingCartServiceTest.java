@@ -62,8 +62,8 @@ class ShoppingCartServiceTest {
         // Mocking books
         when(bookDAO.findByIsbnIn(Arrays.asList("ISBN123", "ISBN456")))
             .thenReturn(Arrays.asList(
-                new Book("ISBN123", "Book1", "Description1", 1, "1st", 101, "image1.jpg", 0),
-                new Book("ISBN456", "Book2", "Description2", 2, "2nd", 102, "image2.jpg", 0)
+                new Book("ISBN123", "Book1", "Description1", 1, "1st", 101, "image1.jpg"),
+                new Book("ISBN456", "Book2", "Description2", 2, "2nd", 102, "image2.jpg")
             ));
 
         // When

@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.BookReviewDAO;
-import com.dao.UserDAO;
 import com.model.BookReview;
-import com.model.Reviewer;
 
 @Service
 public class BookReviewService {

@@ -13,7 +13,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
  
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
  
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,13 +27,11 @@ class BookReviewControllerTest {
     private BookReviewService bookReviewService;
  
     private BookReview sampleReview;
-    private Reviewer sampleReviewer;
- 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
         sampleReview = new BookReview();
-        sampleReviewer = new Reviewer(0, "John Doe", "john@example.com");
+        new Reviewer(0, "John Doe", "john@example.com");
     }
  
     @Test

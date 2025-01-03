@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.ReviewerDAO;
-import com.exception.ResourceNotFoundException;
 import com.model.Reviewer;
 
 @Service

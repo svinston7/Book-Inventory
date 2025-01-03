@@ -18,8 +18,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.model.Author;
 import com.model.Book;
 import com.model.BookAuthor;
-import com.exception.InvalidInputException;
-import com.exception.ResourceNotFoundException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -102,7 +100,7 @@ class BookAuthorControllerTest {
 
     @Test
     void testGetAuthorById() throws Exception {
-        Book book = new Book("1234", "Test Book", "Description", 1, "First Edition", 1, "image.jpg", 0);
+        Book book = new Book("1234", "Test Book", "Description", 1, "First Edition", 1, "image.jpg");
         List<Book> books = Arrays.asList(book);
         when(bookAuthorService.getBookDetailsById(101)).thenReturn(books);
 

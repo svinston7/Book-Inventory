@@ -6,11 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.BookConditionDAO;
-import com.dao.BookDAO;
-import com.dao.UserDAO;
-import com.model.Book;
+
 import com.model.BookCondition;
-import com.model.User;
 @Service
 public class BookConditionService {
 @Autowired

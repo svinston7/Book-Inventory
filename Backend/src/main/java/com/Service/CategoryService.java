@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.CategoryDAO;
-import com.dao.UserDAO;
 import com.model.Category;
-import com.model.User;
 @Service
 public class CategoryService {
 	@Autowired

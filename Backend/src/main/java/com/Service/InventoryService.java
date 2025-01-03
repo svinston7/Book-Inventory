@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.InventoryDAO;
-import com.dao.UserDAO;
 import com.model.Inventory;
-import com.model.User;
+
 @Service
 public class InventoryService {
 	@Autowired

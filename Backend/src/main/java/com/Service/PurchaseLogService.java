@@ -1,17 +1,13 @@
 package com.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.InventoryDAO;
 import com.dao.PurchaseLogDAO;
-import com.dao.UserDAO;
-import com.model.*;
 import com.model.PurchaseLog;
-import com.model.User;
 
 @Service
 public class PurchaseLogService {

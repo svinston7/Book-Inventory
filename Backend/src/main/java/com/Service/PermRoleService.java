@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.PermRoleDAO;
-import com.dao.UserDAO;
 import com.model.PermRole;
-import com.model.User;
 
 @Service
 public class PermRoleService {
