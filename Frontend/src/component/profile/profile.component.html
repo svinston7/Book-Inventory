@@ -2,7 +2,7 @@
 
 <div class="profile-container">
     <div class="avatar-container">
-        <img [src]="avatarUrl" alt="Profile Avatar" class="avatar" />
+        <img src="assets/profile2.png" alt="Profile Avatar" class="avatar" />
         <input 
           *ngIf="isEditing" 
           type="file" 
@@ -58,7 +58,7 @@
     </div>
     <!-- Edit/Save Button -->
     <div class="action-button">
-      <button (click)="toggleEdit()">
+      <button class="mx-auto" (click)="toggleEdit()">
         {{ isEditing ? 'Save' : 'Edit' }}
       </button>
     </div>

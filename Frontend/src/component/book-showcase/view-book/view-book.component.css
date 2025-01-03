@@ -149,5 +149,9 @@
     .img-thumbnail {
         width: 100%; /* Ensure the image fills its container */
     }
-}
 
+
+}
+.gotop{
+    top:-40px
+}

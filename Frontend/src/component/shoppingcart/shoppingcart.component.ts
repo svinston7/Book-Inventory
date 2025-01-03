@@ -19,7 +19,10 @@ export class ShoppingcartComponent {
   toastMessage: string = '';
   isToastVisible: boolean = false;
   isPopupVisible = false;
-  popupMessage: string = ''; totalCost:number=0;
+  popupMessage: string = ''; 
+  bookCost:number=0;
+  GSTCost:number=0;
+totalCost:number=0;
  
 constructor(private cartService:CartService,
   private http: HttpClient,
@@ -58,7 +61,10 @@ ngOnInit() {
 }
  
  calculateTotalCost():void{
-  this.totalCost=this.books.reduce((sum,book)=>sum+book.price,0);
+  this.bookCost=this.books.reduce((sum,book)=>sum+book.price,0);
+  this.GSTCost = parseFloat((this.bookCost / 12).toFixed(2)); // Ensures 2 decimal places
+  this.totalCost = parseFloat((this.bookCost + this.GSTCost).toFixed(2));
+  console.log(this.totalCost)
  }
 getCart(userName:string){
   this.cartService.getCart(userName).subscribe((data:any[])=>
