@@ -1,5 +1,12 @@
 <app-home> </app-home>
 
+<div class="card">
+  <div class="card-body">
+    <div *ngIf="books.length === 0" class="text-center my-5">
+      <h3 style="color: red;">Your cart is empty</h3>
+      <!-- <button class="btn btn-primary" routerLink="/home">Go to Home</button> -->
+    </div>
+  </div>
 <div class="container">
     <div class="row">
       <div class="col-12" *ngFor="let book of books">
@@ -16,15 +23,19 @@
                 <button (click)="removeBook(book.isbn)" type="button">
                   <i class="fa-regular fa-square-minus"></i> Remove
                 </button>
+
+ 
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+    
    
     <!-- Toast button for demonstration -->
-    <button id="liveToastBtn" class="btn btn-primary">Show Toast</button>
+   
    
     <!-- Toast notification -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
@@ -47,4 +58,5 @@
 
     </div>
   </div>
+  <h4 class="mt-2">Total Cost:{{totalCost}}</h4>
   <button class="btn btn-dark m-5" (click)="payNow()">Proceed to Pay</button>

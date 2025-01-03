@@ -1,1 +1,118 @@
-<p>admin-author works!</p>
+<app-home/>
+<div class="container mt-4">
+    <h3 style="text-align: center; color: black;">Author Management</h3>
+    
+    <button class="btn btn-primary" (click)="openAddAuthorModal()">Add an Author</button>
+    <div *ngIf="sucessMessage" class="alert alert-success mt-3" style="color:green;">
+        {{ sucessMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3" style="color:red;">
+        {{ errorMessage }}
+      </div>
+    <!-- Author Table -->
+    <table class="table table-striped table-bordered mt-3">
+      <thead class="table-dark">
+        <tr>
+          <th>Id</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>update</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let author of authors; let i = index">
+          <td>{{ author.authorId}}</td>
+          <td>{{ author.firstName }}</td>
+          <td>{{ author.lastName }}</td>
+          
+            <td>
+               
+                <select [(ngModel)]="author.selectedField" class="form-select">
+                    <!-- <option value=""  selected>choose field to be updated</option> -->
+                    
+                  <option value="firstName">First Name</option>
+                  <option value="lastName" selected>Last Name</option>
+                </select>
+                <input type="text" [(ngModel)]="author.updateValue" class="form-control" placeholder="Enter new value">
+                <button class="btn btn-primary mt-2" (click)="updateAuthor(author)">Update</button>
+              </td>
+            
+        </tr>
+        <tr *ngIf="authors.length === 0">
+          <td colspan="4" class="text-center">No authors available</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <!-- Add Author Modal -->
+    <div class="modal" tabindex="-1" *ngIf="showAddAuthorModal" style="display: block;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="color:black">
+            <h5 class="modal-title">Add Author</h5>
+            <button type="button" class="btn-close" (click)="closeModal()"></button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="addAuthor()">
+              <div class="mb-3">
+                <label for="authorId" class="form-label" style="color:black">Id</label>
+                <input 
+                  type="text" 
+                  id="authorId" 
+                  class="form-control" 
+                  [(ngModel)]="newAuthor.authorId" 
+                  name="authorId" 
+                  required
+                  pattern="^[0-9]+$" 
+              title="Author ID must be a number"
+              #authorId="ngModel">
+              <div *ngIf="authorId.invalid && authorId.touched" class="text-danger">
+                Author ID must be a valid integer.
+              </div>
+              </div>
+              <div class="mb-3">
+                <label for="firstName" class="form-label" style="color:black">First Name</label>
+                <input 
+                  type="text" 
+                  id="firstName" 
+                  class="form-control" 
+                  [(ngModel)]="newAuthor.firstName" 
+                  name="firstName" 
+                  required
+                  pattern="^[A-Za-z]+([ ]?[A-Za-z]+)*$"
+              title="First Name must contain only letters"
+              #firstName="ngModel">
+              <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">
+                First Name must only contain letters.
+              </div>
+              </div>
+              <div class="mb-3">
+                <label for="lastName" class="form-label" style="color:black">Last Name</label>
+                <input 
+                  type="text" 
+                  id="lastName" 
+                  class="form-control" 
+                  [(ngModel)]="newAuthor.lastName" 
+                  name="lastName" 
+                  required
+                  pattern="^[A-Za-z]+$"
+              title="Last Name must contain only letters"
+              #lastName="ngModel">
+              <div *ngIf="lastName.invalid && lastName.touched" class="text-danger">
+                Last Name must only contain letters.
+              </div>
+              </div>
+              <button type="submit" class="btn btn-primary" [disabled]="authorId.invalid || firstName.invalid || lastName.invalid">Submit</button>
+            </form>
+            
+              
+              
+              <!-- Error Message -->
+              
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+

@@ -1,7 +1,11 @@
 package com.app.ServiceTest;
  
 import com.Service.BookAuthorService;
+import com.dao.AuthorDAO;
 import com.dao.BookAuthorDAO;
+import com.dao.BookDAO;
+import com.model.Author;
+import com.model.Book;
 import com.model.BookAuthor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,6 +28,11 @@ public class BookAuthorServiceTest {
     private BookAuthorService bookAuthorService;
  
     private BookAuthor bookAuthor;
+    @Mock
+    private AuthorDAO AuthorDao;
+    
+    @Mock
+    private BookDAO bookDao;
  
     @BeforeEach
     public void setUp() {
@@ -97,4 +106,47 @@ public class BookAuthorServiceTest {
         // Assert
         verify(bookAuthorDAO, times(1)).deleteById(1);
     }
+    
+    @Test
+    public void testGetAuthorDetailsByIsbn() {
+        // Arrange
+        String isbn = "12345";
+        BookAuthor bookAuthor = new BookAuthor();
+        bookAuthor.setIsbn(isbn);
+        bookAuthor.setAuthorId(101);
+        when(bookAuthorDAO.findByIsbn(isbn)).thenReturn(List.of(bookAuthor));
+        Author author = new Author(101, "John", "Doe", "photo1.jpg");
+        when(AuthorDao.findById(101)).thenReturn(Optional.of(author));
+
+        // Act
+        List<Author> authors = bookAuthorService.getAuthorDetailsByIsbn(isbn);
+
+        // Assert
+        assertNotNull(authors);
+        assertEquals(1, authors.size());
+        assertEquals("John", authors.get(0).getFirstName());
+    }
+    
+    @Test
+    public void testGetBookDetailsById() {
+        // Arrange
+        int authorId = 1;
+        BookAuthor bookAuthor = new BookAuthor();
+        bookAuthor.setIsbn("12345");
+        bookAuthor.setAuthorId(authorId);
+        when(bookAuthorDAO.findByAuthorId(authorId)).thenReturn(List.of(bookAuthor));
+        Book book = new Book();
+        book.setIsbn("12345");
+        book.setTitle("Sample Book");
+        when(bookDao.findByIsbnIn(List.of("12345"))).thenReturn(List.of(book));
+
+        // Act
+        List<Book> books = bookAuthorService.getBookDetailsById(authorId);
+
+        // Assert
+        assertNotNull(books);
+        assertEquals(1, books.size());
+        assertEquals("Sample Book", books.get(0).getTitle());
+    }
+
 }

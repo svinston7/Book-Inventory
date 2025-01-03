@@ -3,6 +3,7 @@ package com.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +40,8 @@ public class PermRoleController {
 		
 	}
 	
-	@GetMapping("/rolenumber/{rolenumber}")
+	@GetMapping("/rolenumber/{roleNumber}")
+	@PreAuthorize("hasRole('ROLE_Admin')")
 	public ResponseEntity<?> getRole(@PathVariable int roleNumber)throws InvalidInputException, ResourceNotFoundException {
 		PermRole role = roleService.findById(roleNumber);
 		return new ResponseEntity<PermRole>(role,HttpStatus.OK);

@@ -36,7 +36,8 @@ export class ViewBookComponent {
     categoryId: 0,
     edition: '',
     publisherId: 0,
-    image: ''
+    image: '',
+    price: 0
   }
   publisher: Publisher={
     publisherId: 0,
@@ -199,6 +200,7 @@ export class ViewBookComponent {
           next: (response) => {console.log(`Cart item added successfully:`, response);
             //window.alert("book added to your cart sucessfully");
             this.popupMessage = 'Your Book has been sucessfully added to the cart🛒';
+
         this.isPopupVisible=true;
 
           },

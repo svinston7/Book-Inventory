@@ -10,7 +10,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import org.springframework.stereotype.Service;
 
+import com.model.PermRole;
 import com.model.User;
+import com.dao.PermRoleDAO;
 import com.dao.UserDAO;
 
 
@@ -24,6 +26,9 @@ public class UserService {
 	private  AuthenticationManager authenticationManager;
 	@Autowired
 	private  JwtService jwtService;
+	
+	@Autowired
+	private PermRoleDAO roleDao;
 	
 	
 	public User register(User user) {
@@ -71,11 +76,11 @@ public class UserService {
 		user.setPhoneNumber(phoneNumber);	
 		userRepository.save(user);}
 	
-	public void updateRole(int userId,int role) {
+	public void updateRole(int userId,int roleNumber) {
 		User user=userRepository.findById(userId).orElse(null);
-		user.setRoleNumber(role);
-		userRepository.save(user);
-	}
+		PermRole role = roleDao.findById(roleNumber).orElse(null);
+		user.setRoleNumber(roleNumber);
+		userRepository.save(user);}
 
 	public User findByUserName(String username) {
 		return userRepository.findByUserName(username);

@@ -19,7 +19,8 @@ export class ProfileComponent {
     phoneNumber: '',
     userName: '',
     password: '',
-    roleNumber: 0
+    roleNumber:3,
+        
   }
   userId: number=this.user.userId;
   FirstName: string = this.user.firstName; // Default first name

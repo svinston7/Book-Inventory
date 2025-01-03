@@ -34,6 +34,7 @@ public class BookController {
 	@PostMapping("/post")
 	public ResponseEntity<?> postBook(@RequestBody Book book) throws InvalidInputException {
 		try {
+			System.out.println("book added successfully"+book.toString());
 	        bookService.addBook(book);
 	        return ResponseEntity.ok(new Response("POSTSUCCESS", "Book added successfully"));
 	    } catch (Exception e) {

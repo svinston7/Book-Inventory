@@ -1,3 +1,4 @@
+<app-home></app-home>
 <div class="search-container">
   <form action="/action_page.php">
     <input type="text" placeholder="Filter by Username" #filter>
@@ -37,7 +38,7 @@
           </select>
         </ng-container>
         <ng-template #displayRole>
-          {{ user.roleNumber === 0 ? 'User' : 'Admin' }}
+          {{ user.roleNumber === 3 ? 'User' : 'Admin' }}
         </ng-template>
       </td>
       

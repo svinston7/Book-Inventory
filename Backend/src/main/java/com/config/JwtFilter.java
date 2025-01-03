@@ -32,7 +32,7 @@ public class JwtFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         // Set CORS headers
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200"); // Replace with your allowed origin
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200"); 
         response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
         response.setHeader("Access-Control-Allow-Credentials", "true");

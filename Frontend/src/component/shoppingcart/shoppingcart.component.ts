@@ -19,7 +19,7 @@ export class ShoppingcartComponent {
   toastMessage: string = '';
   isToastVisible: boolean = false;
   isPopupVisible = false;
-  popupMessage: string = '';
+  popupMessage: string = ''; totalCost:number=0;
  
 constructor(private cartService:CartService,
   private http: HttpClient,
@@ -41,7 +41,7 @@ ngOnInit() {
     this.cart.userName = this.username;
     this.cartService.getCart(this.cart.userName).subscribe((data) => {
       this.books = data;
-      console.log(data);
+      console.log(data);this.calculateTotalCost();
     });
   }
  
@@ -57,12 +57,14 @@ ngOnInit() {
   // }
 }
  
- 
+ calculateTotalCost():void{
+  this.totalCost=this.books.reduce((sum,book)=>sum+book.price,0);
+ }
 getCart(userName:string){
   this.cartService.getCart(userName).subscribe((data:any[])=>
     { console.log('cart data are',data);
       this.books=data;
-     
+      this.calculateTotalCost();
                
        
                
@@ -105,10 +107,11 @@ getCart(userName:string){
                 .subscribe({
                   next: () => {
                     //alert('Item removed successfully!');
-                    this.popupMessage = 'Your Book has been sucessfully added to the cart';
+                    this.popupMessage = 'Your Book has been removed ';
                     this.isPopupVisible=true;
                    
-                    this.books = this.books.filter((book) => book.isbn !== isbn); // Update the UI to reflect the removal
+                    // this.books = this.books.filter((book) => book.isbn !== isbn); // Update the UI to reflect the removal
+                    this.getCart(this.username??'');
                   }
                 });
                
@@ -152,11 +155,11 @@ getCart(userName:string){
 payNow() {
 const RazorpayOptions = {
   key: 'rzp_test_zWhcqYLonnFntk',
-  amount: this.price * 100, 
+  amount: this.totalCost * 100, 
   currency: 'INR',
   name: 'Book Inventory',
   description: 'Sample Razorpay demo',
-  image: 'https://i.imgur.com/FApqk3D.jpeg',
+  image: '',
       prefill: {
         name: 'Book Inventory',
         email: 'sam@gmail.com',

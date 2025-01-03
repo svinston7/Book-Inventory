@@ -22,6 +22,7 @@ import com.Service.UserService;
 import com.dao.UserDAO;
 import com.exception.InvalidInputException;
 import com.exception.ResourceNotFoundException;
+import com.model.PermRole;
 import com.model.User;
 
 @RestController
@@ -46,11 +47,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 	
-	/*@PostMapping("/post")
-	public ResponseEntity<?> addUser(@RequestBody User user) {
-		userService.addUser(user);
-		return new ResponseEntity<>(user+"Added",HttpStatus.OK);
-	}*/
+	
     
 	@PostMapping("/register")
 	public ResponseEntity<?> register(@RequestBody User user) throws Exception {
@@ -81,7 +78,7 @@ public class UserController {
 	    }
 	 @PutMapping("/update/role/{userId}")
 	 public void updateRole(@PathVariable int userId,@RequestBody int roleNumber)throws InvalidInputException, ResourceNotFoundException  {
-		 userService.updateRole(userId,roleNumber);
+		 userService.updateRole(userId, roleNumber);
 	 }
 	
 	 @PutMapping("/update/firstname/{userId}")
