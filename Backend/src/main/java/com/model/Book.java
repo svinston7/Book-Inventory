@@ -14,6 +14,7 @@ import jakarta.persistence.OneToMany;
 public class Book {
 	
 	@Id
+
     @Column(name = "isbn")  
     private String isbn;
 
@@ -34,7 +35,17 @@ public class Book {
 
     @Column(name = "image")  
     private String image;
-			
+  
+	private float price;
+  
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
 	public Book() {}
 
 	public String getIsbn() {
@@ -94,7 +105,7 @@ public class Book {
 
 
 	public Book(String isbn, String title, String description, int categoryId, String edition, int publisherId,
-			String image) {
+			String image, float price) {
 		super();
 		this.isbn = isbn;
 		this.title = title;
@@ -103,20 +114,24 @@ public class Book {
 		this.edition = edition;
 		this.publisherId = publisherId;
 		this.image = image;
+		this.price=price;
 	}
 
 	public void setPublisherId(int publisherId) {
 		this.publisherId = publisherId;
 	}
 
-
-
-
 	@Override
 	public String toString() {
 		return "Book [isbn=" + isbn + ", title=" + title + ", description=" + description + ", categoryId=" + categoryId
-				+ ", edition=" + edition + ", publisherId=" + publisherId + "]";
+				+ ", edition=" + edition + ", publisherId=" + publisherId + ", image=" + image + ", price=" + price
+				+ "]";
 	}
+
+
+
+
+	
 	
 	
 

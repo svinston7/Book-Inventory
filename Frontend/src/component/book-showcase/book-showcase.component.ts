@@ -28,7 +28,8 @@ export class BookShowcaseComponent {
     categoryId: 0,
     edition: '',
     publisherId: 0,
-    image: ''
+    image: '',
+    price:0
   }
   cat :Category={
     catId: 0,
