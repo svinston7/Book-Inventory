@@ -1,16 +1,16 @@
 <app-home> </app-home>
 
-<div class="card">
+<div class="card ">
   <div class="card-body">
     <div *ngIf="books.length === 0" class="text-center my-5">
       <h3 style="color: red;">Your cart is empty</h3>
       <!-- <button class="btn btn-primary" routerLink="/home">Go to Home</button> -->
     </div>
   </div>
-<div class="container">
-    <div class="row">
-      <div class="col-12" *ngFor="let book of books">
-        <div class="card mb-3" style="max-width: 540px;">
+<div class="container ">
+    <div class="row mb-2">
+      <div class="col-12 " *ngFor="let book of books">
+        
           <div class="row g-0">
             <div class="col-md-4">
               <img [src]="book.image" class="img-fluid rounded-start" alt="Book Image">
@@ -20,16 +20,16 @@
                 <h5 class="card-title">{{ book.title }}</h5>
                 <p class="card-text">{{ book.description }}</p>
                 <p class="card-text"><small class="text-body-secondary">ISBN: {{ book.isbn }}</small></p>
-                <p class="card-text">price : {{book.price}}</p>
-                <button (click)="removeBook(book.isbn)" type="button">
-                  <i class="fa-regular fa-square-minus"></i> Remove
+                <button (click)="removeBook(book.isbn)" type="button" class="remove-button">
+                   Remove
+
                 </button>
 
  
               </div>
             </div>
           </div>
-        </div>
+        
       </div>
     </div>
   </div>
@@ -59,5 +59,12 @@
 
     </div>
   </div>
-  <h4 class="mt-2">Total Cost:{{totalCost}}</h4>
-  <button class="btn btn-dark m-5" (click)="payNow()">Proceed to Pay</button>
+  <div class="w-25 text-center mx-auto">
+    <hr>
+    <h6 class="mt-2 text-center">Book Cost:{{bookCost}}</h6>
+    <h6 class="mt-2 text-center">GST Cost:{{GSTCost}}</h6>
+    <hr>
+    <h4 class="mt-2 text-center">Total Cost:{{totalCost}}</h4>
+    <hr>
+    <button class="btn btn-dark mt-3 mx-auto" (click)="payNow()">Proceed to Pay</button>
+  </div>

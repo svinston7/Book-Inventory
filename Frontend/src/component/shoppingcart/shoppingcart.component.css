@@ -1,25 +1,23 @@
 /* General Container */
+
 .container {
+  background-color: #ddd  ;
   padding: 20px;
-  background-color: #f9f9f9;
   border-radius: 15px;
   max-width: 900px;
   margin: 0 auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Book Card Styling */
 .card {
-  border: 1px solid #ddd;
+  background-color: transparent;
   border-radius: 10px;
+  justify-content: center;
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
+
 
 .card img {
   height: 150px;
@@ -67,7 +65,9 @@ button:hover i {
   color: #333;
   padding: 15px;
 }
-
+.bar{
+  border: 5px solid red;
+}
 /* Popup Overlay */
 .popup-overlay {
   position: fixed;
@@ -126,6 +126,15 @@ button:hover i {
   transform: scale(1.05);
 }
 
+.remove-button{
+  background: linear-gradient(to right, #007bff, #00aaff);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+ 
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {
