@@ -155,11 +155,11 @@ getCart(userName:string){
 payNow() {
 const RazorpayOptions = {
   key: 'rzp_test_zWhcqYLonnFntk',
-  amount: this.totalCost, 
+  amount: this.totalCost * 100, 
   currency: 'INR',
   name: 'Book Inventory',
   description: 'Sample Razorpay demo',
-  image: 'https://i.imgur.com/FApqk3D.jpeg',
+  image: '',
       prefill: {
         name: 'Book Inventory',
         email: 'sam@gmail.com',
