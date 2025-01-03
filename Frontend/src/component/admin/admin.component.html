@@ -18,22 +18,18 @@
                 <a class="btn btn-primary" href="/admin-role"> Go to Roles</a>
             </div>
  
-            <div class="table-card">
-                <h3>Inventory Management</h3>
-                <p>Manage books in the inventory</p>
-                <a class="btn btn-primary" href="/admin-inventory" [routerLink]="['/admin-inventory']">Go to Inventory</a>
-            </div>
  
             <div class="table-card">
                 <h3>Book Management</h3>
                 <p>Manage book details</p>
-                <a class="btn btn-primary" href="/admin-books" [routerLink]="['/admin-books']">Go to Books</a>
+                <a class="btn btn-primary" href="/admin-book"  >Go to Books</a>
+                
             </div>
  
             <div class="table-card">
                 <h3>Category Management</h3>
                 <p>Manage book categories</p>
-                <a class="btn btn-primary" href="/admin-category" [routerLink]="['/admin/categories']">Go to Categories</a>
+                <a class="btn btn-primary" href="/admin-category">Go to Categories</a>
             </div>
  
             <div class="table-card">
@@ -48,11 +44,7 @@
                 <a class="btn btn-primary" href="/admin-purchaselog" [routerLink]="['/admin/purchaselog']">Go to Purchase Log</a>
             </div>
  
-            <div class="table-card">
-                <h3>Book Conditions</h3>
-                <p>Manage book conditions (new, used, etc.)</p>
-                <a class="btn btn-primary" href="/admin-condition" [routerLink]="['/admin/bookcondition']">Go to Book Conditions</a>
-            </div>
+            
 
             <div class="table-card">
                 <h3>Manage Author</h3>
@@ -62,4 +54,5 @@
  
         </section>
     </main>
+    <router-outlet></router-outlet>
 </div>

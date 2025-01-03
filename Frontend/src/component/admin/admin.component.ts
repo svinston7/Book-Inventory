@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
 @Component({
   selector: 'app-admin',
+  
   imports: [RouterModule,CommonModule,HomeComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
@@ -28,6 +29,7 @@ logout(): void {
 
 addBook(): void {
   // Placeholder for adding a book
-  alert('Redirect to Add Book Page');
+  //alert('Redirect to Add Book Page');
+  this.router.navigate(['/admin-add-book']);
 }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminBookComponent } from './admin-book.component';
+import { AdminCategoryComponent } from './admin-category.component';
 
-describe('AdminBookComponent', () => {
-  let component: AdminBookComponent;
-  let fixture: ComponentFixture<AdminBookComponent>;
+describe('AdminCategoryComponent', () => {
+  let component: AdminCategoryComponent;
+  let fixture: ComponentFixture<AdminCategoryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdminBookComponent]
+      imports: [AdminCategoryComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AdminBookComponent);
+    fixture = TestBed.createComponent(AdminCategoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -20,5 +20,4 @@ describe('AdminBookComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
 });

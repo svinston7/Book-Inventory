@@ -3,6 +3,7 @@ package com.model;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -13,15 +14,30 @@ import jakarta.persistence.OneToMany;
 public class Book {
 	
 	@Id
-	private String isbn;
-	private String title;
-	private String description;
-	private int categoryId;
-	private String edition;
-	private int publisherId;
-	private String image;
+
+    @Column(name = "isbn")  
+    private String isbn;
+
+    @Column(name = "title")  
+    private String title;
+
+    @Column(name = "description")  
+    private String description;
+
+    @Column(name = "category_id") 
+    private int categoryId;
+
+    @Column(name = "edition")  
+    private String edition;
+
+    @Column(name = "publisher_id")  
+    private int publisherId;
+
+    @Column(name = "image")  
+    private String image;
+  
 	private float price;
-			
+  
 	public float getPrice() {
 		return price;
 	}

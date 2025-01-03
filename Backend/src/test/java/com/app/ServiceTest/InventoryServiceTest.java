@@ -48,6 +48,17 @@ class InventoryServiceTest {
     }
 
     @Test
+    void testGetAll_EmptyList() {
+        when(inventoryDAO.findAll()).thenReturn(List.of());
+
+        var inventoryList = inventoryService.getAll();
+
+        assertNotNull(inventoryList);
+        assertTrue(inventoryList.isEmpty(), "Inventory list should be empty");
+        verify(inventoryDAO, times(1)).findAll();
+    }
+
+    @Test
     void testFindById_InventoryExists() {
         when(inventoryDAO.findById(1)).thenReturn(Optional.of(inventory));
 

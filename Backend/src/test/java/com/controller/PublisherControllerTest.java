@@ -104,6 +104,21 @@ class PublisherControllerTest {
         verify(publisherService, times(1)).addPublisher(mockPublisher);
        
     }
+    @Test
+    void testUpdatePublisherState() throws Exception {
+        Publisher mockPublisher = new Publisher(1, "Publisher1", "City1", "State1");
+
+        when(publisherService.findById(1)).thenReturn(mockPublisher);
+        
+        mockMvc.perform(put("/api/publisher/update/state/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("New State"))  // Ensure the value is wrapped in quotes, as it's a string
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.stateCode").value("New State"));  // The value here is "New State", including the quotes in JSON
+
+        verify(publisherService, times(1)).findById(1);
+        verify(publisherService, times(1)).addPublisher(mockPublisher);
+    }
 
     @Test
     void testGetPublisherByName() throws Exception {
@@ -135,4 +150,23 @@ class PublisherControllerTest {
 
         verify(publisherService, times(1)).findByCity("City1");
     }
+    
+
+    @Test
+    void testGetPublisherByState() throws Exception {
+        List<Publisher> mockPublishers = Arrays.asList(
+                new Publisher(1, "Publisher1", "City1", "State1"),
+                new Publisher(2, "Publisher2", "City2", "State1")
+        );
+
+        when(publisherService.findByState("State1")).thenReturn(mockPublishers);
+
+        mockMvc.perform(get("/api/publisher/state/State1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").value("Publisher1"))
+                .andExpect(jsonPath("$[1].name").value("Publisher2"));
+
+        verify(publisherService, times(1)).findByState("State1");
+    }
+   
 }

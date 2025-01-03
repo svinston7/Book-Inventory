@@ -37,41 +37,51 @@ class ShoppingCartServiceTest {
     @Test
     void testAddShoppingCart() {
         ShoppingCart cart = new ShoppingCart();
-        cart.setUserId(1);
+        cart.setUserName("sam");
         cart.setIsbn("123-456");
 
         when(shoppingCartDAO.save(cart)).thenReturn(cart);
 
-        String response = shoppingCartService.addShoppingCart(cart);
+        shoppingCartService.addShoppingCart(cart);
 
-        assertEquals("Shopping cart added Sucessfully", response);
         verify(shoppingCartDAO, times(1)).save(cart);
     }
 
     @Test
-    void testGetListOfBook() {
-        ShoppingCart cart1 = new ShoppingCart();
-        Book book1 = new Book();
-        book1.setIsbn("123-ABC");
-        cart1.setBook(book1);
+    public void testGetListOfBook() {
+        // Given
+        String username = "testUser";
 
-        ShoppingCart cart2 = new ShoppingCart();
-        Book book2 = new Book();
-        book2.setIsbn("456-DEF");
-        cart2.setBook(book2);
+        // Mocking shopping cart entries
+        when(shoppingCartDAO.findByUserName(username))
+            .thenReturn(Arrays.asList(
+                new ShoppingCart(1, "ISBN123", null, username),
+                new ShoppingCart(2, "ISBN456", null, username)
+            ));
 
-        List<ShoppingCart> cartList = Arrays.asList(cart1, cart2);
-        List<Book> bookList = Arrays.asList(book1, book2);
+        // Mocking books
+        when(bookDAO.findByIsbnIn(Arrays.asList("ISBN123", "ISBN456")))
+            .thenReturn(Arrays.asList(
+                new Book("ISBN123", "Book1", "Description1", 1, "1st", 101, "image1.jpg"),
+                new Book("ISBN456", "Book2", "Description2", 2, "2nd", 102, "image2.jpg")
+            ));
 
-        when(shoppingCartDAO.findByUserId(1)).thenReturn(cartList);
-        when(bookDAO.findByIsbnIn(Arrays.asList("123-ABC", "456-DEF"))).thenReturn(bookList);
+        // When
+        List<Book> result = shoppingCartService.getListOfBook(username);
 
-        List<Book> result = shoppingCartService.getListOfBook(1);
+        // Then
+        assertFalse(result.isEmpty(), "Result list is empty!"); // Ensure the list is not empty
+        assertEquals(2, result.size()); // Assert the size of the list
+        assertEquals("Book1", result.get(0).getTitle());
+        assertEquals("Book2", result.get(1).getTitle());
 
-        assertEquals(2, result.size());
-        verify(shoppingCartDAO, times(1)).findByUserId(1);
-        verify(bookDAO, times(1)).findByIsbnIn(Arrays.asList("123-ABC", "456-DEF"));
+        // Verifying interactions with DAOs
+        verify(shoppingCartDAO, times(1)).findByUserName(username);
+        verify(bookDAO, times(1)).findByIsbnIn(Arrays.asList("ISBN123", "ISBN456"));
     }
+
+
+
 
     @Test
     void testUpdateIsbn() {
@@ -79,24 +89,24 @@ class ShoppingCartServiceTest {
         Book book = new Book();
         book.setIsbn("123-OLD");
         cart.setBook(book);
-        cart.setUserId(1);
+        cart.setUserName("sam");
 
-        when(shoppingCartDAO.findByUserId(1)).thenReturn(Arrays.asList(cart));
+        when(shoppingCartDAO.findByUserName("sam")).thenReturn(Arrays.asList(cart));
 
-        shoppingCartService.updateIsbn(1, "456-NEW");
+        shoppingCartService.updateIsbn("sam", "456-NEW");
 
         assertEquals("456-NEW", cart.getBook().getIsbn());
-        verify(shoppingCartDAO, times(1)).findByUserId(1);
+        verify(shoppingCartDAO, times(1)).findByUserName("sam");
         verify(shoppingCartDAO, times(1)).saveAll(Arrays.asList(cart));
     }
 
     @Test
     void testUpdateIsbnWithEmptyCart() {
-        when(shoppingCartDAO.findByUserId(1)).thenReturn(Arrays.asList());
+        when(shoppingCartDAO.findByUserName("sam")).thenReturn(Arrays.asList());
 
-        shoppingCartService.updateIsbn(1, "456-NEW");
+        shoppingCartService.updateIsbn("sam", "456-NEW");
 
-        verify(shoppingCartDAO, times(1)).findByUserId(1);
+        verify(shoppingCartDAO, times(1)).findByUserName("sam");
         verify(shoppingCartDAO, never()).saveAll(any());
     }
 }
