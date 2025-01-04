@@ -5,16 +5,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 @Entity
 public class BookAuthor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
+	@NotBlank(message = "ISBN cannot be null or empty")
+    @Size(max = 13, message = "ISBN should be at most 13 characters")
+	
 	private String isbn;
+	@NotNull(message = "author ID cannot be null")
+	@Positive(message = "author ID must be a positive number")
 	private int authorId;
 
 
     @Column(name = "PrimaryAuthor")
+    @NotNull(message = "PrimaryAuthor flag cannot be null")
     private boolean primaryAuthor;
 
 	public int getId() {

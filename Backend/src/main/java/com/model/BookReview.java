@@ -6,19 +6,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 @Entity
 public class BookReview {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; 
 	
+	@NotBlank(message = "isbn cannot be null or blank")
     private String isbn;
+	@NotNull(message = "reviewer id cannot be null")
+    @Min(value = 1, message = "reviewer id must be a positive number")
+	
+	
     private int reviewerId;
 
     @Column(name = "Rating")
+    @Min(value = 1, message = "Rating must be at least 1")
+    @Max(value = 5, message = "Rating cannot be more than 5")
+    
     private int rating;
 
     @Column(name = "Comments",length = 1000)
+    @Size(max = 1000, message = "Comments cannot exceed 1000 characters")
     private String comments;
 
     

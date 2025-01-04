@@ -2,13 +2,26 @@ package com.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class BookCondition {
 	@Id
+	@PositiveOrZero(message = "ranks must be a positive number or zero")
+	
 	private int ranks;
+	@NotBlank(message = "description cannot be null or blank")
+    @Size(max = 100, message = "Description should not exceed 100 characters")
+	
 	private String description;
+	@NotBlank(message = "full Description cannot be null or blank")
+    @Size(max = 500, message = "Full description should not exceed 500 characters")
+	
 	private String fullDescription;
+	@DecimalMin(value = "0.0", inclusive = true, message = "Price must be greater than or equal to 0")
 	private double price;
 	
 	public BookCondition() {}
