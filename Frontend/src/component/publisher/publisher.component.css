@@ -91,6 +91,7 @@
   /* Placeholder Styling */
   input::placeholder, textarea::placeholder {
     color: #bbdefb; 
+    font-size: 15px;
   }
   
   /* Focused Input */
@@ -109,6 +110,7 @@
     background: #2c496b; 
     color: #64b5f6;
     padding: 10px;
+    font-size:15px ;
   }
   
   /* Buttons */
