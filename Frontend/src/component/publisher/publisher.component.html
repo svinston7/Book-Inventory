@@ -191,25 +191,23 @@
           <div *ngIf="bookDescription.errors?.['minlength']">Book Description must be at least 10 characters long.</div>
         </div>
       </div>
+<!-- Book Cover Page (Image URL) -->
+<div>
+  <label for="image">Book Cover Page (Image URL):</label>
+  <input
+    type="text"
+    id="image"
+    name="image"
+    placeholder="Enter the URL for the book cover image"
+    required
+    ngModel
+    #image="ngModel"
+  />
+  <div *ngIf="image.invalid && image.touched" class="error">
+    <div *ngIf="image.errors?.['required']">Book Cover Page URL is required.</div>
+  </div>
+</div>
 
-      <!-- Book Cover Page (Image URL) -->
-      <div>
-        <label for="image">Book Cover Page (Image URL):</label>
-        <input
-          type="text"
-          id="image"
-          name="image"
-          placeholder="Enter the URL for the book cover image"
-          required
-          pattern="https?://.*"
-          ngModel
-          #image="ngModel"
-        />
-        <div *ngIf="image.invalid && image.touched" class="error">
-          <div *ngIf="image.errors?.['required']">Book Cover Page URL is required.</div>
-          <div *ngIf="image.errors?.['pattern']">Please enter a valid image URL (e.g., https://example.com/image.jpg).</div>
-        </div>
-      </div>
 
       <!-- Submit Button -->
       <button type="submit" [disabled]="publishForm.invalid">Submit</button>
