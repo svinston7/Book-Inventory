@@ -14,9 +14,9 @@ export class AdminCategoryComponent implements OnInit {
   newCategory: { catId: number; catDescription: string } = { catId: 0, catDescription: '' };
   successMessage: string = '';
   errorMessage: string = '';
-  editingCategory: any = null; // Track the category being edited
-  selectedField: { [key: number]: string } = {}; // Field selected for each category
-  newValues: { [key: number]: string } = {}; // New values for each category
+  editingCategory: any = null;
+  selectedField: { [key: number]: string } = {}; 
+  newValues: { [key: number]: string } = {}; 
 
   constructor(private categoryService: CategoryService) {}
 
@@ -55,7 +55,7 @@ export class AdminCategoryComponent implements OnInit {
   }
 
   startEditing(category: any): void {
-    this.editingCategory = category; // Track the category being edited
+    this.editingCategory = category;
     this.selectedField[category.catId] = ''; // Reset the selected field
     this.newValues[category.catId] = ''; // Reset the new value
   }

@@ -16,11 +16,12 @@
               name="publisherName"
               placeholder="Enter publisher's name"
               required
+              minlength="3"
               ngModel
               #publisherName="ngModel"
             />
             <div *ngIf="publisherName.invalid && publisherName.touched" class="error">
-              Publisher Name is required.
+              Publisher Name is required (at least 3 characters).
             </div>
           </div>
 
@@ -37,7 +38,7 @@
               #publisherId="ngModel"
             />
             <div *ngIf="publisherId.invalid && publisherId.touched" class="error">
-              Publisher ID is required.
+              Publisher ID is required and must be a number.
             </div>
           </div>
 
@@ -54,7 +55,7 @@
               #email="ngModel"
             />
             <div *ngIf="email.invalid && email.touched" class="error">
-              A valid email is required.
+              Please enter a valid email address.
             </div>
           </div>
 
@@ -67,11 +68,12 @@
               name="price"
               placeholder="Enter the price of the book"
               required
+              min="1"
               ngModel
               #price="ngModel"
             />
             <div *ngIf="price.invalid && price.touched" class="error">
-              Price is required.
+              Price is required and must be greater than 0.
             </div>
           </div>
         </div>
@@ -87,11 +89,12 @@
               name="title"
               placeholder="Enter the book title"
               required
+              minlength="3"
               ngModel
               #title="ngModel"
             />
             <div *ngIf="title.invalid && title.touched" class="error">
-              Book Title is required.
+              Book Title is required (at least 3 characters).
             </div>
           </div>
 
@@ -104,28 +107,30 @@
               name="edition"
               placeholder="Enter the edition number"
               required
+              min="1"
               ngModel
               #edition="ngModel"
             />
             <div *ngIf="edition.invalid && edition.touched" class="error">
-              Edition is required.
+              Edition is required and must be at least 1.
             </div>
           </div>
 
           <!-- ISBN Number -->
           <div>
-            <label for="isbn">ISBN :</label>
+            <label for="isbn">ISBN:</label>
             <input
               type="text"
               id="isbn"
               name="isbn"
               placeholder="Enter the ISBN value"
               required
+              pattern="^[0-9-]+$"
               ngModel
               #isbn="ngModel"
             />
             <div *ngIf="isbn.invalid && isbn.touched" class="error">
-              Please enter a valid ISBN value.
+              Please enter a valid ISBN value (numbers and hyphens only).
             </div>
           </div>
 
@@ -139,9 +144,7 @@
               ngModel
               #category="ngModel"
             >
-              <option value="" disabled selected>
-                Select a category
-              </option>
+              <option value="" disabled selected>Select a category</option>
               <option value="1">Romance</option>
               <option value="2">Comics</option>
               <option value="3">Programming</option>
@@ -167,11 +170,12 @@
           name="bookDescription"
           placeholder="Enter a brief description of the book"
           required
+          minlength="10"
           ngModel
           #bookDescription="ngModel"
         ></textarea>
         <div *ngIf="bookDescription.invalid && bookDescription.touched" class="error">
-          Book Description is required.
+          Book Description is required (at least 10 characters).
         </div>
       </div>
 
@@ -184,18 +188,20 @@
           name="image"
           placeholder="Enter the URL for the book cover image"
           required
+          pattern="https?://.+"
           ngModel
           #image="ngModel"
         />
         <div *ngIf="image.invalid && image.touched" class="error">
-          Please enter a valid image URL.
+          Please enter a valid image URL (must start with http or https).
         </div>
       </div>
 
       <!-- Submit Button -->
       <button type="submit" [disabled]="publishForm.invalid">Submit</button>
     </form>
-    
+
+    <!-- Popup Notification -->
     <div *ngIf="isPopupVisible" class="alert-box">
       <div class="popup-header">
         <span class="popup-icon">🎉</span>
@@ -206,4 +212,5 @@
       </div>
       <button (click)="isPopupVisible = false" class="close-btn">Close</button>
     </div>
-    
+  </div>
+</div>
