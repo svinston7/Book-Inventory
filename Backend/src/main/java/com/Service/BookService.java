@@ -30,6 +30,7 @@ public class BookService {
 		book.setEdition(updatedBook.getEdition());
 		book.setTitle(updatedBook.getTitle());
 		book.setPublisherId(updatedBook.getPublisherId());
+		book.setImage(updatedBook.getImage());
 		bookDao.save(book);
 	}
 

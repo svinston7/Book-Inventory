@@ -16,10 +16,20 @@ header {
 }
 
 .navbar {
-  background-color: #f8f9fa; /* Light background for navbar */
+  background:-webkit-linear-gradient(#000000,#130F40); /* Light background for navbar */
   z-index: 1050; /* Ensure it is on top of other elements */
 }
-
+nav .logo img {
+  padding-left: 30px;
+  height: 30pt;
+  width: 150px;
+  display: inline-block;
+  margin-right: 5px;
+}
+nav .logo {
+  text-decoration: none;
+  margin-right: auto; /* Push it to the left */
+}
 .navbar-brand {
   font-weight: bold;
   /* font-size: 1.5rem; */
@@ -168,4 +178,7 @@ button[data-bs-toggle="offcanvas"]:hover {
     margin-top: 0.5rem;
     margin-left: 0;
   }
+}
+.fa-solid:hover{
+  color: black;
 }

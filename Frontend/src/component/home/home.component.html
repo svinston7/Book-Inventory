@@ -1,14 +1,9 @@
 <header class="mb-5">
   <nav class="position-relative navbar navbar-expand-lg bg-body-tertiary ">
-    <div class=" position-fixed top-0 start-0 z-3 bg-white container-fluid p-2 mb-2">
+    <div class=" position-fixed top-0 start-0 z-3 navbar container-fluid p-2 mb-2">
       <!-- menu btn -->
-      <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-solid fa-bars"></i> Menu</button>
-
-
-      <a class="navbar-brand ms-3" href="#">
-        Book Inventory System
-      </a>
-     
+      <button class="text text-light btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-solid fa-bars"> Menu</i></button>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -30,7 +25,7 @@
           >
 
 
-          <button class="btn btn-outline-success" >Search</button>
+          <button class="btn btn-outline-info" >Search</button>
           <!-- filter  -->
           <button class="btn btn-primary me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="margin-left:2%;background-color: purple;border-color: purple;">
             <i class="fa-duotone fa-solid fa-filter" style="background-color: purple; color: white; padding: 10px; border-radius: 30%;"></i>
@@ -54,11 +49,11 @@
           <div class="btn-group me-3">
             <button type="button" data-bs-toggle="dropdown" style="border: 0; width: 50px;" aria-expanded="false" data-bs-reference="parent">
               <span style="position: relative; cursor: pointer; font-size: x-large;">
-                <i class="fa-solid fa-user" style="background-color: purple; color: white; padding: 10px; border-radius: 30%;"></i>
+                <i class="fa-solid fa-user" style="background-color: purple; color: white; padding: 10px;"></i>
               </span>
             </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="/profile"><i class="fa-regular fa-user"></i>Profile</a></li>
+            <ul class="dropdown-menu dropdown-menu-end"  >
+              <li><a class="dropdown-item" href="/profile"><i class="fa-regular fa-user " ></i>Profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
                 <button class="dropdown-item" (click)="logout()"> <i class="fas fa-sign-out-alt"></i>Logout</button>

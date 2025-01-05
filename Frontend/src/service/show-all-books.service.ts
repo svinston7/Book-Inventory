@@ -32,4 +32,13 @@ export class ShowAllBooksService {
   updateBook(isbn: string, bookData: Book): Observable<Book> {
     return this.httpClient.put<Book>(`${this.BOOKURL}/update/${isbn}`, bookData);
   }
+
+  // updateBookWithImage(isbn: string, bookData: Book, imageFile: File): Observable<Book> {
+  //   const formData = new FormData();
+  //   formData.append('book', new Blob([JSON.stringify(bookData)], { type: 'application/json' }));
+  //   formData.append('image', imageFile);
+  
+  //   return this.httpClient.put<Book>(`${this.BOOKURL}/update/${isbn}`, formData);
+  // }
+  
 }

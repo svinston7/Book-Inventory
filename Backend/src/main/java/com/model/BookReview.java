@@ -12,6 +12,7 @@ public class BookReview {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; 
 	
+	
     private String isbn;
     private int reviewerId;
 

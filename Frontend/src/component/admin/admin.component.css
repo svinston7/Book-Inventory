@@ -1,3 +1,6 @@
+h3{
+    color:purple;
+}
 .sidebar {
     position: fixed;
     top: 0;
@@ -9,6 +12,8 @@
     padding-top: 20px;
 }
 .admin-container{
+   
+    box-shadow: #333;
     color: black;
 }
 .sidebar.open {
@@ -42,6 +47,9 @@
 
 /* Centered Title */
 .centered-title {
+    background: -webkit-linear-gradient(#000000, purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
     text-align: center;
     font-size: 2em;
     margin: 20px 0;
@@ -56,6 +64,7 @@
 }
 
 .table-card {
+    background-color: aliceblue;
     padding: 20px;
     border-radius: 10px;
     width: calc(50% - 30px); /* Ensures two columns with even spacing */
@@ -77,7 +86,8 @@
 .table-card .btn {
     padding: 10px 20px;
     font-size: 14px;
-    background-color: #007bff;
+    background: linear-gradient(to right, purple, #444);
+    
     border: none;
     border-radius: 5px;
     cursor: pointer;

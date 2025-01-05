@@ -15,13 +15,16 @@
             <h6 class="my-3 text-start">Description:</h6>
             <p class="my-3 text-dark  p-3 rounded">{{book.description}}</p>
             <h6 class="my-3 text-start">Category:</h6> 
-            <p><span class="my-3 text-dark  p-3 rounded">{{cat.catDescription}}</span></p>
+            <p><span class="my-3  ms-4 text-dark bg-info px-1 rounded">{{cat.catDescription}}</span></p>
             <h6 class="my-3 text-start">Publisher Details:</h6>
-            <p class="text-muted">Name: <span class="my-3 text-dark  p-3 rounded">{{publisher.name}}</span></p>            
-            <p class="text-muted">City: <span class="my-3 text-dark  p-3 rounded">{{publisher.city}}</span></p>
-            <h6 class="my-3 text-start">Authors</h6>
+            <p class="text-muted ms-3">Name: <span class="my-3 text-dark  p-3 rounded">{{publisher.name}}</span></p>
+
+            
+            <p class="text-muted ms-3">City: <span class="my-3 text-dark  p-3 rounded">{{publisher.city}}</span></p>
+            <h6 class="my-3 text-start">Authors:</h6>
+
             <div class="author-details" *ngFor="let auth of authorList">
-                <p class="my-3 text-dark  p-3 rounded">{{auth.firstName}} {{auth.lastName}}</p>
+                <p class="text-dark ms-3  rounded">{{auth.firstName}} {{auth.lastName}}</p>
             </div>
             <p class="text-muted">Price: <span class="my-3 text-dark  p-3 rounded">{{book.price}}</span></p>            
             <button class="btn btn-primary gradient-btn" (click)="addtocart(book.isbn)">Add to Cart</button>
@@ -33,9 +36,9 @@
         
             <h2 class="text-start text-gradient">User Reviews</h2>
             <p class="text-warning ">By posting a comment, you agree to the terms.</p>
-            <div class="d-flex align-items-center">
+            <div class="position-relative">
                 
-                <button class="text-dark p-2 rounded btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <button class=" p-2 rounded btn btn-outline-info position-absolute end-0 translate-middle gotop" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     Write a Review
                 </button>
                 

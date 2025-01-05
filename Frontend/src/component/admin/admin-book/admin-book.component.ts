@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ShowAllBooksService } from '../../../service/show-all-books.service';
 import { Book } from '../../../model/Book';
 import { FormsModule } from '@angular/forms';
@@ -11,12 +11,14 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./admin-book.component.css']
 })
 export class AdminBookComponent implements OnInit {
-  books: Book[] = [];
+  books: any[] = [];
   popupMessage: string = '';
   isPopupVisible: boolean = false;
   
 
-  constructor(private showAllBooksService: ShowAllBooksService) {}
+  constructor(
+    private showAllBooksService: ShowAllBooksService,
+  private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.fetchBooks();
@@ -24,8 +26,9 @@ export class AdminBookComponent implements OnInit {
 
   fetchBooks(): void {
     this.showAllBooksService.showBooks().subscribe(
-      (response: Book[]) => {
-        this.books = response;
+      (books) => {
+        this.books = books;
+        this.cdr.detectChanges();
       },
       (error) => {
         alert('Error fetching books: ' + error);
