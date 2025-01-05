@@ -36,16 +36,36 @@ export class AdminBookComponent implements OnInit {
     );
   }
 
-  updateBook(isbn: string): void {
-    const updatedBook = this.books.find(book => book.isbn === isbn);
+  // updateBook(isbn: string): void {
+  //   const updatedBook = this.books.find(book => book.isbn === isbn);
 
+  //   if (updatedBook) {
+  //     this.showAllBooksService.updateBook(isbn, updatedBook).subscribe(
+  //       (response) => {
+  //         //alert('Book updated successfully!');
+  //         this.popupMessage='Book updated successfully!';
+  //           this.isPopupVisible=true;
+  //         this.fetchBooks(); // Refresh the book list
+  //       },
+  //       (error) => {
+  //         alert('Error updating book: ' + error);
+  //       }
+  //     );
+  //   }
+  // }
+  updateBook(isbn: string): void {
+    // Find the updated book by ISBN
+    const updatedBook = this.books.find(book => book.isbn === isbn);
+  
     if (updatedBook) {
+      console.log('Updated Book:', updatedBook);  // Log the book to check if image is included
+  
+      // Send the updated book (including image) to the service
       this.showAllBooksService.updateBook(isbn, updatedBook).subscribe(
         (response) => {
-          //alert('Book updated successfully!');
-          this.popupMessage='Book updated successfully!';
-            this.isPopupVisible=true;
-          this.fetchBooks(); // Refresh the book list
+          this.popupMessage = 'Book updated successfully!';
+          this.isPopupVisible = true;
+          this.fetchBooks(); // Refresh the book list after update
         },
         (error) => {
           alert('Error updating book: ' + error);
@@ -53,4 +73,5 @@ export class AdminBookComponent implements OnInit {
       );
     }
   }
+  
 }
