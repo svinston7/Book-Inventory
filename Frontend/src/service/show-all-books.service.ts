@@ -30,6 +30,7 @@ export class ShowAllBooksService {
 
   // Update the entire book object
   updateBook(isbn: string, bookData: Book): Observable<Book> {
+    console.log('Sending Updated Book:', bookData); 
     return this.httpClient.put<Book>(`${this.BOOKURL}/update/${isbn}`, bookData);
   }
 
