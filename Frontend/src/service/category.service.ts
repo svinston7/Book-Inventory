@@ -9,7 +9,7 @@ export class CategoryService {
   selectedCategorieSet!: Set<number>;
 
   private invokeFunctionSource = new Subject<void>();
-  invokeFunction$ = this.invokeFunctionSource.asObservable();
+  invokeFunction = this.invokeFunctionSource.asObservable();
 
   constructor(private httpClient: HttpClient) {}
 
@@ -50,7 +50,7 @@ updateCategory(catId: number, description: string): Observable<any> {
 
   // For search functionality
   private searchQuerySource = new Subject<string>();
-  searchQuery$ = this.searchQuerySource.asObservable();
+  searchQuery = this.searchQuerySource.asObservable();
 
   setSearchQuery(query: string): void {
     this.searchQuerySource.next(query); // Emit the search query

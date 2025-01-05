@@ -26,15 +26,19 @@ BookConditionDAO bookconditionDao;
 	public void updateDescription(int rank,String description) {
 		BookCondition bookcondition=bookconditionDao.findByRanks(rank);
 		bookcondition.setDescription(description);
+		addBookCondition(bookcondition);
 	}
 	public void updateFullDescription(int rank,String fulldescription) {
 		BookCondition bookcondition=bookconditionDao.findByRanks(rank);
 		bookcondition.setFullDescription(fulldescription);
-		
+		addBookCondition(bookcondition);
+
 	}
 	public void updatePrice(int rank,double price) {
 		BookCondition bookcondition=bookconditionDao.findByRanks(rank);
 		bookcondition.setPrice(price);
+		addBookCondition(bookcondition);
+
 	}
 	public void addBookCondition(BookCondition bookcondition) {
 		bookconditionDao.save(bookcondition);

@@ -45,11 +45,11 @@ export class BookShowcaseComponent {
   ngOnInit(){
     this.bookService.showBooks().subscribe((e)=>{
       this.allBooks=e;
-      this.catService.invokeFunction$.subscribe(() => {  // Subscribe to changes from the CategoryService
+      this.catService.invokeFunction.subscribe(() => {  // Subscribe to changes from the CategoryService
         this.filterBooks();
       });
 
-      this.catService.searchQuery$.subscribe((query) => {
+      this.catService.searchQuery.subscribe((query) => {
         this.filteredBooks = this.searchBooksByTitle(this.allBooks, query); // Filter based on search query
       });
 
