@@ -14,10 +14,7 @@ import { Reviewer } from '../../../model/Reviewer';
 import { Author } from '../../../model/Author';
 import { GetAuthorService } from '../../../service/get-author.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { randomInt } from 'crypto';
 import { CartService } from '../../../service/cart.service';
-import { response } from 'express';
-import { retry } from 'rxjs';
 import { Cart } from '../../../model/Cart';
 
 declare var bootstrap: any; 
@@ -177,10 +174,7 @@ export class ViewBookComponent {
         this.reviewService.postReview(this.dummyReview).subscribe();
       }
     )
-    this.successMessage = 'Posted successfully!';
-    const modal = document.getElementById('staticBackdrop') as any;
-    const modalInstance = bootstrap.Modal.getInstance(modal);
-    modalInstance.hide();
+    location.reload()
   }
   addtocart(isbn:string) {
     const username = localStorage.getItem("userName");
