@@ -62,7 +62,7 @@ input {
     border: 1px solid whitesmoke;
     border-radius: 5px;
     background-color: whitesmoke;
-    color: wheat; 
+    color: black; 
   }
   input:focus {
     outline: none;

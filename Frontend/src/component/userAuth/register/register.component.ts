@@ -5,6 +5,7 @@ import { User } from '../../../model/User';
 import { AuthService } from '../../../service/auth.service';
 import { CommonModule } from '@angular/common';
 import { response } from 'express';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,7 @@ export class RegisterComponent {
   imagePath: string = 'assets/images/book-bg.jpg';
   isPopupVisible = false;
   popupMessage: string = ''; 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,private router :Router) {}
 
   user: User = {
     firstName: '',
@@ -54,6 +55,9 @@ export class RegisterComponent {
   }
   closePopup() {
     this.isPopupVisible = false;
+    if(this.popupMessage==='Your account has been created successfully!🎉'){
+      this.router.navigate(["/login"])
+    }
   }
    
   
