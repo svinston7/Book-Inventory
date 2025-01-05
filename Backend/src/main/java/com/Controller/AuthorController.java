@@ -32,7 +32,7 @@ public class AuthorController {
 	public ResponseEntity<?> postAuthor(@RequestBody Author author)throws InvalidInputException {
 		try {
 			authorService.addAuthor(author);
-	        return ResponseEntity.ok(new Response("POSTSUCCESS", "Book added successfully"));
+	        return ResponseEntity.ok(new Response("POSTSUCCESS", "Author added successfully"));
 	    } catch (Exception e) {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 	                .body(new Response("ADDFAILS", "An unexpected error occurred"));
