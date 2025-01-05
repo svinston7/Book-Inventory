@@ -28,7 +28,7 @@ public class BookService {
 		Book book = findByIsbn(isbn);
 		book.setCategoryId(updatedBook.getCategoryId());
 		book.setEdition(updatedBook.getEdition());
-		book.setTitle(updatedBook.getTitle());
+		book.setTitle(updatedBook.getTitle());book.setDescription(updatedBook.getDescription());
 		book.setPublisherId(updatedBook.getPublisherId());
 		book.setImage(updatedBook.getImage());
 		bookDao.save(book);
