@@ -16,11 +16,15 @@
               name="publisherName"
               placeholder="Enter publisher's name"
               required
+              minlength="3"
+              maxlength="100"
               ngModel
               #publisherName="ngModel"
             />
             <div *ngIf="publisherName.invalid && publisherName.touched" class="error">
-              Publisher Name is required.
+              <div *ngIf="publisherName.errors?.['required']">Publisher Name is required.</div>
+              <div *ngIf="publisherName.errors?.['minlength']">Publisher Name must be at least 3 characters long.</div>
+              <div *ngIf="publisherName.errors?.['maxlength']">Publisher Name cannot be longer than 100 characters.</div>
             </div>
           </div>
 
@@ -33,6 +37,7 @@
               name="publisherId"
               placeholder="Enter publisher ID"
               required
+              min="1"
               ngModel
               #publisherId="ngModel"
             />
@@ -50,11 +55,13 @@
               name="email"
               placeholder="Enter publisher's email"
               required
+              email
               ngModel
               #email="ngModel"
             />
             <div *ngIf="email.invalid && email.touched" class="error">
-              A valid email is required.
+              <div *ngIf="email.errors?.['required']">Email is required.</div>
+              <div *ngIf="email.errors?.['email']">Please enter a valid email address.</div>
             </div>
           </div>
 
@@ -67,6 +74,7 @@
               name="price"
               placeholder="Enter the price of the book"
               required
+              min="1"
               ngModel
               #price="ngModel"
             />
@@ -87,11 +95,15 @@
               name="title"
               placeholder="Enter the book title"
               required
+              minlength="3"
+              maxlength="100"
               ngModel
               #title="ngModel"
             />
             <div *ngIf="title.invalid && title.touched" class="error">
-              Book Title is required.
+              <div *ngIf="title.errors?.['required']">Book Title is required.</div>
+              <div *ngIf="title.errors?.['minlength']">Book Title must be at least 3 characters long.</div>
+              <div *ngIf="title.errors?.['maxlength']">Book Title cannot be longer than 100 characters.</div>
             </div>
           </div>
 
@@ -104,6 +116,7 @@
               name="edition"
               placeholder="Enter the edition number"
               required
+              min="1"
               ngModel
               #edition="ngModel"
             />
@@ -112,20 +125,24 @@
             </div>
           </div>
 
-          <!-- ISBN Number -->
+          <!-- ISBN Number (Updated to 10-digit number) -->
           <div>
-            <label for="isbn">ISBN :</label>
+            <label for="isbn">ISBN:</label>
             <input
               type="text"
               id="isbn"
               name="isbn"
               placeholder="Enter the ISBN value"
               required
+              minlength="10"
+              maxlength="10"
               ngModel
               #isbn="ngModel"
             />
             <div *ngIf="isbn.invalid && isbn.touched" class="error">
-              Please enter a valid ISBN value.
+              <div *ngIf="isbn.errors?.['required']">ISBN is required.</div>
+              <div *ngIf="isbn.errors?.['minlength']">ISBN must be exactly 10 digits long.</div>
+              <div *ngIf="isbn.errors?.['maxlength']">ISBN cannot be longer than 10 digits.</div>
             </div>
           </div>
 
@@ -139,9 +156,7 @@
               ngModel
               #category="ngModel"
             >
-              <option value="" disabled selected>
-                Select a category
-              </option>
+              <option value="" disabled selected>Select a category</option>
               <option value="1">Romance</option>
               <option value="2">Comics</option>
               <option value="3">Programming</option>
@@ -167,30 +182,32 @@
           name="bookDescription"
           placeholder="Enter a brief description of the book"
           required
+          minlength="10"
           ngModel
           #bookDescription="ngModel"
         ></textarea>
         <div *ngIf="bookDescription.invalid && bookDescription.touched" class="error">
-          Book Description is required.
+          <div *ngIf="bookDescription.errors?.['required']">Book Description is required.</div>
+          <div *ngIf="bookDescription.errors?.['minlength']">Book Description must be at least 10 characters long.</div>
         </div>
       </div>
+<!-- Book Cover Page (Image URL) -->
+<div>
+  <label for="image">Book Cover Page (Image URL):</label>
+  <input
+    type="text"
+    id="image"
+    name="image"
+    placeholder="Enter the URL for the book cover image"
+    required
+    ngModel
+    #image="ngModel"
+  />
+  <div *ngIf="image.invalid && image.touched" class="error">
+    <div *ngIf="image.errors?.['required']">Book Cover Page URL is required.</div>
+  </div>
+</div>
 
-      <!-- Book Cover Page (Image URL) -->
-      <div>
-        <label for="image">Book Cover Page (Image URL):</label>
-        <input
-          type="text"
-          id="image"
-          name="image"
-          placeholder="Enter the URL for the book cover image"
-          required
-          ngModel
-          #image="ngModel"
-        />
-        <div *ngIf="image.invalid && image.touched" class="error">
-          Please enter a valid image URL.
-        </div>
-      </div>
 
       <!-- Submit Button -->
       <button type="submit" [disabled]="publishForm.invalid">Submit</button>
@@ -206,4 +223,5 @@
       </div>
       <button (click)="isPopupVisible = false" class="close-btn">Close</button>
     </div>
-    
+  </div>
+</div>
