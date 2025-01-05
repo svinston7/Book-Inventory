@@ -62,7 +62,7 @@ public class AuthorController {
 	}
 	@GetMapping("/lastname/{lastname}")
 	public ResponseEntity<?> getAuthorlastname(@PathVariable String lastname)throws ResourceNotFoundException {
-		Author author = authorService.findByFirstName(lastname);
+		Author author = authorService.findByLastName(lastname);
 		return new ResponseEntity<Author>(author,HttpStatus.OK);
 		
 	}
